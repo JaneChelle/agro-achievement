@@ -79,12 +79,18 @@ public class Organization implements Serializable {
     private String contactAddress;
 
     /**
-     * （对应）成果id
+     * 发布者id
      */
-    private Integer achievementId;
+    private Integer userId;
 
     /**
      * 机构类型id
      */
     private Integer organizationTypeId;
+
+    /**
+     * 机构类型
+     */
+    private String typeName;
+
 }

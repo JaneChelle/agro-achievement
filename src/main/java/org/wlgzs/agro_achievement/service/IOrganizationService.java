@@ -2,6 +2,9 @@ package org.wlgzs.agro_achievement.service;
 
 import org.wlgzs.agro_achievement.entity.Organization;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.wlgzs.agro_achievement.util.Result;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -12,5 +15,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-01-19
  */
 public interface IOrganizationService extends IService<Organization> {
+
+    //添加机构
+    Result addOrganization(Organization organization);
+
+    //删除机构
+    Result deleteOrganization(Integer organizationId);
+
+    Result selectOrganizationByUser(HttpServletRequest request);
 
 }

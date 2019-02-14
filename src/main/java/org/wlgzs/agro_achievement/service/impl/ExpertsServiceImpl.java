@@ -96,10 +96,23 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         Page page = new Page(1, limit);
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("experts_id");//condition   是否执行
-        IPage<Experts> iPage = baseMapper.selectMapsPage(page,queryWrapper);
+        IPage<Experts> iPage = baseMapper.selectMapsPage(page, queryWrapper);
         List<Experts> list = iPage.getRecords();
-        if(list != null){
-            return new Result(ResultCode.SUCCESS,list);
+        if (list != null) {
+            return new Result(ResultCode.SUCCESS, list);
+        }
+        return new Result(ResultCode.FAIL, "暂无数据！");
+    }
+
+    @Override
+    public Result expertRanking(int limit) {
+        Page page = new Page(1, limit);
+        QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("page_view");
+        IPage<Experts> iPage = baseMapper.selectMapsPage (page, queryWrapper);
+        List<Experts> list = iPage.getRecords();
+        if (list != null) {
+            return new Result(ResultCode.SUCCESS, list);
         }
         return new Result(ResultCode.FAIL, "暂无数据！");
     }

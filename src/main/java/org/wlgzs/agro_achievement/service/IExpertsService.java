@@ -28,4 +28,7 @@ public interface IExpertsService extends IService<Experts> {
     //按添加时间查询专家（最新加入）
     Result selectExpertsByTime(int limit);
 
+    //按添加时间查询专家（最新加入）
+    Result expertRanking(int limit);
+
 }

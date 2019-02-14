@@ -48,5 +48,9 @@ public class ExpertsController extends BaseController {
         return iExpertsService.selectExpertsByTime(limit);
     }
 
-
+    //按点击量查询专家
+    @GetMapping("/expertRanking")
+    public Result expertRanking(@RequestParam(value = "limit", defaultValue = "8") int limit){
+        return iExpertsService.expertRanking(limit);
+    }
 }

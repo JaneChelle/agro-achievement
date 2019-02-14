@@ -48,4 +48,7 @@ public class BaseController {
 
     @Autowired
     protected LoginService loginService;
+
+    @Autowired
+    protected IAuditService iAuditService;
 }

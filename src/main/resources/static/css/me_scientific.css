@@ -1,0 +1,105 @@
+.current{
+    width: 1200px;
+    margin: 0 auto;
+    border: 1px solid #41A809;
+    line-height: 30px;
+}
+.current>a{
+    color: #000;
+    text-decoration: none;
+
+}
+.current>i{
+    color: #41A809;
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 20px;
+}
+.current>a:hover{
+    color: #41A809;
+    text-decoration: underline;
+}
+.cg-title{
+    width:1200px;
+    margin: 0 auto;
+    line-height: 25px;
+    margin-top: 10px;
+    border-bottom: 1px solid #41A809;
+}
+.cg-title>img{
+    vertical-align: middle;
+
+}
+.cg-list{
+    width:1200px;
+    margin:0 auto;
+    border:1px solid #cccccc;
+    box-shadow: 0 0 1px 1px #cccccc;
+}
+.cg-list>ul{
+    background: url(../images/san_lie_09.jpg) repeat-x;
+    padding-top: 10px;
+}
+.cg-list>ul>li{
+    line-height: 35px;
+    padding-left: 30px;
+}
+.cg-list>ul>li>a{
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+}
+.cg-list>ul>li>a:hover{
+    color: #41A809;
+    text-decoration: underline;
+
+}
+.fenye{
+    width:1200px;
+    margin: 0 auto;
+    background-color: #F2F2F2;
+    text-align: center;
+    line-height: 30px;
+    border-bottom: 1px solid #41A809;
+}
+.fenye>a{
+    text-decoration: none;
+    color: #000;
+    margin: 0 15px;
+}
+.fenye>a:hover{
+    color: #41A809;
+    text-decoration: underline;
+}
+.fenye>input{
+    width: 30px;
+    vertical-align: middle;
+    padding: 0;
+    line-height: 18px;
+}
+.query{
+    line-height: 40px;
+    padding-left: 10px;
+}
+.query>ul>li{
+    float: left;
+    padding: 8px 20px;
+}
+.query>ul>li>select{
+    padding: 6px 10px;
+    outline: none;
+}
+.query input{
+    padding:5px 10px;
+}
+.me-submit{
+    background: #41A809;
+    border:none;
+    color: #ffffff;
+    outline: none;
+}
+.college_inro>li{
+    list-style-type: none;
+    border-bottom: 1px dashed #cccccc;
+    padding:10px;
+}

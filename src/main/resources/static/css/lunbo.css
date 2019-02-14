@@ -1,0 +1,80 @@
+/*轮播图区*/
+/* 总div */
+div.container{
+    position: relative;
+    width: 1200px;
+    height: 400px;
+    margin:  0 auto;
+    /*box-shadow: 0 0 5px aqua;*/
+    overflow: hidden;
+}
+/* 图片区 */
+div.container div.wrap{
+    position: absolute;
+    width: 8400px;
+    height: 400px;
+    z-index: 1;
+}
+
+div.container div.wrap img{
+    width: 1200px;
+    height: 400px;
+    float: left;
+}
+/* 按钮区 */
+div.container div.button{
+    position: absolute;
+    right: 520px;
+    bottom: 15px;
+    width: 150px;
+    height: 20px;
+    z-index: 2;
+    text-align: center;
+}
+
+div.container div.button span{
+    margin-left: 5px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    opacity: 0.6;
+}
+/* 轮播到哪张图，哪个按钮有这个效果，与其他按钮有个区别。 */
+div.container div.button span.on{
+    opacity: 1;
+}
+/* 箭头区 */
+div.container .jt{
+    position: absolute;
+    top: 40%;
+    color: #fff;
+    padding: 0px 14px;
+    font-size: 55px;
+    text-align: center;
+    z-index: 2;
+    display: none;
+}
+
+div.container .jt_left{
+    left: 10px;
+    text-decoration: none;
+}
+
+div.container .jt_right{
+    right: 10px;
+    text-decoration: none;
+}
+
+div.container:hover .jt{
+    display: block;
+    opacity: 0.4;
+}
+
+div.container .jt:hover{
+    opacity: 1;
+}

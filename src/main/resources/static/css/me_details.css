@@ -1,0 +1,109 @@
+.current{
+    width: 1200px;
+    margin: 0 auto;
+    border: 1px solid #41A809;
+    line-height: 30px;
+}
+.current>a{
+    color: #000;
+    text-decoration: none;
+
+}
+.current>i{
+    color: #41A809;
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 20px;
+}
+.current>a:hover{
+    color:#41A809;
+    text-decoration: underline;
+}
+.tab{
+    list-style-type: none;
+    overflow: hidden;
+}
+.tab>li{
+    padding: 10px 20px;
+    border-right: 2px solid #F2F2F5;
+    float: left;
+    cursor: pointer;
+}
+.me_con{
+    width:1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.me_left{
+    width:200px;
+    float: left;
+    box-shadow: 0 0 1px 1px #cccccc;
+    border:1px solid #cccccc;
+}
+.me_right{
+    width: 970px;
+    float: right;
+}
+.center{
+    background: #F0F0F0;
+    line-height: 25px;
+    text-align: center;
+}
+.center>h4>a{
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+}
+.center>h4>a:hover{
+    color:#41A809;
+    text-decoration: underline;
+}
+.img_bian>img{
+    width: 170px;
+    height: 170px;
+    vertical-align: middle;
+    border: 1px solid #cccccc;
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+.me_details{
+    border-top: 1px solid #cccccc;
+    background:#F5F5F5;
+    padding: 15px;
+    line-height: 30px;
+}
+.me_details>ul{
+   margin-top: 10px;
+    overflow: hidden;
+}
+
+.me_details>ul>li{
+    background: #ffffff;
+    line-height: 30px;
+    padding-left: 5px;
+}
+.people{
+    background: url(../images/san_lie_09.jpg) repeat-x;
+    padding:10px;
+    box-shadow: 0 0 1px 1px #cccccc;
+    border: 1px solid #cccccc;
+    margin-bottom: 10px;
+}
+
+.people>span{
+    color: #41A809;
+    font-size: 17px;
+    margin-left: 10px;
+}
+.people>ul{
+    overflow: hidden;
+}
+.people>ul>li{
+    width: 40%;
+    float: left;
+    padding-left: 20px;
+    line-height: 30px;
+}

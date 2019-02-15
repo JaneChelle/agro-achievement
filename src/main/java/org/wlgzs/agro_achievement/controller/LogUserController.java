@@ -1,8 +1,10 @@
 package org.wlgzs.agro_achievement.controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.util.Result;
@@ -18,6 +20,18 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/LogUser")
 public class LogUserController extends BaseController {
 
+    //去登录
+    @RequestMapping(value = "/toLogin")
+    public ModelAndView toLogin(){
+        return new ModelAndView("login");
+    }
+
+    //去注册
+    @RequestMapping(value = "/toRegister")
+    public ModelAndView toRegister(){
+        return new ModelAndView("register");
+    }
+
     /**
      * 登录
      * @param request
@@ -26,9 +40,19 @@ public class LogUserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/login" ,method = RequestMethod.POST)
-    public Result login(HttpServletRequest request,String userName,String password){
+    public ModelAndView login(Model model,HttpServletRequest request, String userName, String password){
         Result result = loginService.login(request,userName,password);
-        return result;
+        int code = result.getCode();
+        if(code == 1){//管理员登录
+            return new ModelAndView("adminIndex");
+        }else if(code == 2 || code == 0){
+            //普通用户（或者专家）登录
+            String url = "redirect:/HomeController/home";
+            return new ModelAndView("adminIndex");
+        }else{//登录失败
+            model.addAttribute("msg", "账号或密码错误");
+            return new ModelAndView("login");
+        }
     }
 
     /**
@@ -38,9 +62,15 @@ public class LogUserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/register",method = RequestMethod.PUT)
-    public Result register(HttpServletRequest request, User user){
-        Result result = loginService.register(request,user);
-        return result;
+    public ModelAndView register(Model model,HttpServletRequest request, User user,String code){
+        if(iUserService.contrastCode(request,user.getUserEmail(),code).getCode() == 0){
+            //成功
+            loginService.register(request,user);
+            model.addAttribute("msg","注册成功！");
+            return new ModelAndView("login");
+        }
+        model.addAttribute("msg","您的信息有误！");
+        return new ModelAndView("redirect:/LogUser/toRegister");
     }
 
     /**

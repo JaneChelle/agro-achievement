@@ -4,6 +4,8 @@ import org.wlgzs.agro_achievement.entity.Achievement;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.wlgzs.agro_achievement.util.Result;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -36,4 +38,6 @@ public interface IAchievementService extends IService<Achievement> {
     //按分类查询成果
     Result selectAchieveByType(String type, int current, int limit);
 
+    //按时间查询（首页）
+    List<Achievement> selectAchieveByTime();
 }

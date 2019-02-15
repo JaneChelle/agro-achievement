@@ -153,7 +153,10 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         Page page = new Page(current, limit);
         iPage = baseMapper.selectPage(page, queryWrapper);
         achievementList = iPage.getRecords();
-        return new Result(ResultCode.SUCCESS, "",achievementList, iPage.getPages(), iPage.getCurrent());
+        if(achievementList != null){
+            return new Result(ResultCode.SUCCESS, "",achievementList, iPage.getPages(), iPage.getCurrent());
+        }
+        return new Result(ResultCode.FAIL,"暂无数据！");
     }
 
     //按分类查询成果
@@ -187,6 +190,15 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             return new Result(ResultCode.SUCCESS,achievementList);
         }
         return new Result(ResultCode.FAIL,"不存在！");
+    }
+
+    @Override
+    public List<Achievement> selectAchieveByTime() {
+        QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("status_code","1").orderByDesc(true,"release_time");
+        Page page = new Page(1, 10);
+        IPage<Achievement> iPage = baseMapper.selectPage(page,queryWrapper);
+        return iPage.getRecords();
     }
 
 }

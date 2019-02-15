@@ -93,4 +93,9 @@ public class Organization implements Serializable {
      */
     private String typeName;
 
+    /**
+     * 审核状态码（0未审核，1通过，2失败）
+     */
+    private String statusCode;
+
 }

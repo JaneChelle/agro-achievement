@@ -25,4 +25,6 @@ public interface IAnnouncementService extends IService<Announcement> {
 
     //按类别查询公告
     Result selectAnnouncement(String announcementType, Integer current, Integer limit);
+
+    //
 }

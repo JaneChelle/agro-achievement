@@ -88,4 +88,5 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements L
         }
         return new Result(ResultCode.SUCCESS,"OK");
     }
+
 }

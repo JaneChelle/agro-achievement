@@ -1,6 +1,8 @@
 package org.wlgzs.agro_achievement.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.wlgzs.agro_achievement.entity.Organization;
 import org.wlgzs.agro_achievement.entity.OrganizationType;
 import org.wlgzs.agro_achievement.entity.User;
@@ -70,6 +72,18 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
             return new Result(ResultCode.FAIL,"暂无所属机构！");
         }
         return new Result(ResultCode.FAIL, "请先登录！");
+    }
+
+    //前台查询所有机构
+    @Override
+    public List<Organization> selectAllOrganization(int current, int limit) {
+        List<Organization> organizationList = null;
+        Page page = new Page(current,limit);
+        QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("status_code","1");
+        IPage iPage = baseMapper.selectPage(page,queryWrapper);
+        organizationList = iPage.getRecords();
+        return organizationList;
     }
 
 

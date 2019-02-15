@@ -1,16 +1,20 @@
 package org.wlgzs.agro_achievement.controller;
 
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Organization;
 import org.wlgzs.agro_achievement.util.Result;
 import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -44,6 +48,15 @@ public class OrganizationController extends BaseController {
     @RequestMapping(value = "/selectOrganizationByUser",method = RequestMethod.GET)
     public Result selectOrganizationByUser(HttpServletRequest request){
         return iOrganizationService.selectOrganizationByUser(request);
+    }
+
+    //前台查询所有机构
+    @RequestMapping(value = "/selectAllOrganization")
+    public ModelAndView selectAllOrganization(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
+                                              @RequestParam(value = "limit", defaultValue = "8") int limit){
+        List<Organization> organizationList = iOrganizationService.selectAllOrganization(current,limit);
+        model.addAttribute("organizationList",organizationList);
+        return new ModelAndView("");
     }
 
 

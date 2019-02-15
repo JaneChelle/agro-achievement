@@ -25,7 +25,7 @@ public class UserManagementController extends BaseController {
     }
 
     //发送邮箱(验证码)
-    @RequestMapping(value = "/sendEmail",method = RequestMethod.POST)
+        @RequestMapping(value = "/sendEmail",method = RequestMethod.POST)
     public void sendEmail(HttpServletRequest request, String userEmail){
         iUserService.sendEmail(request,userEmail);
     }

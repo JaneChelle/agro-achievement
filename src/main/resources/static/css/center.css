@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "微软雅黑";
+    overflow-x:auto ;
+    overflow-y:hidden;
+}
+.roof{
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+    background-color: #20222A;
+    overflow: hidden;
+    font-family: "宋体";
+    overflow: hidden;
+    font-size: 20px;
+}
+.left {
+    float: left;
+    margin-left: 45px;
+}
+.logo{
+    width:50px;
+    height:50px;
+    display: inline-block;
+}
+.tttle2{
+    height:60px;
+    display: inline-block;
+}
+.left>span{
+    display: inline-block;
+    color: #fff;
+    vertical-align: text-bottom;
+    font-size: 30px;
+
+}
+.right{
+    float: right;
+    margin-right: 15px;
+    line-height: 60px;
+    font-size: 16px;
+    color: #fff;
+    opacity: 0.7;
+}
+.user{
+    display: inline-block;
+    cursor: pointer;
+}
+.back{
+    display: inline-block;
+}
+.back>a{
+    color: #fff;
+    text-decoration: none;
+}
+.side-left{
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    background-color: #20222A;
+    position: absolute;
+
+}
+/*左侧侧边栏样式*/
+.list_one{
+    /*width: 200px;*/
+    height: 45px;
+    padding-left: 49px;
+    border-left: solid 6px #393D49;
+    text-align: left;
+    line-height: 45px;
+    color: darkgray;
+}
+.list_one>i{
+   margin-right: 5px;
+}
+.list_one:hover{
+    color: white;
+    border-left: solid 6px #009688;
+    cursor: pointer;
+}
+.list_two{
+    width: 200px;
+    height: auto;
+    text-align: left;
+    line-height: 45px;
+    color: darkgray;
+    background-color: #282B33;
+    display: none;
+}
+.list_two>div{
+    width: 150px;
+    height: 45px;
+    padding-left: 50px;
+}
+.list_two>div:hover{
+    color:darkgray;
+    cursor: pointer;
+}
+.thisColor{
+    background-color: #009688;
+}
+.another{
+    background-color: #393D49;
+}
+#mr{
+    margin-right: 10px;
+    opacity: 0.7;
+    margin-left: 50px;
+    transition: all .3s;
+}
+.frame-div {
+    position: absolute;
+    left: 200px;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+}
+.ifm{
+    width: 100%;
+    height: 100%;
+
+}
+.tuichu{
+    padding:10px;
+    background: #41A809;
+    border-radius: 5px;
+}
+.tuichu:hover{
+   box-shadow: 0 0 1px 1px #cccccc;
+}
+.addColor>a{
+    color: #ffffff;
+    text-decoration: none;
+}

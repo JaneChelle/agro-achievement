@@ -26,8 +26,7 @@ public class HomeController extends BaseController {
     @RequestMapping("/home")
     public ModelAndView home(Model model){
         //首页技术供给
-        List<Achievement> achievementList
-                = iAchievementService.selectAchieveByTime();
+        List<Achievement> achievementList = iAchievementService.selectAchieveByTime();
         model.addAttribute("achievementList",achievementList);
 
         //首页技术需求

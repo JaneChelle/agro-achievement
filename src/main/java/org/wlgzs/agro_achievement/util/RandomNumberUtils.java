@@ -1,9 +1,7 @@
 package org.wlgzs.agro_achievement.util;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Random;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author:胡亚星
@@ -103,4 +101,19 @@ public class RandomNumberUtils {
             return value;
         }
     }
+
+    /**
+     * 随机生成储存文件名，当前五位随机数+日期
+     * @return
+     */
+    public static String getRandomFileName() {
+        SimpleDateFormat simpleDateFormat;
+        simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date();
+        String str = simpleDateFormat.format(date);
+        Random random = new Random();
+        int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
+        return rannum + str;// 当前时间
+    }
+
 }

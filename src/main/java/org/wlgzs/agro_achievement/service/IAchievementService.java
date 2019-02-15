@@ -1,9 +1,12 @@
 package org.wlgzs.agro_achievement.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Achievement;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.wlgzs.agro_achievement.util.Result;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -17,8 +20,8 @@ import java.util.List;
 public interface IAchievementService extends IService<Achievement> {
 
     //发布需求
-    Result addAchievement(Achievement achievement, String start_time,
-                          String end_time);
+    Result addAchievement(MultipartFile[] myFileNames, HttpSession session,HttpServletRequest request,
+                          Achievement achievement, String start_time, String end_time);
 
     //删除需求
     Result deleteAchievement(Integer achievementId);

@@ -1,6 +1,7 @@
 package org.wlgzs.agro_achievement.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.wlgzs.agro_achievement.service.*;
 
 import javax.servlet.http.HttpSession;
@@ -51,4 +52,8 @@ public class BaseController {
 
     @Autowired
     protected IAuditService iAuditService;
+
+    @Autowired
+    protected Model model;
+
 }

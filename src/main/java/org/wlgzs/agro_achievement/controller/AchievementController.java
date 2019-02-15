@@ -6,12 +6,16 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Achievement;
 import org.wlgzs.agro_achievement.entity.Demand;
 import org.wlgzs.agro_achievement.util.Result;
 import org.wlgzs.agro_achievement.util.ResultCode;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -26,22 +30,43 @@ import java.util.List;
 @RequestMapping("/achievement")
 public class AchievementController extends BaseController {
 
+    //跳转到添加成果
+    @RequestMapping(value = "/toAddAchievement")
+    public ModelAndView toAddAchievement(){
+        return new ModelAndView("addAchievement");
+    }
+
     //发布成果
-    @RequestMapping(value = "/addAchievement",method = RequestMethod.PUT)
-    public Result addAchievement(Achievement achievement,String start_time, String end_time){
-        return iAchievementService.addAchievement(achievement,start_time,end_time);
+    @RequestMapping(value = "/addAchievement")
+    public ModelAndView addAchievement(@RequestParam("file") MultipartFile[] myFileNames, HttpSession session,
+                                       HttpServletRequest request,Achievement achievement, String start_time, String end_time){
+        iAchievementService.addAchievement(myFileNames,session,request,achievement,start_time,end_time);
+        model.addAttribute("msg","发布成功！");
+        return new ModelAndView("redirect:/achievement/selectAchievement");
     }
 
     //删除成果
-    @RequestMapping(value = "/deleteAchievement", method = RequestMethod.DELETE)
-    public Result deleteAchievement(Integer achievementId) {
-        return iAchievementService.deleteAchievement(achievementId);
+    @RequestMapping(value = "/deleteAchievement")
+    public ModelAndView deleteAchievement(Integer achievementId) {
+        Result result = iAchievementService.deleteAchievement(achievementId);
+        if(result.getCode() == 0){
+            model.addAttribute("msg","删除成功！");
+        }else{
+            model.addAttribute("msg","不存在！");
+        }
+        return new ModelAndView("redirect:/achievement/selectAchievement");
     }
 
     //修改成果
     @RequestMapping(value = "/modifyAchievement", method = RequestMethod.PUT)
-    public Result modifyAchievement(Achievement achievement,String start_time, String end_time) {
-        return iAchievementService.modifyAchievement(achievement,start_time,end_time);
+    public ModelAndView modifyAchievement(Achievement achievement,String start_time, String end_time) {
+        Result result = iAchievementService.modifyAchievement(achievement,start_time,end_time);
+        if(result.getCode() == 0){
+            Achievement achievement1 = (Achievement) result.getData();
+            model.addAttribute("msg","修改成功！");
+            model.addAttribute("achievement",achievement1);
+        }
+        return new ModelAndView("111");
     }
 
     //查询所有成果（用户）

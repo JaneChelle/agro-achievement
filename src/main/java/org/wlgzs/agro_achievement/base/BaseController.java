@@ -53,7 +53,4 @@ public class BaseController {
     @Autowired
     protected IAuditService iAuditService;
 
-    @Autowired
-    protected Model model;
-
 }

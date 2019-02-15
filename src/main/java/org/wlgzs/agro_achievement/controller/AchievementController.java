@@ -4,6 +4,7 @@ package org.wlgzs.agro_achievement.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -38,7 +39,7 @@ public class AchievementController extends BaseController {
 
     //发布成果
     @RequestMapping(value = "/addAchievement")
-    public ModelAndView addAchievement(@RequestParam("file") MultipartFile[] myFileNames, HttpSession session,
+    public ModelAndView addAchievement(@RequestParam("file") MultipartFile[] myFileNames, HttpSession session,Model model,
                                        HttpServletRequest request,Achievement achievement, String start_time, String end_time){
         iAchievementService.addAchievement(myFileNames,session,request,achievement,start_time,end_time);
         model.addAttribute("msg","发布成功！");
@@ -47,7 +48,7 @@ public class AchievementController extends BaseController {
 
     //删除成果
     @RequestMapping(value = "/deleteAchievement")
-    public ModelAndView deleteAchievement(Integer achievementId) {
+    public ModelAndView deleteAchievement(Integer achievementId,Model model) {
         Result result = iAchievementService.deleteAchievement(achievementId);
         if(result.getCode() == 0){
             model.addAttribute("msg","删除成功！");
@@ -59,22 +60,26 @@ public class AchievementController extends BaseController {
 
     //修改成果
     @RequestMapping(value = "/modifyAchievement", method = RequestMethod.PUT)
-    public ModelAndView modifyAchievement(Achievement achievement,String start_time, String end_time) {
+    public ModelAndView modifyAchievement(Achievement achievement, String start_time, String end_time, Model model) {
         Result result = iAchievementService.modifyAchievement(achievement,start_time,end_time);
         if(result.getCode() == 0){
-            Achievement achievement1 = (Achievement) result.getData();
+            Achievement achievement1 = (Achievement)result.getData();
             model.addAttribute("msg","修改成功！");
             model.addAttribute("achievement",achievement1);
+            return new ModelAndView("achieveDetails");
         }
-        return new ModelAndView("111");
+        model.addAttribute("msg","修改失败！");
+        return new ModelAndView("redirect:/achievement/selectAchievement");
     }
 
     //查询所有成果（用户）
     @GetMapping("/selectAchievement")//分页
-    public Result selectAchievement(Integer userId, String statusCode,
+    public ModelAndView selectAchievement(Integer userId, String statusCode,
                                @RequestParam(value = "current", defaultValue = "1") Integer current,
                                @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
-        return iAchievementService.selectAchievement(userId, statusCode,current,limit);
+        Result result = iAchievementService.selectAchievement(userId, statusCode,current,limit);
+
+        return new ModelAndView("");
     }
 
     //前台查询所有成果（页面显示的，审核通过的）

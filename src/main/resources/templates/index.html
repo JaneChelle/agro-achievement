@@ -173,10 +173,10 @@
                 <a style="float: left">技术供给</a>
                 <a href="" style="float: right">更多</a>
             </div>
-            <ul>
+            <ul th:each="achievement : ${achievementList}">
                 <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
+                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.}" target="_blank">
+                    <span th:text="${}"></span>
                     </a><span style="float: right">2015-04-10</span>
                 </li>
                 <li>

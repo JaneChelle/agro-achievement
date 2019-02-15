@@ -15,9 +15,9 @@
 <div class="box">
     <div class="userMsg">
         <ul>
-            <li><a href="">忘记密码?</a></li>
-            <li><a href="">请注册</a></li>
-            <li><a href="">请登录</a></li>
+            <li><a href="/LogUser/login">忘记密码?</a></li>
+            <li><a href="/LogUser/login">请注册</a></li>
+            <li><a href="/LogUser/login">请登录</a></li>
             <li>欢迎：<span>客人</span></li>
         </ul>
     </div>
@@ -99,11 +99,14 @@
                 <a href=""  class="more">更多</a>
             </div>
             <ul class="newsCon">
-                <li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>
-                <li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>
-                <li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>
-                <li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>
-                <li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>
+                <li th:each="news: ${newsList}">
+                    <a target="_blank" href="" title=""><span th:text="news.news"></span></a>
+                    <span style="color:#666;float: right" th:text="news.Runtime"></span>
+                </li>
+                <!--<li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>-->
+                <!--<li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>-->
+                <!--<li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>-->
+                <!--<li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>-->
             </ul>
         </div>
         <div class="service">
@@ -175,30 +178,30 @@
             </div>
             <ul >
                 <li th:each="achievement : ${achievementList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.typeName}" target="_blank">
-                    <span th:text="${achievement.typeName}"></span>
-                    </a><span style="float: right">2015-04-10</span>
+                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.achievementIntroduce}" target="_blank">
+                    <span th:text="${achievement.achievementIntroduce}"></span>
+                    </a><span style="float: right" th:text="${achievement.endTime}">2015-04-10</span>
                 </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                        一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                    </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                        一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                    </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                        一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                    </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                        一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                    </a><span style="float: right">2015-04-10</span>
-                </li>
+                <!--<li>-->
+                    <!--<i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">-->
+                        <!--一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末-->
+                    <!--</a><span style="float: right">2015-04-10</span>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">-->
+                        <!--一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末-->
+                    <!--</a><span style="float: right">2015-04-10</span>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">-->
+                        <!--一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末-->
+                    <!--</a><span style="float: right">2015-04-10</span>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">-->
+                        <!--一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末-->
+                    <!--</a><span style="float: right">2015-04-10</span>-->
+                <!--</li>-->
             </ul>
         </div>
         <!--技术需求-->

@@ -100,44 +100,40 @@
             </div>
             <ul class="newsCon">
                 <li th:each="news: ${newsList}">
-                    <a target="_blank" href="" title=""><span th:text="news.news"></span></a>
-                    <span style="color:#666;float: right" th:text="news.Runtime"></span>
+                    <a target="_blank" href="" title=""><span th:text="${news.news}"></span></a>
+                    <span style="color:#666;float: right" th:text="${news.Runtime}"></span>
                 </li>
-                <!--<li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>-->
-                <!--<li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>-->
-                <!--<li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>-->
-                <!--<li><a target="_blank" href="" title="">Agrosuper爱阁食品宣布收购AquaChile 本次收购将使爱阁食品成为世界第二大三文鱼生产商</a><span style="color:#666;float: right">2018-12-29 </span></li>-->
             </ul>
         </div>
         <div class="service">
             <div class="tips">服务资源</div>
             <div class="oDiv">
                 <div>
-                    <a href=""><img src="images/jishu1.jpg" alt=""></a>
+                    <a href=""><img th:src="@{/images/jishu1.jpg}" alt=""></a>
                 </div>
                 <div>
-                    <a href=""><img src="images/jishu2.jpg" alt=""></a>
+                    <a href=""><img th:src="@{/images/jishu2.jpg}" alt=""></a>
                 </div>
                 <div>
-                    <a href=""><img src="images/jishu3.jpg" alt=""></a>
+                    <a href=""><img th:src="@{/images/jishu3.jpg}" alt=""></a>
                 </div>
                 <div>
-                    <a href=""><img src="images/jishu4.jpg" alt=""></a>
+                    <a href=""><img th:src="@{/images/jishu4.jpg}" alt=""></a>
                 </div>
                 <div>
-                    <a href="">  <img src="images/jishu5.jpg" alt=""></a>
+                    <a href=""><img th:src="@{/images/jishu5.jpg}" alt=""></a>
                 </div>
                 <div>
-                    <a href=""> <img src="images/jishu6.jpg" alt=""></a>
+                    <a href=""><img th:src="@{/images/jishu6.jpg}" alt=""></a>
                 </div>
                 <div>
-                    <a href=""><img src="images/jishu7.jpg" alt=""></a>
+                    <a href=""><img th:src="@{/images/jishu7.jpg}" alt=""></a>
                 </div>
                 <div>
-                    <a href=""><img src="images/jishu8.jpg" alt=""></a>
+                    <a href=""><img th:src="@{/images/jishu8.jpg}" alt=""></a>
                 </div>
                 <div>
-                    <a href=""><img src="images/jishu9.jpg" alt=""></a>
+                    <a href=""><img th:src="@{/images/jishu9.jpg}" alt=""></a>
                 </div>
             </div>
         </div>
@@ -151,13 +147,9 @@
         </div>
         <div class="imgkuang">
             <ul>
-                <li class="lii"><a href="#"><img src="images/show4.jpg" style="height:200px"/></a></li>
-                <li class="lii"><a href="#"><img src="images/show5.JPG" style="height:200px" /></a></li>
-                <li class="lii"><a href="#"><img src="images/show8.JPG" style="height:200px" /></a></li>
-                <li class="lii"><a href="#"><img src="images/show3.jpg" style="height:200px"/></a></li>
-                <li class="lii"><a href="#"><img src="images/show2.jpg" style="height:200px"/></a></li>
-                <li class="lii"><a href="#"><img src="images/show1.jpg" style="height:200px"/></a></li>
-                <li class="lii"><a href="#"><img src="images/show6.jpg" style="height:200px"/></a></li>
+                <li class="lii" th:each="achievement : ${achievementList}">
+                    <a href="#"><img th:src="${achievement.pictureAddress}" style="height:200px"/></a>
+                </li>
             </ul>
 
         </div>
@@ -180,28 +172,10 @@
                 <li th:each="achievement : ${achievementList}">
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.achievementIntroduce}" target="_blank">
                     <span th:text="${achievement.achievementIntroduce}"></span>
-                    </a><span style="float: right" th:text="${achievement.endTime}">2015-04-10</span>
+                    </a>
+                    <!--<span style="float: right" th:text="${#dates.format(achievement.endTime,'yyyy-MM-dd')}"></span>-->
+                    <span th:text="${achievement.endTime}"></span>
                 </li>
-                <!--<li>-->
-                    <!--<i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">-->
-                        <!--一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末-->
-                    <!--</a><span style="float: right">2015-04-10</span>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">-->
-                        <!--一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末-->
-                    <!--</a><span style="float: right">2015-04-10</span>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">-->
-                        <!--一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末-->
-                    <!--</a><span style="float: right">2015-04-10</span>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">-->
-                        <!--一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末-->
-                    <!--</a><span style="float: right">2015-04-10</span>-->
-                <!--</li>-->
             </ul>
         </div>
         <!--技术需求-->
@@ -211,30 +185,11 @@
                 <a href="" style="float: right">更多</a>
             </div>
             <ul>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                        一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                    </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                        一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                    </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                        一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                    </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                        一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                    </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                        一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                    </a><span style="float: right">2015-04-10</span>
+                <li th:each="demand : ${demandList}">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${demand.demandIntroduce}" target="_blank" th:text="${demand.demandIntroduce}">
+                    </a>
+                    <!--<span style="float: right" th:text="${#dates.format(demand.releaseTime,'yyyy-MM-dd')}"></span>-->
+                    <span th:text="${demand.releaseTime}"></span>
                 </li>
             </ul>
         </div>
@@ -245,7 +200,7 @@
                 <input type="radio" name="tab" checked>
                 <div>
                     <ul>
-                        <li>
+                        <li >
                             <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
                             一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
                         </a>
@@ -278,29 +233,8 @@
                 <input type="radio" name="tab">
                 <div>
                     <ul>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            广东金作农业科技有限公司
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            河南农友生物科技有限公司
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            浙江欧诗漫集团公司
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            广东金作农业科技有限公司
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            浙江欧诗漫集团公司
+                        <li th:each="organization: ${organizationList}">
+                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${organization.organizationIntroduce}" th:text="${organization.organizationIntroduce}" target="_blank">
                         </a>
                         </li>
                     </ul>
@@ -311,29 +245,8 @@
                 <input type="radio" name="tab">
                 <div>
                     <ul>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                           王毅
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                           孙春雨
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                           杨美英
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            会续爱
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                           客家话
+                        <li th:each="experts : ${expertsList}">
+                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${experts.expertsName}" th:text="${experts.expertsName}" target="_blank">
                         </a>
                         </li>
                     </ul>
@@ -347,30 +260,9 @@
                 <a href="" style="float: right">更多</a>
             </div>
             <ul>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
+                <li th:each="example : ${exampleList}">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${example.exampleTitle}" th:text="${example.exampleTitle}" target="_blank">
+                </a><span style="float: right" th:text="${example.releaseTime}"></span>
                 </li>
             </ul>
         </div>
@@ -392,30 +284,9 @@
                 <a href="" style="float: right">更多</a>
             </div>
             <ul>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
+                <li th:each="trading : ${tradingList}">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${trading.announcementTitle}"  th:text="${trading.announcementTitle}" target="_blank">
+                </a><span style="float: right" th:text="${trading.releaseTime}"></span>
                 </li>
             </ul>
         </div>
@@ -426,30 +297,10 @@
                 <a href="" style="float: right">更多</a>
             </div>
             <ul>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
+                <li th:each="policy : ${policyList}">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${policy.announcementTitle}" th:text="${policy.announcementTitle}" target="_blank">
                     一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
-                </li>
-                <li>
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                    一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                </a><span style="float: right">2015-04-10</span>
+                </a><span style="float: right" th:text="${policy.releaseTime}"></span>
                 </li>
             </ul>
         </div>
@@ -467,15 +318,15 @@
         <p>主办单位：农业部科技教育司 承办单位：中国农学会 农业部人力资源开发中心</p>
         <p>技术支持单位：河南科技学院信息工程学院未来工作室</p>
         <p>不良信息举报中心 网络110报警服务</p>
-        <p><img src="images/beian.PNG" alt="">京公网安备 11010502030296号</p>
+        <p><img th:src="@{/images/beian.png}" alt="">京公网安备 11010502030296号</p>
 
     </div>
 </footer>
 </body>
-<script src="js/jquery.min.js"></script>
-<script src="js/slide.js"></script>
-<script src="js/startMove.js"></script>
-<script src="js/index.js"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/slide.js}"></script>
+<script th:src="@{/js/startMove.js}"></script>
+<script th:src="@{/js/index.js}"></script>
 <script>
 
     var odiv2 = document.getElementsByClassName('imgkuang')[0];

@@ -161,7 +161,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper();
         IPage<Achievement> iPage = null;
         if (statusCode == null || statusCode.equals("")) {  //查询所有
-            queryWrapper.eq("user_id", userId);
+            queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", "1"));
             Page page = new Page(current, limit);
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Demand;
 import org.wlgzs.agro_achievement.util.Result;
@@ -25,10 +26,17 @@ import java.util.List;
 @RequestMapping("/demand")
 public class DemandController extends BaseController {
 
+    //跳转到发布一个需求
+    @RequestMapping(value = "/toAddDemand")
+    public ModelAndView toAddDemand(){
+        return new ModelAndView("addDemand");
+    }
+
     //发布一个新需求
-    @RequestMapping(value = "/addDemand", method = RequestMethod.PUT)
-    public Result addDemand(Demand demand) {
-        return iDemandService.addDemand(demand);
+    @RequestMapping(value = "/addDemand")
+    public ModelAndView addDemand(Demand demand) {
+        iDemandService.addDemand(demand);
+        return new ModelAndView("redirect:/demand/selectDemand");
     }
 
     //删除一个需求

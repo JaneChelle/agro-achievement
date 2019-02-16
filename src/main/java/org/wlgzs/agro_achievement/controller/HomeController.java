@@ -68,4 +68,28 @@ public class HomeController extends BaseController {
         return new ModelAndView("index");
     }
 
+    //成果小首页
+    @RequestMapping("/AchievementHome")
+    public ModelAndView AchievementHome(Model model){
+        //成果所有分类
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
+
+        //最新发布
+        List<Achievement> achievementTimeList = iAchievementService.selectAchieveByTime();
+        model.addAttribute("achievementTimeList",achievementTimeList);
+
+        //排行榜
+        Result result = iAchievementService.rankingAchievement(1,10);
+        List<Achievement> achievementRankingList = (List<Achievement>) result.getData();
+        model.addAttribute("achievementRankingList",achievementRankingList);
+
+        //推荐
+
+
+        return new ModelAndView("AchievementHome");
+    }
+
+
 }

@@ -39,7 +39,7 @@ public class LogUserController extends BaseController {
      * @param password
      * @return
      */
-    @RequestMapping(value = "/login" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/login")
     public ModelAndView login(Model model,HttpServletRequest request, String userName, String password){
         Result result = loginService.login(request,userName,password);
         int code = result.getCode();
@@ -61,7 +61,7 @@ public class LogUserController extends BaseController {
      * @param user
      * @return
      */
-    @RequestMapping(value = "/register",method = RequestMethod.PUT)
+    @RequestMapping(value = "/register")
     public ModelAndView register(Model model,HttpServletRequest request, User user,String code){
         if(iUserService.contrastCode(request,user.getUserEmail(),code).getCode() == 0){
             //成功

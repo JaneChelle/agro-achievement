@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>列表-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/cg-bang.css}">
+</head>
+<body>
+<div th:include="common/common :: header"></div>
+<!--主体-->
+<div class="current">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/HomeController/AchievementHome}">成果展示</a> >><a th:href="@{/achievement/rankingAchievement}">列表展示</a>
+</div>
+<div class="cg-title">
+    <img th:src="@{/images/san_lie_06.jpg}" alt="">
+    <span style="color: #41A809;font-weight: 800">图片列表</span>
+    <span>(共1228条)</span>
+</div>
+<div class="cg-list">
+    <ul>
+        <li th:each="achievement : ${achievementList}">
+            <a th:href="@{/achievement/achievementDetails(achievementId=${achievement.achievementId})}" th:text="${achievement.achievementName}"></a><span style='float: right;margin-right: 10px;' th:text="${achievement.releaseTime}"></span>
+        </li>
+    </ul>
+    <div class="fenye">
+        <a href="javascript:history.back(-1)">【返回】</a>
+        <a href="">上一页</a>
+        <span>当前页数：[1/18]</span>
+        <a href="">下一页</a>
+        <a href="">最后一页</a>
+        转到第 <input type="text">页
+        <input type="submit" value="GO">
+    </div>
+</div>
+<!--尾部-->
+<div th:include="common/common :: footer"></div>
+
+
+</body>
+</html>

@@ -28,7 +28,7 @@ public class DemandController extends BaseController {
 
     //跳转到发布一个需求
     @RequestMapping(value = "/toAddDemand")
-    public ModelAndView toAddDemand(){
+    public ModelAndView toAddDemand() {
         return new ModelAndView("addDemand");
     }
 
@@ -56,7 +56,7 @@ public class DemandController extends BaseController {
     public Result selectDemand(Integer userId, String statusCode,
                                @RequestParam(value = "current", defaultValue = "1") Integer current,
                                @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
-        return iDemandService.selectDemand(userId, statusCode,current,limit);
+        return iDemandService.selectDemand(userId, statusCode, current, limit);
     }
 
     //前台查询所有需求（页面显示的，审核通过的）
@@ -64,19 +64,19 @@ public class DemandController extends BaseController {
     public Result selectAllDemand(@RequestParam(value = "current", defaultValue = "1") int current,
                                   @RequestParam(value = "limit", defaultValue = "8") int limit) {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("status_code","1");
+        queryWrapper.eq("status_code", "1");
         Page page = new Page(current, limit);
         IPage<Demand> iPage = iDemandService.page(page, queryWrapper);
         List<Demand> demandList = iPage.getRecords();
         if (demandList != null) {
-            return new Result(ResultCode.SUCCESS, "",demandList, iPage.getPages(), iPage.getCurrent());
+            return new Result(ResultCode.SUCCESS, "", demandList, iPage.getPages(), iPage.getCurrent());
         }
         return new Result(ResultCode.FAIL, "没有数据！");
     }
 
     //查看需求详情页面
     @GetMapping("/demandDetails")
-    public Result demandDetails(Integer demandId){
+    public Result demandDetails(Integer demandId) {
         return iDemandService.demandDetails(demandId);
     }
 

@@ -86,10 +86,12 @@ public class HomeController extends BaseController {
         model.addAttribute("achievementRankingList",achievementRankingList);
 
         //推荐
-
-
+        List<Achievement> hotAchievement = iAchievementService.hotAchievement();
+        model.addAttribute("hotAchievement",hotAchievement);
         return new ModelAndView("AchievementHome");
     }
 
+
+    //
 
 }

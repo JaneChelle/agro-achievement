@@ -69,6 +69,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         mailSender.send(mainMessage);
     }
 
+    @Override
+    public void sendRegisterEmail(HttpServletRequest request, String userEmail) {
+        HttpSession session = request.getSession(true);
+        SimpleMailMessage mainMessage = new SimpleMailMessage();
+        RandomNumberUtils randomNumberUtils = new RandomNumberUtils();
+        String authCode = randomNumberUtils.getRandonString(6);
+        session.setMaxInactiveInterval(60 * 2);
+        session.setAttribute("authCode", authCode);
+        System.out.println(authCode);
+        session.setAttribute("userEmail", userEmail);
+        //发送者
+        mainMessage.setFrom("huystar@126.com");
+        //接收者
+        mainMessage.setTo(userEmail);
+        //发送的标题
+        mainMessage.setSubject("农业成果转化注册");
+        //发送的内容
+        mainMessage.setText("验证码：" + authCode + "您正在注册农业成果转化，请输入您的验证码继续完成操作。");
+        mailSender.send(mainMessage);
+    }
+
     //验证邮箱与验证码是否正确
     @Override
     public Result contrastCode(HttpServletRequest request, String userEmail, String userCode) {
@@ -91,6 +112,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             queryWrapper.eq("user_email", userEmail);
             User user = baseMapper.selectOne(queryWrapper);
             user.setPassword(password);
+            baseMapper.updateById(user);
             return new Result(ResultCode.SUCCESS, "修改成功！");
         }
         return new Result(ResultCode.FAIL, "验证失效！");
@@ -98,9 +120,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     //修改个人信息
     @Override
-    public Result changeInformation(User user) {
+    public Result changeInformation(HttpSession session,User user) {
         if (user != null) {
             baseMapper.updateById(user);
+            session.setAttribute("user",user);
             return new Result(ResultCode.SUCCESS);
         }
         return new Result(ResultCode.FAIL);

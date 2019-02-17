@@ -43,4 +43,8 @@ public interface IAchievementService extends IService<Achievement> {
 
     //按时间查询（首页）
     List<Achievement> selectAchieveByTime();
+
+    //推荐需求
+    List<Achievement> hotAchievement();
+
 }

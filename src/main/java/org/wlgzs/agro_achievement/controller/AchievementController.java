@@ -41,7 +41,7 @@ public class AchievementController extends BaseController {
 
     //发布成果
     @RequestMapping(value = "/addAchievement")
-    public ModelAndView addAchievement(@RequestParam("file") MultipartFile[] myFileNames, HttpSession session, Model model,
+    public ModelAndView addAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, HttpSession session, Model model,
                                        HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
         iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
         model.addAttribute("msg", "发布成功！");

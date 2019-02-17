@@ -4,7 +4,7 @@ $(document).ready(function() {
         $(".ifm").attr("src","register.html");
     });
     $("#result1").click(function () {
-        $(".ifm").attr("src","result1.html");
+        $(".ifm").attr("src","addAchievement.html");
     });
     $("#result2").click(function () {
         $(".ifm").attr("src","result2.html");

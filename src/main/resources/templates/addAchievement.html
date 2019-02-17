@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>成果发布-个人中心</title>
+
+    <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/jeDate_test.css}">
+    <link rel="stylesheet" th:href="@{/css/jedate.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen" />
+    <script th:src="@{/js/jedate.js}"></script>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/distpicker.js}"></script>
+</head>
+<body>
+<div class="box">
+    <h3>填写基本信息</h3>
+     <div class="title">带*的为非必填项</div>
+    <form th:action="@{/achievement/addAchievement}" method="post" enctype="multipart/form-data">
+            <table class="table table-hover table-bordered"  >
+                <tr>
+                    <th>成果名称:</th>
+                    <td><input type="text" name="achievementName" class="" id="price2" required/></td>
+                </tr>
+                <tr>
+                    <th>成果简介:	</th>
+                    <td><textarea name="achievementIntroduce" id="" cols="60" rows="5" required ></textarea></td>
+                </tr>
+                <tr>
+                    <th>成果关键词:	</th>
+                    <td><input type="text" name="achievementKey" class="" id="condition" required/></td>
+                </tr>
+                <tr>
+                    <th>研发起止时间:	</th>
+                    <td>
+                        <div class="jeinpbox">开始时间：<input type="text" name="start_time" class="jeinput moredate" placeholder="YYYY-MM-DD" required></div>
+                        <div class="jeinpbox">结束时间：<input type="text" name="end_time" class="jeinput moredate" placeholder="YYYY-MM-DD" required></div>
+                    </td>
+                    <!--时间插件-->
+                </tr>
+                <tr>
+                    <th>产权归属地:	</th>
+                    <!--地区插件-->
+                    <td>
+                        <div data-toggle="distpicker">
+                            <select name="propertyAddress" required></select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>成果获奖情况:</th>
+                    <td><textarea name="awards" id="" cols="60" rows="5" required></textarea></td>
+                </tr>
+                <tr>
+                    <th>*预期交易价格:</th>
+                    <td><input type="text" name="expectedPrice" class="" onKeyUp="value=value.replace(/\D/g,'')" id="details" />万元</td>
+                </tr>
+                <tr>
+                    <th>联系人：</th>
+                    <td><input type="text" name="linkman" id="" required></td>
+                </tr>
+                <tr>
+                    <th>*联系电话:</th>
+                    <td><input type="text" name="phone" id="" oninput = "value=value.replace(!(/^1[34578]\d{9}$/g),'')"></td>
+                </tr>
+                <tr>
+                    <th>手机:</th>
+                    <td><input type="text" name="cellNumber" id="" required></td>
+                </tr>
+                <tr>
+                    <th>E-mail:</th>
+                    <td><input type="text" name="email" id="" required></td>
+                </tr>
+                <tr>
+                    <th>联系地址（邮编）:</th>
+                    <td><input type="text" name="contactAddress" id="" required></td>
+                </tr>
+                <tr>
+                    <th>*知识产权编号:</th>
+                    <td>
+                         <input type="text" name="propertyNumber"></br>
+                        <!--<input type="checkbox" name="1" id=""> 植物新品种权编号: <input type="text"></br>-->
+                        <!--<input type="checkbox" name="1" id="">新产品登记或生产许可证书编号:  <input type="text"></br>-->
+                    </td>
+                </tr>
+                <tr>
+                    <th>*知识产权情况说明:	</th>
+                    <td><textarea name="propertyIntroduce" id="" cols="60" rows="5"></textarea></td>
+                </tr>
+                <tr>
+                    <th>相关图片上传:</th>
+                    <td>
+                        <input type="file" name="pictureAddress" id="" required>
+                        <input type="file" name="pictureAddress">
+                        <input type="file" name="pictureAddress">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="pn-fbutton">
+                        <input type="submit" value="提交"  class="btn btn-info" id="change"/>
+                        <input type="button" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+</div>
+<script th:src="@{/js/demo.js}"></script>
+</body>
+</html>

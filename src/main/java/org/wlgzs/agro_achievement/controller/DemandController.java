@@ -4,14 +4,17 @@ package org.wlgzs.agro_achievement.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Demand;
+import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.util.Result;
 import org.wlgzs.agro_achievement.util.ResultCode;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -40,28 +43,52 @@ public class DemandController extends BaseController {
     }
 
     //删除一个需求
-    @RequestMapping(value = "/deleteDemand", method = RequestMethod.DELETE)
-    public Result deleteDemand(Integer demandId) {
-        return iDemandService.deleteDemand(demandId);
+    @RequestMapping(value = "/deleteDemand")
+    public ModelAndView deleteDemand(Model model, Integer demandId) {
+        Result result = iDemandService.deleteDemand(demandId);
+        if (result.getCode() == 0) {
+            model.addAttribute("msg", "删除成功！");
+        } else {
+            model.addAttribute("msg", "不存在！");
+        }
+        return new ModelAndView("redirect:/demand/selectDemand");
     }
 
     //修改需求
-    @RequestMapping(value = "/modifyDemand", method = RequestMethod.PUT)
-    public Result modifyDemand(Demand demand) {
-        return iDemandService.modifyDemand(demand);
+    @RequestMapping(value = "/modifyDemand")
+    public ModelAndView modifyDemand(Model model, Demand demand) {
+        Result result = iDemandService.modifyDemand(demand);
+        if (result.getCode() == 0) {
+            Demand demand1 = (Demand) result.getData();
+            model.addAttribute("msg", "修改成功！");
+            model.addAttribute("demand", demand1);
+            return new ModelAndView("demandDetails");
+        } else {
+            model.addAttribute("msg", "修改失败！");
+        }
+        return new ModelAndView("redirect:/demand/selectDemand");
     }
 
     //按照用户查询所有需求（状态码）(用户自身操作)
     @GetMapping("/selectDemand")//分页
-    public Result selectDemand(Integer userId, String statusCode,
+    public ModelAndView selectDemand(Model model,String statusCode,
                                @RequestParam(value = "current", defaultValue = "1") Integer current,
                                @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
-        return iDemandService.selectDemand(userId, statusCode, current, limit);
+        HttpSession session = null;
+        User user = (User) session.getAttribute("user");
+        int userId = user.getUserId();
+        Result result = iDemandService.selectDemand(userId, statusCode, current, limit);
+        List<Demand> demandList = (List<Demand>) result.getData();
+        model.addAttribute("demandList",demandList);
+        model.addAttribute("statusCode",statusCode);
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+        return new ModelAndView("userDemandList");
     }
 
     //前台查询所有需求（页面显示的，审核通过的）
     @GetMapping("/selectAllDemand")
-    public Result selectAllDemand(@RequestParam(value = "current", defaultValue = "1") int current,
+    public ModelAndView selectAllDemand(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
                                   @RequestParam(value = "limit", defaultValue = "8") int limit) {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("status_code", "1");
@@ -69,15 +96,23 @@ public class DemandController extends BaseController {
         IPage<Demand> iPage = iDemandService.page(page, queryWrapper);
         List<Demand> demandList = iPage.getRecords();
         if (demandList != null) {
-            return new Result(ResultCode.SUCCESS, "", demandList, iPage.getPages(), iPage.getCurrent());
+            model.addAttribute("msg","查询成功！");
+        }else{
+            model.addAttribute("msg","暂无数据！");
         }
-        return new Result(ResultCode.FAIL, "没有数据！");
+        model.addAttribute("demandList",demandList);
+        model.addAttribute("TotalPages", iPage.getPages());//总页数
+        model.addAttribute("Number", iPage.getCurrent());//当前页数
+        return new ModelAndView("DemandList");
     }
 
     //查看需求详情页面
     @GetMapping("/demandDetails")
-    public Result demandDetails(Integer demandId) {
-        return iDemandService.demandDetails(demandId);
+    public ModelAndView demandDetails(Model model,Integer demandId) {
+        Result result = iDemandService.demandDetails(demandId);
+        Demand demand = (Demand) result.getData();
+        model.addAttribute("demand",demand);
+        return new ModelAndView("demandDetails");
     }
 
 }

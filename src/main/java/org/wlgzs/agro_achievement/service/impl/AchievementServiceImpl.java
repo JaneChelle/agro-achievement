@@ -245,5 +245,10 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         return iPage.getRecords();
     }
 
+    @Override
+    public List<Achievement> hotAchievement() {
+        return null;
+    }
+
 }
 

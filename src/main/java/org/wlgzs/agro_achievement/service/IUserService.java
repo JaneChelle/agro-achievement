@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * <p>
@@ -20,8 +21,11 @@ public interface IUserService extends IService<User> {
     //修改密码
     Result changePassword(Integer userId, String password, String rePassword);
 
-    //发送邮箱
+    //修改密码发送邮箱
     void sendEmail(HttpServletRequest request, String userEmail);
+
+    //修改密码发送邮箱
+    void sendRegisterEmail(HttpServletRequest request, String userEmail);
 
     //验证邮箱与验证码是否正确
     Result contrastCode(HttpServletRequest request, String userEmail, String userCode);
@@ -30,7 +34,7 @@ public interface IUserService extends IService<User> {
     Result findPassword(String password, String userEmail, HttpServletRequest request);
 
     //修改个人信息
-    Result changeInformation(User user);
+    Result changeInformation(HttpSession session,User user);
 
     //后台查询所有用户
     Result adminUserList(String userLevel, String find, Integer current, Integer limit);

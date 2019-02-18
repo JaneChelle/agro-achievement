@@ -106,5 +106,27 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
         return new Result(ResultCode.FAIL,"暂无数据！");
     }
 
+    @Override
+    public List<Organization> selectOrganizationByTime() {
+        QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("status_code", "1").orderByDesc(true, "release_time");
+        Page page = new Page(1, 10);
+        IPage<Organization> iPage = baseMapper.selectPage(page,queryWrapper);
+        return iPage.getRecords();
+    }
+
+    @Override
+    public List<Organization> rankingOrganization(int current, int limit) {
+        List<Organization> organizationList = null;
+        QueryWrapper<Organization> queryWrapper = new QueryWrapper();
+        IPage<Organization> iPage = null;
+//        queryWrapper.and(i -> i.eq("status_code", "1").orderBy(true,false,"page_view"));
+        queryWrapper.orderBy(true, false, "page_view").eq("status_code", "1");
+        Page page = new Page(current, limit);
+        iPage = baseMapper.selectPage(page, queryWrapper);
+        organizationList = iPage.getRecords();
+        return organizationList;
+    }
+
 
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>成果发布管理-个人中心</title>
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
+    <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
+    <script th:src="@{/js/jquery.js}"></script>
+</head>
+<body>
+<div class="box">
+    <h3>成果发布管理</h3>
+    <div class="title">
+        <a href=""><input type="radio" name="1" id=""></a> 已推荐 <sapn>(0)</sapn>&nbsp;&nbsp;
+        <a href=""><input type="radio" name="1" id=""></a> 已审核 <sapn>(0)</sapn>&nbsp;&nbsp;
+        <a href=""><input type="radio" name="1" id=""></a>待审核 <sapn>(0)</sapn>&nbsp;&nbsp;
+        <a href=""><input type="radio" name="1" id=""></a>未通过审核 <sapn>(0)</sapn>
+    </div>
+    <table class="table table-bordered able-box" id="mytable">
+        <thead style="background-color: #F2F2F2;">
+        <tr>
+            <!--<th class="shanchu"></th>-->
+            <th>用户ID</th>
+            <th>标题</th>
+            <th>所属权类型</th>
+            <th>发布者</th>
+            <th>发布时间</th>
+            <th>状态</th>
+            <th>操作选择</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--遍历-->
+        <tr th:each="achievement : ${achievementList}">
+            <!--<td class="checx" style="position: relative">-->
+                <!--<label class="demo&#45;&#45;label">-->
+                    <!--<input class="demo&#45;&#45;radio" type="checkbox" name="demo-checkbox1">-->
+                    <!--<span class="demo&#45;&#45;checkbox demo&#45;&#45;radioInput"></span>-->
+                <!--</label>-->
+            <!--</td>-->
+            <td style="display: none" class="activityid"></td>
+            <td th:text="${achievement.achievementId}"></td>
+            <td th:text="${achievement.achievementName}"></td>
+            <td th:text="${achievement.typeName}"></td>
+            <td th:text="${achievement.linkman}"></td>
+            <td th:text="${achievement.releaseTime}"></td>
+            <td th:text="${achievement.statusCode}"></td>
+            <td class="ttdd" >
+                <a class="a-div adiv1">删除</a>
+                <a class="a-div adiv2" href="">修改</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

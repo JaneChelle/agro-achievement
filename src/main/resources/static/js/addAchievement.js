@@ -2,6 +2,15 @@ function fomrReset()
 {
     document.getElementById("myform").reset();
 }
+//手机号的验证
+function phone()
+{
+    var phone = document.getElementById('phone').value;
+    if(!(/^1[34578]\d{9}$/.test(phone))){
+        alert("手机号码有误，请重填");
+        return false;
+    }
+}
 $(document).ready(function(){
     //为外面的盒子绑定一个点击事件
     $("#uploadImgBtn").click(function(){

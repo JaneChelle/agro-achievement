@@ -231,7 +231,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             queryWrapper.in("achievement_id", achievementId);
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();
-            return new Result(ResultCode.SUCCESS, achievementList);
+            return new Result(ResultCode.SUCCESS,"",achievementList,iPage.getPages(),iPage.getCurrent());
         }
         return new Result(ResultCode.FAIL, "不存在！");
     }

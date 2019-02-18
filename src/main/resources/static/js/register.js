@@ -164,8 +164,7 @@ function sendEmail() {
 }
 /*获取验证码*/
 function getCode(e){
-    checkEmail();
-	if(checkEmail){
+	if(checkEmail()){
 		$(".userEmail_small").html("<i class='fa fa-check'>");
         sendEmail(); //发送验证码
 		resetCode(); //倒计时

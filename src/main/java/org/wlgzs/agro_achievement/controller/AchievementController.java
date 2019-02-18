@@ -35,11 +35,7 @@ public class AchievementController extends BaseController {
 
     //跳转到添加成果
     @RequestMapping(value = "/toAddAchievement")
-    public ModelAndView toAddAchievement(Model model) {
-        //查询所有类型
-        Result result1 = iTypeService.selectAllType();
-        List<Type> typeList = (List<Type>) result1.getData();
-        model.addAttribute("typeList", typeList);
+    public ModelAndView toAddAchievement() {
         return new ModelAndView("addAchievement");
     }
 
@@ -47,13 +43,9 @@ public class AchievementController extends BaseController {
     @RequestMapping(value = "/addAchievement")
     public ModelAndView addAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, HttpSession session, Model model,
                                        HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
-        Result result = iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
-        if(result.getCode() == 0){
-            model.addAttribute("msg", "发布成功！");
-            return new ModelAndView("redirect:/achievement/selectAchievement");
-        }
-        model.addAttribute("msg", "输入正确的信息！");
-        return new ModelAndView("redirect:/achievement/toAddAchievement");
+        iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
+        model.addAttribute("msg", "发布成功！");
+        return new ModelAndView("redirect:/achievement/selectAchievement");
     }
 
     //删除成果
@@ -85,9 +77,10 @@ public class AchievementController extends BaseController {
 
     //查询所有成果（用户）
     @GetMapping("/selectAchievement")//分页
-    public ModelAndView selectAchievement(Model model, String statusCode,HttpSession session,
+    public ModelAndView selectAchievement(Model model, String statusCode,
                                           @RequestParam(value = "current", defaultValue = "1") Integer current,
                                           @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
+        HttpSession session = null;
         User user = (User) session.getAttribute("user");
         int userId = user.getUserId();
         Result result = iAchievementService.selectAchievement(userId, statusCode, current, limit);
@@ -131,15 +124,6 @@ public class AchievementController extends BaseController {
         Achievement achievement = (Achievement) result.getData();
         model.addAttribute("achievement", achievement);
         return new ModelAndView("achieveDetails");
-    }
-
-    //查看成果详情页面(个人中心)
-    @GetMapping("/achievementUserDetails")
-    public ModelAndView achievementUserDetails(Model model, Integer achievementId) {
-        Result result = iAchievementService.achievementDetails(achievementId);
-        Achievement achievement = (Achievement) result.getData();
-        model.addAttribute("achievement", achievement);
-        return new ModelAndView("achievementUserDetails");
     }
 
     //按照点击量排序成果(排行榜)

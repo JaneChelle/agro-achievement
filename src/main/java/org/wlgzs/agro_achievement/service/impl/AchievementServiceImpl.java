@@ -47,8 +47,6 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     //发布成果
     @Override
     public Result addAchievement(MultipartFile[] myFileNames, HttpSession session, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
-        System.out.println("request=="+request.getContextPath());
-        System.out.println("session=="+session.getServletContext());
         if (achievement != null) {
             //文件处理（真实存储名）
             String realName = "";
@@ -61,14 +59,15 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                     String suffixName = fileName.substring(fileName.indexOf("."),fileName.length());
 
                     //生成实际储存的文件名（不能重复）
-                    realName = RandomNumberUtils.getRandomFileName();
+                    realName = RandomNumberUtils.getRandomFileName() + suffixName;
 
-                    String realPath = session.getServletContext().getRealPath("/upload");
-                    File file = new File(realPath,realName);
+                    // "/upload"是你自己定义的上传目录
+                    String realPath = System.getProperty("user.dir") + "/upload";
+                    File uploadFile = new File(realPath, realName);
 
                     //上传文件
                     try {
-                        myFileNames[i].transferTo(file);
+                        myFileNames[i].transferTo(uploadFile);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -111,6 +110,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 achievement.setStartTime(timeOne);
                 achievement.setEndTime(timeTwo);
                 achievement.setPictureAddress(pictureAddress);
+                System.out.println("pictureAddress==="+pictureAddress);
             }
             baseMapper.insert(achievement);
             return new Result(ResultCode.SUCCESS, "录入成功！");

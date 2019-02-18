@@ -48,7 +48,7 @@ $(document).ready(function(){
         //4、我们把当前input标签的id属性remove
         $input.removeAttr("id");
         //我们做个标记，再class中再添加一个类名就叫test
-        var newInput = '<input class="uploadImg test" type="file" name="pictureAddress" multiple id="file">';
+        var newInput = '<input class="uploadImg test" type="file" name="file" multiple id="file">';
         $(this).append($(newInput));
     })
 

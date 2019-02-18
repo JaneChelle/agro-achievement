@@ -24,9 +24,12 @@ public interface IOrganizationService extends IService<Organization> {
     Result deleteOrganization(Integer organizationId);
 
     //按用户查询机构
-    Result selectOrganizationByUser(HttpServletRequest request);
+    Result selectOrganizationByUser(HttpServletRequest request,String statusCode);
 
     //前台查询所有机构
     List<Organization> selectAllOrganization(int current,int limit);
+
+    //前台按类型查询机构
+    Result selectOrganizationByType(String type,int current, int limit);
 
 }

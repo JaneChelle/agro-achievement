@@ -35,14 +35,17 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
 
     @Override
     public Result addOrganization(Organization organization) {
-        //根据前台传来的机构类型查询
-        QueryWrapper<OrganizationType> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("type_name", organization.getTypeName());
-        OrganizationType organizationType = organizationTypeMapper.selectOne(queryWrapper);
-        if (organizationType != null) {
-            organization.setOrganizationTypeId(organizationType.getOrganizationTypeId());
-            baseMapper.insert(organization);
-            return new Result(ResultCode.SUCCESS, "添加成功！");
+        if (organization != null) {
+            //根据前台传来的机构类型查询
+            QueryWrapper<OrganizationType> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("type_name", organization.getTypeName());
+            OrganizationType organizationType = organizationTypeMapper.selectOne(queryWrapper);
+            if (organizationType != null) {
+                organization.setOrganizationTypeId(organizationType.getOrganizationTypeId());
+                baseMapper.insert(organization);
+                return new Result(ResultCode.SUCCESS, "添加成功！");
+            }
+            return new Result(ResultCode.FAIL);
         }
         return new Result(ResultCode.FAIL);
     }
@@ -58,18 +61,19 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
         return new Result(ResultCode.FAIL, "该条记录不存在！");
     }
 
+    //按用户查询机构(状态码)
     @Override
-    public Result selectOrganizationByUser(HttpServletRequest request) {
+    public Result selectOrganizationByUser(HttpServletRequest request,String statusCode) {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         if (user != null) {
             QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("user_id", user.getUserId());
+            queryWrapper.eq("user_id", user.getUserId()).eq("status_code",statusCode);
             List<Organization> organization = baseMapper.selectList(queryWrapper);
             if (organization != null) {
                 return new Result(ResultCode.SUCCESS, organization);
             }
-            return new Result(ResultCode.FAIL,"暂无所属机构！");
+            return new Result(ResultCode.FAIL, "暂无所属机构！");
         }
         return new Result(ResultCode.FAIL, "请先登录！");
     }
@@ -78,12 +82,28 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
     @Override
     public List<Organization> selectAllOrganization(int current, int limit) {
         List<Organization> organizationList = null;
-        Page page = new Page(current,limit);
+        Page page = new Page(current, limit);
         QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("status_code","1");
-        IPage iPage = baseMapper.selectPage(page,queryWrapper);
+        queryWrapper.eq("status_code", "1");
+        IPage<Organization> iPage = baseMapper.selectPage(page, queryWrapper);
         organizationList = iPage.getRecords();
         return organizationList;
+    }
+
+    //前台按类型查询机构
+    @Override
+    public Result selectOrganizationByType(String type, int current, int limit) {
+        QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
+        if(!type.equals("")){
+            queryWrapper.eq("type_name",type);
+        }
+        Page page = new Page(current,limit);
+        IPage<Organization> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Organization> organizationList = iPage.getRecords();
+        if(organizationList != null){
+            return new Result(ResultCode.SUCCESS,"查询成功！",organizationList,iPage.getPages(),iPage.getCurrent());
+        }
+        return new Result(ResultCode.FAIL,"暂无数据！");
     }
 
 

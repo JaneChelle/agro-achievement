@@ -4,14 +4,13 @@ package org.wlgzs.agro_achievement.controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Organization;
+import org.wlgzs.agro_achievement.entity.OrganizationType;
 import org.wlgzs.agro_achievement.util.Result;
-import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -30,33 +29,69 @@ import java.util.List;
 public class OrganizationController extends BaseController {
 
     //添加机构
-    @RequestMapping(value = "/addOrganization",method = RequestMethod.PUT)
-    public Result addOrganization(Organization organization) {
-        if (organization != null) {
-            return iOrganizationService.addOrganization(organization);
+    @RequestMapping(value = "/addOrganization")
+    public ModelAndView addOrganization(Model model,Organization organization) {
+        Result result = iOrganizationService.addOrganization(organization);
+        if(result.getCode() == 0){
+            model.addAttribute("msg","添加成功！");
+        }else{
+            model.addAttribute("msg","添加失败！");
         }
-        return new Result(ResultCode.FAIL, "请输入正确的信息！");
+        return new ModelAndView("redirect:/HomeController/ExpertsHome");
     }
 
     //删除机构
-    @RequestMapping(value = "/deleteOrganization",method = RequestMethod.DELETE)
-    public Result deleteOrganization(Integer organizationId) {
-        return iOrganizationService.deleteOrganization(organizationId);
+    @RequestMapping(value = "/deleteOrganization")
+    public ModelAndView deleteOrganization(Model model,Integer organizationId) {
+        Result result =  iOrganizationService.deleteOrganization(organizationId);
+        if (result.getCode() == 0) {
+            model.addAttribute("msg", "删除成功！");
+        } else {
+            model.addAttribute("msg", "不存在！");
+        }
+        return new ModelAndView("redirect:/organization/selectOrganizationByUser");
     }
 
-    //按用户查询机构
-    @RequestMapping(value = "/selectOrganizationByUser",method = RequestMethod.GET)
-    public Result selectOrganizationByUser(HttpServletRequest request){
-        return iOrganizationService.selectOrganizationByUser(request);
+    //按用户查询机构（状态码）
+    @RequestMapping(value = "/selectOrganizationByUser")
+    public ModelAndView selectOrganizationByUser(Model model,HttpServletRequest request,
+                                                 @RequestParam(value = "statusCode",defaultValue = "1" ) String statusCode) {
+        Result result = iOrganizationService.selectOrganizationByUser(request,statusCode);
+        List<Organization> organizationList = (List<Organization>) result.getData();
+        model.addAttribute("organizationList",organizationList);
+        return new ModelAndView("userOrganizationList");
     }
 
     //前台查询所有机构
     @RequestMapping(value = "/selectAllOrganization")
     public ModelAndView selectAllOrganization(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
-                                              @RequestParam(value = "limit", defaultValue = "8") int limit){
-        List<Organization> organizationList = iOrganizationService.selectAllOrganization(current,limit);
+                                              @RequestParam(value = "limit", defaultValue = "8") int limit) {
+        List<Organization> organizationList = iOrganizationService.selectAllOrganization(current, limit);
+        if(organizationList != null){
+            model.addAttribute("msg","查询成功！");
+        }else{
+            model.addAttribute("msg","查询成功！");
+        }
+        model.addAttribute("organizationList", organizationList);
+        return new ModelAndView("OrganizationList");
+    }
+
+    //前台按类型查询机构
+    @RequestMapping(value = "/selectAchieveByType")
+    public ModelAndView selectOrganizationByType(Model model,@RequestParam(value = "type",defaultValue = "") String type,@RequestParam(value = "current", defaultValue = "1") int current,
+                                            @RequestParam(value = "limit", defaultValue = "8") int limit){
+        Result result = iOrganizationService.selectOrganizationByType(type, current, limit);
+        List<Organization> organizationList = (List<Organization>) result.getData();
+
         model.addAttribute("organizationList",organizationList);
-        return new ModelAndView("");
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+
+        //查询所有机构类别
+        List<OrganizationType> list = (List<OrganizationType>) iOrganizationTypeService.selectAllOrganizationType().getData();
+        model.addAttribute("OrganizationTypeList",list);
+
+        return new ModelAndView("OrganizationList");
     }
 
 

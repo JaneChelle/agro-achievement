@@ -92,6 +92,50 @@ public class HomeController extends BaseController {
     }
 
 
-    //
+    //专家小首页
+    @RequestMapping(value = "/ExpertsHome")
+    public ModelAndView ExpertsHome(Model model){
+        //所有专家分类
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
+
+        //最新专家
+        Result result = iExpertsService.selectExpertsByTime(8);
+        List<Experts> expertsTimeList = (List<Experts>) result.getData();
+        model.addAttribute("expertsTimeList",expertsTimeList);
+
+        //专家排行
+        Result result2 = iExpertsService.expertRanking(8);
+        List<Experts> expertsRankingList = (List<Experts>) result.getData();
+        model.addAttribute("expertsRankingList",expertsRankingList);
+
+        //专家推荐
+
+        return new ModelAndView("ExpertsHome");
+    }
+
+    //机构小首页
+    @RequestMapping(value = "/ExpertsHome")
+    public ModelAndView ExpertsHome(Model model){
+        //所有专家分类
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
+
+        //最新专家
+        Result result = iExpertsService.selectExpertsByTime(8);
+        List<Experts> expertsTimeList = (List<Experts>) result.getData();
+        model.addAttribute("expertsTimeList",expertsTimeList);
+
+        //专家排行
+        Result result2 = iExpertsService.expertRanking(8);
+        List<Experts> expertsRankingList = (List<Experts>) result.getData();
+        model.addAttribute("expertsRankingList",expertsRankingList);
+
+        //专家推荐
+
+        return new ModelAndView("ExpertsHome");
+    }
 
 }

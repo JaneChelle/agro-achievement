@@ -48,7 +48,7 @@ public class LogUserController extends BaseController {
         }else if(code == 2 || code == 0){
             //普通用户（或者专家）登录
             String url = "redirect:/HomeController/home";
-            return new ModelAndView("adminIndex");
+            return new ModelAndView(url);
         }else{//登录失败
             model.addAttribute("msg", "账号或密码错误");
             return new ModelAndView("login");

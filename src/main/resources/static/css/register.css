@@ -43,3 +43,33 @@ textarea{
     padding: 6px 12px;
     resize:none;
 }
+.uploadImgBtn {
+    width: 80px;
+    padding: 9px;
+    cursor: pointer;
+    position: relative;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background: #E7E7E7;
+    border-radius: 4px;
+}
+
+.uploadImgBtn .uploadImg {
+    position: absolute;
+    right: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.pic{
+    width: 100px;
+    height: 100px;
+    margin: 5px 5px 5px 0;
+    display: inline-block;
+}
+.pic img {
+    width: 100%;
+    height: 100%;
+}

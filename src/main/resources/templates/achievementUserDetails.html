@@ -14,64 +14,92 @@
             <table class="table table-hover table-bordered">
                 <tr>
                     <th>成果名称:</th>
-                    <td th:text="${achievement.achievementName}"></td>
+                    <td th:text="${achievement.achievementName}">
+                        <input type="text" th:value="${achievement.achievementName}">
+                    </td>
                 </tr>
                 <tr>
                     <th>成果简介:</th>
-                    <td th:text="${achievement.achievementIntroduce}"></td>
+                    <td th:text="${achievement.achievementIntroduce}">
+                        <input type="text" th:value="${achievement.achievementIntroduce}">
+                    </td>
                 </tr>
                 <tr>
                     <th>成果关键词:	</th>
-                    <td th:text="${achievement.achievementKey}"></td>
+                    <td th:text="${achievement.achievementKey}">
+                        <input type="text" th:value="${achievement.achievementKey}">
+                    </td>
                 </tr>
                 <tr>
-                    <td th:text="'研发起止时间:'+${achievement.start_time}">	</td>
-                    <td th:text="'结束时间:'+${achievement.end_time}"></td>
+                    <div class="jeinpbox">开始时间：<input type="text" th:value="${achievement.startTime}" name="start_time" class="jeinput moredate" placeholder="YYYY-MM-DD" required></div>
+                    <div class="jeinpbox">结束时间：<input type="text" th:value="${achievement.endTime}" class="jeinput moredate" placeholder="YYYY-MM-DD" required></div>
                 </tr>
                 <tr>
                     <th>产权归属地:	</th>
                     <!--地区插件-->
-                    <td th:text="${achievement.propertyAddress}">
+                    <td >
+                        <div data-toggle="distpicker">
+                            <select th:name="${achievement.propertyAddress}" required></select>
+                        </div>
                     </td>
+
                 </tr>
                 <tr>
                     <th>成果获奖情况:</th>
-                    <td th:text="${achievement.awards}"></td>
+                    <td th:text="${achievement.awards}">
+                        <input type="text" th:value="${achievement.awards}">
+                    </td>
                 </tr>
                 <tr>
                     <th>*预期交易价格:</th>
-                    <td th:text="${achievement.expectedPrice}+'万元'"></td>
+                    <td th:text="${achievement.expectedPrice}+'万元'">
+                        <input type="text" th:value="${achievement.expectedPrice}+'万元'">
+                    </td>
                 </tr>
                 <tr>
                     <th>联系人：</th>
-                    <td th:text="${achievement.linkman}"></td>
+                    <td >
+                        <input type="text" th:value="${achievement.linkman}">
+                    </td>
                 </tr>
                 <tr>
                     <th>*联系电话:</th>
-                    <td th:text="${achievement.phone}"></td>
+                    <td>
+                        <input type="text" th:value="${achievement.phone}">
+                    </td>
                 </tr>
                 <tr>
                     <th>手机:</th>
-                    <td th:text="${achievement.cellNumber}"></td>
+                    <td th:text="${achievement.cellNumber}">
+                        <input type="text" th:value="${achievement.cellNumber}">
+                    </td>
                 </tr>
                 <tr>
                     <th>E-mail:</th>
-                    <td th:text="${achievement.email}"></td>
+                    <td>
+                        <input type="text" th:value="${achievement.email}">
+                    </td>
                 </tr>
                 <tr>
                     <th>联系地址（邮编）:</th>
-                    <td th:text="${achievement.contactAddress}"></td>
+                    <td th:text="${achievement.contactAddress}">
+                        <input type="text" th:value="${achievement.contactAddress}">
+                    </td>
                 </tr>
                 <tr>
                     <th>*知识产权编号:</th>
-                    <td th:text="${achievement.propertyNumber}"></td>
+                    <td >
+                        <input type="text" th:value="${achievement.propertyNumber}">
+                    </td>
                 </tr>
                 <tr>
                     <th>*知识产权情况说明:	</th>
-                    <td th:text="${achievement.propertyIntroduce}"></td>
+                    <td>
+                        <input type="text" th:value="${achievement.propertyIntroduce}">
+                    </td>
                 </tr>
                 <tr>
-                    <th>相关图片上传（最多三张）:</th>
+                    <th>相关图片上传:</th>
                     <td id="thimg">
                         <img th:src="${achievement.pictureAddress}" alt="">
                     </td>

@@ -28,6 +28,15 @@
                     <td><textarea name="achievementIntroduce" id="" cols="60" rows="5" required ></textarea></td>
                 </tr>
                 <tr>
+                    <th>成果类型:</th>
+                    <td>
+                       <div th:each="type : ${typeList}">
+                           <input type="radio" th:name="${type.typeName}" th:value="${type.typeName}"/><span th:text="${type.typeName}"></span>
+                       </div>
+
+                    </td>
+                </tr>
+                <tr>
                     <th>成果关键词:	</th>
                     <td><input type="text" name="achievementKey" class="" id="condition" required/></td>
                 </tr>

@@ -145,7 +145,7 @@ public class AchievementController extends BaseController {
     //按照点击量排序成果(排行榜)
     @GetMapping("/rankingAchievement")
     public ModelAndView rankingAchievement(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
-                                     @RequestParam(value = "limit", defaultValue = "8") int limit) {
+                                           @RequestParam(value = "limit", defaultValue = "8") int limit) {
         Result result = iAchievementService.rankingAchievement(current, limit);
         List<Achievement> achievementList = (List<Achievement>) result.getData();
         model.addAttribute("achievementList", achievementList);
@@ -157,7 +157,7 @@ public class AchievementController extends BaseController {
     //按分类查询成果
     @GetMapping("/selectAchieveByType")
     public ModelAndView selectAchieveByType(Model model,String type, @RequestParam(value = "current", defaultValue = "1") int current,
-                                      @RequestParam(value = "limit", defaultValue = "8") int limit) {
+                                            @RequestParam(value = "limit", defaultValue = "8") int limit) {
         Result result = iAchievementService.selectAchieveByType(type, current, limit);
         model.addAttribute("type",type);
         //成果数据

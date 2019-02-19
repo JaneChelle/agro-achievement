@@ -10,9 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Organization;
 import org.wlgzs.agro_achievement.entity.OrganizationType;
+import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -28,10 +30,20 @@ import java.util.List;
 @RequestMapping("/organization")
 public class OrganizationController extends BaseController {
 
+    //去添加机构
+    @RequestMapping(value = "/toAddOrganization")
+    public ModelAndView toAddOrganization(Model model) {
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
+        return new ModelAndView("addOrganization");
+    }
+
     //添加机构
     @RequestMapping(value = "/addOrganization")
-    public ModelAndView addOrganization(Model model,Organization organization) {
-        Result result = iOrganizationService.addOrganization(organization);
+    public ModelAndView addOrganization(Model model, HttpSession session,Organization organization) {
+        Result result = iOrganizationService.addOrganization(session,organization);
         if(result.getCode() == 0){
             model.addAttribute("msg","添加成功！");
         }else{

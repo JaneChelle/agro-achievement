@@ -34,14 +34,17 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
     OrganizationTypeMapper organizationTypeMapper;
 
     @Override
-    public Result addOrganization(Organization organization) {
+    public Result addOrganization(HttpSession session,Organization organization) {
         if (organization != null) {
+            User user = (User)session.getAttribute("user");
+
             //根据前台传来的机构类型查询
             QueryWrapper<OrganizationType> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("type_name", organization.getTypeName());
             OrganizationType organizationType = organizationTypeMapper.selectOne(queryWrapper);
             if (organizationType != null) {
                 organization.setOrganizationTypeId(organizationType.getOrganizationTypeId());
+                organization.setUserId(user.getUserId());
                 baseMapper.insert(organization);
                 return new Result(ResultCode.SUCCESS, "添加成功！");
             }

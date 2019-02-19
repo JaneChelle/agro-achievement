@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 public interface IOrganizationService extends IService<Organization> {
 
     //添加机构
-    Result addOrganization(Organization organization);
+    Result addOrganization(HttpSession session,Organization organization);
 
     //删除机构
     Result deleteOrganization(Integer organizationId);

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Demand;
+import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.util.Result;
 import org.wlgzs.agro_achievement.util.ResultCode;
@@ -31,7 +32,11 @@ public class DemandController extends BaseController {
 
     //跳转到发布一个需求
     @RequestMapping(value = "/toAddDemand")
-    public ModelAndView toAddDemand() {
+    public ModelAndView toAddDemand(Model model) {
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
         return new ModelAndView("addDemand");
     }
 
@@ -113,6 +118,15 @@ public class DemandController extends BaseController {
         Demand demand = (Demand) result.getData();
         model.addAttribute("demand",demand);
         return new ModelAndView("demandDetails");
+    }
+
+    //查看需求详情页面(个人中心)
+    @GetMapping("/demandUserDetails")
+    public ModelAndView demandUserDetails(Model model,Integer demandId) {
+        Result result = iDemandService.demandDetails(demandId);
+        Demand demand = (Demand) result.getData();
+        model.addAttribute("demand",demand);
+        return new ModelAndView("demandUserDetails");
     }
 
 }

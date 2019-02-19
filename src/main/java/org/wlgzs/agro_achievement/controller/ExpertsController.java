@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Experts;
+import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
 import org.wlgzs.agro_achievement.util.ResultCode;
 
@@ -29,7 +30,11 @@ public class ExpertsController extends BaseController {
 
     //去成为专家页面
     @RequestMapping(value = "/toAddExperts")
-    public ModelAndView toAddExperts() {
+    public ModelAndView toAddExperts(Model model) {
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
         return new ModelAndView("addExperts");
     }
 
@@ -44,7 +49,7 @@ public class ExpertsController extends BaseController {
         return new ModelAndView("redirect:/experts/expertsDetails");
     }
 
-    //查看（个人中心）专家信息
+    //查看专家信息
     @RequestMapping(value = "/expertsDetails")
     public ModelAndView expertsDetails(Model model, HttpServletRequest request) {
         Experts experts = iExpertsService.expertsDetails(request);
@@ -57,6 +62,21 @@ public class ExpertsController extends BaseController {
             model.addAttribute("msg", "审核失败！");
         }
         return new ModelAndView("expertsDetails");
+    }
+
+    //查看(个人中心)专家信息
+    @RequestMapping(value = "/expertsUserDetails")
+    public ModelAndView expertsUserDetails(Model model, HttpServletRequest request) {
+        Experts experts = iExpertsService.expertsDetails(request);
+        model.addAttribute("experts", experts);//专家信息
+        if (experts == null) {
+            model.addAttribute("msg", "请先申请成为专家！");
+        } else if (experts.getStatusCode().equals("0")) {
+            model.addAttribute("msg", "请您耐心等待审核！");
+        } else {
+            model.addAttribute("msg", "审核失败！");
+        }
+        return new ModelAndView("expertsUserDetails");
     }
 
     //前台查询所有专家（通过的）

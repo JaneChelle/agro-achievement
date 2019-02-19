@@ -86,6 +86,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             String typeName = achievement.getTypeName();
             QueryWrapper<Type> queryWrapperType = new QueryWrapper();
             queryWrapperType.eq("type_name", typeName);
+            System.out.println("type_name:"+typeName);
             Type typeOne = typeMapper.selectOne(queryWrapperType);
             if (typeOne != null) {
                 AchievementType achievementType = new AchievementType();
@@ -93,6 +94,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 achievementType.setTypeId(typeOne.getTypeId());
                 achievementTypeMapper.insert(achievementType);
             } else {
+                System.out.println("该类型不存在！");
                 return new Result(ResultCode.FAIL, "该类型不存在！");
             }
             //获取现在时间
@@ -115,6 +117,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             baseMapper.insert(achievement);
             return new Result(ResultCode.SUCCESS, "录入成功！");
         }
+        System.out.println("输入正确的信息！");
         return new Result(ResultCode.FAIL, "输入正确的信息！");
     }
 

@@ -21,10 +21,10 @@ import org.wlgzs.agro_achievement.util.Result;
 public class AnnouncementController extends BaseController {
 
     //添加公告（管理员）
-    @RequestMapping(value = "/addAnnouncement",method = RequestMethod.PUT)
-    public ModelAndView addAnnouncement(Announcement announcement){
-        return iAnnouncementService.addAnnouncement(announcement);
-    }
+//    @RequestMapping(value = "/addAnnouncement",method = RequestMethod.PUT)
+//    public ModelAndView addAnnouncement(Announcement announcement){
+//        return iAnnouncementService.addAnnouncement(announcement);
+//    }
 
     //修改公告
     @RequestMapping(value = "/modifyAnnouncement",method = RequestMethod.PUT)

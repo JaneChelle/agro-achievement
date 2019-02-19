@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Achievement;
 import org.wlgzs.agro_achievement.entity.AchievementType;
 import org.wlgzs.agro_achievement.entity.Type;
+import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.mapper.AchievementMapper;
 import org.wlgzs.agro_achievement.mapper.AchievementTypeMapper;
 import org.wlgzs.agro_achievement.mapper.TypeMapper;
@@ -47,6 +48,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     //发布成果
     @Override
     public Result addAchievement(MultipartFile[] myFileNames, HttpSession session, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+        User user = (User) session.getAttribute("user");
         if (achievement != null) {
             //文件处理（真实存储名）
             String realName = "";
@@ -114,6 +116,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 achievement.setPictureAddress(pictureAddress);
                 System.out.println("pictureAddress==="+pictureAddress);
             }
+            achievement.setUserId(user.getUserId());
             baseMapper.insert(achievement);
             return new Result(ResultCode.SUCCESS, "录入成功！");
         }
@@ -126,6 +129,13 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     public Result deleteAchievement(Integer achievementId) {
         Achievement achievement = baseMapper.selectById(achievementId);
         if (achievement != null) {
+            //删除文件
+            String Img = achievement.getPictureAddress();
+            String[] arr = Img.split(",");
+            for(int i = 0;i < arr.length;i++){
+                File file = new File(System.getProperty("user.dir") + arr[i]);
+                System.out.println(file.delete());
+            }
             baseMapper.deleteById(achievement);
             return new Result(ResultCode.SUCCESS, "删除成功！");
         }

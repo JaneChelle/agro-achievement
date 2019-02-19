@@ -73,13 +73,24 @@ public class AnnouncementServiceImpl extends ServiceImpl<AnnouncementMapper, Ann
     public Result selectAnnouncement(String announcementType, Integer current, Integer limit) {
         QueryWrapper<Announcement> queryWrapper = new QueryWrapper<>();
         Page page = new Page(current, limit);
-        queryWrapper.eq("announcement_type", announcementType).orderBy(true, false, "release_time");
+        if(!announcementType.equals("")){
+            queryWrapper.eq("announcement_type", announcementType).orderBy(true, false, "release_time");
+        }else{
+            queryWrapper.orderBy(true, false, "release_time");
+        }
         IPage<Announcement> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Announcement> announcementList = iPage.getRecords();
         if(announcementList != null){
             return new Result(ResultCode.SUCCESS,"",announcementList,iPage.getPages(),iPage.getCurrent());
         }
         return new Result(ResultCode.FAIL);
+    }
+
+    //查看公告详情
+    @Override
+    public Announcement announcementDetails(Integer announcementId) {
+        Announcement announcement = baseMapper.selectById(announcementId);
+        return announcement;
     }
 
 

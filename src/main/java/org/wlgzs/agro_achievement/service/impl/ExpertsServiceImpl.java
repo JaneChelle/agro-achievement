@@ -31,49 +31,40 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
     //申请成为专家
     @Override
-    public Result addExperts(HttpServletRequest request, Integer userId, String time, Experts experts) {
-//        HttpSession session = request.getSession(true);
-//        User user = (User) session.getAttribute("user");
-//        if (user != null) {
-//            //判断用户之前审核过没有(有则删除信息)
-//            QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
-//            queryWrapper.eq("user_id", user.getUserId());
-//            Experts expertsOne = baseMapper.selectOne(queryWrapper);
-//            if (expertsOne != null) {
-//                baseMapper.deleteById(expertsOne);
-//            }
-//        } else {
-//            return new Result(ResultCode.FAIL, "请先登录！");
-//        }
-//        if (user.getUserId() == userId) {
+    public Result addExperts(HttpServletRequest request,String time, Experts experts) {
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            //判断用户之前审核过没有(有则删除信息)
+            QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("user_id", user.getUserId());
+            Experts expertsOne = baseMapper.selectOne(queryWrapper);
+            if (expertsOne != null) {
+                baseMapper.deleteById(expertsOne);
+            }
+        } else {
+            return new Result(ResultCode.FAIL, "请先登录！");
+        }
         System.out.println(experts);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime ldt = LocalDateTime.parse(time + " 00:00:00", formatter);
         experts.setExpertsBirth(ldt);
         experts.setPageView(0);
         experts.setStatusCode("0");
+        experts.setUserId(user.getUserId());
         baseMapper.insert(experts);
         return new Result(ResultCode.SUCCESS, "请耐心等待审核！");
-//        }
-//        return new Result(ResultCode.FAIL, "您的信息有误，请重新登录！");
     }
 
     //查看（个人中心）专家信息
     @Override
-    public Result expertsDetails(HttpServletRequest request) {
+    public Experts expertsDetails(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", user.getUserId());
         Experts experts = baseMapper.selectOne(queryWrapper);
-        if (experts == null) {
-            return new Result(ResultCode.FAIL, "请先申请成为专家！");
-        } else if (experts.getStatusCode().equals("1")) {
-            return new Result(ResultCode.SUCCESS, experts);
-        } else if (experts.getStatusCode().equals("0")) {
-            return new Result(ResultCode.FAIL, "请您耐心等待审核！");
-        }
-        return new Result(ResultCode.FAIL, "审核失败！");
+        return experts;
     }
 
     //前台查询所有专家（通过的）

@@ -3,7 +3,7 @@
     margin:0;
 }
 body{
-    font-family: 微软雅黑;
+    font-family: "微软雅黑";
 }
 .box{
     width:1200px;
@@ -18,4 +18,58 @@ body{
 .title{
     background: #F8F8F8;
     padding:10px;
+}
+.pn-fbutton {
+    background-color: #FFFFFF;
+    text-align: center;
+}
+td>input {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+textarea{
+    padding: 6px 12px;
+    resize:none;
+}
+.uploadImgBtn {
+    width: 80px;
+    padding: 9px;
+    cursor: pointer;
+    position: relative;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background: #E7E7E7;
+    border-radius: 4px;
+}
+
+.uploadImgBtn .uploadImg {
+    position: absolute;
+    right: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.pic{
+    width: 100px;
+    height: 100px;
+    margin: 5px 5px 5px 0;
+    display: inline-block;
+}
+.pic img {
+    width: 100%;
+    height: 100%;
 }

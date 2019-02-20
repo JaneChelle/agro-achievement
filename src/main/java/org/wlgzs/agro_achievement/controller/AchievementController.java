@@ -19,6 +19,8 @@ import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,17 +37,25 @@ public class AchievementController extends BaseController {
 
     //跳转到添加成果
     @RequestMapping(value = "/toAddAchievement")
-    public ModelAndView toAddAchievement() {
+    public ModelAndView toAddAchievement(Model model) {
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
         return new ModelAndView("addAchievement");
     }
 
     //发布成果
     @RequestMapping(value = "/addAchievement")
-    public ModelAndView addAchievement(@RequestParam("file") MultipartFile[] myFileNames, HttpSession session, Model model,
+    public ModelAndView addAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, HttpSession session, Model model,
                                        HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
-        iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
-        model.addAttribute("msg", "发布成功！");
-        return new ModelAndView("redirect:/achievement/selectAchievement");
+        Result result = iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
+        if (result.getCode() == 0) {
+            model.addAttribute("msg", "发布成功！");
+            return new ModelAndView("redirect:/achievement/selectAchievement");
+        }
+        model.addAttribute("msg", "输入正确的信息！");
+        return new ModelAndView("redirect:/achievement/toAddAchievement");
     }
 
     //删除成果
@@ -69,7 +79,7 @@ public class AchievementController extends BaseController {
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("achievement", achievement1);
             return new ModelAndView("achieveDetails");
-        }else {
+        } else {
             model.addAttribute("msg", "修改失败！");
         }
         return new ModelAndView("redirect:/achievement/selectAchievement");
@@ -77,16 +87,23 @@ public class AchievementController extends BaseController {
 
     //查询所有成果（用户）
     @GetMapping("/selectAchievement")//分页
-    public ModelAndView selectAchievement(Model model, String statusCode,
+    public ModelAndView selectAchievement(Model model, String statusCode, HttpSession session,
                                           @RequestParam(value = "current", defaultValue = "1") Integer current,
                                           @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
-        HttpSession session = null;
         User user = (User) session.getAttribute("user");
         int userId = user.getUserId();
         Result result = iAchievementService.selectAchievement(userId, statusCode, current, limit);
         model.addAttribute("statusCode", statusCode);
         //成果数据
         List<Achievement> achievementList = (List<Achievement>) result.getData();
+        String img;
+        for (int i = 0; i < achievementList.size(); i++) {
+            if (achievementList.get(i).getPictureAddress().contains(",")) {
+                img = achievementList.get(i).getPictureAddress();
+                img = img.substring(0, img.indexOf(","));
+                achievementList.get(i).setPictureAddress(img);
+            }
+        }
         model.addAttribute("achievementList", achievementList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
@@ -105,6 +122,15 @@ public class AchievementController extends BaseController {
         if (achievementList == null) {
             model.addAttribute("msg", "暂无数据！");
         }
+        String img;
+        for (int i = 0; i < achievementList.size(); i++) {
+            if (achievementList.get(i).getPictureAddress().contains(",")) {
+                img = achievementList.get(i).getPictureAddress();
+                img = img.substring(0, img.indexOf(","));
+                achievementList.get(i).setPictureAddress(img);
+            }
+        }
+
         model.addAttribute("achievementList", achievementList);
         model.addAttribute("TotalPages", iPage.getPages());//总页数
         model.addAttribute("Number", iPage.getCurrent());//当前页数
@@ -122,14 +148,34 @@ public class AchievementController extends BaseController {
     public ModelAndView achievementDetails(Model model, Integer achievementId) {
         Result result = iAchievementService.achievementDetails(achievementId);
         Achievement achievement = (Achievement) result.getData();
+
+        String img = achievement.getPictureAddress();
+        //图片集合
+        List<String> achievementImg = Arrays.asList(img.split(","));
+
+        model.addAttribute("achievementImg",achievementImg);
         model.addAttribute("achievement", achievement);
         return new ModelAndView("achieveDetails");
     }
 
+    //查看成果详情页面(个人中心)
+    @GetMapping("/achievementUserDetails")
+    public ModelAndView achievementUserDetails(Model model, Integer achievementId) {
+        Result result = iAchievementService.achievementDetails(achievementId);
+        Achievement achievement = (Achievement) result.getData();
+        String img = achievement.getPictureAddress();
+        //图片集合
+        List<String> achievementImg = Arrays.asList(img.split(","));
+
+        model.addAttribute("achievementImg",achievementImg);
+        model.addAttribute("achievement", achievement);
+        return new ModelAndView("achievementUserDetails");
+    }
+
     //按照点击量排序成果(排行榜)
     @GetMapping("/rankingAchievement")
-    public ModelAndView rankingAchievement(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
-                                     @RequestParam(value = "limit", defaultValue = "8") int limit) {
+    public ModelAndView rankingAchievement(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
+                                           @RequestParam(value = "limit", defaultValue = "8") int limit) {
         Result result = iAchievementService.rankingAchievement(current, limit);
         List<Achievement> achievementList = (List<Achievement>) result.getData();
         model.addAttribute("achievementList", achievementList);
@@ -140,10 +186,10 @@ public class AchievementController extends BaseController {
 
     //按分类查询成果
     @GetMapping("/selectAchieveByType")
-    public ModelAndView selectAchieveByType(Model model,String type, @RequestParam(value = "current", defaultValue = "1") int current,
-                                      @RequestParam(value = "limit", defaultValue = "8") int limit) {
+    public ModelAndView selectAchieveByType(Model model, String type, @RequestParam(value = "current", defaultValue = "1") int current,
+                                            @RequestParam(value = "limit", defaultValue = "8") int limit) {
         Result result = iAchievementService.selectAchieveByType(type, current, limit);
-        model.addAttribute("type",type);
+        model.addAttribute("type", type);
         //成果数据
         List<Achievement> achievementList = (List<Achievement>) result.getData();
         model.addAttribute("achievementList", achievementList);

@@ -26,7 +26,7 @@ import java.util.List;
 public class ExampleController extends BaseController {
 
     //去添加案例
-    @RequestMapping(value = "toAddExample")
+    @RequestMapping(value = "/toAddExample")
     public ModelAndView toAddExample(){
         return new ModelAndView("addExample");
     }
@@ -84,10 +84,9 @@ public class ExampleController extends BaseController {
 
     //按照用户查询所有成功案例（状态码）(用户自身操作)
     @GetMapping("/selectExampleByUser")//分页
-    public ModelAndView selectExampleByUser(Model model,String statusCode,
+    public ModelAndView selectExampleByUser(Model model,String statusCode,HttpSession session,
                                @RequestParam(value = "current", defaultValue = "1") Integer current,
                                @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
-        HttpSession session = null;
         User user = (User) session.getAttribute("user");
         int userId = user.getUserId();
         Result result = iCaseService.selectExampleByUser(userId, statusCode,current,limit);

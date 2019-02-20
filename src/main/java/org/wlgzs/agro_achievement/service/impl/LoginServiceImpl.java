@@ -33,9 +33,11 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements L
                     return new Result(ResultCode.ADMIN, "管理员登录成功！");
                 } else if ("2".equals(user.getUserLevel())) {//专家
                     session.setAttribute("user", user);
+                    System.out.println(user);
                     return new Result(ResultCode.EXPERT, "专家登录成功！");
                 } else {//普通的用户
                     session.setAttribute("user", user);
+                    System.out.println(user);
                     return new Result(ResultCode.SUCCESS, "普通用户登录成功！");
                 }
             } else {  //密码错误

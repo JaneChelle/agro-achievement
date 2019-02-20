@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Achievement;
 import org.wlgzs.agro_achievement.entity.AchievementType;
 import org.wlgzs.agro_achievement.entity.Type;
+import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.mapper.AchievementMapper;
 import org.wlgzs.agro_achievement.mapper.AchievementTypeMapper;
 import org.wlgzs.agro_achievement.mapper.TypeMapper;
@@ -47,8 +48,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     //发布成果
     @Override
     public Result addAchievement(MultipartFile[] myFileNames, HttpSession session, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
-        System.out.println("request=="+request.getContextPath());
-        System.out.println("session=="+session.getServletContext());
+        User user = (User) session.getAttribute("user");
         if (achievement != null) {
             //文件处理（真实存储名）
             String realName = "";
@@ -61,14 +61,15 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                     String suffixName = fileName.substring(fileName.indexOf("."),fileName.length());
 
                     //生成实际储存的文件名（不能重复）
-                    realName = RandomNumberUtils.getRandomFileName();
+                    realName = RandomNumberUtils.getRandomFileName() + suffixName;
 
-                    String realPath = session.getServletContext().getRealPath("/upload");
-                    File file = new File(realPath,realName);
+                    // "/upload"是你自己定义的上传目录
+                    String realPath = System.getProperty("user.dir") + "/upload";
+                    File uploadFile = new File(realPath, realName);
 
                     //上传文件
                     try {
-                        myFileNames[i].transferTo(file);
+                        myFileNames[i].transferTo(uploadFile);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -87,6 +88,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             String typeName = achievement.getTypeName();
             QueryWrapper<Type> queryWrapperType = new QueryWrapper();
             queryWrapperType.eq("type_name", typeName);
+            System.out.println("type_name:"+typeName);
             Type typeOne = typeMapper.selectOne(queryWrapperType);
             if (typeOne != null) {
                 AchievementType achievementType = new AchievementType();
@@ -94,6 +96,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 achievementType.setTypeId(typeOne.getTypeId());
                 achievementTypeMapper.insert(achievementType);
             } else {
+                System.out.println("该类型不存在！");
                 return new Result(ResultCode.FAIL, "该类型不存在！");
             }
             //获取现在时间
@@ -111,10 +114,13 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 achievement.setStartTime(timeOne);
                 achievement.setEndTime(timeTwo);
                 achievement.setPictureAddress(pictureAddress);
+                System.out.println("pictureAddress==="+pictureAddress);
             }
+            achievement.setUserId(user.getUserId());
             baseMapper.insert(achievement);
             return new Result(ResultCode.SUCCESS, "录入成功！");
         }
+        System.out.println("输入正确的信息！");
         return new Result(ResultCode.FAIL, "输入正确的信息！");
     }
 
@@ -123,6 +129,13 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     public Result deleteAchievement(Integer achievementId) {
         Achievement achievement = baseMapper.selectById(achievementId);
         if (achievement != null) {
+            //删除文件
+            String Img = achievement.getPictureAddress();
+            String[] arr = Img.split(",");
+            for(int i = 0;i < arr.length;i++){
+                File file = new File(System.getProperty("user.dir") + arr[i]);
+                System.out.println(file.delete());
+            }
             baseMapper.deleteById(achievement);
             return new Result(ResultCode.SUCCESS, "删除成功！");
         }
@@ -231,7 +244,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             queryWrapper.in("achievement_id", achievementId);
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();
-            return new Result(ResultCode.SUCCESS, achievementList);
+            return new Result(ResultCode.SUCCESS,"",achievementList,iPage.getPages(),iPage.getCurrent());
         }
         return new Result(ResultCode.FAIL, "不存在！");
     }

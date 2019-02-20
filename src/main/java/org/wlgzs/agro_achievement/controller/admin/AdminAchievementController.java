@@ -15,6 +15,8 @@ import javax.annotation.Resource;
 public class AdminAchievementController {
 
     //管理员添加成果
-//    @RequestMapping(value = )
+//    @RequestMapping(value = "")
+
+
 
 }

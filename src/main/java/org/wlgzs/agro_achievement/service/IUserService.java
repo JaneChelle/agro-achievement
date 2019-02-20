@@ -47,4 +47,7 @@ public interface IUserService extends IService<User> {
 
     //后台修改用户
     Result adminModifyUser(User user);
+
+    //查看用户信息
+    User findUserById(Integer userId);
 }

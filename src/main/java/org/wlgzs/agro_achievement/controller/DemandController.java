@@ -126,6 +126,11 @@ public class DemandController extends BaseController {
         Result result = iDemandService.demandDetails(demandId);
         Demand demand = (Demand) result.getData();
         model.addAttribute("demand",demand);
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
+
         return new ModelAndView("demandUserDetails");
     }
 

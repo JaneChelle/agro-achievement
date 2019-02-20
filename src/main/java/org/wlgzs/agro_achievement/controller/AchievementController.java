@@ -162,6 +162,10 @@ public class AchievementController extends BaseController {
         end_time = end_time.substring(0,10);
 
         System.out.println(start_time);
+        //所有类别
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
         model.addAttribute("achievementImg",achievementImg);
         model.addAttribute("achievement", achievement);
         model.addAttribute("start_time", start_time);

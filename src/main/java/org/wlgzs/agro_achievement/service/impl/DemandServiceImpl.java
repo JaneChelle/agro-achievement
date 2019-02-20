@@ -105,5 +105,11 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
         return new Result(ResultCode.FAIL,"不存在！");
     }
 
+    //搜索所有需求
+    @Override
+    public Result adminDemandList(String findName, int current, int limit) {
+
+    }
+
 
 }

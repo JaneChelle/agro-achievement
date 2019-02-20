@@ -70,6 +70,7 @@ public class LogUserController extends BaseController {
             return new ModelAndView("login");
         }
         model.addAttribute("msg","您的信息有误！");
+        System.out.println("aaaaaaaaaaaa");
         return new ModelAndView("redirect:/LogUser/toRegister");
     }
 

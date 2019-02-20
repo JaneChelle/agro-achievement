@@ -13,7 +13,7 @@ $(document).ready(function() {
         $(".ifm").attr("src","addDemand.html");
     });
     $("#supplyg").click(function () {
-        $(".ifm").attr("src","supplyg.html");
+        $(".ifm").attr("src","userDemandList.html");
     });
     $("#expertInfo").click(function () {
         $(".ifm").attr("src","expert.html");

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>成果发布管理-个人中心</title>
+    <title>需求发布管理-个人中心</title>
     <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
     <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
     <link rel="stylesheet" th:href="@{/css/register.css}">
@@ -17,37 +17,37 @@
 </head>
 <body>
 <div class="box">
-    <h3>成果发布管理<i class="fa fa-long-arrow-right" aria-hidden="true"></i><span id="div1" style="color: red;"></span></h3>
+    <h3>需求发布管理<i class="fa fa-long-arrow-right" aria-hidden="true"></i><span id="div1" style="color: red;"></span></h3>
     <div class="title">
-        <a th:href="@{/achievement/selectAchievement(statusCode=0)}" id="adiv1" onclick="nopass()"   th:text="'未审核'"></a> &nbsp;&nbsp;
-        <a th:href="@{/achievement/selectAchievement(statusCode=1)}" id="adiv2" onclick="pass()"  th:text="'通过'"></a>  &nbsp;&nbsp;
-        <a th:href="@{/achievement/selectAchievement(statusCode=2)}" id="adiv3" onclick="fail()" th:text="'失败'"></a> &nbsp;&nbsp;
+        <a th:href="@{/demand/selectDemand(statusCode=0)}" id="adiv1" onclick="nopass()"   th:text="'未审核'"></a> &nbsp;&nbsp;
+        <a th:href="@{/demand/selectDemand(statusCode=1)}" id="adiv2" onclick="pass()"  th:text="'通过'"></a>  &nbsp;&nbsp;
+        <a th:href="@{/demand/selectDemand(statusCode=2)}" id="adiv3" onclick="fail()" th:text="'失败'"></a> &nbsp;&nbsp;
     </div>
     <table class="table table-bordered able-box" id="mytable">
         <thead style="background-color: #F2F2F2;">
         <tr>
-            <th>用户ID</th>
-            <th>标题</th>
-            <th>所属权类型</th>
-            <th>发布者</th>
+            <th>需求名字</th>
+            <th>预期价格</th>
+            <th>需求者</th>
+            <th>需求说明</th>
             <th>发布时间</th>
-            <th>状态</th>
+            <th>联系人</th>
             <th>操作选择</th>
         </tr>
         </thead>
         <tbody>
         <!--遍历-->
-        <tr th:each="achievement : ${achievementList}">
-            <td th:text="${achievement.achievementId}" class="achievementId"></td>
-            <td th:text="${achievement.achievementName}" class="achievementName"></td>
-            <td th:text="${achievement.typeName}"></td>
-            <td th:text="${achievement.linkman}"></td>
-            <td th:text="${achievement.releaseTime}"></td>
-            <td th:text="${achievement.statusCode}"></td>
+        <tr th:each="demand : ${demandList}">
+            <td th:text="${demand.demandName}" class="achievementId"></td>
+            <td th:text="${demand.expectedPrice}" class="achievementName"></td>
+            <td th:text="${demand.demanders}"></td>
+            <td th:text="${demand.demandIntroduce}"></td>
+            <td th:text="${demand.releaseTime}"></td>
+            <td th:text="${demand.linkman}"></td>
             <td>
                 <a class="a-div adiv1" id="deletes">删除</a>
-                <a class="a-div adiv2" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">修改</a>
-                <a class="a-div adiv3" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">详情</a>
+                <a class="a-div adiv2" th:href="@{/demand/demandUserDetails(demandId=${demand.demandId})}">修改</a>
+                <a class="a-div adiv3" th:href="@{/demand/demandUserDetails(demandId=${demand.demandId})}">详情</a>
             </td>
         </tr>
         </tbody>

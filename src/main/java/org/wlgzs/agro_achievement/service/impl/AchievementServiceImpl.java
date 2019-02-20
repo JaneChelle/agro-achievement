@@ -263,5 +263,89 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         return null;
     }
 
+    @Override
+    public Result saveAchievement(MultipartFile[] myFileNames, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+        if (achievement != null) {
+            //文件处理（真实存储名）
+            String realName = "";
+            //存放文件储存路径
+            String[] str = new String[myFileNames.length];
+            for (int i = 0; i < myFileNames.length; i++) {
+                if(!myFileNames[i].getOriginalFilename().equals("")){
+                    String fileName = myFileNames[i].getOriginalFilename();
+                    //截取后缀名
+                    String suffixName = fileName.substring(fileName.indexOf("."),fileName.length());
+
+                    //生成实际储存的文件名（不能重复）
+                    realName = RandomNumberUtils.getRandomFileName() + suffixName;
+
+                    // "/upload"是你自己定义的上传目录
+                    String realPath = System.getProperty("user.dir") + "/upload";
+                    File uploadFile = new File(realPath, realName);
+
+                    //上传文件
+                    try {
+                        myFileNames[i].transferTo(uploadFile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    str[i] = request.getContextPath() + "/upload/" + realName;
+                }
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < str.length; i++) {
+                if (!myFileNames[i].getOriginalFilename().equals("")) {
+                    stringBuilder.append(str[i] + ",");
+                }
+            }
+            String pictureAddress = new String(stringBuilder);
+
+            String typeName = achievement.getTypeName();
+            QueryWrapper<Type> queryWrapperType = new QueryWrapper();
+            queryWrapperType.eq("type_name", typeName);
+            System.out.println("type_name:"+typeName);
+            Type typeOne = typeMapper.selectOne(queryWrapperType);
+            if (typeOne != null) {
+                AchievementType achievementType = new AchievementType();
+                achievementType.setAchievementId(achievement.getAchievementId());
+                achievementType.setTypeId(typeOne.getTypeId());
+                achievementTypeMapper.insert(achievementType);
+            } else {
+                System.out.println("该类型不存在！");
+                return new Result(ResultCode.FAIL, "该类型不存在！");
+            }
+            //获取现在时间
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+//            achievement.setStatusCode("0");//需要审核
+            if (!start_time.equals("") && !end_time.equals("")) {
+                //存入开始结束时间
+                LocalDateTime timeOne = LocalDateTime.parse(start_time + " 00:00:00", formatter);
+                LocalDateTime timeTwo = LocalDateTime.parse(end_time + " 00:00:00", formatter);
+                achievement.setStartTime(timeOne);
+                achievement.setEndTime(timeTwo);
+                achievement.setPictureAddress(pictureAddress);
+                System.out.println("pictureAddress==="+pictureAddress);
+            }
+            baseMapper.insert(achievement);
+            return new Result(ResultCode.SUCCESS, "录入成功！");
+        }
+        System.out.println("输入正确的信息！");
+        return new Result(ResultCode.FAIL, "输入正确的信息！");
+    }
+
+    //查询所有成果(展示)
+    @Override
+    public Result adminAchievementList(String findName,int current, int limit) {
+        QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("achievement_name",findName).eq("achievement_key",findName);
+        Page page = new Page(current,limit);
+        IPage<Achievement> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Achievement> achievementList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS,"",achievementList,iPage.getPages(),iPage.getCurrent());
+    }
+
 }
 

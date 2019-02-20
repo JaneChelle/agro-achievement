@@ -20,7 +20,10 @@ public interface IExpertsService extends IService<Experts> {
     Result addExperts(HttpServletRequest request, String time, Experts experts);
 
     //查看（个人中心）专家信息
-    Experts expertsDetails(HttpServletRequest request);
+    Experts expertsUserDetails(HttpServletRequest request);
+
+    //查看专家详情
+    Experts expertsDetails(Integer expertsId);
 
     //前台查询所有专家（通过的）
     Result selectExperts(int current, int limit);

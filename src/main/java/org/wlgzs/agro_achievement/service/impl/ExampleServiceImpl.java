@@ -104,5 +104,11 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
         return new Result(ResultCode.FAIL, "暂无数据！");
     }
 
+    @Override
+    public Example exampleDetails(Integer exampleId) {
+        Example example = baseMapper.selectById(exampleId);
+        return example;
+    }
+
 
 }

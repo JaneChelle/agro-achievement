@@ -51,15 +51,11 @@ public class ExpertsController extends BaseController {
 
     //查看专家信息
     @RequestMapping(value = "/expertsDetails")
-    public ModelAndView expertsDetails(Model model, HttpServletRequest request) {
-        Experts experts = iExpertsService.expertsDetails(request);
+    public ModelAndView expertsDetails(Model model,Integer expertsId) {
+        Experts experts = iExpertsService.expertsDetails(expertsId);
         model.addAttribute("experts", experts);//专家信息
         if (experts == null) {
-            model.addAttribute("msg", "请先申请成为专家！");
-        } else if (experts.getStatusCode().equals("0")) {
-            model.addAttribute("msg", "请您耐心等待审核！");
-        } else {
-            model.addAttribute("msg", "审核失败！");
+            model.addAttribute("msg", "不存在！");
         }
         return new ModelAndView("expertsDetails");
     }
@@ -67,7 +63,7 @@ public class ExpertsController extends BaseController {
     //查看(个人中心)专家信息
     @RequestMapping(value = "/expertsUserDetails")
     public ModelAndView expertsUserDetails(Model model, HttpServletRequest request) {
-        Experts experts = iExpertsService.expertsDetails(request);
+        Experts experts = iExpertsService.expertsUserDetails(request);
         model.addAttribute("experts", experts);//专家信息
         if (experts == null) {
             model.addAttribute("msg", "请先申请成为专家！");

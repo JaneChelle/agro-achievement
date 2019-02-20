@@ -47,4 +47,15 @@ public interface IAchievementService extends IService<Achievement> {
     //推荐需求
     List<Achievement> hotAchievement();
 
+    /**
+     * 管理员
+     */
+
+    //添加成果
+    Result saveAchievement(MultipartFile[] myFileNames,HttpServletRequest request,
+                           Achievement achievement, String start_time, String end_time);
+
+    //查询所有成果
+    Result adminAchievementList(String findName,int current, int limit);
+
 }

@@ -19,6 +19,8 @@ import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -153,8 +155,17 @@ public class AchievementController extends BaseController {
         //图片集合
         List<String> achievementImg = Arrays.asList(img.split(","));
 
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String start_time = df.format(achievement.getStartTime());
+        String end_time = df.format(achievement.getStartTime());
+        start_time = start_time.substring(0,10);
+        end_time = end_time.substring(0,10);
+
+        System.out.println(start_time);
         model.addAttribute("achievementImg",achievementImg);
         model.addAttribute("achievement", achievement);
+        model.addAttribute("start_time", start_time);
+        model.addAttribute("end_time", end_time);
         return new ModelAndView("achieveDetails");
     }
 
@@ -167,8 +178,17 @@ public class AchievementController extends BaseController {
         //图片集合
         List<String> achievementImg = Arrays.asList(img.split(","));
 
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String start_time = df.format(achievement.getStartTime());
+        String end_time = df.format(achievement.getStartTime());
+        start_time = start_time.substring(0,10);
+        end_time = end_time.substring(0,10);
+
+        System.out.println(start_time);
         model.addAttribute("achievementImg",achievementImg);
         model.addAttribute("achievement", achievement);
+        model.addAttribute("start_time", start_time);
+        model.addAttribute("end_time", end_time);
         return new ModelAndView("achievementUserDetails");
     }
 

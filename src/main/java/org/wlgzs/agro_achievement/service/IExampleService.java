@@ -29,4 +29,6 @@ public interface IExampleService extends IService<Example> {
     //按照用户查询所有成功案例（状态码）(用户自身操作)
     Result selectExampleByUser(Integer userId, String statusCode, Integer current, Integer limit);
 
+    //查看案例详情
+    Example exampleDetails(Integer exampleId);
 }

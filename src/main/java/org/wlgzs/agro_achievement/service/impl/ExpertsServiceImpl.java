@@ -58,12 +58,19 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
     //查看（个人中心）专家信息
     @Override
-    public Experts expertsDetails(HttpServletRequest request) {
+    public Experts expertsUserDetails(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", user.getUserId());
         Experts experts = baseMapper.selectOne(queryWrapper);
+        return experts;
+    }
+
+    //查看专家详情
+    @Override
+    public Experts expertsDetails(Integer expertsId) {
+        Experts experts = baseMapper.selectById(expertsId);
         return experts;
     }
 

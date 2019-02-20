@@ -36,9 +36,13 @@ public class AuditServiceImpl implements IAuditService {
     @Resource
     ExpertsMapper expertsMapper;
 
+    //去审核成果
+
+
+
     //审核成果
     @Override
-    public Result auditAnnouncement(Integer achievementId, String statusCode) {
+    public Result auditAchievement(Integer achievementId, String statusCode) {
         Achievement achievement = achievementMapper.selectById(achievementId);
         if(achievement != null){
             achievement.setStatusCode(statusCode);

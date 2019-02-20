@@ -25,7 +25,7 @@ import java.util.List;
 public class AnnouncementController extends BaseController {
 
     //去添加公告
-    @RequestMapping(value = "toAddAnnouncement")
+    @RequestMapping(value = "/toAddAnnouncement")
     public ModelAndView toAddAnnouncement() {
         return new ModelAndView("addAnnouncement");
     }

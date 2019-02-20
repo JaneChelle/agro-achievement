@@ -47,14 +47,14 @@
                 </tr>
                 <tr>
                     <th>开始时间：</th>
-                    <td>
-                        <input type="text" name="start_time" class="jeinput moredate" placeholder="YYYY-MM-DD" th:value="${#dates.format(achievement.startTime,'yyyy-MM-dd HH:mm:ss')}" required>
+                    <td >
+                        <input type="text" name="start_time" class="jeinput moredate" placeholder="YYYY-MM-DD" th:value="${start_time}" required>
                     </td>
                 </tr>
                 <tr>
                     <th>结束时间：</th>
-                    <td>
-                        <input type="text" name="end_time" class="jeinput moredate" placeholder="YYYY-MM-DD" th:value="${#dates.format(achievement.endTime,'yyyy-MM-dd HH:mm:ss')}"  required>
+                    <td >
+                        <input type="text" name="end_time" class="jeinput moredate" placeholder="YYYY-MM-DD" th:value="${end_time}"  required>
                     </td>
                 </tr>
                 <tr>

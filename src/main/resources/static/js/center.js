@@ -10,7 +10,7 @@ $(document).ready(function() {
         $(".ifm").attr("src","userAchieveList.html");
     });
     $("#supply").click(function () {
-        $(".ifm").attr("src","supply.html");
+        $(".ifm").attr("src","addDemand.html");
     });
     $("#supplyg").click(function () {
         $(".ifm").attr("src","supplyg.html");

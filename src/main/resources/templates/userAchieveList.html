@@ -46,32 +46,34 @@
             <td th:text="${achievement.statusCode}"></td>
             <td>
                 <a class="a-div adiv1" id="deletes">删除</a>
-                <a class="a-div adiv2" th:href="@{/achievement/modifyAchievement(achievementId=${achievement.achievementId})}">修改</a>
+                <a class="a-div adiv2" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">修改</a>
                 <a class="a-div adiv3" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">详情</a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+<!--修改弹窗-->
+
 <div class="cure"></div>
 <script>
     if(typeof localStorage=='undefined')
     {
         window.alert("浏览器不支持localStorage");
     }else{
-        var colorArray=new Array("未审核","通过","失败");
+        var colorArray=new Array("通过","未审核","失败");
         function nopass()
         {
             var div1=document.getElementById("div1");
             div1.style.backgroundColor=colorArray[0];
-            window.localStorage.setItem('innerHTML',colorArray[0]);
+            window.localStorage.setItem('innerHTML',colorArray[1]);
 
         }
         function pass()
         {
             var div1=document.getElementById("div1");
             div1.style.backgroundColor=colorArray[1];
-            window.localStorage.setItem('innerHTML',colorArray[1]);
+            window.localStorage.setItem('innerHTML',colorArray[0]);
         }
         function fail()
         {

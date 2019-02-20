@@ -35,4 +35,8 @@ public interface IDemandService extends IService<Demand> {
     //搜索所有需求
     Result adminDemandList(String findName,int current, int limit);
 
+    //添加需求
+    Result saveDemand(Demand demand);
+
+
 }

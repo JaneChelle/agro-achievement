@@ -339,7 +339,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     @Override
     public Result adminAchievementList(String findName,int current, int limit) {
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("achievement_name",findName).eq("achievement_key",findName);
+        queryWrapper.like("achievement_name",findName).like("achievement_key",findName);
         Page page = new Page(current,limit);
         IPage<Achievement> iPage = baseMapper.selectPage(page,queryWrapper);
         List<Achievement> achievementList = iPage.getRecords();

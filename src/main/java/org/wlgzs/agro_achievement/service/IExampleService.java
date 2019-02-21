@@ -4,6 +4,8 @@ import org.wlgzs.agro_achievement.entity.Example;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.wlgzs.agro_achievement.util.Result;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -31,4 +33,14 @@ public interface IExampleService extends IService<Example> {
 
     //查看案例详情
     Example exampleDetails(Integer exampleId);
+
+    /**
+     * 管理员
+     */
+    //搜索案例
+    Result findExampleList(String findName,int current, int limit);
+
+    //管理添加案例
+    Result addAdminExample(Example example);
+
 }

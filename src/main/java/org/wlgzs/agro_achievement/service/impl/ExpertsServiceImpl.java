@@ -115,4 +115,40 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         return new Result(ResultCode.FAIL, "暂无数据！");
     }
 
+    @Override
+    public Result findExpertsList(String findName, int current, int limit) {
+        QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("achievement_name",findName).like("achievement_key",findName);
+        Page page = new Page(current,limit);
+        IPage<Experts> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Experts> expertsList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS,"",expertsList,iPage.getPages(),iPage.getCurrent());
+    }
+
+    @Override
+    public Result addAdminExperts(Experts experts) {
+        baseMapper.insert(experts);
+        return new Result(ResultCode.SUCCESS);
+    }
+
+    @Override
+    public Result modifyExperts(Experts experts) {
+        if(experts != null){
+            baseMapper.updateById(experts);
+            return new Result(ResultCode.SUCCESS);
+        }
+        return new Result(ResultCode.FAIL);
+    }
+
+    @Override
+    public Result adminDeleteExpertsId(Integer expertsId) {
+        Experts experts = baseMapper.selectById(expertsId);
+        if(experts != null){
+            baseMapper.deleteById(expertsId);
+            return new Result(ResultCode.SUCCESS,"修改成功！");
+        }
+        return new Result(ResultCode.FAIL,"修改失败！");
+    }
+
 }

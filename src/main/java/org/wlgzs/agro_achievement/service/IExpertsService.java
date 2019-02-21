@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author 胡亚星
@@ -34,4 +34,18 @@ public interface IExpertsService extends IService<Experts> {
     //按点击量查询专家（最新加入）
     Result expertRanking(int limit);
 
+    /**
+     * 管理员
+     */
+    //搜索专家
+    Result findExpertsList(String findName, int current, int limit);
+
+    //管理添加专家
+    Result addAdminExperts(Experts experts);
+
+    //修改专家信息
+    Result modifyExperts(Experts experts);
+
+    //删除专家信息
+    Result adminDeleteExpertsId(Integer expertsId);
 }

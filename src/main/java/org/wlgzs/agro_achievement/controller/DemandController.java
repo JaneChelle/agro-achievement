@@ -76,10 +76,9 @@ public class DemandController extends BaseController {
 
     //按照用户查询所有需求（状态码）(用户自身操作)
     @GetMapping("/selectDemand")//分页
-    public ModelAndView selectDemand(Model model,String statusCode,
+    public ModelAndView selectDemand(Model model,String statusCode,HttpSession session,
                                @RequestParam(value = "current", defaultValue = "1") Integer current,
                                @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
-        HttpSession session = null;
         User user = (User) session.getAttribute("user");
         int userId = user.getUserId();
         Result result = iDemandService.selectDemand(userId, statusCode, current, limit);

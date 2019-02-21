@@ -51,15 +51,15 @@ public class AdminExpertsController extends BaseController {
 
     //跳转到修改专家
     @RequestMapping("/toAdminEditExperts")
-    public ModelAndView toEdit(Model model, Integer achievementId) {
-        Experts experts = iExpertsService.expertsDetails(achievementId);
+    public ModelAndView toEdit(Model model, Integer expertsId) {
+        Experts experts = iExpertsService.expertsDetails(expertsId);
         model.addAttribute("experts", experts);
         return new ModelAndView("adminEditExperts");
     }
 
     //修改专家
     @RequestMapping(value = "/adminEditExperts")
-    public ModelAndView modifyExperts(Experts experts, String start_time, String end_time, Model model) {
+    public ModelAndView modifyExperts(Experts experts,Model model) {
         Result result = iExpertsService.modifyExperts(experts);
         if (result.getCode() == 0) {
             Experts experts1 = (Experts) result.getData();

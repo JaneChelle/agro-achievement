@@ -38,12 +38,13 @@
         <tbody>
         <!--遍历-->
         <tr th:each="demand : ${demandList}">
-            <td th:text="${demand.demandName}" class="achievementId"></td>
+            <td th:text="${demand.demandName}" class="demandName"></td>
             <td th:text="${demand.expectedPrice}" class="achievementName"></td>
             <td th:text="${demand.demanders}"></td>
             <td th:text="${demand.demandIntroduce}"></td>
             <td th:text="${demand.releaseTime}"></td>
             <td th:text="${demand.linkman}"></td>
+            <input type="hidden" th:value="${demand.demandId}" class="demandId">
             <td>
                 <a class="a-div adiv1" id="deletes">删除</a>
                 <a class="a-div adiv2" th:href="@{/demand/demandUserDetails(demandId=${demand.demandId})}">修改</a>
@@ -53,7 +54,6 @@
         </tbody>
     </table>
 </div>
-
 <div class="cure"></div>
 <script>
     if(typeof localStorage=='undefined')

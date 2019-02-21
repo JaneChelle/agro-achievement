@@ -33,9 +33,10 @@
                 <tr>
                     <th>成果类型:</th>
                     <td>
+                        <input type="hidden" th:value="${achievement.typeName}" id="typeName">
                         <div th:each="type : ${typeList}">
-                            <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}"/><label
-                                th:text="${type.typeName}" th:for="${type.typeName}"></label>
+                            <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" class="Name"/>
+                            <label th:text="${type.typeName}" th:for="${type.typeName}"></label>
                         </div>
                     </td>
                 </tr>
@@ -140,18 +141,29 @@
 </div>
 <script th:src="@{/js/demo.js}"></script>
 <script>
-
+    $(function () {
+        //
         var provice=$('#provice').val();
-        $(function () {
-            $("#city option").each(function () {
-                var val = $(this).text();
-                //console.log(val);
-                if(val ==provice){
-                    $(this).attr("selected",true);
-                   // console.log($(this).attr("selected",true));
-                }
-            })
+        $("#city option").each(function () {
+            var val = $(this).text();
+            //console.log(val);
+            if(val ==provice){
+                $(this).attr("selected",true);
+            }
         });
+
+        //radio回显
+        $(".Name").each(function () {
+            var typeName=$('#typeName').val();
+            var val = $(this).val();
+            if(val ==typeName){
+                $(this).attr("checked",true);
+            }
+        });
+    });
+
+
+
 
 </script>
 </body>

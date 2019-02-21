@@ -117,7 +117,7 @@ public class DemandController extends BaseController {
         Result result = iDemandService.demandDetails(demandId);
         Demand demand = (Demand) result.getData();
         model.addAttribute("demand",demand);
-        return new ModelAndView("demandDetails");
+        return new ModelAndView("demandUserDetails");
     }
 
     //查看需求详情页面(个人中心)

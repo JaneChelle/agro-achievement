@@ -103,7 +103,7 @@ textarea{
     padding: 10px;
     background-color: rgba(0,0,0,.2);
     border-radius: 4px;
-    display: none;
+    /*display: none;*/
 }
 .uu{
     display: block;

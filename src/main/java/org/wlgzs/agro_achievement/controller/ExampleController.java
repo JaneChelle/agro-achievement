@@ -38,6 +38,14 @@ public class ExampleController extends BaseController {
         return new ModelAndView("redirect:/example/selectExampleByUser");
     }
 
+    //去修改案例
+    @RequestMapping(value = "/toModifyExample")
+    public ModelAndView toModifyExample(Model model,Integer exampleId){
+        Example example = iCaseService.exampleDetails(exampleId);
+        model.addAttribute("example",example);
+        return new ModelAndView("modifyExample");
+    }
+
     //修改案例
     @RequestMapping(value = "/modifyExample")
     public ModelAndView modifyExample(Model model,Example example){

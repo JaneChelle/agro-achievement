@@ -1,22 +1,28 @@
 $(document).ready(function() {
     //菜单切换
     $("#register").click(function () {
-        $(".ifm").attr("src","register.html");
+        $(".ifm").attr("src","/UserManagement/toChangePassword");
     });
     $("#result1").click(function () {
-        $(".ifm").attr("src","addAchievement.html");
+        $(".ifm").attr("src","/achievement/toAddAchievement");
+    });
+    $("#modifyPassword").click(function () {
+        $(".ifm").attr("src","/UserManagement/toChangePassword");
+    });
+    $("#findPassword").click(function () {
+        $(".ifm").attr("src","/UserManagement/toFindPassword");
     });
     $("#result2").click(function () {
-        $(".ifm").attr("src","userAchieveList.html");
+        $(".ifm").attr("src","/achievement/selectAchievement");
     });
     $("#supply").click(function () {
-        $(".ifm").attr("src","addDemand.html");
+        $(".ifm").attr("src","/demand/toAddDemand");
     });
     $("#supplyg").click(function () {
-        $(".ifm").attr("src","userDemandList.html");
+        $(".ifm").attr("src","/demand/selectDemand");
     });
     $("#expertInfo").click(function () {
-        $(".ifm").attr("src","expert.html");
+        $(".ifm").attr("src","/experts/toAddExperts");
     });
 //设置高亮
     $(".addColor").on('click',function () {

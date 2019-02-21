@@ -26,6 +26,10 @@
 <div class="side-left">
     <div>
         <div class="list_one addColor" id="register"><i class="fa fa-address-book-o" aria-hidden="true"></i>注册信息</div>
+        <div class="list_two">
+            <div class="addColor" id="modifyPassword">修改密码</div>
+            <div class="addColor" id="findPassword">找回密码</div>
+        </div>
     </div>
     <div>
         <div class="list_one" id="result"> <i class="fa fa-balance-scale" aria-hidden="true"></i>成果服务</div>
@@ -50,7 +54,7 @@
 </div>
 <!--右侧内容-->
 <div class="frame-div">
-    <iframe th:src="@{/achievement/toAddAchievement}" frameborder="0" class="ifm"  scrolling="no"></iframe>
+    <iframe th:src="@{/achievement/toAddAchievement}" frameborder="0" class="ifm"  scrolling="auto"></iframe>
 </div>
 </body>
 </html>

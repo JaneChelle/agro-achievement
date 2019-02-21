@@ -38,4 +38,14 @@ public interface IOrganizationService extends IService<Organization> {
 
     //按照点击量排序成机构
     List<Organization> rankingOrganization(int current, int limit);
+
+    /**
+     * 管理员
+     */
+    //搜索所有机构
+    Result adminOrganizationList(String findName,int current, int limit);
+
+    //添加机构
+    Result saveOrganization(Organization organization);
+
 }

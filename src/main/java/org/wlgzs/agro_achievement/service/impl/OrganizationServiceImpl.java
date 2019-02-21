@@ -131,5 +131,25 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
         return organizationList;
     }
 
+    @Override
+    public Result adminOrganizationList(String findName, int current, int limit) {
+        QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("achievement_name",findName).like("achievement_key",findName);
+        Page page = new Page(current,limit);
+        IPage<Organization> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Organization> organizationList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS,"",organizationList,iPage.getPages(),iPage.getCurrent());
+    }
+
+    @Override
+    public Result saveOrganization(Organization organization) {
+        if(organization != null){
+            baseMapper.insert(organization);
+            return new Result(ResultCode.SUCCESS);
+        }
+        return new Result(ResultCode.FAIL);
+    }
+
 
 }

@@ -176,4 +176,16 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         return new Result(ResultCode.FAIL,"修改失败！");
     }
 
+    @Override
+    public Result selectExpertsByCode(String statusCode, int current, int limit) {
+        QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
+        Page page = new Page(current,limit);
+        queryWrapper.eq("status_code",statusCode);
+        IPage<Experts> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Experts> expertsList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS, "", expertsList, iPage.getPages(), iPage.getCurrent());
+
+    }
+
 }

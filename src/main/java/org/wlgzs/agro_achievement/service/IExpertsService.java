@@ -49,4 +49,8 @@ public interface IExpertsService extends IService<Experts> {
 
     //删除专家信息
     Result adminDeleteExpertsId(Integer expertsId);
+
+    //按需求状态查询专家
+    Result selectExpertsByCode(String statusCode,int current,int limit);
+
 }

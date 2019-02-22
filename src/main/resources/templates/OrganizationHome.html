@@ -17,18 +17,13 @@
 <!--主题-->
 <div class="current">
     <i class="fa fa-map-marker" aria-hidden="true"></i>
-    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a href="">机构服务</a>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/HomeController/OrganizationHome}">机构服务</a>
 </div>
 <div class="cg-contain">
     <div class="left">
-        <img src="images/se_02.jpg" alt="">
-        <ul>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">科研教学</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">评估机构</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">龙头企业</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">产权交易中心</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">知识产权代理</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">融资租赁</a></li>
+        <img th:src="@{/images/se_02.jpg}" alt="">
+        <ul th:each="Organization : ${OrganizationTypeList}">
+            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${Organization.typeName}"></a></li>
         </ul>
     </div>
     <div class="middle">
@@ -38,30 +33,22 @@
                 <!-- Slider -->
                 <div class="ZI-slider">
                     <div>
-                        <img src="img/slide1.jpg" alt="" />
+                        <img th:src="@{/img/slide1.jpg}" alt="" />
                     </div>
                     <div>
-                        <img src="img/slide2.jpg" alt="" />
+                        <img th:src="@{/img/slide2.jpg}" alt="" />
                     </div>
                     <div>
-                        <img src="img/slide3.jpg" alt="" />
+                        <img th:src="@{/img/slide3.jpg}" alt="" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="right">
-        <img src="images/cg_09.jpg" alt="">
-        <ul>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">欧拉型藏羊繁育及生产技术推广</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">强盛1号</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">节水抗旱稻不育系、杂</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">抗植物病毒活性新农药</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">优质超细毛羊和绒山羊</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">大田专用缓/控释肥料</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">评价暑热证及中药药效的基因芯片</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">新型湍旋式废气处理装置
-            </a></li>
+        <img th:src="@{/images/cg_09.jpg}" alt="">
+        <ul th:each="organizationTime : ${organizationTimeList}">
+            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${organizationTime.organizationName}"></a></li>
         </ul>
     </div>
 </div>
@@ -112,24 +99,10 @@
     </ul>
 </div>
 <!--尾部-->
-<footer>
-    <div class="foot">
-        <a href="">联系我们</a>|
-        <a href="">关于我们</a>|
-        <a href="">免责声明</a><br>
-        <p>Copyright©2012-2019 农转网 版权所有 京ICP备05039029号</p>
-        <p>主办单位：农业部科技教育司 承办单位：中国农学会 农业部人力资源开发中心</p>
-        <p>技术支持单位：河南科技学院信息工程学院未来工作室</p>
-        <p>不良信息举报中心 网络110报警服务</p>
-        <p><img src="images/beian.PNG" alt="">京公网安备 11010502030296号</p>
-
-    </div>
-</footer>
-
-
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
-<script src="js/MxSlider.js"></script>
+<div th:include="common/common :: footer"></div>
+<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script th:src="@{/js/jquery-1.11.0.min.js}"><\/script>')</script>
+<script th:src="@{/js/MxSlider.js}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $( '.ZI-slider' ).MxSlider( {

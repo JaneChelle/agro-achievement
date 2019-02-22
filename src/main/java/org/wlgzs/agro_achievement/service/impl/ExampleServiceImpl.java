@@ -140,5 +140,16 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
         return new Result(ResultCode.FAIL, "录入失败");
     }
 
+    @Override
+    public Result selectExampleByCode(String statusCode, int current, int limit) {
+        QueryWrapper<Example> queryWrapper = new QueryWrapper<>();
+        Page page = new Page(current,limit);
+        queryWrapper.eq("status_code",statusCode);
+        IPage<Example> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Example> exampleList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS, "", exampleList, iPage.getPages(), iPage.getCurrent());
+    }
+
 
 }

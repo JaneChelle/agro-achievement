@@ -43,4 +43,6 @@ public interface IExampleService extends IService<Example> {
     //管理添加案例
     Result addAdminExample(Example example);
 
+    //按需求状态查询案例
+    Result selectExampleByCode(String statusCode,int current,int limit);
 }

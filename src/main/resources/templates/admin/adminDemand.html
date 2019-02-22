@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>农业科技成果转化交易服务平台案例管理</title>
+    <link rel="stylesheet" href="../css/adminStyle.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<link rel="stylesheet" href="../css/admindemo.css" />
+	<link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico"/>
+</head>
+
+<body>	
+	<header>
+		<div class="head-l">
+			<!--<img src="../images/favicon.png"/>-->
+			<span>农业科技成果转化交易服务平台</span>
+		</div>
+		<div class="head-r">
+			<span>您好，<b>用户user_95271854952</b>，欢迎登陆该平台!</span>
+			<span id="data">2016/12/21 上午12:00:00</span>
+			<a href="" title="退出登录">
+				<img src="../images/退出登录.svg"/>
+			</a>
+		</div>
+	</header>
+    <nav class="menu-wrap">
+        <div class="menu dowebok">
+            <ul>
+                <li>
+                    <a href="adminIndex.html">
+                        <img src="../images/首页-选中.svg"/>
+                        <span class="nav-text">首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="../images/退出登录.svg"/>
+                        <span class="nav-text">登录</span>
+                    </a>
+                </li>
+                <li class="darkerlishadow">
+                    <a href="adminType.html">
+                        <img src="../images/类型管理.svg">
+                        <span class="nav-text">类型管理</span>
+                    </a>
+                </li>
+
+                <li class="darkerli">
+                    <a href="adminUser.html">
+                        <img src="../images/用户管理.svg"/>
+                        <span class="nav-text">用户管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminExample.html">
+                        <img src="../images/案例管理.svg"/>
+                        <span class="nav-text">案例管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminOrganizationType.html">
+                        <img src="../images/机构类型.svg"/>
+                        <span class="nav-text">机构类型管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminAnnouncement.html">
+                        <img src="../images/公告管理.svg"/>
+                        <span class="nav-text">公告管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminExperts.html">
+                        <img src="../images/专家.svg"/>
+                        <span class="nav-text">专家管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminAchievement.html">
+                        <img src="../images/成果.svg"/>
+                        <span class="nav-text">成果管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminDemand.html">
+                        <img src="../images/需求.svg"/>
+                        <span class="nav-text">需求管理</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section>
+    	<div class="col-sm-12 search-collapse">
+    		<form action="">
+    			<div class="select-list">
+    				<ul>
+    					<li>
+    						<span>搜索：</span>
+    						<input type="text" name="" id="" value="" />
+    					</li>
+    					<li>
+    						<button class="btn" type="submit">搜 索</button>
+    					</li>
+    					<li></li>
+    					<li class="exampleList">
+    						<span>未审核【0】</span>
+    						<span>通过【1】</span>
+    						<span>失败【2】</span>
+    					</li>
+    					<li>
+    						<a href="addDemand.html">
+	                			<img src="../images/添加.svg" title="发布需求"/>
+	                			<span>发布需求</span>
+	                		</a>
+    					</li>
+    				</ul>
+    			</div>
+    		</form>
+    	</div>
+    	<div class="section_table">
+    		<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th>选择</th>
+		                	<th>需求ID</th>
+		                	<th>需求名字</th>
+		                	<th>预期价格</th>
+		                	<th style="display: none;">用户id</th>
+		                	<th>需求者</th>
+		                	<th>需求说明</th>
+		                	<th>发布时间</th>
+		                	<th>联系人</th>
+		                	<th>电话</th>
+		                	<th>邮箱</th>
+		                	<th>点击量</th>
+		                	<th>用户id</th>
+		                	<th>机构id</th>
+		                	<th>审核状态码</th>
+		                    <th>操作</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		            	<tr>
+		            		<td>
+		            			<input type="checkbox" id="awesome2" value="1"class="selectall" />
+								<label for="awesome2"></label>
+		            		</td>
+		            		<td>B133</td>
+		            		<td>生物质成型燃料高效燃烧技术和装置</td>
+		            		<td>23</td>
+		            		<td>胡亚星</td>
+		            		<td style="display: none;">3</td>
+		            		<td style="cursor: pointer;" class="exampleTd">
+		            			<span>详情</span>
+		            			<input type="hidden" name="" id="" value="2"/>
+		            			<div class="examplePopup">
+		            				<div class="exampleDetails">
+		            					<p>2222</p>
+		            					<button class="btn exampleCancel">取 消</button>
+		            				</div>
+		            			</div>
+		            		</td>
+		            		<td>2019-03-25 21:32:34</td>
+		            		<td>武凯焱</td>
+		            		<td>15993023617</td>
+		            		<td>911090257@qq.com</td>
+		            		<td>0</td>
+		            		<td>2</td>
+		            		<td>1</td>
+		            		<td>0</td>
+		            		<td>
+		            			<button type="button" class="btn modify">修改</button>
+		            			<button type="button" class="btn deleteExample">删除</button>
+		            			
+		            		</td>
+		            	</tr>
+		            	<tr>
+		            		<td>
+		            			<input type="checkbox" id="awesome2" value="1"class="selectall" />
+								<label for="awesome2"></label>
+		            		</td>
+		            		<td>B133</td>
+		            		<td>生物质成型燃料高效燃烧技术和装置</td>
+		            		<td>23</td>
+		            		<td>胡亚星</td>
+		            		<!--<td style="display: none;">3</td>-->
+		            		<td style="cursor: pointer;" class="exampleTd">
+		            			<span>详情</span>
+		            			<input type="hidden" name="" id="" value="1"/>
+		            			<div class="examplePopup">
+		            				<div class="exampleDetails">
+		            					<p>11111</p>
+		            					<button class="btn exampleCancel">取 消</button>
+		            				</div>
+		            			</div>
+		            		</td>
+		            		<td>2019-03-25 21:32:34</td>
+		            		<td>武凯焱</td>
+		            		<td>15993023617</td>
+		            		<td>911090257@qq.com</td>
+		            		<td>0</td>
+		            		<td>2</td>
+		            		<td>1</td>
+		            		<td>0</td>
+		            		<td>
+		            			<button type="button" class="btn modify">修改</button>
+		            			<button type="button" class="btn deleteExample">删除</button>
+		            			
+		            		</td>
+		            	</tr>
+		            </tbody>
+				</table>
+			</div>
+    	</div>
+		<div class="admin_bottom">
+			<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th class="election">
+								<span class="electionDelete">批量删除</span>
+								<input type="hidden" class="browider">
+		            		</th>
+		                    <th>
+		                    	<ul class="pagination">
+									<li><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+		                    </th>
+		                </tr>
+		           </thead>
+		        </table>
+			</div>
+		</div>
+    </section>
+    <!--弹窗-->
+	<popup>
+		<div class="popup">
+			<h3>添加案例</h3>
+			<div class="popup_table">
+				<form action="" method="post">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+			                    <th>案例标题</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>	
+			                <tr>
+			                    <th>案例内容</th>
+			                    <td class="exampleTextarea">
+			                    	<textarea name="" rows="" cols="" class=""></textarea>
+			                    </td>
+			                </tr>	
+			                <tr>
+			                    <th>用户ID</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>	
+						</thead>
+					</table>
+					<div class="popup_bottom">
+						<input type="reset" name="" id="" value="重置" />
+						<input type="submit" value="添加"/>
+						<input type="button" name="" class="cancel_1" value="取消" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</popup>
+	
+	<!--修改-->
+	<popupModify>
+		<div class="popupModify">
+			<h3>修改案例</h3>
+			<div class="popup_table">
+				<form action="" method="post">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+			                    <th>案例名称</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" />
+			                    </td>
+			                </tr>	
+			                <tr>
+			                    <th>案例内容</th>
+			                    <td>
+			                    	<textarea name="" rows="" cols=""></textarea>
+			                    </td>
+			                </tr>	
+			               <tr style="display: none;">
+			               		<th>用户Id</th>
+			               		<td>
+			               			<input type="" name="" id="" value="" />
+			               		</td>
+			               </tr>
+						</thead>
+					</table>
+					<div class="popup_bottom">
+						<input type="reset" name="" id="" value="重置" />
+						<input type="submit" value="添加"/>
+						<input type="button" name="" class="cancel_1" value="取消" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</popupModify>	
+	
+	</body>
+	
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+	<script type="text/javascript" src="../js/adminIndex.js" ></script>
+	<script type="text/javascript" src="../js/adminDemand.js" ></script>
+</html>

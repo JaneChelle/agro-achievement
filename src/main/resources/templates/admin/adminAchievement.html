@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>农业科技成果转化交易服务平台成果管理</title>
+    <link rel="stylesheet" href="../css/adminStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/admindemo.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico"/>
+</head>
+
+<body>	
+	<header>
+		<div class="head-l">
+			<!--<img src="../images/favicon.png"/>-->
+			<span>农业科技成果转化交易服务平台</span>
+		</div>
+		<div class="head-r">
+			<span>您好，<b>用户user_95271854952</b>，欢迎登陆该平台!</span>
+			<span id="data">2016/12/21 上午12:00:00</span>
+			<a href="" title="退出登录">
+				<img src="../images/退出登录.svg"/>
+			</a>
+		</div>
+	</header>
+    <nav class="menu-wrap">
+        <div class="menu dowebok">
+            <ul>
+                <li>
+                    <a href="adminIndex.html">
+                        <img src="../images/首页-选中.svg"/>
+                        <span class="nav-text">首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="../images/退出登录.svg"/>
+                        <span class="nav-text">登录</span>
+                    </a>
+                </li>
+                <li class="darkerlishadow">
+                    <a href="adminType.html">
+                        <img src="../images/类型管理.svg">
+                        <span class="nav-text">类型管理</span>
+                    </a>
+                </li>
+
+                <li class="darkerli">
+                    <a href="adminUser.html">
+                        <img src="../images/用户管理.svg"/>
+                        <span class="nav-text">用户管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminExample.html">
+                        <img src="../images/案例管理.svg"/>
+                        <span class="nav-text">案例管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminOrganizationType.html">
+                        <img src="../images/机构类型.svg"/>
+                        <span class="nav-text">机构类型管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminAnnouncement.html">
+                        <img src="../images/公告管理.svg"/>
+                        <span class="nav-text">公告管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminExperts.html">
+                        <img src="../images/专家.svg"/>
+                        <span class="nav-text">专家管理</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="adminAchievement.html">
+                        <img src="../images/成果.svg"/>
+                        <span class="nav-text">成果管理</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section>
+    	<div class="col-sm-12 search-collapse">
+    		<form action="">
+    			<div class="select-list">
+    				<ul>
+    					<li>
+    						<span>搜索：</span>
+    						<input type="text" name="" id="" value="" />
+    					</li>
+    					<li>
+    						<button class="btn" type="submit">搜 索</button>
+    					</li>
+    					<li></li>
+    					<li class="exampleList">
+    						<span>未审核【0】</span>
+    						<span>通过【1】</span>
+    						<span>失败【2】</span>
+    					</li>
+    					<li>
+    						<a href="addAchievement.html">
+	                			<img src="../images/添加.svg" title="添加成果"/>
+	                			<span>添加</span>
+	                		</a>
+    					</li>
+    				</ul>
+    			</div>
+    		</form>
+    	</div>
+		<div class="section_table">
+    		<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th>选择</th>
+		                	<th>编号id</th>
+		                	<th>成果名称</th>
+		                    <th>成果关键词</th>
+		                    <th>类型名称</th>
+		                    <th>联系人</th>
+		                    <th>审核状态码</th>
+		                    <th>操作</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		            	<tr>
+		            		<td>
+		            			<input type="checkbox" id="awesome2" value="1"class="selectall" />
+								<label for="awesome2"></label>
+		            		</td>
+		            		<td>B133</td>
+		            		<td>高效除草剂双草醚和嘧啶肟草醚绿色制造工艺及应用</td>
+		            		<td>农产品与食品加工</td>
+		            		<td>除草剂</td>
+		            		<td>徐德锋</td>
+		            		<td>0</td>
+		            		<td>
+		            			<a href="detailsAchievement.html">详情</a>
+		            			<button type="button" class="btn deleteAchievement">删除</button>
+		            		</td>
+		            	</tr>
+		            </tbody>
+				</table>
+			</div>
+    	</div>
+    	<div class="admin_bottom">
+			<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th class="election">
+								<span class="electionDelete">批量删除</span>
+								<input type="hidden" class="browider">
+		            		</th>
+		                    <th>
+		                    	<ul class="pagination">
+									<li><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+		                    </th>
+		                </tr>
+		           </thead>
+		        </table>
+			</div>
+		</div>
+    </section>
+    
+    
+
+</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+	<script type="text/javascript" src="../js/adminIndex.js" ></script>
+</html>

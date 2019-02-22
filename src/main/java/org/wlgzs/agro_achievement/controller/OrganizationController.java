@@ -106,4 +106,12 @@ public class OrganizationController extends BaseController {
         return new ModelAndView("OrganizationList");
     }
 
+    //查看机构详情
+    @RequestMapping(value = "/organizationDetails")
+    public ModelAndView organizationDetails(Model model,Integer organizationId){
+        Organization organization = iOrganizationService.getById(organizationId);
+        model.addAttribute("organization",organization);
+        return new ModelAndView("organizationDetails");
+    }
+
 }

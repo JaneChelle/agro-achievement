@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>专家详情-个人中心</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/jeDate_test.css}">
+    <link rel="stylesheet" th:href="@{/css/jedate.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen"/>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/jedate.js}"></script>
+</head>
+<body>
+<div class="box">
+    <h3>专家信息录入</h3>
+        <!--<form th:action="@{/experts/addExperts}" method="post" enctype="multipart/form-data">-->
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <input type="hidden" th:value="${session.user.userId}" th:name="${session.user.userId}">
+                    <th>姓名:	</th>
+                    <td th:text="${experts.expertsName}"></td>
+                    <th>性别:	</th>
+                    <td th:text="${experts.expertsSex}"></td>
+                </tr>
+                <tr>
+                    <th>出生日期:	</th>
+                    <td th:text="${experts.expertsBirth}"></td>
+                    <th>国籍:	</th>
+                    <td th:text="${experts.expertsCountry}"></td>
+                </tr>
+                <tr>
+                    <th>学历:	</th>
+                    <td th:text="${experts.expertsEducation}"></td>
+                    <th>学位:</th>
+                    <td th:text="${experts.degree}"></td>
+                </tr>
+                <tr>
+                    <th>毕业院校:</th>
+                    <td th:text="${experts.school}"> </td>
+                    <th>所学专业:</th>
+                    <td th:text="${experts.major}"></td>
+                </tr>
+                <tr>
+                    <th>所在单位：</th>
+                    <td th:text="${experts.unit}"></td>
+                    <th>行政职务:</th>
+                    <td th:text="${experts.position}"></td>
+                </tr>
+                <tr>
+                    <th>专家类型id:</th>
+                    <td style="border-right:none;" th:text="${experts.typeId}">
+                    </td>
+                    <th style="border-left:none;border-right:none;"></th>
+                    <td style="border-left:none;"></td>
+                </tr>
+                <tr>
+                    <th>照片地址:</th>
+                    <td style="border-right:none;">
+                        <img th:src="${experts.pictureAddress}" alt="">
+                    </td>
+                    <th style="border-left:none;border-right:none;"></th>
+                    <td style="border-left:none;"></td>
+                </tr>
+                <tr>
+                    <th>研究领域:</th>
+                    <td style="border-right:none;" th:text="${experts.researchField}"></td>
+                    <th style="border-left:none;border-right:none;"></th>
+                    <td style="border-left:none;"></td>
+                </tr>
+                <tr>
+                    <th>主要研究成果简介:</th>
+                    <td style="border-right:none;" th:text="${experts.researchAchievements}">
+                    </td>
+                    <th style="border-left:none;border-right:none;"></th>
+                    <td style="border-left:none;"></td>
+                </tr>
+                <tr>
+                    <th>个人获奖状况:	</th>
+                    <td style="border-right:none;" th:text="${experts.personalPrize}">
+                    </td>
+                    <th style="border-left:none;border-right:none;"></th>
+                    <td style="border-left:none;"></td>
+                </tr>
+                <tr>
+                    <th>成果获奖状况:</th>
+                    <td style="border-right:none;" th:text="${experts.resultsPrize}">
+                    </td>
+                    <th style="border-left:none;border-right:none;"></th>
+                    <td style="border-left:none;"></td>
+                </tr>
+                <tr>
+                    <th>联系方式:</th>
+                    <td th:text="${experts.expertsPhone}"></td>
+                    <th>邮箱:</th>
+                    <td th:text="${experts.expertsEmail}"></td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="pn-fbutton">
+                        <a th:href="@{/experts/toAddExperts}" class="btn btn-info">返回</a>
+                    </td>
+                </tr>
+            </table>
+        <!--</form>-->
+</div>
+<script th:src="@{/js/demo.js}"></script>
+<script>
+    function photoup() {
+        console.log('14212');
+        $('#fileds').click();
+        $('#fileds').change(function() {
+            //获取input file的files文件数组;
+            //$('#filed')获取的是jQuery对象，.get(0)转为原生对象;
+            //这边默认只能选一个，但是存放形式仍然是数组，所以取第一个元素使用[0];
+            var file = $('#fileds').get(0).files[0];
+            //创建用来读取此文件的对象
+            var reader = new FileReader();
+            //使用该对象读取file文件
+            reader.readAsDataURL(file);
+            //读取文件成功后执行的方法函数
+            reader.onload = function(e) {
+                //读取成功后返回的一个参数e，整个的一个进度事件
+                //选择所要显示图片的img，要赋值给img的src就是e中target下result里面
+                //的base64编码格式的地址
+                $('#imgshow').get(0).src = e.target.result;
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

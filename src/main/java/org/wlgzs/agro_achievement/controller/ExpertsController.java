@@ -48,7 +48,7 @@ public class ExpertsController extends BaseController {
             model.addAttribute("msg", "请耐心等待审核！");
         else
             model.addAttribute("msg", "请先登录！");
-        return new ModelAndView("redirect:/experts/expertsDetails");
+        return new ModelAndView("redirect:/experts/expertsUserDetails");
     }
 
     //查看专家信息

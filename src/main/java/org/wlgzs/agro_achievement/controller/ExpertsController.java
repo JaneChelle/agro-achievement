@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Experts;
@@ -40,8 +41,9 @@ public class ExpertsController extends BaseController {
 
     //申请成为专家
     @RequestMapping(value = "/addExperts")
-    public ModelAndView addExperts(Model model, HttpServletRequest request, String time, Experts experts) {
-        Result result = iExpertsService.addExperts(request, time, experts);
+    public ModelAndView addExperts(Model model,@RequestParam(value = "file", required = false) MultipartFile myFileName,
+                                   HttpServletRequest request, String time, Experts experts) {
+        Result result = iExpertsService.addExperts(request, time, experts,myFileName);
         if (result.getCode() == 0)//成功
             model.addAttribute("msg", "请耐心等待审核！");
         else

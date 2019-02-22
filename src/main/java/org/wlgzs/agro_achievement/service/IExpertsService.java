@@ -1,5 +1,6 @@
 package org.wlgzs.agro_achievement.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Experts;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.wlgzs.agro_achievement.util.Result;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface IExpertsService extends IService<Experts> {
 
     //申请成为专家
-    Result addExperts(HttpServletRequest request, String time, Experts experts);
+    Result addExperts(HttpServletRequest request, String time, Experts experts,MultipartFile myFileName);
 
     //查看（个人中心）专家信息
     Experts expertsUserDetails(HttpServletRequest request);

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Achievement;
@@ -13,6 +14,8 @@ import org.wlgzs.agro_achievement.entity.Experts;
 import org.wlgzs.agro_achievement.service.IExampleService;
 import org.wlgzs.agro_achievement.util.Result;
 
+import java.util.List;
+
 /**
  * @author:胡亚星
  * @createTime 2019-02-13 17:03
@@ -21,6 +24,20 @@ import org.wlgzs.agro_achievement.util.Result;
 @Controller
 @RequestMapping("/audit")
 public class AuditController extends BaseController {
+
+    //按审核状态查询成果
+    @RequestMapping(value = "/AchievementStatusCode")
+    public ModelAndView AchievementStatusCode(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
+                                              @RequestParam(value = "limit", defaultValue = "8") int limit,
+                                              @RequestParam(name = "statusCode",defaultValue = "1") String statusCode){
+        Result result = iAchievementService.AchievementStatusCode(statusCode,current,limit);
+        List<Achievement> achievementList = (List<Achievement>) result.getData();
+
+        model.addAttribute("achievementList", achievementList);
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+        return new ModelAndView("AchievementAuditList");
+    }
 
     //去审核成果
     @RequestMapping(value = "/toAuditAchievement")
@@ -41,7 +58,21 @@ public class AuditController extends BaseController {
     public ModelAndView auditAchievement(Model model,Integer achievementId, String statusCode){
         iAuditService.auditAchievement(achievementId,statusCode);
         model.addAttribute("msg","审核成功");
-        return new ModelAndView("");
+        return new ModelAndView("redirect:/audit/AchievementStatusCode");
+    }
+
+    //按审核状态查询需求
+    @RequestMapping(value = "/DemandStatusCode")
+    public ModelAndView DemandStatusCode(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
+                                              @RequestParam(value = "limit", defaultValue = "8") int limit,
+                                              @RequestParam(name = "statusCode",defaultValue = "1") String statusCode){
+//        Result result = iDemandService.addDemand(statusCode,current,limit);
+//        List<Demand> demandList = (List<Demand>) result.getData();
+//
+//        model.addAttribute("demandList", demandList);
+//        model.addAttribute("TotalPages", result.getPages());//总页数
+//        model.addAttribute("Number", result.getCurrent());//当前页数
+        return new ModelAndView("DemandAuditList");
     }
 
     //去审核需求

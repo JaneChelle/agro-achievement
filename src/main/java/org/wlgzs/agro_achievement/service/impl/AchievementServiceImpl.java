@@ -347,5 +347,16 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         return new Result(ResultCode.SUCCESS,"",achievementList,iPage.getPages(),iPage.getCurrent());
     }
 
+    @Override
+    public Result AchievementStatusCode(String statusCode, int current, int limit) {
+        QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("status_code",statusCode);
+        Page page = new Page(current,limit);
+        IPage<Achievement> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Achievement> achievementList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS,"",achievementList,iPage.getPages(),iPage.getCurrent());
+    }
+
 }
 

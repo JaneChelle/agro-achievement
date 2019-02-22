@@ -3,17 +3,21 @@ package org.wlgzs.agro_achievement.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Experts;
 import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.mapper.ExpertsMapper;
 import org.wlgzs.agro_achievement.service.IExpertsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.wlgzs.agro_achievement.util.RandomNumberUtils;
 import org.wlgzs.agro_achievement.util.Result;
 import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -31,7 +35,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
     //申请成为专家
     @Override
-    public Result addExperts(HttpServletRequest request,String time, Experts experts) {
+    public Result addExperts(HttpServletRequest request,String time, Experts experts,MultipartFile myFileName) {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         if (user != null) {
@@ -45,10 +49,31 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         } else {
             return new Result(ResultCode.FAIL, "请先登录！");
         }
+        //文件处理（真实存储名）
+        String realName = "";
+
+        String fileName = myFileName.getOriginalFilename();
+        //截取后缀名
+        String suffixName = fileName.substring(fileName.indexOf("."),fileName.length());
+
+        //生成实际储存的文件名（不能重复）
+        realName = RandomNumberUtils.getRandomFileName() + suffixName;
+        // "/upload"是你自己定义的上传目录
+        String realPath = System.getProperty("user.dir") + "/HeadPortrait";
+        File uploadFile = new File(realPath, realName);
+
+        //上传文件
+        try {
+            myFileName.transferTo(uploadFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String str = request.getContextPath() + "/HeadPortrait/" + realName;
         System.out.println(experts);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime ldt = LocalDateTime.parse(time + " 00:00:00", formatter);
         experts.setExpertsBirth(ldt);
+        experts.setPictureAddress(str);
         experts.setPageView(0);
         experts.setStatusCode("0");
         experts.setUserId(user.getUserId());

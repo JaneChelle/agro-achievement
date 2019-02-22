@@ -48,7 +48,7 @@ public class AdminDemandController extends BaseController {
         return new ModelAndView("adminAddDemand");
     }
 
-    //管理员添加成果
+    //管理员添加需求
     @RequestMapping(value = "/adminAddDemand")
     public ModelAndView adminAddDemand(Model model ,Demand demand){
         Result result = iDemandService.saveDemand(demand);
@@ -56,7 +56,7 @@ public class AdminDemandController extends BaseController {
         return new ModelAndView("redirect:/AdminDemand/adminAdminDemand");
     }
 
-    //跳转到修改成果
+    //跳转到修改需求
     @RequestMapping("/toAdminEditDemand")
     public ModelAndView toEdit(Model model, Integer demandId) {
         Result result = iDemandService.demandDetails(demandId);
@@ -65,9 +65,9 @@ public class AdminDemandController extends BaseController {
         return new ModelAndView("adminEditDemand");
     }
 
-    //修改成果
-    @RequestMapping(value = "/adminEditAchievement")
-    public ModelAndView modifyAchievement(Demand demand, Model model) {
+    //修改需求
+    @RequestMapping(value = "/adminEditDemand")
+    public ModelAndView modifyDemand(Demand demand, Model model) {
         Result result = iDemandService.modifyDemand(demand);
         if (result.getCode() == 0) {
             Demand demand1 = (Demand) result.getData();
@@ -81,7 +81,7 @@ public class AdminDemandController extends BaseController {
     }
 
     //删除成果
-    @RequestMapping(value = "/adminDeleteAchievement")
+    @RequestMapping(value = "/adminDeleteDemand")
     public ModelAndView adminDeleteDemand(Integer demandId, Model model) {
         Result result = iDemandService.deleteDemand(demandId);
         if (result.getCode() == 0) {

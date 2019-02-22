@@ -38,5 +38,7 @@ public interface IDemandService extends IService<Demand> {
     //添加需求
     Result saveDemand(Demand demand);
 
+    //按需求状态查询需求
+    Result selectDemandByCode(String statusCode,int current,int limit);
 
 }

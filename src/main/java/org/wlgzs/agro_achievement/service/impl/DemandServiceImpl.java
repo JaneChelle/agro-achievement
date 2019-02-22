@@ -135,5 +135,16 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
         return new Result(ResultCode.FAIL, "请输入正确的信息！");
     }
 
+    @Override
+    public Result selectDemandByCode(String statusCode, int current, int limit) {
+        QueryWrapper<Demand> queryWrapper = new QueryWrapper<>();
+        Page page = new Page(current,limit);
+        queryWrapper.eq("status_code",statusCode);
+        IPage<Demand> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Demand> demandList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS, "", demandList, iPage.getPages(), iPage.getCurrent());
+    }
+
 
 }

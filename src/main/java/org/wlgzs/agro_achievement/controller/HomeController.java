@@ -6,10 +6,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.*;
 import org.wlgzs.agro_achievement.util.Result;
+import org.wlgzs.agro_achievement.util.ResultCode;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class HomeController extends BaseController {
 
     //首页数据
     @RequestMapping("/home")
-    public ModelAndView home(Model model) {
+    public ModelAndView home(Model model){
         //首页技术供给
         List<Achievement> achievementList = iAchievementService.selectAchieveByTime();
         model.addAttribute("achievementList", achievementList);
@@ -132,6 +134,36 @@ public class HomeController extends BaseController {
         model.addAttribute("organizationRankingList",organizationRankingList);
 
         return new ModelAndView("OrganizationHome");
+    }
+
+    //供需首页数据
+    @RequestMapping(value = "/SupplyHome")
+    public ModelAndView SupplyHome(Model model){
+
+        //成果排行榜
+        Result result = iAchievementService.rankingAchievement(1, 10);
+        List<Achievement> achievementRankingList = (List<Achievement>) result.getData();
+        model.addAttribute("achievement", achievementRankingList);
+
+        //专家排行
+        Result result1 = iExpertsService.expertRanking(10);
+        List<Experts> expertsRankingList = (List<Experts>) result1.getData();
+        model.addAttribute("experts", expertsRankingList);
+
+        //首页技术需求
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("status_code", "1");
+        Page page = new Page(1, 10);
+        IPage<Demand> iPage = iDemandService.page(page, queryWrapper);
+        List<Demand> demandList = iPage.getRecords();
+        model.addAttribute("demand", demandList);
+
+        //机构排行
+        List<Organization> organizationRankingList = iOrganizationService.rankingOrganization(1,10);
+        model.addAttribute("organization",organizationRankingList);
+
+
+        return new ModelAndView("SupplyHome");
     }
 
 }

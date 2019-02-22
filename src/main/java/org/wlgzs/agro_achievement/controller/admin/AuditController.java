@@ -66,12 +66,12 @@ public class AuditController extends BaseController {
     public ModelAndView DemandStatusCode(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
                                               @RequestParam(value = "limit", defaultValue = "8") int limit,
                                               @RequestParam(name = "statusCode",defaultValue = "1") String statusCode){
-//        Result result = iDemandService.addDemand(statusCode,current,limit);
-//        List<Demand> demandList = (List<Demand>) result.getData();
-//
-//        model.addAttribute("demandList", demandList);
-//        model.addAttribute("TotalPages", result.getPages());//总页数
-//        model.addAttribute("Number", result.getCurrent());//当前页数
+        Result result = iDemandService.selectDemandByCode(statusCode,current,limit);
+        List<Demand> demandList = (List<Demand>) result.getData();
+
+        model.addAttribute("demandList", demandList);
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
         return new ModelAndView("DemandAuditList");
     }
 
@@ -94,7 +94,22 @@ public class AuditController extends BaseController {
     public ModelAndView auditDemand(Model model,Integer demandId,String statusCode){
         iAuditService.auditDemand(demandId,statusCode);
         model.addAttribute("msg","审核成功");
-        return new ModelAndView("");
+        return new ModelAndView("redirect:/audit/DemandStatusCode");
+    }
+
+
+    //按状态查询案例
+    @RequestMapping(value = "/ExampleStatusCode")
+    public ModelAndView ExampleStatusCode(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
+                                         @RequestParam(value = "limit", defaultValue = "8") int limit,
+                                         @RequestParam(name = "statusCode",defaultValue = "1") String statusCode){
+        Result result = iCaseService.selectExampleByCode(statusCode,current,limit);
+        List<Example> exampleList = (List<Example>) result.getData();
+
+        model.addAttribute("exampleList", exampleList);
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+        return new ModelAndView("ExampleAuditList");
     }
 
     //去审核案例
@@ -115,7 +130,21 @@ public class AuditController extends BaseController {
     public ModelAndView auditExample(Model model,Integer exampleId,String statusCode){
         Result result = iAuditService.auditExample(exampleId,statusCode);
         model.addAttribute("msg","审核成功");
-        return new ModelAndView("");
+        return new ModelAndView("redirect:/audit/ExampleStatusCode");
+    }
+
+    //按状态查询专家
+    @RequestMapping(value = "/ExpertsStatusCode")
+    public ModelAndView ExpertsStatusCode(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
+                                         @RequestParam(value = "limit", defaultValue = "8") int limit,
+                                         @RequestParam(name = "statusCode",defaultValue = "1") String statusCode){
+        Result result = iExpertsService.selectExpertsByCode(statusCode,current,limit);
+        List<Experts> expertsList = (List<Experts>) result.getData();
+
+        model.addAttribute("expertsList", expertsList);
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+        return new ModelAndView("ExpertsAuditList");
     }
 
     //去审核专家
@@ -136,7 +165,7 @@ public class AuditController extends BaseController {
     public ModelAndView auditExperts(Model model,Integer expertsId,String statusCode){
         iAuditService.auditExperts(expertsId,statusCode);
         model.addAttribute("msg","审核成功");
-        return new ModelAndView("");
+        return new ModelAndView("redirect:/audit/ExpertsStatusCode");
     }
 
 

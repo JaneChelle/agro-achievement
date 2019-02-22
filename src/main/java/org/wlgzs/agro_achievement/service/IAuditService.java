@@ -11,7 +11,7 @@ import org.wlgzs.agro_achievement.util.Result;
 public interface IAuditService {
 
     //审核成果
-    Result auditAnnouncement(Integer achievementId, String statusCode);
+    Result auditAchievement(Integer achievementId, String statusCode);
 
     //审核需求
     Result auditDemand(Integer demandId,String statusCode);

@@ -29,6 +29,14 @@ public class UserManagementController extends BaseController {
         return new ModelAndView("information");
     }
 
+    //去修改个人信息
+    @RequestMapping(value = "/toModifyUser")
+    public ModelAndView toModifyUser(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
+        return new ModelAndView("register");
+    }
+
     //去修改密码
     @RequestMapping(value = "/toChangePassword")
     public ModelAndView toUserManagement() {

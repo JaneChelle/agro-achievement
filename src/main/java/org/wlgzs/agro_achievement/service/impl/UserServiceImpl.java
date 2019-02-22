@@ -188,5 +188,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return new Result(ResultCode.FAIL,"修改失败！");
     }
 
+    //查看用户信息
+    @Override
+    public User findUserById(Integer userId) {
+        User user = baseMapper.selectById(userId);
+        return user;
+    }
+
 
 }

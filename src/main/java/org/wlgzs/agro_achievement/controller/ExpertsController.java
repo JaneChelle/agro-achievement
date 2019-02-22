@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Experts;
@@ -40,26 +41,23 @@ public class ExpertsController extends BaseController {
 
     //申请成为专家
     @RequestMapping(value = "/addExperts")
-    public ModelAndView addExperts(Model model, HttpServletRequest request, String time, Experts experts) {
-        Result result = iExpertsService.addExperts(request, time, experts);
+    public ModelAndView addExperts(Model model,@RequestParam(value = "file", required = false) MultipartFile myFileName,
+                                   HttpServletRequest request, String time, Experts experts) {
+        Result result = iExpertsService.addExperts(request, time, experts,myFileName);
         if (result.getCode() == 0)//成功
             model.addAttribute("msg", "请耐心等待审核！");
         else
             model.addAttribute("msg", "请先登录！");
-        return new ModelAndView("redirect:/experts/expertsDetails");
+        return new ModelAndView("redirect:/experts/expertsUserDetails");
     }
 
     //查看专家信息
     @RequestMapping(value = "/expertsDetails")
-    public ModelAndView expertsDetails(Model model, HttpServletRequest request) {
-        Experts experts = iExpertsService.expertsDetails(request);
+    public ModelAndView expertsDetails(Model model,Integer expertsId) {
+        Experts experts = iExpertsService.expertsDetails(expertsId);
         model.addAttribute("experts", experts);//专家信息
         if (experts == null) {
-            model.addAttribute("msg", "请先申请成为专家！");
-        } else if (experts.getStatusCode().equals("0")) {
-            model.addAttribute("msg", "请您耐心等待审核！");
-        } else {
-            model.addAttribute("msg", "审核失败！");
+            model.addAttribute("msg", "不存在！");
         }
         return new ModelAndView("expertsDetails");
     }
@@ -67,7 +65,7 @@ public class ExpertsController extends BaseController {
     //查看(个人中心)专家信息
     @RequestMapping(value = "/expertsUserDetails")
     public ModelAndView expertsUserDetails(Model model, HttpServletRequest request) {
-        Experts experts = iExpertsService.expertsDetails(request);
+        Experts experts = iExpertsService.expertsUserDetails(request);
         model.addAttribute("experts", experts);//专家信息
         if (experts == null) {
             model.addAttribute("msg", "请先申请成为专家！");

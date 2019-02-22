@@ -19,6 +19,8 @@ import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -78,7 +80,7 @@ public class AchievementController extends BaseController {
             Achievement achievement1 = (Achievement) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("achievement", achievement1);
-            return new ModelAndView("achieveDetails");
+            return new ModelAndView("achievementUserDetails");
         } else {
             model.addAttribute("msg", "修改失败！");
         }
@@ -153,8 +155,21 @@ public class AchievementController extends BaseController {
         //图片集合
         List<String> achievementImg = Arrays.asList(img.split(","));
 
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String start_time = df.format(achievement.getStartTime());
+        String end_time = df.format(achievement.getStartTime());
+        start_time = start_time.substring(0,10);
+        end_time = end_time.substring(0,10);
+
+        System.out.println(start_time);
+        //所有类别
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
         model.addAttribute("achievementImg",achievementImg);
         model.addAttribute("achievement", achievement);
+        model.addAttribute("start_time", start_time);
+        model.addAttribute("end_time", end_time);
         return new ModelAndView("achieveDetails");
     }
 
@@ -167,8 +182,20 @@ public class AchievementController extends BaseController {
         //图片集合
         List<String> achievementImg = Arrays.asList(img.split(","));
 
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String start_time = df.format(achievement.getStartTime());
+        String end_time = df.format(achievement.getStartTime());
+        start_time = start_time.substring(0,10);
+        end_time = end_time.substring(0,10);
+
+        System.out.println(start_time);
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
         model.addAttribute("achievementImg",achievementImg);
         model.addAttribute("achievement", achievement);
+        model.addAttribute("start_time", start_time);
+        model.addAttribute("end_time", end_time);
         return new ModelAndView("achievementUserDetails");
     }
 

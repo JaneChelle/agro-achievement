@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>供需发布-个人中心</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/jeDate_test.css}">
+    <link rel="stylesheet" th:href="@{/css/jedate.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen"/>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/jedate.js}"></script>
+</head>
+<body>
+<div class="box">
+    <h3>填写基本信息</h3>
+    <div class="title">需求信息</div>
+        <form th:action="@{/demand/addDemand}" method="post">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <td>需求名字:	</td>
+                    <td><input type="text" name="demandName" class="form-control"></td>
+                    <input type="hidden"  th:value="${session.user.userId}">
+                    <td>预期价格:	</td>
+                    <td><input type="text" name="expectedPrice" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>需求者:	</td>
+                    <td><input type="text" name="demanders" class="form-control"  /></td>
+                    <td>需求说明:	</td>
+                    <td><input type="text" name="demandIntroduce" class="form-control"  /></td>
+                </tr>
+                <tr>
+                    <!--<td>发布时间:	</td>-->
+                    <!--<td>-->
+                        <!--<div class="jeinpbox">-->
+                            <!--<input type="text" name="releaseTime" class="jeinput moredate" placeholder="YYYY-MM-DD" required>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                    <td>联系人:</td>
+                    <td style="border-right: none;"><input type="text" name="linkman" class="form-control"  /></td>
+                    <td style="border-right: none;"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>电话:</td>
+                    <td><input type="text" name="phone" class="form-control"  /></td>
+                    <td>邮箱:</td>
+                    <td><input type="text" name="email" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="pn-fbutton">
+                        <input type="submit" value="提交"  class="btn btn-info" id="change"/>
+                        <input type="button" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+</div>
+<script th:src="@{/js/demo.js}"></script>
+</body>
+</html>

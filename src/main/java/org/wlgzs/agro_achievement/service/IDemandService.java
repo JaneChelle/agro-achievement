@@ -29,4 +29,16 @@ public interface IDemandService extends IService<Demand> {
     //查看需求详情
     Result demandDetails(Integer demandId);
 
+    /**
+     * 管理员
+     */
+    //搜索所有需求
+    Result adminDemandList(String findName,int current, int limit);
+
+    //添加需求
+    Result saveDemand(Demand demand);
+
+    //按需求状态查询需求
+    Result selectDemandByCode(String statusCode,int current,int limit);
+
 }

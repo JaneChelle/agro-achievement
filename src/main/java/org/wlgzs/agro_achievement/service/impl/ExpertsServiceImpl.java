@@ -3,17 +3,21 @@ package org.wlgzs.agro_achievement.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Experts;
 import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.mapper.ExpertsMapper;
 import org.wlgzs.agro_achievement.service.IExpertsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.wlgzs.agro_achievement.util.RandomNumberUtils;
 import org.wlgzs.agro_achievement.util.Result;
 import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -31,7 +35,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
     //申请成为专家
     @Override
-    public Result addExperts(HttpServletRequest request,String time, Experts experts) {
+    public Result addExperts(HttpServletRequest request,String time, Experts experts,MultipartFile myFileName) {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         if (user != null) {
@@ -45,10 +49,31 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         } else {
             return new Result(ResultCode.FAIL, "请先登录！");
         }
+        //文件处理（真实存储名）
+        String realName = "";
+
+        String fileName = myFileName.getOriginalFilename();
+        //截取后缀名
+        String suffixName = fileName.substring(fileName.indexOf("."),fileName.length());
+
+        //生成实际储存的文件名（不能重复）
+        realName = RandomNumberUtils.getRandomFileName() + suffixName;
+        // "/upload"是你自己定义的上传目录
+        String realPath = System.getProperty("user.dir") + "/HeadPortrait";
+        File uploadFile = new File(realPath, realName);
+
+        //上传文件
+        try {
+            myFileName.transferTo(uploadFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String str = request.getContextPath() + "/HeadPortrait/" + realName;
         System.out.println(experts);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime ldt = LocalDateTime.parse(time + " 00:00:00", formatter);
         experts.setExpertsBirth(ldt);
+        experts.setPictureAddress(str);
         experts.setPageView(0);
         experts.setStatusCode("0");
         experts.setUserId(user.getUserId());
@@ -58,12 +83,19 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
     //查看（个人中心）专家信息
     @Override
-    public Experts expertsDetails(HttpServletRequest request) {
+    public Experts expertsUserDetails(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", user.getUserId());
         Experts experts = baseMapper.selectOne(queryWrapper);
+        return experts;
+    }
+
+    //查看专家详情
+    @Override
+    public Experts expertsDetails(Integer expertsId) {
+        Experts experts = baseMapper.selectById(expertsId);
         return experts;
     }
 
@@ -106,6 +138,54 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
             return new Result(ResultCode.SUCCESS, list);
         }
         return new Result(ResultCode.FAIL, "暂无数据！");
+    }
+
+    @Override
+    public Result findExpertsList(String findName, int current, int limit) {
+        QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("achievement_name",findName).like("achievement_key",findName);
+        Page page = new Page(current,limit);
+        IPage<Experts> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Experts> expertsList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS,"",expertsList,iPage.getPages(),iPage.getCurrent());
+    }
+
+    @Override
+    public Result addAdminExperts(Experts experts) {
+        baseMapper.insert(experts);
+        return new Result(ResultCode.SUCCESS);
+    }
+
+    @Override
+    public Result modifyExperts(Experts experts) {
+        if(experts != null){
+            baseMapper.updateById(experts);
+            return new Result(ResultCode.SUCCESS);
+        }
+        return new Result(ResultCode.FAIL);
+    }
+
+    @Override
+    public Result adminDeleteExpertsId(Integer expertsId) {
+        Experts experts = baseMapper.selectById(expertsId);
+        if(experts != null){
+            baseMapper.deleteById(expertsId);
+            return new Result(ResultCode.SUCCESS,"修改成功！");
+        }
+        return new Result(ResultCode.FAIL,"修改失败！");
+    }
+
+    @Override
+    public Result selectExpertsByCode(String statusCode, int current, int limit) {
+        QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
+        Page page = new Page(current,limit);
+        queryWrapper.eq("status_code",statusCode);
+        IPage<Experts> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Experts> expertsList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS, "", expertsList, iPage.getPages(), iPage.getCurrent());
+
     }
 
 }

@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>成果发布管理-个人中心</title>
-    <link rel="stylesheet" th:href="@{/css/register.css}">
     <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
     <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
     <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/userAchieveList.js}"></script>
+    <style>
+        th,td{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div class="box">
-    <h3>成果发布管理</h3>
+    <h3>成果发布管理<i class="fa fa-long-arrow-right" aria-hidden="true"></i><span id="div1" style="color: red;"></span></h3>
     <div class="title">
-        <a th:href="@{/achievement/selectAchievement(statusCode=0)}"><input type="radio" name="1" id=""></a> 未审核 <span></span>&nbsp;&nbsp;
-        <a th:href="@{/achievement/selectAchievement(statusCode=1)}"><input type="radio" name="1" id=""></a> 通过 <span></span>&nbsp;&nbsp;
-        <a th:href="@{/achievement/selectAchievement(statusCode=2)}"><input type="radio" name="1" id=""></a>失败 <span></span>&nbsp;&nbsp;
+        <a th:href="@{/achievement/selectAchievement(statusCode=0)}" id="adiv1" onclick="nopass()"   th:text="'未审核'"></a> &nbsp;&nbsp;
+        <a th:href="@{/achievement/selectAchievement(statusCode=1)}" id="adiv2" onclick="pass()"  th:text="'通过'"></a>  &nbsp;&nbsp;
+        <a th:href="@{/achievement/selectAchievement(statusCode=2)}" id="adiv3" onclick="fail()" th:text="'失败'"></a> &nbsp;&nbsp;
     </div>
     <table class="table table-bordered able-box" id="mytable">
         <thead style="background-color: #F2F2F2;">
         <tr>
-            <!--<th class="shanchu"></th>-->
             <th>用户ID</th>
             <th>标题</th>
             <th>所属权类型</th>
@@ -32,21 +38,53 @@
         <tbody>
         <!--遍历-->
         <tr th:each="achievement : ${achievementList}">
-            <td style="display: none" class="activityid"></td>
-            <td th:text="${achievement.achievementId}"></td>
-            <td th:text="${achievement.achievementName}"></td>
+            <td th:text="${achievement.achievementId}" class="achievementId"></td>
+            <td th:text="${achievement.achievementName}" class="achievementName"></td>
             <td th:text="${achievement.typeName}"></td>
             <td th:text="${achievement.linkman}"></td>
             <td th:text="${achievement.releaseTime}"></td>
             <td th:text="${achievement.statusCode}"></td>
-            <td class="ttdd" >
-                <a class="a-div adiv1" th:href="@{/achievement/deleteAchievement(achievementId=${achievement.achievementId})}">删除</a>
-                <a class="a-div adiv2" th:href="@{/achievement/modifyAchievement(achievementId=${achievement.achievementId})}">修改</a>
-                <a class="a-div adiv2" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">详情</a>
+            <td>
+                <a class="a-div adiv1" id="deletes">删除</a>
+                <a class="a-div adiv2" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">修改</a>
+                <a class="a-div adiv3" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">详情</a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+
+<div class="cure"></div>
+<script>
+    if(typeof localStorage=='undefined')
+    {
+        window.alert("浏览器不支持localStorage");
+    }else{
+        var colorArray=new Array("通过","未审核","失败");
+        function nopass()
+        {
+            var div1=document.getElementById("div1");
+            div1.style.backgroundColor=colorArray[0];
+            window.localStorage.setItem('innerHTML',colorArray[1]);
+
+        }
+        function pass()
+        {
+            var div1=document.getElementById("div1");
+            div1.style.backgroundColor=colorArray[1];
+            window.localStorage.setItem('innerHTML',colorArray[0]);
+        }
+        function fail()
+        {
+            var div1=document.getElementById("div1");
+            div1.style.backgroundColor=colorArray[2];
+            window.localStorage.setItem('innerHTML',colorArray[2]);
+        }
+        window.onload=function colorLoad()
+        {
+            document.getElementById("div1").innerHTML=window.localStorage.getItem('innerHTML');
+        }
+    }
+</script>
 </body>
 </html>

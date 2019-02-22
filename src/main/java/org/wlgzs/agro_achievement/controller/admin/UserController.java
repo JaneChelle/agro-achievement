@@ -1,11 +1,15 @@
 package org.wlgzs.agro_achievement.controller.admin;
 
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.util.Result;
+
+import java.util.List;
 
 /**
  * <p>
@@ -23,29 +27,61 @@ public class UserController extends BaseController {
 
     //后台查询所有用户(搜索)
     @GetMapping("/adminUserList")
-    public Result adminUserList(String userLevel,
-                                    @RequestParam(value = "find", defaultValue = "") String find,
-                                @RequestParam(value = "current", defaultValue = "1") Integer current,
-                                @RequestParam(value = "limit", defaultValue = "8") Integer limit){
-        return iUserService.adminUserList(userLevel,find,current,limit);
+    public ModelAndView adminUserList(String userLevel,Model model,
+                                      @RequestParam(value = "findName", defaultValue = "") String findName,
+                                      @RequestParam(value = "current", defaultValue = "1") Integer current,
+                                      @RequestParam(value = "limit", defaultValue = "8") Integer limit){
+        Result result = iUserService.adminUserList(userLevel,findName,current,limit);
+        List<User> userList = (List<User>) result.getData();
+
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+        model.addAttribute("userList",userList);
+        return new ModelAndView("adminUserList");
     }
 
+    //去添加用户
+    @RequestMapping(value = "/toAddUser")
+    public ModelAndView toAddUser(){
+        return new ModelAndView("adminAddUser");
+    }
+
+
     //后台增加用户
-    @RequestMapping(value = "/adminAddUser",method = RequestMethod.PUT)
-    public Result adminAddUser(User user){
-        return iUserService.adminAddUser(user);
+    @RequestMapping(value = "/adminAddUser")
+    public ModelAndView adminAddUser(Model model,User user){
+        Result result = iUserService.adminAddUser(user);
+        model.addAttribute("msg",result.getMsg());
+        return new ModelAndView("redirect:/user/adminUserList");
     }
 
     //后台删除用户
-    @RequestMapping(value = "/adminDeleteUser",method = RequestMethod.DELETE)
-    public Result adminDeleteUser(Integer userId){
-        return iUserService.adminDeleteUser(userId);
+    @RequestMapping(value = "/adminDeleteUser")
+    public ModelAndView adminDeleteUser(Model model,Integer userId){
+        Result result = iUserService.adminDeleteUser(userId);
+        model.addAttribute("msg",result.getMsg());
+        return new ModelAndView("redirect:/user/adminUserList");
+    }
+
+    //去修改用户
+    @RequestMapping(value = "/toAdminModifyUser")
+    public ModelAndView toAdminModifyUser(Model model,Integer userId){
+        User user = iUserService.findUserById(userId);
+        if(user != null){
+            model.addAttribute("user",user);
+            model.addAttribute("msg","");
+            return new ModelAndView("adminModifyUser");
+        }
+        model.addAttribute("msg","不存在！");
+        return new ModelAndView("redirect:/user/adminUserList");
     }
 
     //后台修改用户
-    @RequestMapping(value = "/adminModifyUser",method = RequestMethod.PUT)
-    public Result adminModifyUser(User user){
-        return iUserService.adminModifyUser(user);
+    @RequestMapping(value = "/adminModifyUser")
+    public ModelAndView adminModifyUser(Model model,User user){
+        Result result = iUserService.adminModifyUser(user);
+        model.addAttribute("msg",result.getMsg());
+        return new ModelAndView("redirect:/user/adminUserList");
     }
 
 }

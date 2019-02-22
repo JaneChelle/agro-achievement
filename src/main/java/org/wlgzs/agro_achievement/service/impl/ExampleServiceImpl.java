@@ -48,6 +48,10 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
     public Result modifyExample(Example example) {
         System.out.println(example);
         if (example != null) {
+            if(example.getUserId() != null){
+                baseMapper.updateById(example);
+                return new Result(ResultCode.SUCCESS, "修改成功！");
+            }
             Example example1 = baseMapper.selectById(example.getExampleId());
             if (example1 != null) {
                 example.setReleaseTime(example1.getReleaseTime());
@@ -102,6 +106,49 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
             return new Result(ResultCode.SUCCESS, "", exampleList, iPage.getPages(), iPage.getCurrent());
         }
         return new Result(ResultCode.FAIL, "暂无数据！");
+    }
+
+    @Override
+    public Example exampleDetails(Integer exampleId) {
+        Example example = baseMapper.selectById(exampleId);
+        return example;
+    }
+
+
+    /**
+     * 管理员
+     */
+    //搜索案例
+    @Override
+    public Result findExampleList(String findName, int current, int limit) {
+        QueryWrapper<Example> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("achievement_name",findName).like("achievement_key",findName);
+        Page page = new Page(current,limit);
+        IPage<Example> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Example> exampleList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS,"",exampleList,iPage.getPages(),iPage.getCurrent());
+    }
+
+    @Override
+    public Result addAdminExample(Example example) {
+        if (example != null) {
+            //获取现在时间
+            baseMapper.insert(example);
+            return new Result(ResultCode.SUCCESS, "录入成功！");
+        }
+        return new Result(ResultCode.FAIL, "录入失败");
+    }
+
+    @Override
+    public Result selectExampleByCode(String statusCode, int current, int limit) {
+        QueryWrapper<Example> queryWrapper = new QueryWrapper<>();
+        Page page = new Page(current,limit);
+        queryWrapper.eq("status_code",statusCode);
+        IPage<Example> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Example> exampleList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS, "", exampleList, iPage.getPages(), iPage.getCurrent());
     }
 
 

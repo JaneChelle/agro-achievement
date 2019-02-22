@@ -43,7 +43,8 @@ public class DemandController extends BaseController {
     //发布一个新需求
     @RequestMapping(value = "/addDemand")
     public ModelAndView addDemand(Demand demand) {
-        iDemandService.addDemand(demand);
+        System.out.println(demand);
+        System.out.println(iDemandService.addDemand(demand).toString());
         return new ModelAndView("redirect:/demand/selectDemand");
     }
 
@@ -76,14 +77,14 @@ public class DemandController extends BaseController {
 
     //按照用户查询所有需求（状态码）(用户自身操作)
     @GetMapping("/selectDemand")//分页
-    public ModelAndView selectDemand(Model model,String statusCode,
+    public ModelAndView selectDemand(Model model,String statusCode,HttpSession session,
                                @RequestParam(value = "current", defaultValue = "1") Integer current,
                                @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
-        HttpSession session = null;
         User user = (User) session.getAttribute("user");
         int userId = user.getUserId();
         Result result = iDemandService.selectDemand(userId, statusCode, current, limit);
         List<Demand> demandList = (List<Demand>) result.getData();
+        System.out.println(demandList);
         model.addAttribute("demandList",demandList);
         model.addAttribute("statusCode",statusCode);
         model.addAttribute("TotalPages", result.getPages());//总页数
@@ -117,7 +118,7 @@ public class DemandController extends BaseController {
         Result result = iDemandService.demandDetails(demandId);
         Demand demand = (Demand) result.getData();
         model.addAttribute("demand",demand);
-        return new ModelAndView("demandDetails");
+        return new ModelAndView("demandUserDetails");
     }
 
     //查看需求详情页面(个人中心)
@@ -126,6 +127,11 @@ public class DemandController extends BaseController {
         Result result = iDemandService.demandDetails(demandId);
         Demand demand = (Demand) result.getData();
         model.addAttribute("demand",demand);
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
+
         return new ModelAndView("demandUserDetails");
     }
 

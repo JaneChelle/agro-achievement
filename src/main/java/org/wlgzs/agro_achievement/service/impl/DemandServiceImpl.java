@@ -3,6 +3,7 @@ package org.wlgzs.agro_achievement.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.wlgzs.agro_achievement.entity.Achievement;
 import org.wlgzs.agro_achievement.entity.Demand;
 import org.wlgzs.agro_achievement.mapper.DemandMapper;
 import org.wlgzs.agro_achievement.service.IDemandService;
@@ -63,35 +64,39 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
         if (demand != null) {
             Demand demand1 = baseMapper.selectById(demand.getDemandId());
             if (demand1 != null) {
-                demand.setReleaseTime(demand1.getReleaseTime());
-                demand.setStatusCode(demand1.getStatusCode());
-                demand.setPageView(demand1.getPageView());
+                if(demand.getReleaseTime() == null){
+                    demand.setReleaseTime(demand1.getReleaseTime());
+                    demand.setStatusCode(demand1.getStatusCode());
+                    demand.setPageView(demand1.getPageView());
+                    baseMapper.updateById(demand);
+                    return new Result(ResultCode.SUCCESS, "修改成功！");
+                }
                 baseMapper.updateById(demand);
-                return new Result(ResultCode.SUCCESS,"修改成功！");
+                return new Result(ResultCode.SUCCESS, "修改成功！");
             }
-            return new Result(ResultCode.FAIL,"该条记录不存在！");
+            return new Result(ResultCode.FAIL, "该条记录不存在！");
         }
-        return new Result(ResultCode.FAIL,"操作失败！");
+        return new Result(ResultCode.FAIL, "操作失败！");
     }
 
     //按照用户查询所有需求（状态码）
     @Override
-    public Result selectDemand(Integer userId, String statusCode,int current,int limit) {
+    public Result selectDemand(Integer userId, String statusCode, int current, int limit) {
         List<Demand> demandList = null;
         QueryWrapper<Demand> queryWrapper = new QueryWrapper();
         IPage<Demand> iPage = null;
-        if(statusCode == null || statusCode.equals("")){  //查询所有
-            queryWrapper.eq("user_id",userId);
+        if (statusCode == null || statusCode.equals("")) {  //查询所有
+            queryWrapper.eq("user_id", userId);
             Page page = new Page(current, limit);
             iPage = baseMapper.selectPage(page, queryWrapper);
             demandList = iPage.getRecords();
-            return new Result(ResultCode.SUCCESS, "",demandList, iPage.getPages(), iPage.getCurrent());
-        }else{
-            queryWrapper.and(i -> i.eq("user_id",userId).eq("status_code",statusCode));
+            return new Result(ResultCode.SUCCESS, "", demandList, iPage.getPages(), iPage.getCurrent());
+        } else {
+            queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", statusCode));
             Page page = new Page(current, limit);
             iPage = baseMapper.selectPage(page, queryWrapper);
             demandList = iPage.getRecords();
-            return new Result(ResultCode.SUCCESS, "",demandList, iPage.getPages(), iPage.getCurrent());
+            return new Result(ResultCode.SUCCESS, "", demandList, iPage.getPages(), iPage.getCurrent());
         }
     }
 
@@ -99,10 +104,46 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
     @Override
     public Result demandDetails(Integer demandId) {
         Demand demand = baseMapper.selectById(demandId);
-        if(demand != null){
-            return new Result(ResultCode.SUCCESS,demand);
+        if (demand != null) {
+            return new Result(ResultCode.SUCCESS, demand);
         }
-        return new Result(ResultCode.FAIL,"不存在！");
+        return new Result(ResultCode.FAIL, "不存在！");
+    }
+
+    //搜索所有需求
+    @Override
+    public Result adminDemandList(String findName, int current, int limit) {
+        QueryWrapper<Demand> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("demand_name", findName).like("demand_introduce", findName);
+        Page page = new Page(current, limit);
+        IPage<Demand> iPage = baseMapper.selectPage(page, queryWrapper);
+        List<Demand> achievementList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS, "", achievementList, iPage.getPages(), iPage.getCurrent());
+    }
+
+
+    @Override
+    public Result saveDemand(Demand demand) {
+        if (demand != null) {
+            //获取现在时间
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//            demand.setStatusCode("0");//需要审核
+            baseMapper.insert(demand);
+            return new Result(ResultCode.SUCCESS, "发布成功！");
+        }
+        return new Result(ResultCode.FAIL, "请输入正确的信息！");
+    }
+
+    @Override
+    public Result selectDemandByCode(String statusCode, int current, int limit) {
+        QueryWrapper<Demand> queryWrapper = new QueryWrapper<>();
+        Page page = new Page(current,limit);
+        queryWrapper.eq("status_code",statusCode);
+        IPage<Demand> iPage = baseMapper.selectPage(page,queryWrapper);
+        List<Demand> demandList = iPage.getRecords();
+
+        return new Result(ResultCode.SUCCESS, "", demandList, iPage.getPages(), iPage.getCurrent());
     }
 
 

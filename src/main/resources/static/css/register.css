@@ -96,6 +96,35 @@ textarea{
 .adiv3{
     background-color:#3385FF;
 }
+.all-photo{
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 5px;
+    transition: all .5s;
+}
+.all-photo:hover{
+    box-shadow: 0px 0px 0px 3px #f4f4f4;
+}
+.all-photo-left {
+    display: inline-block;
+
+}
+.all-photo-right{
+    display: inline-block;
+   margin-left: 4%;
+}
+.upload{
+    display: block;
+    padding: 6px 10px;
+    background-color: #00b3ee;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    opacity: 0.8;
+}
+.upload:hover{
+    opacity: 1;
+}
 .cure{
     position: absolute;
     top: 50%;

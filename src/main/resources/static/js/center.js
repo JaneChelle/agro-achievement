@@ -1,7 +1,7 @@
 $(document).ready(function() {
     //菜单切换
     $("#register").click(function () {
-        $(".ifm").attr("src","/UserManagement/toChangePassword");
+        $(".ifm").attr("src","/UserManagement/toModifyUser");
     });
     $("#result1").click(function () {
         $(".ifm").attr("src","/achievement/toAddAchievement");
@@ -23,6 +23,9 @@ $(document).ready(function() {
     });
     $("#expertInfo").click(function () {
         $(".ifm").attr("src","/experts/toAddExperts");
+    });
+    $("#expertsUserDetails").click(function () {
+        $(".ifm").attr("src","/experts/expertsUserDetails");
     });
 //设置高亮
     $(".addColor").on('click',function () {

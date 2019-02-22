@@ -34,7 +34,7 @@ public class UserManagementController extends BaseController {
     public ModelAndView toModifyUser(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
-        return new ModelAndView("ModifyUser");
+        return new ModelAndView("register");
     }
 
     //去修改密码

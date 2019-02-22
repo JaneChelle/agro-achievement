@@ -22,7 +22,7 @@ import java.util.List;
  * @description: 审核控制层
  **/
 @Controller
-@RequestMapping("/audit")
+@RequestMapping("/admin")
 public class AuditController extends BaseController {
 
     //按审核状态查询成果

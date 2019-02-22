@@ -20,7 +20,7 @@ import java.util.List;
  **/
 
 @RestController
-@RequestMapping("/AdminDemand")
+@RequestMapping("/admin")
 public class AdminDemandController extends BaseController {
 
     //查看所有需求(搜索)

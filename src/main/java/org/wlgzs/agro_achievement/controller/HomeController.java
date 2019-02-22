@@ -162,8 +162,26 @@ public class HomeController extends BaseController {
         List<Organization> organizationRankingList = iOrganizationService.rankingOrganization(1,10);
         model.addAttribute("organization",organizationRankingList);
 
-
         return new ModelAndView("SupplyHome");
+    }
+
+    //政策首页
+    @RequestMapping(value = "/PolicyHome")
+    public ModelAndView PolicyHome(Model model){
+        //新闻中心
+        Result result1 = iAnnouncementService.selectAnnouncement("新闻中心",1,10);
+        List<Announcement> NewsCenter = (List<Announcement>) result1.getData();
+        model.addAttribute("NewsCenter",NewsCenter);
+        //交易活动
+        Result result2 = iAnnouncementService.selectAnnouncement("交易活动",1,10);
+        List<Announcement> TradingActivity = (List<Announcement>) result2.getData();
+        model.addAttribute("TradingActivity",TradingActivity);
+        //政策中心
+        Result result3 = iAnnouncementService.selectAnnouncement("政策中心",1,10);
+        List<Announcement> PolicyCenter = (List<Announcement>) result3.getData();
+        model.addAttribute("PolicyCenter",PolicyCenter);
+
+        return new ModelAndView("PolicyHome");
     }
 
 }

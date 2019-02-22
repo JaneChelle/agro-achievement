@@ -22,7 +22,7 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/admin")
 public class UserController extends BaseController {
 
     //后台查询所有用户(搜索)

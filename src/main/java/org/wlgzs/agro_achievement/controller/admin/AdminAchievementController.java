@@ -23,7 +23,7 @@ import java.util.List;
  * @description: 管理员成果管理
  **/
 @RestController
-@RequestMapping("/AdminAchievement")
+@RequestMapping("/admin")
 public class AdminAchievementController extends BaseController {
 
     //查询所有成果(分页)

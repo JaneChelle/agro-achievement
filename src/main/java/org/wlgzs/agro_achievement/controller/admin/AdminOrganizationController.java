@@ -19,7 +19,7 @@ import java.util.List;
  * @description:
  **/
 @RestController
-@RequestMapping("/AdminOrganization")
+@RequestMapping("/admin")
 public class AdminOrganizationController extends BaseController {
 
     //查询所有机构(分页)

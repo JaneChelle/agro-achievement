@@ -18,7 +18,7 @@ import java.util.List;
  * @description:
  **/
 @RestController
-@RequestMapping("/AdminExperts")
+@RequestMapping("/admin")
 public class AdminExpertsController extends BaseController {
 
     //查询所有专家(分页)

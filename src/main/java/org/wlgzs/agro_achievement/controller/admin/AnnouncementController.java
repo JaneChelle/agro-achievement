@@ -21,7 +21,7 @@ import java.util.List;
  * @since 2019-01-19
  */
 @RestController
-@RequestMapping("/announcement")
+@RequestMapping("/admin")
 public class AnnouncementController extends BaseController {
 
     //去添加公告

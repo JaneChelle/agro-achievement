@@ -20,7 +20,7 @@ import org.wlgzs.agro_achievement.util.Result;
  * 成果类型
  */
 @RestController
-@RequestMapping("/type")
+@RequestMapping("/admin")
 public class TypeController extends BaseController {
 
     //增加类型

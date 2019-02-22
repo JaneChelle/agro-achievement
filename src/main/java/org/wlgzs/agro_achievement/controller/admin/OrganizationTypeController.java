@@ -20,7 +20,7 @@ import org.wlgzs.agro_achievement.util.Result;
  * @since 2019-01-19
  */
 @RestController
-@RequestMapping("/organizationType")
+@RequestMapping("/admin")
 public class OrganizationTypeController extends BaseController {
 
     //增加机构类型

@@ -17,7 +17,7 @@ import java.util.List;
  * @description:
  **/
 @RestController
-@RequestMapping("/AdminExample")
+@RequestMapping("/admin")
 public class AdminExampleController extends BaseController {
 
     //查询所有案例(分页)

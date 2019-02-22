@@ -78,8 +78,8 @@
                     <th>专家类型id:</th>
                     <td style="border-right:none;">
                         <span th:each="type : ${typeList}">
-                            <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}"/><label
-                                th:text="${type.typeName}" th:for="${type.typeName}"></label>
+                            <input type="radio" th:name="typeId" th:id="${type.typeId}" th:value="${type.typeId}"/><label
+                                th:text="${type.typeId}" th:for="${type.typeId}"></label>
                         </span>
                     </td>
                     <th style="border-left:none;border-right:none;"></th>
@@ -96,7 +96,7 @@
                                 <img th:src="@{/images/paper.png}" id="imgshow" style="width: 80px;height: 80px;" />
                             </div>
                         </div>
-                        <input id="fileds" style="display: none;" name="pictureAddress" type="file" accept="image/*" value="上传图片" />
+                        <input id="fileds" style="display: none;" name="file" type="file" accept="image/*" value="上传图片" />
                     </td>
                     <th style="border-left:none;border-right:none;"></th>
                     <td style="border-left:none;"></td>

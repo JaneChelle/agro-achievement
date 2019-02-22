@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>机构服务-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/mechanism.css}">
+    <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen" />
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/htmleaf-demo.css}">
+    <link rel="stylesheet" th:href="@{/css/MxSlider.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+<div th:include="common/common :: header"></div>
+<!--主题-->
+<div class="current">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/HomeController/OrganizationHome}">机构服务</a>
+</div>
+<div class="cg-contain">
+    <div class="left">
+        <img th:src="@{/images/se_02.jpg}" alt="">
+        <ul th:each="Organization : ${OrganizationTypeList}">
+            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${Organization.typeName}"></a></li>
+        </ul>
+    </div>
+    <div class="middle">
+        <div class="htmleaf-container">
+            <!-- My box for the slider -->
+            <div class="mx-bugs_bunny">
+                <!-- Slider -->
+                <div class="ZI-slider">
+                    <div>
+                        <img th:src="@{/img/slide1.jpg}" alt="" />
+                    </div>
+                    <div>
+                        <img th:src="@{/img/slide2.jpg}" alt="" />
+                    </div>
+                    <div>
+                        <img th:src="@{/img/slide3.jpg}" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <img th:src="@{/images/cg_09.jpg}" alt="">
+        <ul th:each="organizationTime : ${organizationTimeList}">
+            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${organizationTime.organizationName}"></a></li>
+        </ul>
+    </div>
+</div>
+<div class="dx">
+    <div class="cg-show">
+        <a href="" class="cg-more">更多</a>
+    </div>
+    <ul class="dx-fen">
+        <li>
+            <ul class="colleges">
+                <li><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
+                <li><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
+                <li><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
+                <li><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
+                <li><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="pic">
+                <img src="images/nongda.png" alt="">
+            </div>
+            <div class="wenzi">
+                <a href="">中国农业大学</a><br>
+                <span>地区：</span><span>中国大陆</span><br>
+                <span>研究领域：</span>
+            </div>
+        </li>
+        <li>
+            <div class="pic">
+                <img src="images/nongda.png" alt="">
+            </div>
+            <div class="wenzi">
+                <a href="">中国农业大学</a><br>
+                <span>地区：</span><span>中国大陆</span><br>
+                <span>研究领域：</span>
+            </div>
+        </li>
+        <li>
+            <div class="pic">
+                <img src="images/nongda.png" alt="">
+            </div>
+            <div class="wenzi">
+                <a href="">中国农业大学</a><br>
+                <span>地区：</span><span>中国大陆</span><br>
+                <span>研究领域：</span>
+            </div>
+        </li>
+    </ul>
+</div>
+<!--尾部-->
+<div th:include="common/common :: footer"></div>
+<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script th:src="@{/js/jquery-1.11.0.min.js}"><\/script>')</script>
+<script th:src="@{/js/MxSlider.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $( '.ZI-slider' ).MxSlider( {
+            autoPlay: true,
+            dots: true,
+            timeSlide: 500
+        } );
+    })
+</script>
+</body>
+</html>

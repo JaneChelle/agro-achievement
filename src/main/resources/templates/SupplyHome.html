@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>供需服务-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/supplydemand.css}">
+    <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen" />
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+<!--信息-->
+<div th:include="common/common :: header"></div>
+<!--主题-->
+<div class="current">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/HomeController/SupplyHome}">供需展示</a>
+</div>
+<div class="cg-contain">
+    <div class="left">
+        <!--成果排行榜-->
+        <img th:src="@{/images/jf_01.jpg}" alt="">
+        <ul th:each="achievement : ${achievement}">
+            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${achievement.typeName}">种业</a></li>
+        </ul>
+        <img th:src="@{/images/jf_02.jpg}" alt="" style="z-index: 1">
+        <ul class="area" th:each="experts : ${experts}">
+            <li><a href="" th:text="${experts.expertsName}"></a></li>
+        </ul>
+    </div>
+    <div class="middle">
+        <!--首页技术需求-->
+        <div class="best_new">
+            <a href="" class="zj_more">更多</a>
+            <ul style="padding: 52px 0 0 15px;" th:each="demand : ${demand}">
+                <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${demand.demandIntroduce}"></a></li>
+            </ul>
+        </div>
+        <!--<div class="jishu">-->
+            <!--<a href="" class="zj_more">更多</a>-->
+            <!--<ul style="padding: 34px 0 0 15px;">-->
+                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">欧拉型藏羊繁育及生产技术推广</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
+                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">强盛1号</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
+                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">节水抗旱稻不育系、杂</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
+                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">抗植物病毒活性新农药</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
+                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">优质超细毛羊和绒山羊</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
+                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">大田专用缓/控释肥料</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
+                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">评价暑热证及中药药效的基因芯片</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
+                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">新型湍旋式废气处理装置-->
+                <!--</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+    <!--机构排行-->
+    <div class="right">
+        <img th:src="${/images/cg_09.jpg}" alt="">
+        <ul th:each="organization : ${organization}">
+            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${organization.organizationIntroduce}"></a></li>
+        </ul>
+    </div>
+</div>
+
+<!--尾部-->
+<div th:include="common/common :: footer"></div>
+<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script th:src="@{/js/jquery-1.11.0.min.js}"><\/script>')</script>
+<script th:src="@{/js/MxSlider.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $( '.ZI-slider' ).MxSlider( {
+            autoPlay: true,
+            dots: true,
+            timeSlide: 500
+        } );
+    })
+</script>
+</body>
+</html>

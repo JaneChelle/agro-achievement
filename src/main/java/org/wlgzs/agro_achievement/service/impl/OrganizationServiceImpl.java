@@ -112,7 +112,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
     @Override
     public List<Organization> selectOrganizationByTime() {
         QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("status_code", "1").orderByDesc(true, "release_time");
+        queryWrapper.eq("status_code", "1").orderByDesc(true, "organization_id");
         Page page = new Page(1, 10);
         IPage<Organization> iPage = baseMapper.selectPage(page,queryWrapper);
         return iPage.getRecords();
@@ -124,7 +124,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
         QueryWrapper<Organization> queryWrapper = new QueryWrapper();
         IPage<Organization> iPage = null;
 //        queryWrapper.and(i -> i.eq("status_code", "1").orderBy(true,false,"page_view"));
-        queryWrapper.orderBy(true, false, "page_view").eq("status_code", "1");
+        queryWrapper.eq("status_code", "1");
         Page page = new Page(current, limit);
         iPage = baseMapper.selectPage(page, queryWrapper);
         organizationList = iPage.getRecords();

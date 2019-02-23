@@ -39,14 +39,12 @@
                     <li><a th:href="@{/achievement/toAddAchievement}" title="成果发布">成果发布</a></li>
                     <li><a href="" title="成果分类导航">成果分类导航</a></li>
                     <li><a href="" title="成果检索">成果检索</a></li>
-                    <!--<li><a href="" title="技术风云榜">技术风云榜</a></li>-->
                     <li><a href="" title="优秀成果推荐">优秀成果推荐</a></li>
-                    <!--<li><a href="" title="视频图文展示">视频图文展示</a></li>-->
                 </ul>
             </li>
-            <li><a href="">机构服务</a></li>
+            <li><a th:href="@{/HomeController/OrganizationHome}">机构服务</a></li>
             <li class="hover_li">
-                <a href="">专家服务</a>
+                <a th:href="@{/HomeController/ExpertsHome}">专家服务</a>
                 <ul class="son">
                     <li><a href="" title="专家分类导航">专家分类导航</a></li>
                     <li><a href="" title="专家检索">专家检索</a></li>
@@ -56,14 +54,14 @@
                 </ul>
             </li>
             <li class="hover_li">
-                <a href="">供需服务</a>
+                <a th:href="@{/HomeController/SupplyHome}">供需服务</a>
                 <ul class="son">
                     <li><a href="" title="供需对接">供需对接</a></li>
                     <li><a href="" title="成果推介">成果推介</a></li>
                     <li><a href="" title="成功案例">成功案例</a></li>
                 </ul>
             </li>
-            <li><a href="">政策服务</a></li>
+            <li><a th:href="@{/HomeController/PolicyHome}">政策服务</a></li>
         </ul>
     </div>
 </div>

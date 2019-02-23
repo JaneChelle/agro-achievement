@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>政策资讯-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/policy.css}">
+    <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/htmleaf-demo.css}">
+    <link rel="stylesheet" th:href="@{/css/MxSlider.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+<!--信息-->
+<div th:include="common/common :: header"></div>
+<!--主题-->
+<div class="current">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/HomeController/PolicyHome}">政策展示</a>
+</div>
+<div class="cg-contain">
+    <div class="left">
+        <!--<a href="" class="po_more">更多</a>-->
+        <a href=""><img th:src="@{/images/zc_10.jpg}" alt="" style="height: 34px;"></a>
+        <ul th:each="NewsCenter : ${NewsCenter}">
+            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${NewsCenter.announcementTitle}"></a><span style="margin-right: 10px;color: #cccccc;float: right" th:text="${NewsCenter.releaseTime}"></span></li>
+        </ul>
+    </div>
+    <div class="middle">
+        <div class="htmleaf-container">
+            <!-- My box for the slider -->
+            <div class="mx-bugs_bunny">
+                <!-- Slider -->
+                <div class="ZI-slider">
+                    <div>
+                        <img th:src="@{/img/slide1.jpg}" alt="" />
+                    </div>
+                    <div>
+                        <img th:src="@{/img/slide2.jpg}" alt="" />
+                    </div>
+                    <div>
+                        <img th:src="@{/img/slide3.jpg}" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <a href="" class="po_more">更多</a>
+        <img th:src="@{/images/zc_07.jpg}" alt="" style="height: 34px;">
+        <ul th:each="PolicyCenter : ${PolicyCenter}">
+            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${PolicyCenter.}">欧拉型藏羊繁育及生产技术推广</a></li>
+        </ul>
+    </div>
+</div>
+
+<!--尾部-->
+<footer>
+    <div class="foot">
+        <a href="">联系我们</a>|
+        <a href="">关于我们</a>|
+        <a href="">免责声明</a><br>
+        <p>Copyright©2012-2019 农转网 版权所有 京ICP备05039029号</p>
+        <p>主办单位：农业部科技教育司 承办单位：中国农学会 农业部人力资源开发中心</p>
+        <p>技术支持单位：河南科技学院信息工程学院未来工作室</p>
+        <p>不良信息举报中心 网络110报警服务</p>
+        <p><img src="images/beian.PNG" alt="">京公网安备 11010502030296号</p>
+
+    </div>
+</footer>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="js/MxSlider.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $( '.ZI-slider' ).MxSlider( {
+            autoPlay: true,
+            dots: true,
+            timeSlide: 500
+        } );
+    })
+</script>
+</body>
+</html>

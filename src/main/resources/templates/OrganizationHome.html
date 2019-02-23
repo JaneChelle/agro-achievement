@@ -22,8 +22,8 @@
 <div class="cg-contain">
     <div class="left">
         <img th:src="@{/images/se_02.jpg}" alt="">
-        <ul th:each="Organization : ${OrganizationTypeList}">
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${Organization.typeName}"></a></li>
+        <ul >
+            <li th:each="Organization : ${OrganizationTypeList}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${Organization.typeName}"></a></li>
         </ul>
     </div>
     <div class="middle">
@@ -47,8 +47,8 @@
     </div>
     <div class="right">
         <img th:src="@{/images/cg_09.jpg}" alt="">
-        <ul th:each="organizationTime : ${organizationTimeList}">
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${organizationTime.organizationName}"></a></li>
+        <ul >
+            <li th:each="organizationTime : ${organizationTimeList}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${organizationTime.organizationName}"></a></li>
         </ul>
     </div>
 </div>

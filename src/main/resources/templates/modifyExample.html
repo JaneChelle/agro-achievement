@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>成功案例-个人中心</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/jeDate_test.css}">
+    <link rel="stylesheet" th:href="@{/css/jedate.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen"/>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/jedate.js}"></script>
+</head>
+<body>
+<div class="box">
+    <h3>填写基本信息</h3>
+    <div class="title">案例信息</div>
+        <form th:action="@{/example/modifyExample}" method="post">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <td>案例标题:	</td>
+                    <td><input type="text" name="exampleTitle" th:value="${example.exampleTitle}" class="form-control"></td>
+                    <input type="hidden"  th:value="${session.user.userId}">
+                    <td>案例内容:	</td>
+                    <td><input type="text" name="exampleContent" th:value="${example.exampleContent}" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>发布时间:	</td>
+                    <td><input type="text" name="releaseTime" th:value="${example.releaseTime}" class="form-control"  /></td>
+                    <td>审核状态码:	</td>
+                    <td th:text="${example.statusCode}"><input type="text" name="statusCode"  class="form-control"  /></td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="pn-fbutton">
+                        <input type="submit" value="提交"  class="btn btn-info" id="change"/>
+                        <input type="button" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+</div>
+<script th:src="@{/js/demo.js}"></script>
+</body>
+</html>

@@ -27,6 +27,18 @@ $(document).ready(function() {
     $("#expertsUserDetails").click(function () {
         $(".ifm").attr("src","/experts/expertsUserDetails");
     });
+    $("#addOrganization").click(function () {
+        $(".ifm").attr("src","/organization/toAddOrganization");
+    });
+    $("#userOrganizationList").click(function () {
+        $(".ifm").attr("src","/organization/selectOrganizationByUser");
+    });
+    $("#addExample").click(function () {
+        $(".ifm").attr("src","/example/toAddExample");
+    });
+    $("#userExampleList").click(function () {
+        $(".ifm").attr("src","/example/selectExampleByUser");
+    });
 //设置高亮
     $(".addColor").on('click',function () {
         $(".addColor").css("backgroundColor","#282B33");

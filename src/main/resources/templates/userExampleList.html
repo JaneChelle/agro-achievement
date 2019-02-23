@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>案列发布管理-个人中心</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/userAchieveList.js}"></script>
+    <style>
+        th,td{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h3>案列发布管理<i class="fa fa-long-arrow-right" aria-hidden="true"></i><span id="div1" style="color: red;"></span></h3>
+    <div class="title">
+        <a th:href="@{/example/selectExampleByUser(statusCode=0)}" id="adiv1" onclick="nopass()"   th:text="'未审核'"></a> &nbsp;&nbsp;
+        <a th:href="@{/example/selectExampleByUser(statusCode=1)}" id="adiv2" onclick="pass()"  th:text="'通过'"></a>  &nbsp;&nbsp;
+        <a th:href="@{/example/selectExampleByUser(statusCode=2)}" id="adiv3" onclick="fail()" th:text="'失败'"></a> &nbsp;&nbsp;
+    </div>
+    <table class="table table-bordered able-box" id="mytable">
+        <thead style="background-color: #F2F2F2;">
+        <tr>
+            <th>案例标题</th>
+            <th>案例内容</th>
+            <th>发布时间</th>
+            <th>审核状态码</th>
+            <th>操作选择</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--遍历-->
+        <tr th:each="example : ${exampleList}">
+            <td th:text="${example.exampleTitle}" class="exampleTitle"></td>
+            <td th:text="${example.exampleContent}"></td>
+            <td th:text="${example.releaseTime}"></td>
+            <td th:text="${example.statusCode}"></td>
+            <input type="hidden" th:value="${example.exampleId}" class="exampleId">
+            <input type="hidden" th:value="${session.user.userId}">
+            <td>
+                <a class="a-div adiv1" id="deletes">删除</a>
+                <a class="a-div adiv3" th:href="@{/example/toModifyExample(exampleId=${example.exampleId})}">修改</a>
+                <a class="a-div adiv2" th:href="@{/example/selectOrganizationByUser}">返回</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="cure"></div>
+<script>
+    if(typeof localStorage=='undefined')
+    {
+        window.alert("浏览器不支持localStorage");
+    }else{
+        var colorArray=new Array("通过","未审核","失败");
+        function nopass()
+        {
+            var div1=document.getElementById("div1");
+            div1.style.backgroundColor=colorArray[0];
+            window.localStorage.setItem('innerHTML',colorArray[1]);
+
+        }
+        function pass()
+        {
+            var div1=document.getElementById("div1");
+            div1.style.backgroundColor=colorArray[1];
+            window.localStorage.setItem('innerHTML',colorArray[0]);
+        }
+        function fail()
+        {
+            var div1=document.getElementById("div1");
+            div1.style.backgroundColor=colorArray[2];
+            window.localStorage.setItem('innerHTML',colorArray[2]);
+        }
+        window.onload=function colorLoad()
+        {
+            document.getElementById("div1").innerHTML=window.localStorage.getItem('innerHTML');
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -5,7 +6,7 @@
     <title>专家服务-农业科技成果转化交易服务平台</title>
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/expert.css}">
-    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen" />
+    <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen" />
     <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/htmleaf-demo.css}">
@@ -21,34 +22,15 @@
 </div>
 <div class="cg-contain">
     <div class="left">
+        <!--所有专家分类-->
         <img th:src="@{/images/cg_031.jpg}" alt="">
         <ul th:each="type : ${typeList}">
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${type.typeName}"></a></li>
+            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${type.typeName}">种业</a></li>
         </ul>
+
         <img th:src="@{/images/cg_expert2.jpg}" alt="" style="z-index: 1">
-        <!--地区-->
-        <ul class="area">
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
-            <li><a href="">北京</a></li>
+        <ul class="area" th:each="expertsRanking: ${expertsRankingList}">
+            <li><a href="" th:text="${expertsRanking.expertsName}">北京</a></li>
         </ul>
     </div>
     <div class="middle">
@@ -69,10 +51,9 @@
                 </div>
             </div>
         </div>
-        <!--专家自荐-->
         <div class="best_new">
             <a href="" class="zj_more">更多</a>
-            <ul style="padding: 34px 0 0 15px;" th:each="">
+            <ul style="padding: 34px 0 0 15px;">
                 <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">欧拉型藏羊繁育及生产技术推广</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>
                 <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">强盛1号</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>
                 <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">节水抗旱稻不育系、杂</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>
@@ -84,7 +65,6 @@
                 </a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>
             </ul>
         </div>
-        <!--技术难题-->
         <div class="jishu">
             <a href="" class="zj_more">更多</a>
             <ul style="padding: 34px 0 0 15px;">
@@ -103,31 +83,30 @@
     <div class="right">
         <a href=""><img th:src="@{/images/zj_03.jpg}" alt=""></a>
         <img th:src="@{/images/zj_04.jpg}" alt="">
-<!--推荐专家-->
+        <!--专家推荐-->
         <div class="expert_one_people">
             <a href="" class="zj_more" style="top: -30px;">更多</a>
-            <div class="erpert_picbox" th:each="expertsRanking: ${expertsRankingList}">
+            <div class="erpert_picbox">
                 <div class="expert_picbox">
-                    <img th:src="${expertsRanking.pictureAddress}" width="45" height="45">
+                    <img src="images/expert1.jpg" width="45" height="45">
                 </div>
                 <div class="expert_picex">
-                    <a href="" target="_blank" th:text="${expertsRanking.expertsName}">康绍忠</a><br>
-                    <span th:text="${expertsRanking.researchField}"> 农业水土工程、旱区农业节</span>
+                    <a href="" target="_blank">康绍忠</a><br>
+                    <sapn>农业水土工程、旱区农业节</sapn>
                 </div>
             </div>
         </div>
-
         <!--最新专家-->
         <img th:src="@{/images/zj_054.jpg}" alt="" style="margin-top: 22px">
-        <div class="expert_one_people" >
+        <div class="expert_one_people">
             <a href="" class="zj_more" style="top: -30px;">更多</a>
-            <div class="erpert_picbox" th:each="expertsTime: ${expertsTimeList}">
+            <div class="erpert_picbox" th:each="expertsTime : ${expertsTimeList}">
                 <div class="expert_picbox">
                     <img th:src="${expertsTime.pictureAddress}" width="45" height="45">
                 </div>
                 <div class="expert_picex">
-                    <a href="" target="_blank" th:text="${expertsTime.expertsName}">康绍忠</a><br>
-                    <span th:text="${expertsTime.researchField}">农业水土工程、旱区农业节</span>
+                    <a href="" target="_blank" th:text="${expertsTime.expertsName}"></a><br>
+                    <span th:text="${expertsTime.expertsEducation}"></span>
                 </div>
             </div>
         </div>

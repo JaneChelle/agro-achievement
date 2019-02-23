@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>农业科技成果转化交易服务平台用户管理</title>
-    <link rel="stylesheet" href="../css/adminStyle.css" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
-	<link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico"/>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>农业科技成果转化交易服务平台注册</title>
+    <link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
 </head>
-
 <body>	
 	<header>
 		<div class="head-l">
@@ -132,18 +130,18 @@
 		                </tr>
 		            </thead>
 		            <tbody>
-		            	<tr>
+		            	<tr th:each="adminUser : ${userList}">
 		            		<td>
-		            			<input type="checkbox" id="awesome1" value="1" class="selectall"/>
-								<label for="awesome1"></label>
+		            			<input type="checkbox" th:id="${adminUser.userId}" th:value="${adminUser.userId}" class="selectall"/>
+								<label th:for="${adminUser.userId}"></label>
 		            		</td>
-		            		<td>A133</td>
-		            		<td>Crazy</td>
-		            		<td>171219BY</td>
-		            		<td>15936571965</td>
-		            		<td>1787583716@qq.com</td>
-		            		<td>2</td>
-		            		<td>河南省新乡市红旗区</td>
+		            		<td th:text="${adminUser.userId}">A133</td>
+		            		<td th:text="${adminUser.userName}">Crazy</td>
+		            		<td th:text="${adminUser.password}">171219BY</td>
+		            		<td th:text="${adminUser.userPhone}">15936571965</td>
+		            		<td th:text="${adminUser.userEmail}">1787583716@qq.com</td>
+		            		<td th:text="${adminUser.userLevel}">2</td>
+		            		<td th:text="${adminUser.userAddress}">河南省新乡市红旗区</td>
 		            		<td>
 		            			<button type="button" class="btn modify">修改</button>
 		            			<button type="button" class="btn deleteUser">删除</button>

@@ -46,7 +46,7 @@ public class AdminExpertsController extends BaseController {
     @RequestMapping(value = "/adminAddExperts")
     public ModelAndView adminAddExperts(Model model,Experts experts){
         Result result = iExpertsService.addAdminExperts(experts);
-        return new ModelAndView("redirect:/AdminExperts/adminExpertsList");
+        return new ModelAndView("redirect:/admin/adminExpertsList");
     }
 
     //跳转到修改专家
@@ -69,7 +69,7 @@ public class AdminExpertsController extends BaseController {
         } else {
             model.addAttribute("msg", "修改失败！");
         }
-        return new ModelAndView("redirect:/AdminExperts/adminExpertsList");
+        return new ModelAndView("redirect:/admin/adminExpertsList");
     }
 
     //删除专家
@@ -81,7 +81,7 @@ public class AdminExpertsController extends BaseController {
         } else {
             model.addAttribute("msg", "不存在！");
         }
-        return new ModelAndView("redirect:/AdminAchievement/adminAchievementList");
+        return new ModelAndView("redirect:/admin/adminAchievementList");
     }
 
 }

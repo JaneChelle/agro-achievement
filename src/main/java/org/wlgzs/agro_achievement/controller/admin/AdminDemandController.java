@@ -53,7 +53,7 @@ public class AdminDemandController extends BaseController {
     public ModelAndView adminAddDemand(Model model ,Demand demand){
         Result result = iDemandService.saveDemand(demand);
         model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/AdminDemand/adminAdminDemand");
+        return new ModelAndView("redirect:/admin/adminAdminDemand");
     }
 
     //跳转到修改需求
@@ -77,7 +77,7 @@ public class AdminDemandController extends BaseController {
         } else {
             model.addAttribute("msg", "修改失败！");
         }
-        return new ModelAndView("redirect:/AdminDemand/adminAdminDemand");
+        return new ModelAndView("redirect:/admin/adminAdminDemand");
     }
 
     //删除成果
@@ -89,7 +89,7 @@ public class AdminDemandController extends BaseController {
         } else {
             model.addAttribute("msg", "不存在！");
         }
-        return new ModelAndView("redirect:/AdminDemand/adminAdminDemand");
+        return new ModelAndView("redirect:/admin/adminAdminDemand");
     }
 
 }

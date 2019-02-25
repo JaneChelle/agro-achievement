@@ -111,7 +111,7 @@ public class HomeController extends BaseController {
         Result result2 = iExpertsService.expertRanking(8);
         List<Experts> expertsRankingList = (List<Experts>) result.getData();
         model.addAttribute("expertsRankingList", expertsRankingList);
-
+        System.out.println("expertsRankingList=="+expertsRankingList);
         //专家推荐
 
         return new ModelAndView("ExpertsHome");

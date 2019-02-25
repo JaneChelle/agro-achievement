@@ -41,8 +41,8 @@ public class AuditController extends BaseController {
 
     //去审核成果
     @RequestMapping(value = "/toAuditAchievement")
-    public ModelAndView toAuditAchievement(Model model,Integer announcementId){
-        Result result = iAchievementService.achievementDetails(announcementId);
+    public ModelAndView toAuditAchievement(Model model,Integer achievementId){
+        Result result = iAchievementService.achievementDetails(achievementId);
         Achievement achievement = (Achievement) result.getData();
         model.addAttribute("achievement",achievement);
         if(achievement != null){
@@ -57,8 +57,8 @@ public class AuditController extends BaseController {
     @RequestMapping(value = "/auditAchievement")
     public ModelAndView auditAchievement(Model model,Integer achievementId, String statusCode){
         iAuditService.auditAchievement(achievementId,statusCode);
-        model.addAttribute("msg","审核成功");
-        return new ModelAndView("redirect:/audit/AchievementStatusCode");
+        model.addAttribute("msg","审核成功！");
+        return new ModelAndView("redirect:/admin/AchievementStatusCode");
     }
 
     //按审核状态查询需求
@@ -94,7 +94,7 @@ public class AuditController extends BaseController {
     public ModelAndView auditDemand(Model model,Integer demandId,String statusCode){
         iAuditService.auditDemand(demandId,statusCode);
         model.addAttribute("msg","审核成功");
-        return new ModelAndView("redirect:/audit/DemandStatusCode");
+        return new ModelAndView("redirect:/admin/DemandStatusCode");
     }
 
 
@@ -130,7 +130,7 @@ public class AuditController extends BaseController {
     public ModelAndView auditExample(Model model,Integer exampleId,String statusCode){
         Result result = iAuditService.auditExample(exampleId,statusCode);
         model.addAttribute("msg","审核成功");
-        return new ModelAndView("redirect:/audit/ExampleStatusCode");
+        return new ModelAndView("redirect:/admin/ExampleStatusCode");
     }
 
     //按状态查询专家
@@ -165,7 +165,7 @@ public class AuditController extends BaseController {
     public ModelAndView auditExperts(Model model,Integer expertsId,String statusCode){
         iAuditService.auditExperts(expertsId,statusCode);
         model.addAttribute("msg","审核成功");
-        return new ModelAndView("redirect:/audit/ExpertsStatusCode");
+        return new ModelAndView("redirect:/admin/ExpertsStatusCode");
     }
 
 

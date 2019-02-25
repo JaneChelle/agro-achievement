@@ -56,7 +56,7 @@ public class AdminAchievementController extends BaseController {
     public ModelAndView adminAddAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames,Model model,
                                             HttpServletRequest request, Achievement achievement, String start_time, String end_time){
         Result result = iAchievementService.saveAchievement(myFileNames,request,achievement,start_time,end_time);
-        return new ModelAndView("redirect:/AdminAchievement/adminAchievementList");
+        return new ModelAndView("redirect:/admin/adminAchievementList");
     }
 
     //跳转到修改成果
@@ -80,7 +80,7 @@ public class AdminAchievementController extends BaseController {
         } else {
             model.addAttribute("msg", "修改失败！");
         }
-        return new ModelAndView("redirect:/AdminAchievement/adminAchievementList");
+        return new ModelAndView("redirect:/admin/adminAchievementList");
     }
 
     //删除成果
@@ -92,7 +92,7 @@ public class AdminAchievementController extends BaseController {
         } else {
             model.addAttribute("msg", "不存在！");
         }
-        return new ModelAndView("redirect:/AdminAchievement/adminAchievementList");
+        return new ModelAndView("redirect:/admin/adminAchievementList");
     }
 
 }

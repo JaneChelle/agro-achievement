@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>详情-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/cg-details.css}">
+</head>
+<body>
+<div th:include="common/common :: header"></div>
+<!--主体-->
+<div class="current">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/HomeController/SupplyHome}">供需展示</a> >><a >供需展示详情</a>
+</div>
+<div class="product">
+    <div class="name">
+        <h4 th:text="${demand.demandName}">强盛一号</h4>
+        <span th:text="'发布时间'+${demand.releaseTime}"></span>&nbsp;&nbsp;&nbsp;
+        <span th:text="${demand.pageView}"></span>
+    </div>
+    <div class="pro_msg">
+        <ul>
+            <li><i class="fa fa-forward" aria-hidden="true"></i><span>研 发 时 间:</span><span th:text="${demand.releaseTime}"></span></li>
+            <!--<li><i class="fa fa-forward" aria-hidden="true"></i><span>成果成熟度:</span><span>可以量产</span></li>-->
+            <!--<li><i class="fa fa-forward" aria-hidden="true"></i><span>预期交易方式:</span><span>合作生产</span></li>-->
+            <!--<li><i class="fa fa-forward" aria-hidden="true"></i><span>技 术 水 平:</span><span>国际先进</span></li>-->
+            <li><i class="fa fa-forward" aria-hidden="true"></i><span>预期交易价格:</span><span th:text="${demand.expectedPrice}">——</span></li>
+        </ul>
+    </div>
+    <div class="introduce">
+        <h4 style="margin-bottom: 10px">
+            <img th:src="@{/images/tu-2.png}" alt="">
+        </h4>
+        <p th:text="${demand.demandIntroduce}"></p>
+    </div>
+    <!--联系人信息-->
+    <div class="knowledge">
+        <h4 style="padding: 10px">
+            <img th:src="@{/images/tu-4.png}" alt="">
+        </h4>
+        <div class="pro_msg2">
+            <ul>
+                <li><span>联 系 人:</span><span th:text="${demand.linkman}"></span></li>
+                <li><span>联 系 电话:</span><span th:text="${demand.phone}"></span></li>
+                <li><span>邮      箱:</span><span th:text="${demand.email}"></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--尾部-->
+<div th:include="common/common :: footer"></div>
+</body>
+</html>

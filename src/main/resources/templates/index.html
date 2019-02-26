@@ -50,38 +50,38 @@
                 </li>
             </ul>
         </div>
-        <div class="service">
-            <div class="tips">服务资源</div>
-            <div class="oDiv">
-                <div>
-                    <a href=""><img th:src="@{/images/jishu1.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu2.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu3.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu4.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu5.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu6.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu7.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu8.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu9.jpg}" alt=""></a>
-                </div>
-            </div>
-        </div>
+        <!--<div class="service">-->
+            <!--<div class="tips">服务资源</div>-->
+            <!--<div class="oDiv">-->
+                <!--<div>-->
+                    <!--<a href=""><img th:src="@{/images/jishu1.jpg}" alt=""></a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a href=""><img th:src="@{/images/jishu2.jpg}" alt=""></a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a href=""><img th:src="@{/images/jishu3.jpg}" alt=""></a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a href=""><img th:src="@{/images/jishu4.jpg}" alt=""></a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a href=""><img th:src="@{/images/jishu5.jpg}" alt=""></a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a href=""><img th:src="@{/images/jishu6.jpg}" alt=""></a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a href=""><img th:src="@{/images/jishu7.jpg}" alt=""></a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a href=""><img th:src="@{/images/jishu8.jpg}" alt=""></a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a href=""><img th:src="@{/images/jishu9.jpg}" alt=""></a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
     <!--成果展示-->
     <div class="two">
@@ -115,8 +115,7 @@
             </div>
             <ul >
                 <li th:each="achievement : ${achievementList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.achievementIntroduce}" target="_blank">
-                    <span th:text="${achievement.achievementIntroduce}"></span>
+                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.achievementIntroduce}" th:text="${achievement.achievementIntroduce}" target="_blank">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(achievement.endTime,'yyyy-MM-dd')}"></span>-->
                     <span th:text="${achievement.endTime}"></span>

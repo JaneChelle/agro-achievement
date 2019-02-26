@@ -22,9 +22,10 @@
         <!--成果排行榜-->
         <img th:src="@{/images/jf_01.jpg}" alt="">
         <ul >
-            <li th:each="achievement : ${achievement}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${achievement.typeName}">种业</a></li>
+            <li th:each="achievement : ${achievement}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${achievement.achievementId})}"  th:text="${achievement.typeName}">种业</a></li>
         </ul>
         <img th:src="@{/images/jf_02.jpg}" alt="" style="z-index: 1">
+        <!--专家-->
         <ul class="area" th:each="expert : ${experts}">
             <li><a href="" th:text="${expert.expertsName}"></a></li>
         </ul>
@@ -34,7 +35,7 @@
         <div class="best_new">
             <a href="" class="zj_more">更多</a>
             <ul style="padding: 52px 0 0 15px;" >
-                <li th:each="demand : ${demand}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${demand.demandIntroduce}"></a></li>
+                <li th:each="demand : ${demand}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/demand/demandDetails(demandId=${demand.demandId})}" th:text="${demand.demandIntroduce}"></a></li>
             </ul>
         </div>
         <!--<div class="jishu">-->

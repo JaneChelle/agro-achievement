@@ -23,8 +23,9 @@
     <div class="left">
         <img th:src="@{/images/cg1.jpg}" alt="">
         <ul>
+            <!--分类-->
             <li th:each="type : ${typeList}">
-                <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/rankingAchievement}" th:text="${type.typeName}"></a>
+                <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/selectAchieveByType(typeId=${type.typeId})}" th:text="${type.typeName}"></a>
             </li>
         </ul>
     </div>
@@ -47,31 +48,26 @@
             </div>
         </div>
         <div class="best_new">
+            <!--最新发布-->
             <ul style="padding: 30px 0 0 15px;">
                 <li th:each="achievementTime : ${achievementTimeList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${achievementTime.achievementName}"></a>
+                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${achievementTime.achievementId})}" th:text="${achievementTime.achievementName}"></a>
                 </li>
             </ul>
         </div>
     </div>
     <div class="right">
         <img th:src="@{/images/cg2.jpg}" alt="">
+        <!--风云榜-->
         <ul>
             <li th:each="achievementRanking : ${achievementRankingList}">
                 <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${achievementRanking.achievementId})}" th:text="${achievementRanking.achievementName}"></a>
             </li>
         </ul>
         <img th:src="@{/images/cg3.jpg}" alt="" style="margin-top: 22px">
+        <!--优秀成果推荐-->
         <ul>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">欧拉型藏羊繁育及生产技术推广</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">强盛1号</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">节水抗旱稻不育系、杂</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">抗植物病毒活性新农药</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">优质超细毛羊和绒山羊</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">大田专用缓/控释肥料</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">评价暑热证及中药药效的基因芯片</a></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="">新型湍旋式废气处理装置
-            </a></li>
+            <li th:each="hot: ${hotAchievement}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${hot.achievementId})}" th:text="${hot.achievementIntroduce}"></a></li>
         </ul>
     </div>
 </div>

@@ -46,7 +46,7 @@ public class AdminExampleController extends BaseController {
     public ModelAndView adminAddExample(Model model,Example example){
         Result result = iCaseService.addExample(example);
         model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/AdminExample/adminExampleList");
+        return new ModelAndView("redirect:/admin/adminExampleList");
     }
 
     //跳转到修改成果
@@ -69,7 +69,7 @@ public class AdminExampleController extends BaseController {
         } else {
             model.addAttribute("msg", "修改成功！");
         }
-        return new ModelAndView("redirect:/AdminExample/adminExampleList");
+        return new ModelAndView("redirect:/admin/adminExampleList");
     }
 
     //删除成果
@@ -81,7 +81,7 @@ public class AdminExampleController extends BaseController {
         } else {
             model.addAttribute("msg", "不存在！");
         }
-        return new ModelAndView("redirect:/AdminExample/adminExampleList");
+        return new ModelAndView("redirect:/admin/adminExampleList");
     }
 
 }

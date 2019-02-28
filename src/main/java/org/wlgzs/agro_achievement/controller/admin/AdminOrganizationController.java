@@ -52,7 +52,7 @@ public class AdminOrganizationController extends BaseController {
     public ModelAndView adminAddOrganization(Model model, HttpServletRequest request,
                                              Organization organization){
         Result result = iOrganizationService.saveOrganization(organization);
-        return new ModelAndView("redirect:/AdminOrganization/adminOrganizationList");
+        return new ModelAndView("redirect:/admin/adminOrganizationList");
     }
 
     //跳转到修改机构
@@ -74,7 +74,7 @@ public class AdminOrganizationController extends BaseController {
         } else {
             model.addAttribute("msg", "修改失败！");
         }
-        return new ModelAndView("redirect:/AdminOrganization/adminOrganizationList");
+        return new ModelAndView("redirect:/admin/adminOrganizationList");
     }
 
     //删除机构
@@ -86,7 +86,7 @@ public class AdminOrganizationController extends BaseController {
         } else {
             model.addAttribute("msg", "不存在！");
         }
-        return new ModelAndView("redirect:/AdminOrganization/adminOrganizationList");
+        return new ModelAndView("redirect:/admin/adminOrganizationList");
     }
 
 }

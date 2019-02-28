@@ -83,3 +83,87 @@ $(document).on("click", ".adiv1",function() {
         return false;
     }
 });
+//删除机构
+$(document).on("click", ".adiv1",function() {
+    var organizationName = $(this).parent().parent().children('.organizationName').text();
+    var organizationId = $(this).parent().parent().children('.organizationId').val();
+    var inform = "您确定要删除 " + organizationName + " 发布的需求吗？";
+    var r = confirm(inform);
+    if (r == true) {
+        $.ajax({
+            url: "/organization/deleteOrganization",
+            data: {
+                'organizationId': organizationId
+            },
+            async: false,
+            success: function (data) {
+
+                $('.cure').addClass('uu');
+                $('.cure').html(data.msg);
+                setTimeout(function () {
+                    $('.cure').css('display', 'none');
+                }, 2000);
+                setTimeout(function () {
+                    location.reload(true);
+                }, 1000);
+                //alert(data.msg)
+            },
+            error: function (data) {
+                $('.cure').addClass('uu');
+                $('.cure').html(data.msg);
+                setTimeout(function () {
+                    $('.cure').css('display', 'none');
+                }, 2000);
+                setTimeout(function () {
+                    location.reload(true);
+                }, 1000);
+
+                alert(data.msg)
+            }
+        });
+    } else {
+        return false;
+    }
+});
+//删除案列
+$(document).on("click", ".adiv1",function() {
+    var exampleTitle = $(this).parent().parent().children('.exampleTitle').text();
+    var exampleId = $(this).parent().parent().children('.exampleId').val();
+    var inform = "您确定要删除 " + exampleTitle + " 这个案列吗？";
+    var r = confirm(inform);
+    if (r == true) {
+        $.ajax({
+            url: "/example/deleteExample",
+            data: {
+                'exampleId': exampleId
+            },
+            async: false,
+            success: function (data) {
+
+                $('.cure').addClass('uu');
+                $('.cure').html(data.msg);
+                setTimeout(function () {
+                    $('.cure').css('display', 'none');
+                }, 2000);
+                setTimeout(function () {
+                    location.reload(true);
+                }, 1000);
+                //alert(data.msg)
+            },
+            error: function (data) {
+                $('.cure').addClass('uu');
+                $('.cure').html(data.msg);
+                setTimeout(function () {
+                    $('.cure').css('display', 'none');
+                }, 2000);
+                setTimeout(function () {
+                    location.reload(true);
+                }, 1000);
+
+                alert(data.msg)
+            }
+        });
+    } else {
+        return false;
+    }
+});

@@ -73,23 +73,6 @@ public class ExampleController extends BaseController {
         return new ModelAndView("redirect:/example/selectExampleByUser");
     }
 
-    //查询成功案例（显示的）
-    @GetMapping("/selectExample")
-    public ModelAndView selectExample(Model model,@RequestParam(value = "current", defaultValue = "1") Integer current,
-                             @RequestParam(value = "limit", defaultValue = "8") Integer limit){
-        Result result = iCaseService.selectExample(current,limit);
-        List<Example> exampleList = (List<Example>) result.getData();
-        if (exampleList != null) {
-            model.addAttribute("msg","查询成功！");
-        }else{
-            model.addAttribute("msg","暂无数据！");
-        }
-        model.addAttribute("exampleList",exampleList);
-        model.addAttribute("TotalPages", result.getPages());//总页数
-        model.addAttribute("Number", result.getCurrent());//当前页数
-        return new ModelAndView("ExampleList");
-    }
-
     //按照用户查询所有成功案例（状态码）(用户自身操作)
     @GetMapping("/selectExampleByUser")//分页
     public ModelAndView selectExampleByUser(Model model,String statusCode,HttpSession session,

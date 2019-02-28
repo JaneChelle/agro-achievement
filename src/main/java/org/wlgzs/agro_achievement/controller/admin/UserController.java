@@ -52,7 +52,7 @@ public class UserController extends BaseController {
     public ModelAndView adminAddUser(Model model,User user){
         Result result = iUserService.adminAddUser(user);
         model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/user/adminUserList");
+        return new ModelAndView("redirect:/admin/adminUserList");
     }
 
     //后台删除用户
@@ -60,7 +60,7 @@ public class UserController extends BaseController {
     public ModelAndView adminDeleteUser(Model model,Integer userId){
         Result result = iUserService.adminDeleteUser(userId);
         model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/user/adminUserList");
+        return new ModelAndView("redirect:/admin/adminUserList");
     }
 
     //去修改用户
@@ -73,7 +73,7 @@ public class UserController extends BaseController {
             return new ModelAndView("adminModifyUser");
         }
         model.addAttribute("msg","不存在！");
-        return new ModelAndView("redirect:/user/adminUserList");
+        return new ModelAndView("redirect:/admin/adminUserList");
     }
 
     //后台修改用户
@@ -81,7 +81,7 @@ public class UserController extends BaseController {
     public ModelAndView adminModifyUser(Model model,User user){
         Result result = iUserService.adminModifyUser(user);
         model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/user/adminUserList");
+        return new ModelAndView("redirect:/admin/adminUserList");
     }
 
 }

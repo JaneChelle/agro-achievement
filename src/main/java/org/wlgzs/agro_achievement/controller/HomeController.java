@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -111,7 +112,7 @@ public class HomeController extends BaseController {
         Result result2 = iExpertsService.expertRanking(8);
         List<Experts> expertsRankingList = (List<Experts>) result.getData();
         model.addAttribute("expertsRankingList", expertsRankingList);
-
+        System.out.println("expertsRankingList=="+expertsRankingList);
         //专家推荐
 
         return new ModelAndView("ExpertsHome");
@@ -183,5 +184,88 @@ public class HomeController extends BaseController {
 
         return new ModelAndView("PolicyHome");
     }
+
+    //查询成功案例（显示的）
+    @GetMapping("/selectExample")
+    public ModelAndView selectExample(Model model,@RequestParam(value = "current", defaultValue = "1") Integer current,
+                                      @RequestParam(value = "limit", defaultValue = "8") Integer limit){
+        Result result = iCaseService.selectExample(current,limit);
+        List<Example> exampleList = (List<Example>) result.getData();
+        if (exampleList != null) {
+            model.addAttribute("msg","查询成功！");
+        }else{
+            model.addAttribute("msg","暂无数据！");
+        }
+        model.addAttribute("exampleList",exampleList);
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+        return new ModelAndView("ExampleList");
+    }
+
+    //查看专家信息
+    @RequestMapping(value = "/expertsDetails")
+    public ModelAndView expertsDetails(Model model,Integer expertsId) {
+        Experts experts = iExpertsService.expertsDetails(expertsId);
+        model.addAttribute("experts", experts);//专家信息
+        if (experts == null) {
+            model.addAttribute("msg", "不存在！");
+        }
+        return new ModelAndView("expertsDetails");
+    }
+
+    //前台查询所有专家（通过的）
+    @RequestMapping(value = "/selectExperts")
+    public ModelAndView selectExperts(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
+                                      @RequestParam(value = "limit", defaultValue = "8") int limit) {
+        Result result = iExpertsService.selectExperts(current, limit);
+        List<Experts> expertsList = (List<Experts>) result.getData();
+
+        model.addAttribute("expertsList",expertsList);
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+
+        return new ModelAndView("expertsList");
+    }
+
+    //前台查询所有机构
+    @RequestMapping(value = "/selectAllOrganization")
+    public ModelAndView selectAllOrganization(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
+                                              @RequestParam(value = "limit", defaultValue = "8") int limit) {
+        List<Organization> organizationList = iOrganizationService.selectAllOrganization(current, limit);
+        if(organizationList != null){
+            model.addAttribute("msg","查询成功！");
+        }else{
+            model.addAttribute("msg","查询成功！");
+        }
+        model.addAttribute("organizationList", organizationList);
+        return new ModelAndView("OrganizationList");
+    }
+
+    //前台按类型查询机构
+    @RequestMapping(value = "/selectAchieveByType")
+    public ModelAndView selectOrganizationByType(Model model,@RequestParam(value = "type",defaultValue = "") String type,@RequestParam(value = "current", defaultValue = "1") int current,
+                                                 @RequestParam(value = "limit", defaultValue = "8") int limit){
+        Result result = iOrganizationService.selectOrganizationByType(type, current, limit);
+        List<Organization> organizationList = (List<Organization>) result.getData();
+
+        model.addAttribute("organizationList",organizationList);
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+
+        //查询所有机构类别
+        List<OrganizationType> list = (List<OrganizationType>) iOrganizationTypeService.selectAllOrganizationType().getData();
+        model.addAttribute("OrganizationTypeList",list);
+
+        return new ModelAndView("OrganizationList");
+    }
+
+    //查看机构详情
+    @RequestMapping(value = "/organizationDetails")
+    public ModelAndView organizationDetails(Model model,Integer organizationId){
+        Organization organization = iOrganizationService.getById(organizationId);
+        model.addAttribute("organization",organization);
+        return new ModelAndView("organizationDetails");
+    }
+
 
 }

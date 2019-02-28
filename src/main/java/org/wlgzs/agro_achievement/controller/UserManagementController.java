@@ -56,13 +56,13 @@ public class UserManagementController extends BaseController {
     }
 
     //发送找回密码邮箱(验证码)
-    @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
+    @RequestMapping(value = "/sendEmail")
     public void sendEmail(HttpServletRequest request, String userEmail) {
         iUserService.sendEmail(request, userEmail);
     }
 
     //发送注册邮箱(验证码)
-    @RequestMapping(value = "/sendRegisterEmail", method = RequestMethod.POST)
+    @RequestMapping(value = "/sendRegisterEmail")
     public void sendRegisterEmail(HttpServletRequest request, String userEmail) {
         iUserService.sendRegisterEmail(request, userEmail);
     }

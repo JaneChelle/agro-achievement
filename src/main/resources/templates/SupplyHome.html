@@ -21,20 +21,21 @@
     <div class="left">
         <!--成果排行榜-->
         <img th:src="@{/images/jf_01.jpg}" alt="">
-        <ul th:each="achievement : ${achievement}">
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${achievement.typeName}">种业</a></li>
+        <ul >
+            <li th:each="achievement : ${achievement}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${achievement.achievementId})}"  th:text="${achievement.typeName}">种业</a></li>
         </ul>
         <img th:src="@{/images/jf_02.jpg}" alt="" style="z-index: 1">
-        <ul class="area" th:each="experts : ${experts}">
-            <li><a href="" th:text="${experts.expertsName}"></a></li>
+        <!--专家-->
+        <ul class="area" th:each="expert : ${experts}">
+            <li><a href="" th:text="${expert.expertsName}"></a></li>
         </ul>
     </div>
     <div class="middle">
         <!--首页技术需求-->
         <div class="best_new">
             <a href="" class="zj_more">更多</a>
-            <ul style="padding: 52px 0 0 15px;" th:each="demand : ${demand}">
-                <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${demand.demandIntroduce}"></a></li>
+            <ul style="padding: 52px 0 0 15px;" >
+                <li th:each="demand : ${demand}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/demand/demandDetails(demandId=${demand.demandId})}" th:text="${demand.demandIntroduce}"></a></li>
             </ul>
         </div>
         <!--<div class="jishu">-->
@@ -54,9 +55,9 @@
     </div>
     <!--机构排行-->
     <div class="right">
-        <img th:src="${/images/cg_09.jpg}" alt="">
-        <ul th:each="organization : ${organization}">
-            <li><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${organization.organizationIntroduce}"></a></li>
+        <img th:src="@{/images/cg_09.jpg}" alt="">
+        <ul >
+            <li th:each="organization : ${organization}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${organization.organizationIntroduce}"></a></li>
         </ul>
     </div>
 </div>

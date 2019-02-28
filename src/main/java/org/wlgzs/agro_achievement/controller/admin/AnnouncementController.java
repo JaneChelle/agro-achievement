@@ -34,7 +34,7 @@ public class AnnouncementController extends BaseController {
     @RequestMapping(value = "/addAnnouncement")
     public ModelAndView addAnnouncement(Announcement announcement) {
         iAnnouncementService.addAnnouncement(announcement);
-        return new ModelAndView("redirect:/announcement/selectAnnouncement");
+        return new ModelAndView("redirect:/admin/selectAnnouncement");
     }
 
     //查看公告详情（前台）
@@ -52,7 +52,7 @@ public class AnnouncementController extends BaseController {
         model.addAttribute("announcement",announcement);
         if(announcement == null){
             model.addAttribute("msg","数据不存在！");
-            return new ModelAndView("redirect:/announcement/selectAnnouncement");
+            return new ModelAndView("redirect:/admin/selectAnnouncement");
         }
         return new ModelAndView("announcementAdminDetails");
     }
@@ -66,7 +66,7 @@ public class AnnouncementController extends BaseController {
         } else {
             model.addAttribute("msg", "修改失败！");
         }
-        return new ModelAndView("redirect:/announcement/selectAnnouncement");
+        return new ModelAndView("redirect:/admin/selectAnnouncement");
     }
 
     //删除公告
@@ -74,7 +74,7 @@ public class AnnouncementController extends BaseController {
     public ModelAndView deleteAnnouncement(Integer announcementId,Model model) {
         Result result = iAnnouncementService.deleteAnnouncement(announcementId);
         model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/announcement/selectAnnouncement");
+        return new ModelAndView("redirect:/admin/selectAnnouncement");
     }
 
     //按类别查询公告(默认查询所有的)

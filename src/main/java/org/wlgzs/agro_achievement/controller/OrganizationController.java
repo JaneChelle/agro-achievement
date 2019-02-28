@@ -74,44 +74,4 @@ public class OrganizationController extends BaseController {
         return new ModelAndView("userOrganizationList");
     }
 
-    //前台查询所有机构
-    @RequestMapping(value = "/selectAllOrganization")
-    public ModelAndView selectAllOrganization(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
-                                              @RequestParam(value = "limit", defaultValue = "8") int limit) {
-        List<Organization> organizationList = iOrganizationService.selectAllOrganization(current, limit);
-        if(organizationList != null){
-            model.addAttribute("msg","查询成功！");
-        }else{
-            model.addAttribute("msg","查询成功！");
-        }
-        model.addAttribute("organizationList", organizationList);
-        return new ModelAndView("OrganizationList");
-    }
-
-    //前台按类型查询机构
-    @RequestMapping(value = "/selectAchieveByType")
-    public ModelAndView selectOrganizationByType(Model model,@RequestParam(value = "type",defaultValue = "") String type,@RequestParam(value = "current", defaultValue = "1") int current,
-                                            @RequestParam(value = "limit", defaultValue = "8") int limit){
-        Result result = iOrganizationService.selectOrganizationByType(type, current, limit);
-        List<Organization> organizationList = (List<Organization>) result.getData();
-
-        model.addAttribute("organizationList",organizationList);
-        model.addAttribute("TotalPages", result.getPages());//总页数
-        model.addAttribute("Number", result.getCurrent());//当前页数
-
-        //查询所有机构类别
-        List<OrganizationType> list = (List<OrganizationType>) iOrganizationTypeService.selectAllOrganizationType().getData();
-        model.addAttribute("OrganizationTypeList",list);
-
-        return new ModelAndView("OrganizationList");
-    }
-
-    //查看机构详情
-    @RequestMapping(value = "/organizationDetails")
-    public ModelAndView organizationDetails(Model model,Integer organizationId){
-        Organization organization = iOrganizationService.getById(organizationId);
-        model.addAttribute("organization",organization);
-        return new ModelAndView("organizationDetails");
-    }
-
 }

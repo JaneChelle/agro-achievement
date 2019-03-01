@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.*;
 import org.wlgzs.agro_achievement.util.Result;
-import org.wlgzs.agro_achievement.util.ResultCode;
 
 import java.util.List;
 
@@ -264,7 +263,7 @@ public class HomeController extends BaseController {
     public ModelAndView organizationDetails(Model model,Integer organizationId){
         Organization organization = iOrganizationService.getById(organizationId);
         model.addAttribute("organization",organization);
-        return new ModelAndView("organizationDetails");
+        return new ModelAndView("OrganizationDetails");
     }
 
 

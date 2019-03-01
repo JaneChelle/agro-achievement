@@ -23,7 +23,7 @@
     <div class="left">
         <img th:src="@{/images/se_02.jpg}" alt="">
         <ul >
-            <li th:each="Organization : ${OrganizationTypeList}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${Organization.typeName}"></a></li>
+            <li th:each="Organization : ${OrganizationTypeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/selectAchieveByType}" th:text="${Organization.typeName}"></a></li>
         </ul>
     </div>
     <div class="middle">
@@ -48,7 +48,7 @@
     <div class="right">
         <img th:src="@{/images/cg_09.jpg}" alt="">
         <ul >
-            <li th:each="organizationTime : ${organizationTimeList}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${organizationTime.organizationName}"></a></li>
+            <li th:each="organizationTime : ${organizationTimeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/ HomeController/organizationDetails(organizationId=${Organization.organizationId})}" th:text="${organizationTime.organizationName}"></a></li>
         </ul>
     </div>
 </div>
@@ -68,7 +68,7 @@
         </li>
         <li>
             <div class="pic">
-                <img src="images/nongda.png" alt="">
+                <img th:src="@{/images/nongda.png}" alt="">
             </div>
             <div class="wenzi">
                 <a href="">中国农业大学</a><br>

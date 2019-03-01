@@ -27,7 +27,7 @@ public class HomeController extends BaseController {
 
     //首页数据
     @RequestMapping("/home")
-    public ModelAndView home(Model model){
+    public ModelAndView home(Model model) {
         //首页技术供给
         List<Achievement> achievementList = iAchievementService.selectAchieveByTime();
         model.addAttribute("achievementList", achievementList);
@@ -81,6 +81,14 @@ public class HomeController extends BaseController {
 
         //最新发布
         List<Achievement> achievementTimeList = iAchievementService.selectAchieveByTime();
+        String img;
+        for (int i = 0; i < achievementTimeList.size(); i++) {
+            if (achievementTimeList.get(i).getPictureAddress().contains(",")) {
+                img = achievementTimeList.get(i).getPictureAddress();
+                img = img.substring(0, img.indexOf(","));
+                achievementTimeList.get(i).setPictureAddress(img);
+            }
+        }
         model.addAttribute("achievementTimeList", achievementTimeList);
 
         //排行榜
@@ -110,10 +118,12 @@ public class HomeController extends BaseController {
 
         //专家排行
         Result result2 = iExpertsService.expertRanking(8);
-        List<Experts> expertsRankingList = (List<Experts>) result.getData();
+        List<Experts> expertsRankingList = (List<Experts>) result2.getData();
         model.addAttribute("expertsRankingList", expertsRankingList);
-        System.out.println("expertsRankingList=="+expertsRankingList);
+
         //专家推荐
+        List<Experts> recommendList = iExpertsService.recommend(8);
+        model.addAttribute("recommendList", recommendList);
 
         return new ModelAndView("ExpertsHome");
     }
@@ -128,18 +138,18 @@ public class HomeController extends BaseController {
 
         //最新加入的机构
         List<Organization> organizationTimeList = iOrganizationService.selectOrganizationByTime();
-        model.addAttribute("organizationTimeList",organizationTimeList);
+        model.addAttribute("organizationTimeList", organizationTimeList);
 
         //机构排行
-        List<Organization> organizationRankingList = iOrganizationService.rankingOrganization(1,10);
-        model.addAttribute("organizationRankingList",organizationRankingList);
+        List<Organization> organizationRankingList = iOrganizationService.rankingOrganization(1, 10);
+        model.addAttribute("organizationRankingList", organizationRankingList);
 
         return new ModelAndView("OrganizationHome");
     }
 
     //供需首页数据
     @RequestMapping(value = "/SupplyHome")
-    public ModelAndView SupplyHome(Model model){
+    public ModelAndView SupplyHome(Model model) {
 
         //成果排行榜
         Result result = iAchievementService.rankingAchievement(1, 10);
@@ -160,43 +170,43 @@ public class HomeController extends BaseController {
         model.addAttribute("demand", demandList);
 
         //机构排行
-        List<Organization> organizationRankingList = iOrganizationService.rankingOrganization(1,10);
-        model.addAttribute("organization",organizationRankingList);
+        List<Organization> organizationRankingList = iOrganizationService.rankingOrganization(1, 10);
+        model.addAttribute("organization", organizationRankingList);
 
         return new ModelAndView("SupplyHome");
     }
 
     //政策首页
     @RequestMapping(value = "/PolicyHome")
-    public ModelAndView PolicyHome(Model model){
+    public ModelAndView PolicyHome(Model model) {
         //新闻中心
-        Result result1 = iAnnouncementService.selectAnnouncement("新闻中心",1,10);
+        Result result1 = iAnnouncementService.selectAnnouncement("新闻中心", 1, 10);
         List<Announcement> NewsCenter = (List<Announcement>) result1.getData();
-        model.addAttribute("NewsCenter",NewsCenter);
+        model.addAttribute("NewsCenter", NewsCenter);
         //交易活动
-        Result result2 = iAnnouncementService.selectAnnouncement("交易活动",1,10);
+        Result result2 = iAnnouncementService.selectAnnouncement("交易活动", 1, 10);
         List<Announcement> TradingActivity = (List<Announcement>) result2.getData();
-        model.addAttribute("TradingActivity",TradingActivity);
+        model.addAttribute("TradingActivity", TradingActivity);
         //政策中心
-        Result result3 = iAnnouncementService.selectAnnouncement("政策中心",1,10);
+        Result result3 = iAnnouncementService.selectAnnouncement("政策中心", 1, 10);
         List<Announcement> PolicyCenter = (List<Announcement>) result3.getData();
-        model.addAttribute("PolicyCenter",PolicyCenter);
+        model.addAttribute("PolicyCenter", PolicyCenter);
 
         return new ModelAndView("PolicyHome");
     }
 
     //查询成功案例（显示的）
     @GetMapping("/selectExample")
-    public ModelAndView selectExample(Model model,@RequestParam(value = "current", defaultValue = "1") Integer current,
-                                      @RequestParam(value = "limit", defaultValue = "8") Integer limit){
-        Result result = iCaseService.selectExample(current,limit);
+    public ModelAndView selectExample(Model model, @RequestParam(value = "current", defaultValue = "1") Integer current,
+                                      @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
+        Result result = iCaseService.selectExample(current, limit);
         List<Example> exampleList = (List<Example>) result.getData();
         if (exampleList != null) {
-            model.addAttribute("msg","查询成功！");
-        }else{
-            model.addAttribute("msg","暂无数据！");
+            model.addAttribute("msg", "查询成功！");
+        } else {
+            model.addAttribute("msg", "暂无数据！");
         }
-        model.addAttribute("exampleList",exampleList);
+        model.addAttribute("exampleList", exampleList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
         return new ModelAndView("ExampleList");
@@ -204,7 +214,7 @@ public class HomeController extends BaseController {
 
     //查看专家信息
     @RequestMapping(value = "/expertsDetails")
-    public ModelAndView expertsDetails(Model model,Integer expertsId) {
+    public ModelAndView expertsDetails(Model model, Integer expertsId) {
         Experts experts = iExpertsService.expertsDetails(expertsId);
         model.addAttribute("experts", experts);//专家信息
         if (experts == null) {
@@ -215,12 +225,12 @@ public class HomeController extends BaseController {
 
     //前台查询所有专家（通过的）
     @RequestMapping(value = "/selectExperts")
-    public ModelAndView selectExperts(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
+    public ModelAndView selectExperts(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
                                       @RequestParam(value = "limit", defaultValue = "8") int limit) {
         Result result = iExpertsService.selectExperts(current, limit);
         List<Experts> expertsList = (List<Experts>) result.getData();
 
-        model.addAttribute("expertsList",expertsList);
+        model.addAttribute("expertsList", expertsList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
@@ -232,10 +242,10 @@ public class HomeController extends BaseController {
     public ModelAndView selectAllOrganization(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
                                               @RequestParam(value = "limit", defaultValue = "8") int limit) {
         List<Organization> organizationList = iOrganizationService.selectAllOrganization(current, limit);
-        if(organizationList != null){
-            model.addAttribute("msg","查询成功！");
-        }else{
-            model.addAttribute("msg","查询成功！");
+        if (organizationList != null) {
+            model.addAttribute("msg", "查询成功！");
+        } else {
+            model.addAttribute("msg", "查询成功！");
         }
         model.addAttribute("organizationList", organizationList);
         return new ModelAndView("OrganizationList");
@@ -243,29 +253,36 @@ public class HomeController extends BaseController {
 
     //前台按类型查询机构
     @RequestMapping(value = "/selectAchieveByType")
-    public ModelAndView selectOrganizationByType(Model model,@RequestParam(value = "type",defaultValue = "") String type,@RequestParam(value = "current", defaultValue = "1") int current,
-                                                 @RequestParam(value = "limit", defaultValue = "8") int limit){
+    public ModelAndView selectOrganizationByType(Model model, @RequestParam(value = "type", defaultValue = "") String type, @RequestParam(value = "current", defaultValue = "1") int current,
+                                                 @RequestParam(value = "limit", defaultValue = "8") int limit) {
         Result result = iOrganizationService.selectOrganizationByType(type, current, limit);
         List<Organization> organizationList = (List<Organization>) result.getData();
 
-        model.addAttribute("organizationList",organizationList);
+        model.addAttribute("organizationList", organizationList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
         //查询所有机构类别
         List<OrganizationType> list = (List<OrganizationType>) iOrganizationTypeService.selectAllOrganizationType().getData();
-        model.addAttribute("OrganizationTypeList",list);
+        model.addAttribute("OrganizationTypeList", list);
 
         return new ModelAndView("OrganizationList");
     }
 
     //查看机构详情
     @RequestMapping(value = "/organizationDetails")
-    public ModelAndView organizationDetails(Model model,Integer organizationId){
+    public ModelAndView organizationDetails(Model model, Integer organizationId) {
         Organization organization = iOrganizationService.getById(organizationId);
-        model.addAttribute("organization",organization);
+        model.addAttribute("organization", organization);
         return new ModelAndView("organizationDetails");
     }
 
+    //首页搜索（全局搜索）
+//    @RequestMapping(value = "/globalSearch")
+//    public ModelAndView globalSearch(@RequestParam(value = "findName", defaultValue = "") String findName,
+//                                     @RequestParam(value = "current", defaultValue = "1") int current,
+//                                     @RequestParam(value = "limit", defaultValue = "8") int limit) {
+//
+//    }
 
 }

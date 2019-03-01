@@ -35,7 +35,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
     //申请成为专家
     @Override
-    public Result addExperts(HttpServletRequest request,String time, Experts experts,MultipartFile myFileName) {
+    public Result addExperts(HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         if (user != null) {
@@ -54,7 +54,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
         String fileName = myFileName.getOriginalFilename();
         //截取后缀名
-        String suffixName = fileName.substring(fileName.indexOf("."),fileName.length());
+        String suffixName = fileName.substring(fileName.indexOf("."), fileName.length());
 
         //生成实际储存的文件名（不能重复）
         realName = RandomNumberUtils.getRandomFileName() + suffixName;
@@ -132,7 +132,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         Page page = new Page(1, limit);
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("page_view");
-        IPage<Experts> iPage = baseMapper.selectPage (page, queryWrapper);
+        IPage<Experts> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Experts> list = iPage.getRecords();
         if (list != null) {
             return new Result(ResultCode.SUCCESS, list);
@@ -141,14 +141,24 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     }
 
     @Override
+    public List<Experts> recommend(int limit) {
+        Page page = new Page(1, limit);
+        QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByAsc("page_view");
+        IPage<Experts> iPage = baseMapper.selectPage(page, queryWrapper);
+        List<Experts> list = iPage.getRecords();
+        return list;
+    }
+
+    @Override
     public Result findExpertsList(String findName, int current, int limit) {
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("achievement_name",findName).like("achievement_key",findName);
-        Page page = new Page(current,limit);
-        IPage<Experts> iPage = baseMapper.selectPage(page,queryWrapper);
+        queryWrapper.like("achievement_name", findName).like("achievement_key", findName);
+        Page page = new Page(current, limit);
+        IPage<Experts> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Experts> expertsList = iPage.getRecords();
 
-        return new Result(ResultCode.SUCCESS,"",expertsList,iPage.getPages(),iPage.getCurrent());
+        return new Result(ResultCode.SUCCESS, "", expertsList, iPage.getPages(), iPage.getCurrent());
     }
 
     @Override
@@ -159,7 +169,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
     @Override
     public Result modifyExperts(Experts experts) {
-        if(experts != null){
+        if (experts != null) {
             baseMapper.updateById(experts);
             return new Result(ResultCode.SUCCESS);
         }
@@ -169,19 +179,19 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     @Override
     public Result adminDeleteExpertsId(Integer expertsId) {
         Experts experts = baseMapper.selectById(expertsId);
-        if(experts != null){
+        if (experts != null) {
             baseMapper.deleteById(expertsId);
-            return new Result(ResultCode.SUCCESS,"修改成功！");
+            return new Result(ResultCode.SUCCESS, "修改成功！");
         }
-        return new Result(ResultCode.FAIL,"修改失败！");
+        return new Result(ResultCode.FAIL, "修改失败！");
     }
 
     @Override
     public Result selectExpertsByCode(String statusCode, int current, int limit) {
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
-        Page page = new Page(current,limit);
-        queryWrapper.eq("status_code",statusCode);
-        IPage<Experts> iPage = baseMapper.selectPage(page,queryWrapper);
+        Page page = new Page(current, limit);
+        queryWrapper.eq("status_code", statusCode);
+        IPage<Experts> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Experts> expertsList = iPage.getRecords();
 
         return new Result(ResultCode.SUCCESS, "", expertsList, iPage.getPages(), iPage.getCurrent());

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -32,8 +33,11 @@ public interface IExpertsService extends IService<Experts> {
     //按添加时间查询专家（最新加入）
     Result selectExpertsByTime(int limit);
 
-    //按点击量查询专家（最新加入）
+    //按点击量查询专家
     Result expertRanking(int limit);
+
+    //专家推荐
+    List<Experts> recommend(int limit);
 
     /**
      * 管理员

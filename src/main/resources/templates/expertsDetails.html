@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>专家详情-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen"/>
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/me_details.css}">
+</head>
+<body>
+<div th:include="common/common :: header"></div>
+<!--主题-->
+<div class="current">
+    <ul class="tab">
+        <li>空间首页</li>
+    </ul>
+</div>
+<div class="me_con">
+    <div class="me_left" >
+        <div class="center">
+            <h4><span  th:text="${experts.expertsName}"></span></h4>
+        </div>
+        <div class="img_bian">
+            <img th:src="@{/images/show9.jpg}" alt="">
+        </div>
+        <div class="me_details">
+            <div>所在单位：<span th:text="${experts.unit}">---</span></div>
+            <hr>
+            <div>联系方式</div>
+            <ul>
+                <li>电 话：<span th:text="${experts.expertsPhone}"></span></li>
+                <li>邮 箱：<span th:text="${experts.expertsEmail}"></span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="me_right">
+        <div class="people">
+            <img th:src="@{/images/peopleicon.png}" alt=""><span>机构基本信息</span><br>
+            <ul>
+                <li>国籍：<span th:text="${experts.expertsCountry}">中国大陆</span></li>
+                <li>学历：<span th:text="${experts.expertsEducation}">事业单位法人</span></li>
+                <li>学位:<span th:text="${experts.degree}">科研教学单位</span></li>
+                <li>毕业院校:<span th:text="${experts.school}">--</span></li>
+            </ul>
+        </div>
+        <div class="people">
+            <img th:src="@{/images/icon2.png}" alt=""><span>主要研究成果简介</span><br>
+            <p th:text="${experts.researchAchievements}">
+            </p>
+        </div>
+    </div>
+</div>
+<!--尾部-->
+<div th:include="common/common :: footer"></div>
+</body>
+</html>

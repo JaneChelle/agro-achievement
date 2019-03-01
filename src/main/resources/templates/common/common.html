@@ -18,10 +18,10 @@
                 <li><a href="/LogUser/login">请注册</a></li>
                 <li><a th:if="${session.user==null}" href="/LogUser/login">登录</a></li>
                 <li><a th:if="${session.user!=null}" href="/LogUser/login">退出</a></li>
-                <li th:if="${session.user!=null}">欢迎：<span th:text="${session.user.userId}"></span></li>
+                <li th:if="${session.user!=null}">欢迎：<span th:text="${session.user.userName}"></span></li>
                 <li th:if="${session.user==null}"><span></span></li>
-            </ul>
         </div>
+        </ul>
     </div>
     <!--头部图片-->
     <div class="header">

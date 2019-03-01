@@ -30,9 +30,8 @@
     </div>
     <ul class="college_inro">
         <li th:each="OrganizationType : ${OrganizationTypeList }">
-            <a  th:text="${OrganizationType.organizationName}">中国农业大学</a><br>
-            <span>所在地：</span><span th:text="${OrganizationType.organizationRegion}">--</span>&nbsp;&nbsp;  <span>机构类型：</span><span th:text="${OrganizationType.organizationTypeId}">科研教学单位</span><br>
-            <span>机构简介:</span><span th:text="${OrganizationType.organizationIntroduce}">中国农业大学是国家“211工程” 和“985工程”重点建设的教育部直属高校。现任党委书记姜沛民，校长柯炳生。</span>
+            <span  th:text="${OrganizationType.typeName}">中国农业大学</span><br>
+            <span>机构类型：</span><span th:text="${OrganizationType.organizationTypeId}">--</span>&nbsp;&nbsp; <br>
         </li>
     </ul>
     <div class="fenye">

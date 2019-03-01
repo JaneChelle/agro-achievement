@@ -118,7 +118,7 @@
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.achievementIntroduce}" th:text="${achievement.achievementIntroduce}" target="_blank">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(achievement.endTime,'yyyy-MM-dd')}"></span>-->
-                    <span th:text="${achievement.endTime}"></span>
+                    <span  th:text="${#temporals.format(achievement.endTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
@@ -133,7 +133,7 @@
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${demand.demandIntroduce}" target="_blank" th:text="${demand.demandIntroduce}">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(demand.releaseTime,'yyyy-MM-dd')}"></span>-->
-                    <span th:text="${demand.releaseTime}"></span>
+                    <span  th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
@@ -206,7 +206,7 @@
             <ul>
                 <li th:each="example : ${exampleList}">
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${example.exampleTitle}" th:text="${example.exampleTitle}" target="_blank">
-                </a><span style="float: right" th:text="${example.releaseTime}"></span>
+                </a><span style="float: right"   th:text="${#temporals.format(example.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
@@ -230,7 +230,7 @@
             <ul>
                 <li th:each="trading : ${tradingList}">
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${trading.announcementTitle}"  th:text="${trading.announcementTitle}" target="_blank">
-                </a><span style="float: right" th:text="${trading.releaseTime}"></span>
+                </a><span style="float: right"   th:text="${#temporals.format(trading.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
@@ -243,7 +243,7 @@
             <ul>
                 <li th:each="policy : ${policyList}">
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${policy.announcementTitle}" th:text="${policy.announcementTitle}" target="_blank">
-                </a><span style="float: right" th:text="${policy.releaseTime}"></span>
+                </a><span style="float: right"  th:text="${#temporals.format(policy.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>

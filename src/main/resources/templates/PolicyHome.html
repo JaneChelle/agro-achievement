@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title>政策资讯-农业科技成果转化交易服务平台</title>
     <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/htmleaf-demo.css}">
     <link rel="stylesheet" th:href="@{/css/policy.css}">
     <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
     <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/htmleaf-demo.css}">
+
     <link rel="stylesheet" th:href="@{/css/MxSlider.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
 </head>
@@ -22,10 +23,14 @@
 </div>
 <div class="cg-contain">
     <div class="left">
-        <!--<a href="" class="po_more">更多</a>-->
+        <!--政策-->
         <a href=""><img th:src="@{/images/zc_10.jpg}" alt="" style="height: 34px;"></a>
         <ul >
-            <li th:each="NewsCenter : ${NewsCenter}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${NewsCenter.announcementTitle}"></a><span style="margin-right: 10px;color: #cccccc;float: right" th:text="${NewsCenter.releaseTime}"></span></li>
+            <li th:each="PolicyCenter : ${PolicyCenter}">
+                <i class="fa fa-forward" aria-hidden="true"></i>
+                <a th:href="@{/admin/announcementDetails(announcementId=${PolicyCenter.announcementId})}" th:text="${PolicyCenter.announcementTitle}"></a>
+                <span style="margin-right: 10px;color: #cccccc;float: right"  th:text="${#temporals.format(PolicyCenter.releaseTime, 'yyyy-MM-dd')}"></span>
+            </li>
         </ul>
     </div>
     <div class="middle">
@@ -46,12 +51,28 @@
                 </div>
             </div>
         </div>
+        <div class="best_new">
+         <!--新闻中心-->
+            <a href="" style="font-weight: 800" class="title">新闻中心</a>
+        <a href="" class="zj_more">更多</a>
+        <ul style="padding: 20px 0 0 15px;">
+            <li th:each="NewsCenter : ${NewsCenter}">
+                <i class="fa fa-forward" aria-hidden="true" style="color: #41A809"></i>
+                <a th:href="@{/admin/announcementDetails(announcementId=${NewsCenter.announcementId})}" style="color: #74777b;" th:text="${NewsCenter.announcementTitle}"></a>
+                <span style="margin-right: 10px;color: #cccccc;float: right"  th:text="${#temporals.format(NewsCenter.releaseTime, 'yyyy-MM-dd')}"></span>
+            </li>
+        </ul>
+        </div>
     </div>
     <div class="right">
+        <!--交易活动-->
         <a href="" class="po_more">更多</a>
-        <img th:src="@{/images/zc_07.jpg}" alt="" style="height: 34px;">
-        <ul >
-            <li th:each="PolicyCenter : ${PolicyCenter}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${PolicyCenter.}">欧拉型藏羊繁育及生产技术推广</a></li>
+        <img th:src="@{/images/jf_05.jpg}" alt="" style="height: 34px;">
+        <ul>
+            <li th:each="Trading  : ${TradingActivity}">
+                <i class="fa fa-forward" aria-hidden="true" ></i>
+                <a th:href="@{/admin/announcementDetails(announcementId=${Trading.announcementId})}" th:text="${Trading.announcementTitle}">欧拉型藏羊繁育及生产技术推广</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -62,11 +83,11 @@
 <script th:src="@{/js/MxSlider.js}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $( '.ZI-slider' ).MxSlider( {
+        $( '.ZI-slider' ).MxSlider({
             autoPlay: true,
             dots: true,
             timeSlide: 500
-        } );
+        });
     })
 </script>
 </body>

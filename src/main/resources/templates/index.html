@@ -46,7 +46,7 @@
             <ul class="newsCon">
                 <li th:each="news: ${newsList}">
                     <a target="_blank" href="" title=""><span th:text="${news.announcementTitle}"></span></a>
-                    <span style="color:#666;float: right" th:text="${news.releaseTime}"></span>
+                    <span style="color:#666;float: right" th:text="${#temporals.format(news.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>

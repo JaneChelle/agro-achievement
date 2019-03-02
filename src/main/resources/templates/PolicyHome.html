@@ -28,7 +28,7 @@
         <ul >
             <li th:each="PolicyCenter : ${PolicyCenter}">
                 <i class="fa fa-forward" aria-hidden="true"></i>
-                <a th:href="@{/admin/announcementDetails(announcementId=${PolicyCenter.announcementId})}" th:text="${PolicyCenter.announcementTitle}"></a>
+                <a th:href="@{/Announcement/announcementDetails(announcementId=${PolicyCenter.announcementId})}" th:text="${PolicyCenter.announcementTitle}"></a>
                 <span style="margin-right: 10px;color: #cccccc;float: right"  th:text="${#temporals.format(PolicyCenter.releaseTime, 'yyyy-MM-dd')}"></span>
             </li>
         </ul>
@@ -53,12 +53,12 @@
         </div>
         <div class="best_new">
          <!--新闻中心-->
-            <a href="" style="font-weight: 800" class="title">新闻中心</a>
-        <a href="" class="zj_more">更多</a>
-        <ul style="padding: 20px 0 0 15px;">
+                <a href="" style="font-weight: 800;left: 14px;" class="title zj_more">新闻中心</a>
+                <a href="" class="zj_more">更多</a>
+            <ul style="padding: 20px 0 0 15px;">
             <li th:each="NewsCenter : ${NewsCenter}">
                 <i class="fa fa-forward" aria-hidden="true" style="color: #41A809"></i>
-                <a th:href="@{/admin/announcementDetails(announcementId=${NewsCenter.announcementId})}" style="color: #74777b;" th:text="${NewsCenter.announcementTitle}"></a>
+                <a th:href="@{/Announcement/announcementDetails(announcementId=${NewsCenter.announcementId})}" style="color: #74777b;" th:text="${NewsCenter.announcementTitle}"></a>
                 <span style="margin-right: 10px;color: #cccccc;float: right"  th:text="${#temporals.format(NewsCenter.releaseTime, 'yyyy-MM-dd')}"></span>
             </li>
         </ul>
@@ -71,7 +71,7 @@
         <ul>
             <li th:each="Trading  : ${TradingActivity}">
                 <i class="fa fa-forward" aria-hidden="true" ></i>
-                <a th:href="@{/admin/announcementDetails(announcementId=${Trading.announcementId})}" th:text="${Trading.announcementTitle}">欧拉型藏羊繁育及生产技术推广</a>
+                <a th:href="@{/Announcement/announcementDetails(announcementId=${Trading.announcementId})}" th:text="${Trading.announcementTitle}">欧拉型藏羊繁育及生产技术推广</a>
             </li>
         </ul>
     </div>

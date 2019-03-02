@@ -44,7 +44,7 @@ public class LogUserController extends BaseController {
         Result result = loginService.login(request,userName,password);
         int code = result.getCode();
         if(code == 1){//管理员登录
-            return new ModelAndView("adminIndex");
+            return new ModelAndView("admin/adminIndex");
         }else if(code == 2 || code == 0){
             //普通用户（或者专家）登录
             String url = "redirect:/HomeController/home";
@@ -70,6 +70,7 @@ public class LogUserController extends BaseController {
             return new ModelAndView("login");
         }
         model.addAttribute("msg","您的信息有误！");
+        System.out.println("aaaaaaaaaaaa");
         return new ModelAndView("redirect:/LogUser/toRegister");
     }
 

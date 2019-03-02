@@ -32,7 +32,7 @@ public class AdminExampleController extends BaseController {
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
-        return new ModelAndView("ExampleList");
+        return new ModelAndView("admin/adminExample");
     }
 
     //去添加成果

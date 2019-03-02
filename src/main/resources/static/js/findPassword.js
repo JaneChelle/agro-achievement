@@ -16,10 +16,10 @@ function findPassword() {
             dataType: "JSON",
             success: function (data) {//ajax请求成功后触发的方法
                 if (data.code == 0) {
-                    $('.userPhone_small').html(data.msg);
-                    return false;
+                    // $('.userPhone_small').html(data.msg);
+                    // return false;
                 } else {
-
+                    location.reload();
                 }
             },
             error: function (msg) {//ajax请求失败后触发的方法

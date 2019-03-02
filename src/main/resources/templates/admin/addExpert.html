@@ -1,0 +1,110 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>农业科技成果转化交易服务平台注册</title>
+	<link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+
+<body>
+<div th:include="common/adminCommon :: nav"></div>
+    <section>
+    	<div class="search-collapse">
+    		<h3>
+				<img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
+				<!--<img src="../images/成果 (1).svg" alt="" />-->
+    			<span>申请成为专家</span>
+    		</h3>
+    	</div>
+    	<div class="section_table">
+    		<div class="section">
+				<div class="apply_expert">
+					<div class="applyExpert">
+						<label>姓名</label>
+						<input type="text" name="expertsName" value="" />
+						<label>性别</label>
+						<input type="radio" name="expertsSex" value="" />男
+						<input type="radio" name="expertsSex" value="" />女
+					</div>
+					<div class="applyExpert">
+						<label>出生日期</label>
+						<input type="text" name="expertsBirth" value="" />
+						<label>国籍</label>
+						<input type="text" name="expertsCountry" value="" />
+					</div>
+					<div class="applyExpert">
+						<label>学历</label>
+						<select name="expertsEducation">
+							<option value="研究生">研究生</option>
+							<option value="博士研究生">博士研究生</option>
+							<option value="硕士研究生">硕士研究生</option>
+							<option value="大学">大学</option>
+							<option value="大专">大专</option>
+							<option value="中专">中专</option>
+							<option value="其他">其他</option>
+						</select>
+						<label>学位</label>
+						<select name="degree">
+							<option value="名誉博士">名誉博士</option>
+							<option value="博士">博士</option>
+							<option value="硕士">硕士</option>
+							<option value="学士">学士</option>
+							<option value="其他">其他</option>
+						</select>
+					</div>
+					<div class="applyExpert">
+						<label>毕业院校</label>
+						<input type="text" name="school" id="" value="" />
+						<label>所学专业</label>
+						<input type="text" name="major" value="" />
+					</div>
+					<div class="applyExpert">
+						<label>所在单位</label>
+						<input type="text" name="unit" value="" />
+						<label>行政职务</label>
+						<input type="text" name="position" value="" />
+					</div>
+					<div class="applyExpert">
+						<label>专家类型ID</label>
+						<input type="text" name="typeId" value="" />
+						<label>用户ID</label>
+						<input type="text" name="userId" value="" />
+					</div>
+					<div class="applyExpert">
+						<label>研究领域</label>
+						<textarea name="researchField" rows="" cols=""></textarea>
+						<label>主要研究成果简介</label>
+						<textarea name="researchAchievements" rows="" cols=""></textarea>
+					</div>
+					<div class="applyExpert">
+						<label>个人获奖状况</label>
+						<input type="text" name="personalPrize" value="" />
+						<label>成果获奖状况</label>
+						<input type="text" name="resultsPrize" value="" />
+					</div>
+					<div class="applyExpert">
+						<label>联系方式</label>
+						<input type="text" name="expertsPhone" value="" />
+						<label>邮箱</label>
+						<input type="text" name="expertsEmail" value="" />
+					</div>
+					<div class="applyExpert">
+						<label>照片地址</label>
+						<input type="file" name="pictureAddress" value="" accept="image/*"/>
+						<button type="submit" class="btn">申请</button>
+					</div>
+				</div>
+			</div>
+    	</div>
+    	
+    </section>
+
+</body>
+	<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
+</html>

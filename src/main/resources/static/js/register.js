@@ -1,5 +1,5 @@
 //验证用户名
-function checkUserName(){
+function checkRegisterUserName(){
     var count =1;
     var preg = /^[A-Za-z0-9\u4e00-\u9fa5]+$/;
     if($('.userRegisterName').val() == ""){
@@ -21,10 +21,10 @@ function checkUserName(){
 	        success: function (data) {//ajax请求成功后触发的方法
 	            if(data.code==-1){
 	                $('.userName_small').html("<i class='fa fa-times'></i>" + data.msg);
-	                count = 1;
+	                count = 0;
 	            }else {
 	                $('.userName_small').html("<i class='fa fa-check'>");
-	                count = 0;
+	                count = 1;
 	            }
 	        },
 	        error: function (msg) {//ajax请求失败后触发的方法
@@ -32,8 +32,9 @@ function checkUserName(){
                 count =0;
 	        }
 	    });
-       return count;
+        return count;
     }
+
 }
 //密码
 function userPassWord(){
@@ -228,12 +229,13 @@ function resetCode(){
 // 注册
 function userRegister() {
     // 获取地区
-    // var province = $(".province option:selected").val();
-    // var city = $(".city option:selected").val();
-    // var district = $(".district option:selected").val();
-    // var userAddress = province + city + district;
-    // console.log(userAddress);
-    if(!checkUserName){
+    var province = $(".province option:selected").val();
+    var city = $(".city option:selected").val();
+    var district = $(".district option:selected").val();
+    var userAddress = province + city + district;
+    $(".hiddenInput").val(userAddress);
+    console.log(userAddress);
+    if(!checkRegisterUserName()){
         alert("1");
         return false;
     }else if(!userPassWord()){

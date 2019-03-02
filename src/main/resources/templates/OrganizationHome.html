@@ -23,7 +23,8 @@
     <div class="left">
         <img th:src="@{/images/se_02.jpg}" alt="">
         <ul >
-            <li th:each="Organization : ${OrganizationTypeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/selectAchieveByType}" th:text="${Organization.typeName}"></a></li>
+            <li th:each="Organization : ${OrganizationTypeList}"><i class="fa fa-forward" aria-hidden="true"></i>
+                <a th:href="@{/HomeController/selectAchieveByType}" th:text="${Organization.typeName}"></a></li>
         </ul>
     </div>
     <div class="middle">

@@ -1,0 +1,197 @@
+/*成果管理*/
+.noticeImg span{
+	position: relative;
+	right: 12px;
+	float: right;
+	cursor: pointer;
+}
+.achievementModify,.sureModify{
+	cursor: pointer;
+	display: inline-block;
+	height: 100%;
+}
+.sureModify{
+	display: none;
+}
+.section input{
+	height: 32px;
+	outline: none;
+	padding-left: 12px;
+	font-size: 18px;
+	border-radius: 5px;
+	border: 1px solid #999;
+}
+.section table thead tr td>img{
+	display: none;
+}
+.float{    
+    float:left;    
+    width : 200px;    
+    height: 200px;    
+    overflow: hidden;    
+    border: 1px solid #CCCCCC;    
+    border-radius: 10px;    
+    padding: 5px;    
+    margin: 5px;    
+}    
+.achievementImg button{
+	height: 32px;
+	border: none;
+	cursor: pointer;
+	vertical-align: middle;
+}  
+.result{    
+    width: 200px;    
+    height: 200px;    
+    text-align: center;    
+    box-sizing: border-box;    
+}     
+#file_input{  
+    display: none;  
+}  
+.delete{  
+    width: 200px;  
+    /*height:200px;*/    
+    /*line-height: 200px;*/  
+    text-align: center;  
+    z-index: 10;  
+    font-size: 30px;  
+    background-color: rgba(255,255,255,0.8);  
+    color: #777;  
+    opacity: 0;  
+    transition-duration: 0.7s;  
+    -webkit-transition-duration: 0.7s;   
+    cursor: pointer;  
+}  
+.float:hover .delete{  
+    opacity: 1;  
+}  
+
+/*案例管理*/
+.exampleList span{
+	cursor: pointer;
+	display: inline-block;
+	height: 100%;
+	margin: 0 6px;
+	vertical-align: top;
+}
+.exampleList span:nth-child(1){
+	color: #5BC0DE;
+}
+.exampleList span:nth-child(2){
+	color: #5CB85C;
+}
+.exampleList span:nth-child(3){
+	color: #fc5656;
+}
+
+.examplePopup{
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99;
+	padding: 2% 15%;
+	display: none;
+	transition: all .3s;
+	background-color: rgba(0,0,0,.7);
+}
+.exampleDetails{
+	position: relative;
+	top: -135px;
+    font-size: 21px;
+    border-radius: 5px;
+    text-align: left;
+    font-weight: 600;    
+    overflow: hidden;
+    background-color: #fff;
+}
+.exampleDetails p{
+	padding: 18px;
+	text-indent: 2em;
+	white-space: normal;
+	line-height: 32px;
+}
+.exampleDetails button{
+	position: relative;
+	right: 18px;
+	margin-bottom: 18px;
+	float: right;
+	padding: 12px 18px;
+	font-weight: 600;
+}
+/*添加案例*/
+popup .popup_table textarea{
+	height: 210px;
+}
+.popupModify,.popup{
+	width: 482px;
+	margin-left: -241px;
+}
+.popupModify input,.popupModify textarea,.popup input,.popup textarea{
+	width: 373px;
+}
+
+/*专家*/
+/*申请为专家*/
+.apply_expert{
+	margin: 0 24px;
+	padding: 0 24px;
+	font-size: 21px;
+	font-weight: 600;
+}
+
+.applyExpert{
+	margin: 18px;
+	padding: 12px;
+	overflow: hidden;
+	border-radius: 5px;
+	border: 1px solid #999;
+}
+/*隔行换色*/
+.applyExpert:hover{
+	background-color: #1484d830;
+}
+.applyExpert label{
+	width: 8%;
+	text-align: center;
+}
+.applyExpert textarea{
+	width: 32%;
+	height: 200px;
+	vertical-align: middle;
+}
+.applyExpert select{
+	width: 32%;
+	height: 42px;
+	margin-left: 14px;
+}
+.applyExpert input[type=text]{
+	width: 32%;
+	height: 42px;
+	margin: 0 12px;
+}
+.applyExpert input[type=radio]{
+	width: 21px;
+	height: 21px;
+	margin: 0 6px;
+	vertical-align: middle;
+}
+.applyExpert button[type=submit]{
+	float: right;
+	position: relative;
+	right: 12px;
+	font-size: 21px;
+	font-weight: 600;
+	padding: 12px 24px;
+}
+/*需求管理*/
+/*申请需求*/
+.applyDemand textarea{
+	height: 80px;
+	width: 80%;
+}
+.applyDemand input{
+	width: 20%!important;
+}

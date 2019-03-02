@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>公告详情-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/cg-details.css}">
+</head>
+<body>
+<div th:include="common/common :: header"></div>
+<!--主体-->
+<div class="current">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/Announcement/selectAnnouncement(announcementType=${announcementList.announcementType})}">公告展示</a> >><a th:href="@{/admin/announcementDetails(announcementId=${announcement.announcementId})}">公告详情</a>
+</div>
+<div class="product">
+    <div class="name">
+        <h4 th:text="${announcement.announcementTitle}">强盛一号</h4>
+        <span th:text="'发布时间'+${announcement.releaseTime}"></span>&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="pro_msg">
+        <ul>
+            <li><i class="fa fa-forward" aria-hidden="true"></i><span>公告类型:</span><span th:text="${announcement.announcementType}"></span></li>
+        </ul>
+    </div>
+    <div class="introduce">
+        <h4 style="margin-bottom: 10px">
+            <img th:src="@{/images/tu-2.png}" alt="">
+        </h4>
+        <p th:text="${announcement.announcementContent}"></p>
+    </div>
+</div>
+<!--尾部-->
+<div th:include="common/common :: footer"></div>
+</body>
+</html>

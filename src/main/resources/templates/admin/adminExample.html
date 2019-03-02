@@ -1,0 +1,199 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>农业科技成果转化交易服务平台注册</title>
+	<link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+
+<body>
+<div th:include="common/adminCommon :: nav"></div>
+    <section>
+    	<div class="col-sm-12 search-collapse">
+    		<form action="">
+    			<div class="select-list">
+    				<ul>
+    					<li>
+    						<span>搜索：</span>
+    						<input type="text" name="" id="" value="" />
+    					</li>
+    					<li>
+    						<button class="btn" type="submit">搜 索</button>
+    					</li>
+    					<li></li>
+    					<li class="exampleList">
+    						<span>未审核【0】</span>
+    						<span>通过【1】</span>
+    						<span>失败【2】</span>
+    					</li>
+    					<li class="img_add">
+    						<a href="JavaScript:;">
+	                			<img src="../images/添加.svg" title="添加案例"/>
+	                			<span>添加</span>
+	                		</a>
+    					</li>
+    				</ul>
+    			</div>
+    		</form>
+    	</div>
+    	<div class="section_table">
+    		<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th>选择</th>
+		                	<th>案例ID</th>
+		                	<th>案例标题</th>
+		                	<th style="display: none;">用户id</th>
+		                	<th>案例内容</th>
+		                	<th>发布时间</th>
+		                	<th>用户id</th>
+		                	<th>审核状态码</th>
+		                    <th>操作</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		            	<tr th:each="example : ${exampleList}">
+		            		<td>
+		            			<input th:id="${example.exampleId}" th:value="${example.exampleId}" class="selectall" />
+								<label th:for="${example.exampleId}"></label>
+		            		</td>
+		            		<td th:text="${example.exampleId}">B133</td>
+		            		<td th:text="${example.exampleTitle}">“羊肉加工增值关键技术”顺利转化，经济社会效益显著</td>
+		            		<td th:text="${example.exampleId}" style="display: none;">3</td>
+		            		<td style="cursor: pointer;" class="exampleTd">
+		            			<span>详情</span>
+		            			<input type="hidden" name="" th:id="${example.exampleId}"/>
+		            			<div class="examplePopup">
+		            				<div class="exampleDetails">
+		            					<p th:text="${example.exampleContent}">1111</p>
+		            					<button class="btn exampleCancel">取 消</button>
+		            				</div>
+		            			</div>
+		            		</td>
+		            		<td th:text="${#dates.format(example.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">2019-03-25 21:32:34</td>
+		            		<td th:text="${example.userId}">1</td>
+		            		<td th:text="${example.statusCode}">2</td>
+		            		<td>
+		            			<button type="button" class="btn modify">修改</button>
+		            			<button type="button" class="btn deleteExample">删除</button>
+		            			
+		            		</td>
+		            	</tr>
+		            </tbody>
+				</table>
+			</div>
+    	</div>
+		<div class="admin_bottom">
+			<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th class="election">
+								<span class="electionDelete">批量删除</span>
+								<input type="hidden" class="browider">
+		            		</th>
+		                    <th>
+		                    	<ul class="pagination">
+									<li><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+		                    </th>
+		                </tr>
+		           </thead>
+		        </table>
+			</div>
+		</div>
+    </section>
+    <!--弹窗-->
+	<popup>
+		<div class="popup">
+			<h3>添加案例</h3>
+			<div class="popup_table">
+				<form action="" method="post">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+			                    <th>案例标题</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>	
+			                <tr>
+			                    <th>案例内容</th>
+			                    <td class="exampleTextarea">
+			                    	<textarea name="" rows="" cols="" class=""></textarea>
+			                    </td>
+			                </tr>	
+			                <tr>
+			                    <th>用户ID</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>	
+						</thead>
+					</table>
+					<div class="popup_bottom">
+						<input type="reset" name="" id="" value="重置" />
+						<input type="submit" value="添加"/>
+						<input type="button" name="" class="cancel_1" value="取消" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</popup>
+	
+	<!--修改-->
+	<popupModify>
+		<div class="popupModify">
+			<h3>修改案例</h3>
+			<div class="popup_table">
+				<form action="" method="post">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+			                    <th>案例名称</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" />
+			                    </td>
+			                </tr>	
+			                <tr>
+			                    <th>案例内容</th>
+			                    <td>
+			                    	<textarea name="" rows="" cols=""></textarea>
+			                    </td>
+			                </tr>	
+			               <tr style="display: none;">
+			               		<th>用户Id</th>
+			               		<td>
+			               			<input type="" name="" id="" value="" />
+			               		</td>
+			               </tr>
+						</thead>
+					</table>
+					<div class="popup_bottom">
+						<input type="reset" name="" id="" value="重置" />
+						<input type="submit" value="添加"/>
+						<input type="button" name="" class="cancel_1" value="取消" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</popupModify>	
+	
+	</body>
+	
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+	<script type="text/javascript" src="../js/adminIndex.js" ></script>
+	<script type="text/javascript" src="../js/adminExample.js" ></script>
+</html>

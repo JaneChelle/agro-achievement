@@ -41,7 +41,7 @@
             <div class="item">
                 <i class="fa fa-life-ring" aria-hidden="true"></i>
                 <a href="" style="font-weight: 800" class="title">新闻中心</a>
-                <a th:href="@{/admin/selectAnnouncement}"  class="more">更多</a>
+                <a th:href="@{/Announcement/selectAnnouncement}"  class="more">更多</a>
             </div>
             <ul class="newsCon">
                 <li th:each="news: ${newsList}">
@@ -169,7 +169,7 @@
         <div class="supplyDemand">
             <div class="h_block">
                 <a style="float: left">交易活动动态</a>
-                <a th:href="@{/admin/selectAnnouncement}" style="float: right">更多</a>
+                <a th:href="@{/Announcement/selectAnnouncement}" style="float: right">更多</a>
             </div>
             <ul>
                 <li th:each="trading : ${tradingList}">
@@ -182,7 +182,7 @@
         <div class="supplyDemand" style="float: right">
             <div class="h_block">
                 <a style="float: left">政策中心</a>
-                <a th:href="@{/admin/selectAnnouncement}" style="float: right">更多</a>
+                <a th:href="@{/Announcement/selectAnnouncement}" style="float: right">更多</a>
             </div>
             <ul>
                 <li th:each="policy : ${policyList}">

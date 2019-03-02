@@ -41,44 +41,23 @@
             <div class="item">
                 <i class="fa fa-life-ring" aria-hidden="true"></i>
                 <a href="" style="font-weight: 800" class="title">新闻中心</a>
-                <a href=""  class="more">更多</a>
+                <a th:href="@{/admin/selectAnnouncement}"  class="more">更多</a>
             </div>
             <ul class="newsCon">
                 <li th:each="news: ${newsList}">
-                    <a target="_blank" href="" title=""><span th:text="${news.announcementTitle}"></span></a>
+                    <a target="_blank" th:href="@{/admin/announcementDetails(announcementId=${news.announcementId})}" title=""><span th:text="${news.announcementTitle}"></span></a>
                     <span style="color:#666;float: right" th:text="${#temporals.format(news.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
+        <!--钟表-->
         <div class="service">
-            <div class="tips">服务资源</div>
-            <div class="oDiv">
-                <div>
-                    <a href=""><img th:src="@{/images/jishu1.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu2.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu3.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu4.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu5.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu6.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu7.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu8.jpg}" alt=""></a>
-                </div>
-                <div>
-                    <a href=""><img th:src="@{/images/jishu9.jpg}" alt=""></a>
+            <div class="dowebok">
+                <div class="dowebok-face">
+                    <div class="hand hour"></div>
+                    <div class="hand minute"></div>
+                    <div class="hand second"></div>
+                    <div class="center"></div>
                 </div>
             </div>
         </div>
@@ -87,13 +66,13 @@
     <div class="two">
         <div class="item" style="width: 1200px;margin-bottom: 20px">
             <i class="fa fa-life-ring" aria-hidden="true"></i>
-            <a href="" style="font-weight: 800" class="title">成果展示</a>
-            <a href=""  class="more">更多</a>
+            <a th:href="@{/HomeController/AchievementHome}" style="font-weight: 800" class="title">成果展示</a>
+            <a th:href="@{/achievement/selectAchieveByType}"  class="more">更多</a>
         </div>
         <div class="imgkuang">
             <ul>
                 <li class="lii" th:each="achievement : ${achievementList}">
-                    <a href="#"><img th:src="${achievement.pictureAddress}" style="height:200px"/></a>
+                    <a th:href="@{/achievement/achievementDetails(achievementId=${achievement.achievementId})}"><img th:src="${achievement.pictureAddress}" style="height:200px"/></a>
                 </li>
             </ul>
 
@@ -104,8 +83,8 @@
 
         <div class="item" style="width: 1200px;margin-bottom: 20px">
             <i class="fa fa-life-ring" aria-hidden="true"></i>
-            <a href="" style="font-weight: 800" class="title">供需对接专区</a>
-            <a href=""  class="more">更多</a>
+            <a th:href="@{/HomeController/SupplyHome}" style="font-weight: 800" class="title">供需对接专区</a>
+            <!--<a href=""  class="more">更多</a>-->
         </div>
         <!--技术供给-->
         <div class="supplyDemand">
@@ -133,52 +112,19 @@
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${demand.demandIntroduce}" target="_blank" th:text="${demand.demandIntroduce}">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(demand.releaseTime,'yyyy-MM-dd')}"></span>-->
-                    <span  th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}"></span>
+                    <span  th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}" style="float: right;"></span>
                 </li>
             </ul>
         </div>
         <!--成果推荐-->
         <div class="supplyDemand wrap" style="margin-top: 20px">
             <label>
-                <span>成果推荐</span>
-                <input type="radio" name="tab" checked>
-                <div>
-                    <ul>
-                        <li >
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                        </a>
-                        </li>
-                        <li>
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" title="一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末的制备方法" target="_blank">
-                            一种盐焗鸡卤汁分离鸡的精炼方法及鸡油粉末
-                        </a>
-                        </li>
-                    </ul>
-                </div>
-            </label>
-            <label>
                 <span>机构推荐</span>
                 <input type="radio" name="tab">
                 <div>
                     <ul>
                         <li th:each="organization: ${organizationList}">
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${organization.organizationIntroduce}" th:text="${organization.organizationIntroduce}" target="_blank">
+                            <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/ HomeController/organizationDetails(organizationId=${Organization.organizationId})}" th:title="${organization.organizationIntroduce}" th:text="${organization.organizationIntroduce}" target="_blank">
                         </a>
                         </li>
                     </ul>
@@ -190,7 +136,7 @@
                 <div>
                     <ul>
                         <li th:each="experts : ${expertsList}">
-                            <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${experts.expertsName}" th:text="${experts.expertsName}" target="_blank">
+                            <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/expertsDetails(expertsId=${experts.expertsId})}" th:title="${experts.expertsName}" th:text="${experts.expertsName}" target="_blank">
                         </a>
                         </li>
                     </ul>
@@ -205,7 +151,7 @@
             </div>
             <ul>
                 <li th:each="example : ${exampleList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${example.exampleTitle}" th:text="${example.exampleTitle}" target="_blank">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/example/exampleDetails(exampleId=${example.exampleId})}" th:title="${example.exampleTitle}" th:text="${example.exampleTitle}" target="_blank">
                 </a><span style="float: right"   th:text="${#temporals.format(example.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
@@ -215,21 +161,19 @@
     </div>
     <!--最新资讯-->
     <div class="three">
-
         <div class="item" style="width: 1200px;margin-bottom: 20px">
             <i class="fa fa-life-ring" aria-hidden="true"></i>
             <a href="" style="font-weight: 800" class="title">最新资讯</a>
-            <a href=""  class="more">更多</a>
         </div>
-        <!--技术供给-->
+        <!--交易活动动态-->
         <div class="supplyDemand">
             <div class="h_block">
                 <a style="float: left">交易活动动态</a>
-                <a href="" style="float: right">更多</a>
+                <a th:href="@{/admin/selectAnnouncement}" style="float: right">更多</a>
             </div>
             <ul>
                 <li th:each="trading : ${tradingList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${trading.announcementTitle}"  th:text="${trading.announcementTitle}" target="_blank">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/admin/announcementDetails(announcementId=${trading.announcementId})}" th:title="${trading.announcementTitle}"  th:text="${trading.announcementTitle}" target="_blank">
                 </a><span style="float: right"   th:text="${#temporals.format(trading.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
@@ -238,17 +182,15 @@
         <div class="supplyDemand" style="float: right">
             <div class="h_block">
                 <a style="float: left">政策中心</a>
-                <a href="" style="float: right">更多</a>
+                <a th:href="@{/admin/selectAnnouncement}" style="float: right">更多</a>
             </div>
             <ul>
                 <li th:each="policy : ${policyList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${policy.announcementTitle}" th:text="${policy.announcementTitle}" target="_blank">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/admin/announcementDetails(announcementId=${policy.announcementId})}" th:title="${policy.announcementTitle}" th:text="${policy.announcementTitle}" target="_blank">
                 </a><span style="float: right"  th:text="${#temporals.format(policy.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
-
-
     </div>
 </div>
 <!--尾部-->

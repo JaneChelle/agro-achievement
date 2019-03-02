@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>案例详情-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/cg-details.css}">
+</head>
+<body>
+<div th:include="common/common :: header"></div>
+<!--主体-->
+<div class="current">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/HomeController/selectExample}">案例展示</a> >><a th:href="@{/example/exampleDetails(exampleId=${example.exampleId})}">案例展示详情</a>
+</div>
+<div class="product">
+    <div class="name">
+        <h4 th:text="${example.exampleTitle}">强盛一号</h4>
+        <span th:text="'发布时间'+${example.releaseTime}"></span>&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="pro_msg">
+        <ul>
+            <li><i class="fa fa-forward" aria-hidden="true"></i><span>用户id:</span><span th:text="${example.userId}"></span></li>
+            <li><i class="fa fa-forward" aria-hidden="true"></i><span>审核状态:</span><span th:text="${example.statusCode}">——</span></li>
+        </ul>
+    </div>
+    <div class="introduce">
+        <h4 style="margin-bottom: 10px">
+            <img th:src="@{/images/tu-2.png}" alt="">
+        </h4>
+        <p th:text="${example.exampleContent}"></p>
+    </div>
+</div>
+<!--尾部-->
+<div th:include="common/common :: footer"></div>
+</body>
+</html>

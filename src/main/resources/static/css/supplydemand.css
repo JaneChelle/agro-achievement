@@ -78,18 +78,28 @@
 }
 .left>ul>li{
     border-bottom: 1px dotted #cccccc;
-    line-height: 38px;
+    line-height: 35px;
 }
 .left>ul>li>i,.right>ul>li>i,.best_new>ul>li>i,.jishu>ul>li>i{
-    vertical-align: middle;
+    vertical-align: top;
     margin-right: 2px;
     padding-left: 10px;
     color: #41A809;
+    display: inline-block;
+    line-height: 35px;
 }
+
 .left>ul>li>a,.right>ul>li>a,.best_new>ul>li>a,.jishu>ul>li>a{
     color: #000;
     text-decoration: none;
+    display: inline-block;
+    width: 430px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 35px;
 }
+
 .left>ul>li>a:hover,.right>ul>li>a:hover,.best_new>ul>li>a:hover,.jishu>ul>li>a:hover{
     color: #41A809;
     text-decoration: underline;

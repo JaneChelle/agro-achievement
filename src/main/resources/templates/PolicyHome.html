@@ -53,9 +53,9 @@
         </div>
         <div class="best_new">
          <!--新闻中心-->
-            <a href="" style="font-weight: 800" class="title">新闻中心</a>
-        <a href="" class="zj_more">更多</a>
-        <ul style="padding: 20px 0 0 15px;">
+                <a href="" style="font-weight: 800;left: 14px;" class="title zj_more">新闻中心</a>
+                <a href="" class="zj_more">更多</a>
+            <ul style="padding: 20px 0 0 15px;">
             <li th:each="NewsCenter : ${NewsCenter}">
                 <i class="fa fa-forward" aria-hidden="true" style="color: #41A809"></i>
                 <a th:href="@{/admin/announcementDetails(announcementId=${NewsCenter.announcementId})}" style="color: #74777b;" th:text="${NewsCenter.announcementTitle}"></a>

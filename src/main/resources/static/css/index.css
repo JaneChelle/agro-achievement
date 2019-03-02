@@ -107,6 +107,7 @@
     height: 200px;
     float: left;
     border: 1px solid #ccc;
+    padding-bottom: 5px;
 }
 
 .supplyDemand>ul>li,label div>ul>li{
@@ -124,7 +125,7 @@ label div>ul>li{
     color: #000;
     text-decoration: none;
     display: inline-block;
-    width: 450px;
+    width: 430px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

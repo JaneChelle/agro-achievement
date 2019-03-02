@@ -1,0 +1,219 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>农业科技成果转化交易服务平台注册</title>
+    <link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+    <link rel="stylesheet" th:href="@{../css/admindemo.css}" />
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<div th:include="common/adminCommon :: nav"></div>
+    
+    <section>
+    	<div class="col-sm-12 search-collapse">
+    		<form action="">
+    			<div class="select-list">
+    				<ul>
+    					<li>
+    						<span>搜索：</span>
+    						<input type="text" name="findName" value="" />
+    					</li>
+    					<li>
+    						<button class="btn" type="submit">搜 索</button>
+    					</li>
+    					<li class="img_add">
+    						<a href="JavaScript:;">
+	                			<img src="../images/添加.svg" title="添加用户"/>
+	                			<span>添加</span>
+	                		</a>
+    					</li>
+    				</ul>
+    			</div>
+    		</form>
+    	</div>
+    	<div class="section_table">
+    		<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th>选择</th>
+		                	<th>用户ID</th>
+		                    <th>用户名</th>
+		                    <th>密码</th>
+		                    <th>手机</th>
+		                    <th>邮箱</th>
+		                    <th>用户等级</th>
+		                    <th>所在地区</th>
+		                    <th>操作</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		            	<tr th:each="adminUser : ${userList}">
+		            		<td>
+		            			<input type="checkbox" th:id="${adminUser.userId}" th:value="${adminUser.userId}" class="selectall"/>
+								<label th:for="${adminUser.userId}"></label>
+		            		</td>
+		            		<td th:text="${adminUser.userId}">A133</td>
+		            		<td th:text="${adminUser.userName}">Crazy</td>
+		            		<td th:text="${adminUser.password}">171219BY</td>
+		            		<td th:text="${adminUser.userPhone}">15936571965</td>
+		            		<td th:text="${adminUser.userEmail}">1787583716@qq.com</td>
+		            		<td th:text="${adminUser.userLevel}">2</td>
+		            		<td th:text="${adminUser.userAddress}">河南省新乡市红旗区</td>
+		            		<td>
+		            			<button type="button" class="btn modify">修改</button>
+		            			<button type="button" class="btn deleteUser">删除</button>
+		            		</td>
+		            	</tr>
+		            </tbody>
+				</table>
+			</div>
+    	</div>
+		<div class="cure"></div>
+		<div class="admin_bottom">
+			<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th class="election">
+								<span class="electionDelete">批量删除</span>
+								<input type="hidden" class="browider">
+		            		</th>
+		                    <th>
+		                    	<ul class="pagination">
+									<li><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+		                    </th>
+		                </tr>
+		           </thead>
+		        </table>
+			</div>
+		</div>
+    </section>
+
+	<!--弹窗-->
+	<popup>
+		<div class="popup">
+			<h3>添加用户</h3>
+			<div class="popup_table">
+				<form action="" method="post">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+			                    <th>用户名</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>				                    
+			                <tr>
+			                	<th>密码</th>
+			                	<td>
+			                		<input type="" name="" id="" value="" required="required"/>
+			                	</td>
+			                </tr>
+			                <tr>
+			                    <th>手机</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>				                    
+			                <tr>
+			                	<th>邮箱</th>
+			                	<td>
+			                		<input type="" name="" id="" value="" required="required"/>
+			                	</td>
+			                </tr>
+			                <tr>
+			                	<th>用户等级</th>
+			                	<td>
+			                		<input type="" name="" id="" value="" required="required"/>
+			                	</td>
+			                </tr>
+			                <tr>
+			                    <th>所在地区</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>	
+						</thead>
+					</table>
+					<div class="popup_bottom">
+						<input type="reset" name="" id="" value="重置" />
+						<input type="submit" value="添加"/>
+						<input type="button" name="" class="cancel_1" value="取消" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</popup>
+	<!--修改-->
+	<popupModify>
+		<div class="popupModify">
+			<h3>修改用户</h3>
+			<div class="popup_table">
+				<form action="" method="post">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+			                    <th>用户名</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>				                    
+			                <tr>
+			                	<th>密码</th>
+			                	<td>
+			                		<input type="" name="" id="" value="" required="required"/>
+			                	</td>
+			                </tr>
+			                <tr>
+			                    <th>手机</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>				                    
+			                <tr>
+			                	<th>邮箱</th>
+			                	<td>
+			                		<input type="" name="" id="" value="" required="required"/>
+			                	</td>
+			                </tr>
+			                <tr>
+			                	<th>用户等级</th>
+			                	<td>
+			                		<input type="" name="" id="" value="" required="required"/>
+			                	</td>
+			                </tr>
+			                <tr>
+			                    <th>所在地区</th>
+			                    <td>
+			                    	<input type="" name="" id="" value="" required="required"/>
+			                    </td>
+			                </tr>	
+						</thead>
+					</table>
+					<div class="popup_bottom">
+						<input type="reset" name="" id="" value="重置" />
+						<input type="submit" value="添加"/>
+						<input type="button" name="" class="cancel_1" value="取消" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</popupModify>
+
+</body>
+<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
+<script type="text/javascript" th:src="@{../js/adminIndex.js}" ></script>
+<script type="text/javascript" th:src="@{../js/adminUser.js}" ></script>
+</html>

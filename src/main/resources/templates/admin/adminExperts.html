@@ -1,0 +1,127 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>农业科技成果转化交易服务平台注册</title>
+	<link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+
+<body>
+<div th:include="common/adminCommon :: nav"></div>
+    <section>
+    	<div class="col-sm-12 search-collapse">
+    		<form action="">
+    			<div class="select-list">
+    				<ul>
+    					<li>
+    						<span>搜索：</span>
+    						<input type="text" name="" id="" value="" />
+    					</li>
+    					<li>
+    						<button class="btn" type="submit">搜 索</button>
+    					</li>
+    					<li></li>
+    					<li class="exampleList">
+    						<span>未审核【0】</span>
+    						<span>通过【1】</span>
+    						<span>失败【2】</span>
+    					</li>
+    					<li>
+    						<a th:href="@{/admin/toAdminAddExperts}">
+	                			<img src="../images/添加.svg" title="添加专家"/>
+	                			<span>添加专家</span>
+	                		</a>
+    					</li>
+    				</ul>
+    			</div>
+    		</form>
+    	</div>
+		<div class="section_table">
+    		<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th>选择</th>
+		                	<th>专家id</th>
+		                	<th>姓名</th>
+		                    <th>性别</th>
+		                    <th>学历</th>
+		                    <th>学位</th>
+		                    <th>毕业院校</th>
+		                    <th>出生日期</th>
+		                    <th>联系方式</th>
+		                    <th>所学专业</th>
+		                    <th>所在单位</th>
+		                    <th>行政职务</th>
+		                    <th>类型ID</th>
+		                    <th>审核状态码</th>
+		                    <th>操作</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		            	<tr th:each="experts : ${expertsList}">
+		            		<td>
+		            			<input type="checkbox" th:id="${experts.expertsId}" th:for="${experts.expertsId}" class="selectall" />
+								<label th:for="${experts.expertsId}"></label>
+		            		</td>
+		            		<td th:text="${experts.expertsId}">B133</td>
+		            		<td th:text="${experts.expertsName}">康绍忠</td>
+		            		<td th:text="${experts.expertsSex}">男</td>
+		            		<td th:text="${experts.expertsEducation}">研究生</td>
+		            		<td th:text="${experts.degree}">名誉博士</td>
+		            		<td th:text="${experts.school}">西北农业大学</td>
+		            		<td th:text="${experts.expertsBirth}">1962-11-01T00:00:00</td>
+		            		<!--<td th:text="${#dates.format(experts.expertsBirth, 'yyyy-MM-dd HH:mm:ss')}">1962-11-01T00:00:00</td>-->
+		            		<td th:text="${experts.expertsPhone}">15936571965</td>
+		            		<td th:text="${experts.major}">农业水土工程</td>
+		            		<td th:text="${experts.unit}">中国农业大学中国农业水问题研究中心</td>
+		            		<td th:text="${experts.position}">中国工程院院士</td>
+		            		<td th:text="${experts.userId}">1</td>
+		            		<td th:text="${experts.statusCode}">0</td>
+		            		<td>
+		            			<a href="detailsExpert.html">详情</a>
+		            			<button type="button" class="btn deleteAchievement">删除</button>
+		            		</td>
+		            	</tr>
+		            </tbody>
+				</table>
+			</div>
+    	</div>
+    	<div class="admin_bottom">
+			<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+		                <tr>
+		                	<th class="election">
+								<span class="electionDelete">批量删除</span>
+								<input type="hidden" class="browider">
+		            		</th>
+		                    <th>
+		                    	<ul class="pagination">
+									<li><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+		                    </th>
+		                </tr>
+		           </thead>
+		        </table>
+			</div>
+		</div>
+    </section>
+    
+    
+
+</body>
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+	<script type="text/javascript" src="../js/adminIndex.js" ></script>
+</html>

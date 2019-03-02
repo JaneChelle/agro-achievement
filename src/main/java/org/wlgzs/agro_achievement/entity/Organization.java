@@ -98,4 +98,9 @@ public class Organization implements Serializable {
      */
     private String statusCode;
 
+    /**
+     * 机构logo
+     */
+    private String organizationLogo;
+
 }

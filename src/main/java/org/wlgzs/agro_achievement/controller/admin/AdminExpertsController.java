@@ -33,13 +33,13 @@ public class AdminExpertsController extends BaseController {
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
-        return new ModelAndView("ExpertsList");
+        return new ModelAndView("admin/adminExperts");
     }
 
     //去添加专家
     @RequestMapping(value = "/toAdminAddExperts")
     public ModelAndView toAdd(){
-        return new ModelAndView("adminAddExperts");
+        return new ModelAndView("admin/addExpert");
     }
 
     //管理员添加专家

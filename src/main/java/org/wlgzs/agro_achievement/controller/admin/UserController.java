@@ -37,7 +37,7 @@ public class UserController extends BaseController {
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
         model.addAttribute("userList",userList);
-        return new ModelAndView("adminUserList");
+        return new ModelAndView("admin/adminUser");
     }
 
     //去添加用户

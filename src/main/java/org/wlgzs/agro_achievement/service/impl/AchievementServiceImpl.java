@@ -55,10 +55,10 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             //存放文件储存路径
             String[] str = new String[myFileNames.length];
             for (int i = 0; i < myFileNames.length; i++) {
-                if(!myFileNames[i].getOriginalFilename().equals("")){
+                if (!myFileNames[i].getOriginalFilename().equals("")) {
                     String fileName = myFileNames[i].getOriginalFilename();
                     //截取后缀名
-                    String suffixName = fileName.substring(fileName.indexOf("."),fileName.length());
+                    String suffixName = fileName.substring(fileName.indexOf("."), fileName.length());
 
                     //生成实际储存的文件名（不能重复）
                     realName = RandomNumberUtils.getRandomFileName() + suffixName;
@@ -88,7 +88,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             String typeName = achievement.getTypeName();
             QueryWrapper<Type> queryWrapperType = new QueryWrapper();
             queryWrapperType.eq("type_name", typeName);
-            System.out.println("type_name:"+typeName);
+            System.out.println("type_name:" + typeName);
             Type typeOne = typeMapper.selectOne(queryWrapperType);
             if (typeOne != null) {
                 AchievementType achievementType = new AchievementType();
@@ -114,7 +114,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 achievement.setStartTime(timeOne);
                 achievement.setEndTime(timeTwo);
                 achievement.setPictureAddress(pictureAddress);
-                System.out.println("pictureAddress==="+pictureAddress);
+                System.out.println("pictureAddress===" + pictureAddress);
             }
             achievement.setUserId(user.getUserId());
             baseMapper.insert(achievement);
@@ -132,7 +132,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             //删除文件
             String Img = achievement.getPictureAddress();
             String[] arr = Img.split(",");
-            for(int i = 0;i < arr.length;i++){
+            for (int i = 0; i < arr.length; i++) {
                 File file = new File(System.getProperty("user.dir") + arr[i]);
                 System.out.println(file.delete());
             }
@@ -244,7 +244,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             queryWrapper.in("achievement_id", achievementId);
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();
-            return new Result(ResultCode.SUCCESS,"",achievementList,iPage.getPages(),iPage.getCurrent());
+            return new Result(ResultCode.SUCCESS, "", achievementList, iPage.getPages(), iPage.getCurrent());
         }
         return new Result(ResultCode.FAIL, "不存在！");
     }
@@ -255,12 +255,31 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         queryWrapper.eq("status_code", "1").orderByDesc(true, "release_time");
         Page page = new Page(1, 10);
         IPage<Achievement> iPage = baseMapper.selectPage(page, queryWrapper);
-        return iPage.getRecords();
+        List<Achievement> achievementList = iPage.getRecords();
+        String img;
+        for(int i = 0; i < achievementList.size(); i++) {
+            if (achievementList.get(i).getPictureAddress().contains(",")){
+                img = achievementList.get(i).getPictureAddress();
+                img = img.substring(0,img.indexOf(","));
+                System.out.println("img=="+img);
+                achievementList.get(i).setPictureAddress(img);
+            }
+        }
+        return achievementList;
     }
 
     @Override
     public List<Achievement> hotAchievement() {
         return null;
+    }
+
+    @Override
+    public IPage<Achievement> findName(String findName, int current, int limit) {
+        QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("achievement_key",findName);
+        Page page = new Page(current,limit);
+        IPage<Achievement> iPage = baseMapper.selectPage(page,queryWrapper);
+        return iPage;
     }
 
     @Override
@@ -271,10 +290,10 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             //存放文件储存路径
             String[] str = new String[myFileNames.length];
             for (int i = 0; i < myFileNames.length; i++) {
-                if(!myFileNames[i].getOriginalFilename().equals("")){
+                if (!myFileNames[i].getOriginalFilename().equals("")) {
                     String fileName = myFileNames[i].getOriginalFilename();
                     //截取后缀名
-                    String suffixName = fileName.substring(fileName.indexOf("."),fileName.length());
+                    String suffixName = fileName.substring(fileName.indexOf("."), fileName.length());
 
                     //生成实际储存的文件名（不能重复）
                     realName = RandomNumberUtils.getRandomFileName() + suffixName;
@@ -304,7 +323,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             String typeName = achievement.getTypeName();
             QueryWrapper<Type> queryWrapperType = new QueryWrapper();
             queryWrapperType.eq("type_name", typeName);
-            System.out.println("type_name:"+typeName);
+            System.out.println("type_name:" + typeName);
             Type typeOne = typeMapper.selectOne(queryWrapperType);
             if (typeOne != null) {
                 AchievementType achievementType = new AchievementType();
@@ -326,7 +345,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 achievement.setStartTime(timeOne);
                 achievement.setEndTime(timeTwo);
                 achievement.setPictureAddress(pictureAddress);
-                System.out.println("pictureAddress==="+pictureAddress);
+                System.out.println("pictureAddress===" + pictureAddress);
             }
             baseMapper.insert(achievement);
             return new Result(ResultCode.SUCCESS, "录入成功！");
@@ -337,25 +356,25 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
 
     //查询所有成果(展示)
     @Override
-    public Result adminAchievementList(String findName,int current, int limit) {
+    public Result adminAchievementList(String findName, int current, int limit) {
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("achievement_name",findName).like("achievement_key",findName);
-        Page page = new Page(current,limit);
-        IPage<Achievement> iPage = baseMapper.selectPage(page,queryWrapper);
+        queryWrapper.like("achievement_name", findName).like("achievement_key", findName);
+        Page page = new Page(current, limit);
+        IPage<Achievement> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Achievement> achievementList = iPage.getRecords();
 
-        return new Result(ResultCode.SUCCESS,"",achievementList,iPage.getPages(),iPage.getCurrent());
+        return new Result(ResultCode.SUCCESS, "", achievementList, iPage.getPages(), iPage.getCurrent());
     }
 
     @Override
     public Result AchievementStatusCode(String statusCode, int current, int limit) {
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("status_code",statusCode);
-        Page page = new Page(current,limit);
-        IPage<Achievement> iPage = baseMapper.selectPage(page,queryWrapper);
+        queryWrapper.eq("status_code", statusCode);
+        Page page = new Page(current, limit);
+        IPage<Achievement> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Achievement> achievementList = iPage.getRecords();
 
-        return new Result(ResultCode.SUCCESS,"",achievementList,iPage.getPages(),iPage.getCurrent());
+        return new Result(ResultCode.SUCCESS, "", achievementList, iPage.getPages(), iPage.getCurrent());
     }
 
 }

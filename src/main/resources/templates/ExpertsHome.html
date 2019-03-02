@@ -25,13 +25,13 @@
         <!--所有专家分类-->
         <img th:src="@{/images/cg_031.jpg}" alt="">
         <ul>
-            <li th:each="type : ${typeList}"><i class="fa fa-forward" aria-hidden="true"></i><a href="" th:text="${type.typeName}">种业</a></li>
+            <li th:each="type : ${typeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/selectExperts}" th:text="${type.typeName}">种业</a></li>
         </ul>
-
-        <img th:src="@{/images/cg_expert2.jpg}" alt="" style="z-index: 1">
-        <ul class="area" th:each="expertsRanking: ${expertsRankingList}">
-            <li><a href="" th:text="${expertsRanking.expertsName}">北京</a></li>
-        </ul>
+        <!--<img th:src="@{/images/cg_expert2.jpg}" alt="" style="z-index: 1">-->
+        <!--专家排行-->
+        <!--<ul class="area" th:each="expertsRanking: ${expertsRankingList}">-->
+            <!--<li><a th:href="@{/HomeController/expertsDetails(expertsId=${expertsRanking.expertsId})}" th:text="${expertsRanking.expertsName}"></a></li>-->
+        <!--</ul>-->
     </div>
     <div class="middle">
         <div class="htmleaf-container">
@@ -65,27 +65,23 @@
                 <!--</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
             <!--</ul>-->
         <!--</div>-->
-        <!--<div class="jishu">-->
-            <!--<a href="" class="zj_more">更多</a>-->
-            <!--<ul style="padding: 34px 0 0 15px;">-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">欧拉型藏羊繁育及生产技术推广</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">强盛1号</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">节水抗旱稻不育系、杂</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">抗植物病毒活性新农药</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">优质超细毛羊和绒山羊</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">大田专用缓/控释肥料</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">评价暑热证及中药药效的基因芯片</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">新型湍旋式废气处理装置-->
-                <!--</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-            <!--</ul>-->
-        <!--</div>-->
+        <div class="jishu">
+            <a href="" class="zj_more">更多</a>
+            <ul style="padding: 34px 0 0 15px;">
+                <li>
+                    <i class="fa fa-forward" aria-hidden="true"></i>
+                    <a href="" >欧拉型藏羊繁育及生产技术推广</a>
+                    <span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="right">
-        <a href=""><img th:src="@{/images/zj_03.jpg}" alt=""></a>
+        <!--申请成为专家-->
+        <a th:href="@{/experts/addExperts}"><img th:src="@{/images/zj_03.jpg}" alt=""></a>
         <img th:src="@{/images/zj_04.jpg}" alt="">
-        <!--专家推荐-->
+        <!--推荐专家-->
         <div class="expert_one_people">
-            <a href="" class="zj_more" style="top: -30px;">更多</a>
             <div class="erpert_picbox">
                 <div class="expert_picbox">
                     <img src="images/expert1.jpg" width="45" height="45">
@@ -99,13 +95,12 @@
         <!--最新专家-->
         <img th:src="@{/images/zj_054.jpg}" alt="" style="margin-top: 22px">
         <div class="expert_one_people">
-            <a href="" class="zj_more" style="top: -30px;">更多</a>
             <div class="erpert_picbox" th:each="expertsTime : ${expertsTimeList}">
                 <div class="expert_picbox">
                     <img th:src="${expertsTime.pictureAddress}" width="45" height="45">
                 </div>
                 <div class="expert_picex">
-                    <a href="" target="_blank" th:text="${expertsTime.expertsName}"></a><br>
+                    <a th:href="@{/HomeController/expertsDetails(expertsId=${expertsTime.expertsId})}" target="_blank" th:text="${expertsTime.expertsName}"></a><br>
                     <span th:text="${expertsTime.expertsEducation}"></span>
                 </div>
             </div>
@@ -115,7 +110,7 @@
 
 <!--尾部-->
 <div th:include="common/common :: footer"></div>
-<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>l
 <script>window.jQuery || document.write('<script th:src="@{/js/jquery-1.11.0.min.js}"><\/script>')</script>
 <script th:src="@{/js/MxSlider.js}"></script>
 <script type="text/javascript">

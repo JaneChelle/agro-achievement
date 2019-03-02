@@ -132,6 +132,15 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
     }
 
     @Override
+    public IPage<Organization> findName(String findName, int current, int limit) {
+        QueryWrapper<Organization> queryWrapper = new QueryWrapper();
+        queryWrapper.like("organization_name",findName).like("type_name",findName);
+        Page page = new Page(current, limit);
+        IPage<Organization> iPage = baseMapper.selectPage(page, queryWrapper);
+        return iPage;
+    }
+
+    @Override
     public Result adminOrganizationList(String findName, int current, int limit) {
         QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("achievement_name",findName).like("achievement_key",findName);

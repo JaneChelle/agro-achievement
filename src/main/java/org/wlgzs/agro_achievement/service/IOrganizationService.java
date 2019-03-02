@@ -1,5 +1,6 @@
 package org.wlgzs.agro_achievement.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.wlgzs.agro_achievement.entity.Organization;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.wlgzs.agro_achievement.util.Result;
@@ -38,6 +39,9 @@ public interface IOrganizationService extends IService<Organization> {
 
     //按照点击量排序成机构
     List<Organization> rankingOrganization(int current, int limit);
+
+    //搜索机构
+    IPage<Organization> findName(String findName, int current, int limit);
 
     /**
      * 管理员

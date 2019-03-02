@@ -28,13 +28,21 @@ public class AdminAchievementController extends BaseController {
 
     //查询所有成果(分页)
     @RequestMapping(value = "/adminAchievementList")
-    public ModelAndView adminAchievementList(Model model,@RequestParam(value = "current", defaultValue = "1") int current,
+    public ModelAndView adminAchievementList(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
                                              @RequestParam(value = "limit", defaultValue = "8") int limit,
-                                             @RequestParam(value = "findName", defaultValue = "") String findName){
-        Result result = iAchievementService.adminAchievementList(findName,current,limit);
+                                             @RequestParam(value = "findName", defaultValue = "") String findName) {
+        Result result = iAchievementService.adminAchievementList(findName, current, limit);
 
         List<Achievement> achievementList = (List<Achievement>) result.getData();
-        model.addAttribute("achievementList",achievementList);
+        String img;
+        for (int i = 0; i < achievementList.size(); i++) {
+            if (achievementList.get(i).getPictureAddress().contains(",")) {
+                img = achievementList.get(i).getPictureAddress();
+                img = img.substring(0, img.indexOf(","));
+                achievementList.get(i).setPictureAddress(img);
+            }
+        }
+        model.addAttribute("achievementList", achievementList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
@@ -43,7 +51,7 @@ public class AdminAchievementController extends BaseController {
 
     //去添加成果
     @RequestMapping(value = "/toAdminAddAchievement")
-    public ModelAndView toAdd(Model model){
+    public ModelAndView toAdd(Model model) {
         //查询所有类型
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
@@ -53,9 +61,9 @@ public class AdminAchievementController extends BaseController {
 
     //管理员添加成果
     @RequestMapping(value = "/adminAddAchievement")
-    public ModelAndView adminAddAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames,Model model,
-                                            HttpServletRequest request, Achievement achievement, String start_time, String end_time){
-        Result result = iAchievementService.saveAchievement(myFileNames,request,achievement,start_time,end_time);
+    public ModelAndView adminAddAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, Model model,
+                                            HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+        Result result = iAchievementService.saveAchievement(myFileNames, request, achievement, start_time, end_time);
         return new ModelAndView("redirect:/admin/adminAchievementList");
     }
 
@@ -64,6 +72,12 @@ public class AdminAchievementController extends BaseController {
     public ModelAndView toEdit(Model model, Integer achievementId) {
         Result result = iAchievementService.achievementDetails(achievementId);
         Achievement achievement = (Achievement) result.getData();
+        String img;
+        if (achievement.getPictureAddress().contains(",")) {
+            img = achievement.getPictureAddress();
+            img = img.substring(0, img.indexOf(","));
+            achievement.setPictureAddress(img);
+        }
         model.addAttribute("achievement", achievement);
         return new ModelAndView("adminEditAchievement");
     }

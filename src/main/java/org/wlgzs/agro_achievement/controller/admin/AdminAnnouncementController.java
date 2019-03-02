@@ -22,7 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin")
-public class AnnouncementController extends BaseController {
+public class AdminAnnouncementController extends BaseController {
 
     //去添加公告
     @RequestMapping(value = "/toAddAnnouncement")
@@ -35,14 +35,6 @@ public class AnnouncementController extends BaseController {
     public ModelAndView addAnnouncement(Announcement announcement) {
         iAnnouncementService.addAnnouncement(announcement);
         return new ModelAndView("redirect:/admin/selectAnnouncement");
-    }
-
-    //查看公告详情（前台）
-    @RequestMapping("/announcementDetails")
-    public ModelAndView announcementDetails(Model model,Integer announcementId){
-        Announcement announcement = iAnnouncementService.announcementDetails(announcementId);
-        model.addAttribute("announcement",announcement);
-        return new ModelAndView("announcementDetails");
     }
 
     //查看公告详情（管理员）
@@ -77,6 +69,7 @@ public class AnnouncementController extends BaseController {
         return new ModelAndView("redirect:/admin/selectAnnouncement");
     }
 
+<<<<<<< HEAD:src/main/java/org/wlgzs/agro_achievement/controller/admin/AnnouncementController.java
     //按类别查询公告(默认查询所有的)
     @GetMapping("/selectAnnouncement")
     public ModelAndView selectAnnouncement(Model model,
@@ -93,4 +86,6 @@ public class AnnouncementController extends BaseController {
     }
 
 
+=======
+>>>>>>> bf23dbe79543925ccfb61bae8725df35b157482b:src/main/java/org/wlgzs/agro_achievement/controller/admin/AdminAnnouncementController.java
 }

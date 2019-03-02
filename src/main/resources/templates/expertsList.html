@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>专家列表-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen" />
+    <link rel="stylesheet" th:href="@{/css/expert_list.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+<div th:include="common/common :: header"></div>
+<!--主题-->
+<div >
+<div class="current">
+    <img th:src="@{/images/san_lie_06.jpg}" alt="">
+    <span>专家列表</span>
+</div>
+<div class="experts">
+    <ul>
+        <li th:each="expert : ${experts}">
+            <img th:src="${expert.pictureAddress}"  alt="">
+            <div class="zj_js">
+                <sapn th:text="${expert.expertsName}">王毅</sapn><br>
+                <span>研究方向：</span><span th:text="${expert.researchField}">生物技术与种质资源创新；药用</span><br>
+                <span>所在单位：</span><span th:text="${expert.unit}">长春市新城大街2888号吉林</span>
+            </div>
+        </li>
+        <div class="fenye">
+            <a href="javascript:history.back(-1)">【返回】</a>
+            <a href="">上一页</a>
+            <span>当前页数：[1/18]</span>
+            <a href="">下一页</a>
+            <a href="">最后一页</a>
+            转到第 <input type="text">页
+            <input type="submit" value="GO">
+        </div>
+    </ul>
+</div>
+</div>
+</body>
+</html>

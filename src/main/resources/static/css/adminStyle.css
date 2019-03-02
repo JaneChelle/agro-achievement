@@ -6,6 +6,30 @@
 *, ::after, ::before{
 	box-sizing: content-box!important;
 }
+.uu{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	color: #fff;
+	padding: 10px;
+	background-color: rgba(0,0,0,0.7);
+	border-radius: 5px;
+	transition: all 0.3s;
+	animation: aa 1s ease-out;
+	z-index: 9999999;
+}
+@keyframes aa {
+	0%{
+		transform: scale(0,0);
+	}
+	50%{
+		transform: scale(0.5,0.5);
+	}
+	100%{
+		transform: scale(1,1);
+	}
+
+}
 a:hover,a { text-decoration: none!important;}
 html,body { height: 100%;}
 li{ list-style-type: none;}
@@ -256,7 +280,8 @@ td{
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
-	vertical-align: middle;
+	padding: 11px!important;
+	vertical-align: middle!important;
 }
 
 .section_table thead tr{

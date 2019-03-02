@@ -162,15 +162,15 @@ popup .popup_table textarea{
 	height: 200px;
 	vertical-align: middle;
 }
+.applyExpert select{
+	width: 32%;
+	height: 42px;
+	margin-left: 14px;
+}
 .applyExpert input[type=text]{
 	width: 32%;
 	height: 42px;
 	margin: 0 12px;
-	background-color: transparent;
-	border-top: none;
-	border-left: none;
-	border-right: none;
-	border-bottom: 2px solid #000;
 }
 .applyExpert input[type=radio]{
 	width: 21px;

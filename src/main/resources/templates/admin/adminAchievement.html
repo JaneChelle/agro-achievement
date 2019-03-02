@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>农业科技成果转化交易服务平台成果管理</title>
-    <link rel="stylesheet" href="../css/adminStyle.css" />
-    <link rel="stylesheet" type="text/css" href="../css/admindemo.css"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
-	<link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico"/>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>农业科技成果转化交易服务平台成果管理</title>
+	<link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
 </head>
-
-<body>	
+<body>
 	<header>
 		<div class="head-l">
 			<!--<img src="../images/favicon.png"/>-->
@@ -130,17 +128,17 @@
 		                </tr>
 		            </thead>
 		            <tbody>
-		            	<tr>
+		            	<tr th:each="achievement : ${achievementList}">
 		            		<td>
-		            			<input type="checkbox" id="awesome2" value="1"class="selectall" />
-								<label for="awesome2"></label>
+		            			<input type="checkbox" th:id="${achievement.achievementId}" th:for="${achievement.achievementId}" class="selectall" />
+								<label th:for="${achievement.achievementId}"></label>
 		            		</td>
-		            		<td>B133</td>
-		            		<td>高效除草剂双草醚和嘧啶肟草醚绿色制造工艺及应用</td>
-		            		<td>农产品与食品加工</td>
-		            		<td>除草剂</td>
-		            		<td>徐德锋</td>
-		            		<td>0</td>
+		            		<td th:text="${achievement.achievementId}">B133</td>
+		            		<td th:text="${achievement.achievementName}">高效除草剂双草醚和嘧啶肟草醚绿色制造工艺及应用</td>
+		            		<td th:text="${achievement.achievementKey}">农产品与食品加工</td>
+		            		<td th:text="${achievement.typeName}">除草剂</td>
+		            		<td th:text="${achievement.linkman}">徐德锋</td>
+		            		<td th:text="${achievement.statusCode}">0</td>
 		            		<td>
 		            			<a href="detailsAchievement.html">详情</a>
 		            			<button type="button" class="btn deleteAchievement">删除</button>

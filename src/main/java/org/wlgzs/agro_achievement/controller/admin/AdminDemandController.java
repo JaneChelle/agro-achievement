@@ -35,7 +35,7 @@ public class AdminDemandController extends BaseController {
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
-        return new ModelAndView("DemandList");
+        return new ModelAndView("admin/adminDemand");
     }
 
     //去添加需求
@@ -45,7 +45,7 @@ public class AdminDemandController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("adminAddDemand");
+        return new ModelAndView("admin/AddDemand");
     }
 
     //管理员添加需求

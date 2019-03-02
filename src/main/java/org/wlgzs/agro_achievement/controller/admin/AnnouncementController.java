@@ -89,7 +89,7 @@ public class AnnouncementController extends BaseController {
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
-        return new ModelAndView("adminAnnouncementList");
+        return new ModelAndView("admin/adminAnnouncement");
     }
 
 

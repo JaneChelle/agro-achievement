@@ -287,7 +287,7 @@ td{
 .section_table thead tr{
 	background-color: #EEF9FF;
 }
-.section td a{
+.section td:last-child a{
 	display: inline-block;
 	width: 64px;
 	height: 35px;
@@ -409,61 +409,6 @@ input[type=submit],input[type=reset],input[type=button]{
 	cursor: pointer;
 	margin: 0 12px;
 }
-/*公告列表*/
-.noticeList{
-	font-size: 18px;
-	overflow: hidden;
-}
-.noticeList ul li{
-	position: relative;
-	padding: 0 32px;
-	line-height: 50px;
-}
-/*隔行换色*/
-.noticeList ul li:nth-child(odd){
-	background-color: #FFF;
-}
-.noticeList ul li:nth-child(even){
-	background-color: #ECF0F3;
-}
-.noticeList ul li span{
-	display: inline-block;
-	height: 100%;
-	vertical-align: top;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-.noticeList ul li>span:nth-child(1){
-	width: 3%;
-}
-.noticeList ul li>span:nth-child(2){
-	width: 6%;
-}
-.noticeList ul li>span:nth-child(3){
-	width: 10%;
-}
-.noticeList ul li>span:nth-child(4){
-	width: 50%;
-}
-.noticeList ul li>span:nth-child(5){
-	width: 14%;
-}
-.noticeList ul li a{
-	display: inline-block;
-	font-size: 18px;
-	height: 100%;
-}
-.noticeList ul li:before{
-	content: " ";
-    display: inline-block;
-    height: 15px;
-    width: 15px;
-    background: #000;
-    margin-right: 20px;
-    transform: rotate(45deg);
-}
-
 /*公告管理详情页*/
 figure{
 	padding: 12px 18px;

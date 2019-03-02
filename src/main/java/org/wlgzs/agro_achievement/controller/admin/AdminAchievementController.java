@@ -56,7 +56,7 @@ public class AdminAchievementController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("adminAddAchievement");
+        return new ModelAndView("admin/addAchievement");
     }
 
     //管理员添加成果

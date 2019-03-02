@@ -46,7 +46,7 @@ public class AdminAnnouncementController extends BaseController {
             model.addAttribute("msg","数据不存在！");
             return new ModelAndView("redirect:/admin/selectAnnouncement");
         }
-        return new ModelAndView("announcementAdminDetails");
+        return new ModelAndView("admin/adminAnnouncement");
     }
 
     //修改公告
@@ -69,7 +69,7 @@ public class AdminAnnouncementController extends BaseController {
         return new ModelAndView("redirect:/admin/selectAnnouncement");
     }
 
-<<<<<<< HEAD:src/main/java/org/wlgzs/agro_achievement/controller/admin/AnnouncementController.java
+//<<<<<<< HEAD:src/main/java/org/wlgzs/agro_achievement/controller/admin/AnnouncementController.java
     //按类别查询公告(默认查询所有的)
     @GetMapping("/selectAnnouncement")
     public ModelAndView selectAnnouncement(Model model,
@@ -86,6 +86,6 @@ public class AdminAnnouncementController extends BaseController {
     }
 
 
-=======
->>>>>>> bf23dbe79543925ccfb61bae8725df35b157482b:src/main/java/org/wlgzs/agro_achievement/controller/admin/AdminAnnouncementController.java
+//=======
+//>>>>>>> bf23dbe79543925ccfb61bae8725df35b157482b:src/main/java/org/wlgzs/agro_achievement/controller/admin/AdminAnnouncementController.java
 }

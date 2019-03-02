@@ -42,63 +42,45 @@
     			</div>
     		</form>
     	</div>
-    	<div class="section_table">
-    		<div class="noticeList">
-    			<ul>
-    				<li>
-    					<span>
-    						<input type="checkbox" id="awesome1" value="1" class="selectall"/>
-							<label for="awesome1"></label>
-    					</span>
-    					<span>NewsId-1</span>
-    					<span>【<span>新闻中心</span>】</span>
-    					<span>
-    						<a href="Announcement.html" title="">关于2018-2019年度神农中华农业科技奖推荐工作的通知</a>
-    					</span>
-    					<span>2019-01-25T11:06:20</span>
-    					<button class="btn">删除</button>
-    				</li>
-    				<li>
-    					<span>
-    						<input type="checkbox" id="awesome1" value="1" class="selectall"/>
-							<label for="awesome1"></label>
-    					</span>
-    					<span>NewsId-1</span>
-    					<span>【<span>新闻中心</span>】</span>
-    					<span>
-    						<a href="Announcement.html" title="">关于征集2019农业领域重大科学问题和工程技术 难题的通知</a>
-    					</span>
-    					<span>2019-01-25T11:06:20</span>
-    				</li>
-    				<li>
-    					<span>
-    						<input type="checkbox" id="awesome1" value="1" class="selectall"/>
-							<label for="awesome1"></label>
-    					</span>
-    					<span>NewsId-1</span>
-    					<span>【<span>新闻中心</span>】</span>
-    					<span>
-    						<a href="Announcement.html" title="">科技成果转移转化：拆除阻碍产业化的“篱笆墙</a>
-    					</span>
-    					<span>2019-01-25T11:06:20</span>
-    				</li>
-    				<li>
-    					<span>
-    						<input type="checkbox" id="awesome1" value="1" class="selectall"/>
-							<label for="awesome1"></label>
-    					</span>
-    					<span>NewsId-1</span>
-    					<span>【<span>新闻中心</span>】</span>
-    					<span>
-    						<a href="Announcement.html" title="">科技成果转移转化：拆除阻碍产业化的“篱笆墙</a>
-    					</span>
-    					<span>2019-01-25T11:06:20</span>
-    				</li>
-    			</ul>
-    		</div>
+		<div class="section_table">
+			<div class="section">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>选择</th>
+							<th>公告id</th>
+							<th>公告标题</th>
+							<th>发布时间</th>
+							<th>公告类型</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="announcement : ${announcementList}">
+							<td>
+								<input type="checkbox" th:value="${announcement.announcementId}" th:id="${announcement.announcementId}"  class="selectall" />
+								<label th:for="${announcement.announcementId}"></label>
+							</td>
+							<td th:text="${announcement.announcementId}">B133</td>
+							<td>
+								<a href="Announcement.html" th:title="${announcement.announcementTitle}" th:text="${announcement.announcementTitle}">
+									科技成果转移转化：拆除阻碍产业化的“篱笆墙
+								</a>
+							</td>
+							<td th:text="${announcement.releaseTime}">B133</td>
+							<!--<td th:text="${#dates.format(announcement.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">B133</td>-->
+							<td th:text="${announcement.announcementType}">农产品与食品加工</td>
+							<td>
+								<button type="button" class="btn modify">修改</button>
+								<button type="button" class="btn delete">删除</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-   </section>
+	</section>
 </body>
-<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
-<script type="text/javascript" src="../js/adminIndex.js" ></script>
+<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
+<script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
 </html>

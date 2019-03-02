@@ -76,7 +76,7 @@
 		            				</div>
 		            			</div>
 		            		</td>
-		            		<td th:text="${example.releaseTime}">2019-03-25 21:32:34</td>
+		            		<td th:text="${#dates.format(example.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">2019-03-25 21:32:34</td>
 		            		<td th:text="${example.userId}">1</td>
 		            		<td th:text="${example.statusCode}">2</td>
 		            		<td>

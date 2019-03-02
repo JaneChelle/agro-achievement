@@ -25,7 +25,7 @@
         <ul>
             <!--分类-->
             <li th:each="type : ${typeList}">
-                <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/selectAchieveByType(typeId=${type.typeId})}" th:text="${type.typeName}"></a>
+                <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/selectAchieveByType}" th:text="${type.typeName}"></a>
             </li>
         </ul>
     </div>
@@ -71,37 +71,14 @@
         </ul>
     </div>
 </div>
-<!--成果视频展示-->
-<div class="cg-show">
-    <a href="" class="cg-more">更多</a>
-    <div class="imgs">
-        <img th:src="@{/images/show5.jpg}" alt="">
-        <img th:src="@{/images/show3.jpg}" alt="">
-        <img th:src="@{/images/show9.jpg}" alt="">
-        <img th:src="@{/images/show5.JPG}" alt="">
-    </div>
-</div>
 <!--成果图片展示-->
 <div class="cg-show2">
-    <a href="" class="cg-more">更多</a>
-    <div class="imgs">
+    <a th:href="@{/achievement/selectAchieveByType}" class="cg-more">更多</a>
+    <div class="imgs" th:each="achievementTime : ${achievementTimeList}">
         <div class="cg_pic">
-            <img th:src="@{/images/show6.JPG}" alt="">
-            <a href="">玉米新品种 “衡玉1182” 河南省经营权预转让</a>
+            <img th:src="${achievementTime.pictureAddress}" alt="">
+            <a th:href="@{/achievement/achievementDetails(achievementId=${achievementTime.achievementId})}" th:text="${achievementTime.achievementIntroduce}">玉米新品种 “衡玉1182” 河南省经营权预转让</a>
         </div>
-        <div class="cg_pic">
-            <img th:src="@{/images/show2.jpg}" alt="">
-            <a href="">玉米新品种 “衡玉1182” 河南省经营权预转让</a>
-        </div>
-        <div class="cg_pic">
-            <img th:src="@{/images/show3.JPG}" alt="">
-            <a href="">玉米新品种 “衡玉1182” 河南省经营权预转让</a>
-        </div>
-        <div class="cg_pic">
-            <img th:src="@{/images/show4.JPG}" alt="">
-            <a href="">玉米新品种 “衡玉1182” 河南省经营权预转让</a>
-        </div>
-
     </div>
 </div>
 <!--尾部-->

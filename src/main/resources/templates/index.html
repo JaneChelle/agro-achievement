@@ -50,38 +50,38 @@
                 </li>
             </ul>
         </div>
-        <!--<div class="service">-->
-            <!--<div class="tips">服务资源</div>-->
-            <!--<div class="oDiv">-->
-                <!--<div>-->
-                    <!--<a href=""><img th:src="@{/images/jishu1.jpg}" alt=""></a>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<a href=""><img th:src="@{/images/jishu2.jpg}" alt=""></a>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<a href=""><img th:src="@{/images/jishu3.jpg}" alt=""></a>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<a href=""><img th:src="@{/images/jishu4.jpg}" alt=""></a>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<a href=""><img th:src="@{/images/jishu5.jpg}" alt=""></a>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<a href=""><img th:src="@{/images/jishu6.jpg}" alt=""></a>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<a href=""><img th:src="@{/images/jishu7.jpg}" alt=""></a>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<a href=""><img th:src="@{/images/jishu8.jpg}" alt=""></a>-->
-                <!--</div>-->
-                <!--<div>-->
-                    <!--<a href=""><img th:src="@{/images/jishu9.jpg}" alt=""></a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+        <div class="service">
+            <div class="tips">服务资源</div>
+            <div class="oDiv">
+                <div>
+                    <a href=""><img th:src="@{/images/jishu1.jpg}" alt=""></a>
+                </div>
+                <div>
+                    <a href=""><img th:src="@{/images/jishu2.jpg}" alt=""></a>
+                </div>
+                <div>
+                    <a href=""><img th:src="@{/images/jishu3.jpg}" alt=""></a>
+                </div>
+                <div>
+                    <a href=""><img th:src="@{/images/jishu4.jpg}" alt=""></a>
+                </div>
+                <div>
+                    <a href=""><img th:src="@{/images/jishu5.jpg}" alt=""></a>
+                </div>
+                <div>
+                    <a href=""><img th:src="@{/images/jishu6.jpg}" alt=""></a>
+                </div>
+                <div>
+                    <a href=""><img th:src="@{/images/jishu7.jpg}" alt=""></a>
+                </div>
+                <div>
+                    <a href=""><img th:src="@{/images/jishu8.jpg}" alt=""></a>
+                </div>
+                <div>
+                    <a href=""><img th:src="@{/images/jishu9.jpg}" alt=""></a>
+                </div>
+            </div>
+        </div>
     </div>
     <!--成果展示-->
     <div class="two">
@@ -118,7 +118,7 @@
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.achievementIntroduce}" th:text="${achievement.achievementIntroduce}" target="_blank">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(achievement.endTime,'yyyy-MM-dd')}"></span>-->
-                    <span th:text="${achievement.endTime}"></span>
+                    <span  th:text="${#temporals.format(achievement.endTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
@@ -133,7 +133,7 @@
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${demand.demandIntroduce}" target="_blank" th:text="${demand.demandIntroduce}">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(demand.releaseTime,'yyyy-MM-dd')}"></span>-->
-                    <span th:text="${demand.releaseTime}"></span>
+                    <span  th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
@@ -206,7 +206,7 @@
             <ul>
                 <li th:each="example : ${exampleList}">
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${example.exampleTitle}" th:text="${example.exampleTitle}" target="_blank">
-                </a><span style="float: right" th:text="${example.releaseTime}"></span>
+                </a><span style="float: right"   th:text="${#temporals.format(example.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
@@ -230,7 +230,7 @@
             <ul>
                 <li th:each="trading : ${tradingList}">
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${trading.announcementTitle}"  th:text="${trading.announcementTitle}" target="_blank">
-                </a><span style="float: right" th:text="${trading.releaseTime}"></span>
+                </a><span style="float: right"   th:text="${#temporals.format(trading.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
@@ -243,7 +243,7 @@
             <ul>
                 <li th:each="policy : ${policyList}">
                     <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${policy.announcementTitle}" th:text="${policy.announcementTitle}" target="_blank">
-                </a><span style="float: right" th:text="${policy.releaseTime}"></span>
+                </a><span style="float: right"  th:text="${#temporals.format(policy.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
         </div>
@@ -252,7 +252,7 @@
     </div>
 </div>
 <!--尾部-->
-
+<div th:include="common/common :: footer"></div>
 </body>
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/slide.js}"></script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>机构详情-农业科技成果转化交易服务平台</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen" />
+    <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/me_details.css}">
+</head>
+<body>
+<div th:include="common/common :: header"></div>
+<!--主题-->
+<div class="current">
+    <ul class="tab">
+        <li>空间首页</li>
+        <li>科技成果</li>
+        <li>拥有专家</li>
+    </ul>
+</div>
+<div class="me_con">
+    <div class="me_left" >
+        <div class="center">
+            <h4><a  th:text="${Organization.organizationName}"></a></h4>
+        </div>
+        <div class="img_bian">
+            <img th:src="@{/images/show9.JPG}" alt="">
+        </div>
+        <div class="me_details">
+            <div>所在地区：<span th:text="${Organization.organizationRegion}">---</span></div>
+            <hr>
+            <div>联系方式</div>
+            <ul>
+                <li>联系人：<span th:text="${Organization.linkman}"></span></li>
+                <li>电 话：<span th:text="${Organization.phone}"></span></li>
+                <li>邮 箱：<span th:text="${Organization.email}"></span></li>
+                <li>网 址：<span th:text="${Organization.organizationUrl}"></span></li>
+                <li>地 址：<span th:text="${Organization.contactAddress}"></span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="me_right">
+        <div class="people">
+            <img th:src="@{/images/peopleicon.png}" alt=""><span>机构基本信息</span><br>
+            <ul>
+                <li>所在国家：<span th:text="${Organization.organizationCountry}">中国大陆</span></li>
+                <li>法人类别：<span th:text="${Organization.legalCategory}">事业单位法人</span></li>
+                <li>机构类型:<span th:text="${Organization.organizationTypeId}">科研教学单位</span></li>
+                <li>所在地区:<span th:text="${Organization.organizationRegion}">--</span></li>
+            </ul>
+        </div>
+        <div class="people">
+            <img th:src="@{/images/icon2.png}" alt=""><span>机构简介</span><br>
+            <p th:text="${Organization.organizationIntroduce}">
+            </p>
+        </div>
+        <!--<div class="people" >-->
+            <!--<img th:src="@{/images/metal.png}" alt=""><span>主要科研领域</span><br>-->
+            <!--<p>-->
+               <!--暂无-->
+            <!--</p>-->
+        <!--</div>-->
+    </div>
+</div>
+<!--尾部-->
+<div th:include="common/common :: footer"></div>
+</body>
+</html>

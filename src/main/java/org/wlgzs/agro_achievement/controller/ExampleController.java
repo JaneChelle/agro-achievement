@@ -89,4 +89,13 @@ public class ExampleController extends BaseController {
         return new ModelAndView("userExampleList");
     }
 
+    //查看案列详情
+    @RequestMapping(value = "/exampleDetails")
+    public ModelAndView exampleDetails(Model model,Integer exampleId){
+        Example example = iCaseService.exampleDetails(exampleId);
+        model.addAttribute("example",example);
+        return new ModelAndView("exampleDetails");
+    }
+
+
 }

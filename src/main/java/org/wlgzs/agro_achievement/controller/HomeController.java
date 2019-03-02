@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -277,11 +278,62 @@ public class HomeController extends BaseController {
     }
 
     //首页搜索（全局搜索）
-//    @RequestMapping(value = "/globalSearch")
-//    public ModelAndView globalSearch(@RequestParam(value = "findName", defaultValue = "") String findName,
-//                                     @RequestParam(value = "current", defaultValue = "1") int current,
-//                                     @RequestParam(value = "limit", defaultValue = "8") int limit) {
-//
-//    }
+    @RequestMapping(value = "/globalSearch")
+    public ModelAndView globalSearch(Model model, @RequestParam(value = "findName", defaultValue = "") String findName,
+                                     @RequestParam(value = "current", defaultValue = "1") int current,
+                                     @RequestParam(value = "limit", defaultValue = "8") int limit) {
+        //搜索成果
+        IPage<Achievement> iPage = iAchievementService.findName(findName, current, limit);
+        //成果总数
+        model.addAttribute("AchievementNumber", iPage.getTotal());
+        model.addAttribute("findAchievement", iPage.getRecords());
 
+        //搜索专家
+        IPage<Experts> iPage1 = iExpertsService.findName(findName, current, limit);
+        //专家总数
+        model.addAttribute("ExpertsNumber", iPage1.getTotal());
+        model.addAttribute("findExperts", iPage1.getRecords());
+
+        //搜索机构
+        IPage<Organization> iPage2 = iOrganizationService.findName(findName, current, limit);
+        //机构总数
+        model.addAttribute("OrganizationNumber", iPage2.getTotal());
+        model.addAttribute("findOrganization", iPage2.getRecords());
+
+        //分页信息
+        //总条数
+        model.addAttribute("TotalNumber", iPage.getTotal() + iPage1.getTotal() + iPage2.getTotal());
+
+        model.addAttribute("TotalPages", iPage.getPages());//总页数
+        model.addAttribute("Number", iPage.getCurrent());//当前页数
+
+        model.addAttribute("findName", findName);//搜索关键字
+        return new ModelAndView("findHome");
+    }
+
+    //按照类型搜索
+    @RequestMapping(value = "/globalSearch/{type}")
+    public ModelAndView globalSearchType(Model model,String findName, @PathVariable("type") String type,
+                                         @RequestParam(value = "current", defaultValue = "1") int current,
+                                         @RequestParam(value = "limit", defaultValue = "8") int limit) {
+        if ("Achievement".equals(type)) {
+            IPage<Achievement> iPage = iAchievementService.findName(findName, current, limit);
+            model.addAttribute("findAchievement", iPage.getRecords());
+            model.addAttribute("TotalPages", iPage.getPages());//总页数
+            model.addAttribute("Number", iPage.getCurrent());//当前页数
+        } else if ("Experts".equals(type)) {
+            IPage<Experts> iPage = iExpertsService.findName(findName, current, limit);
+            model.addAttribute("findExperts", iPage.getRecords());
+            model.addAttribute("TotalPages", iPage.getPages());//总页数
+            model.addAttribute("Number", iPage.getCurrent());//当前页数
+        } else {
+            IPage<Organization> iPage = iOrganizationService.findName(findName, current, limit);
+            model.addAttribute("findOrganization", iPage.getRecords());
+            model.addAttribute("TotalPages", iPage.getPages());//总页数
+            model.addAttribute("Number", iPage.getCurrent());//当前页数
+        }
+        model.addAttribute("findName", findName);//搜索关键字
+        model.addAttribute("type", type);//搜索类型
+        return new ModelAndView("globalSearch");
+    }
 }

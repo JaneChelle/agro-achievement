@@ -1,5 +1,6 @@
 package org.wlgzs.agro_achievement.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Experts;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -38,6 +39,9 @@ public interface IExpertsService extends IService<Experts> {
 
     //专家推荐
     List<Experts> recommend(int limit);
+
+    //搜索专家
+    IPage<Experts> findName(String findName, int current, int limit);
 
     /**
      * 管理员

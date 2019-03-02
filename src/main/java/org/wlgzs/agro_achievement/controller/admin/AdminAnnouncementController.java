@@ -22,7 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin")
-public class AnnouncementController extends BaseController {
+public class AdminAnnouncementController extends BaseController {
 
     //去添加公告
     @RequestMapping(value = "/toAddAnnouncement")
@@ -35,14 +35,6 @@ public class AnnouncementController extends BaseController {
     public ModelAndView addAnnouncement(Announcement announcement) {
         iAnnouncementService.addAnnouncement(announcement);
         return new ModelAndView("redirect:/admin/selectAnnouncement");
-    }
-
-    //查看公告详情（前台）
-    @RequestMapping("/announcementDetails")
-    public ModelAndView announcementDetails(Model model,Integer announcementId){
-        Announcement announcement = iAnnouncementService.announcementDetails(announcementId);
-        model.addAttribute("announcement",announcement);
-        return new ModelAndView("announcementDetails");
     }
 
     //查看公告详情（管理员）
@@ -76,21 +68,5 @@ public class AnnouncementController extends BaseController {
         model.addAttribute("msg",result.getMsg());
         return new ModelAndView("redirect:/admin/selectAnnouncement");
     }
-
-    //按类别查询公告(默认查询所有的)
-    @GetMapping("/selectAnnouncement")
-    public ModelAndView selectAnnouncement(Model model,
-            @RequestParam(value = "announcementType", defaultValue = "") String announcementType,
-            @RequestParam(value = "current", defaultValue = "1") Integer current,
-            @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
-        Result result = iAnnouncementService.selectAnnouncement(announcementType, current, limit);
-        List<Announcement> announcementList = (List<Announcement>) result.getData();
-        model.addAttribute("announcementList",announcementList);
-        model.addAttribute("TotalPages", result.getPages());//总页数
-        model.addAttribute("Number", result.getCurrent());//当前页数
-
-        return new ModelAndView("adminAnnouncementList");
-    }
-
 
 }

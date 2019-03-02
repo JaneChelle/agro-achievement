@@ -1,5 +1,6 @@
 package org.wlgzs.agro_achievement.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Achievement;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -44,8 +45,11 @@ public interface IAchievementService extends IService<Achievement> {
     //按时间查询（首页）
     List<Achievement> selectAchieveByTime();
 
-    //推荐需求
+    //推荐成果
     List<Achievement> hotAchievement();
+
+    //搜索成果
+    IPage<Achievement> findName(String findName, int current, int limit);
 
     /**
      * 管理员

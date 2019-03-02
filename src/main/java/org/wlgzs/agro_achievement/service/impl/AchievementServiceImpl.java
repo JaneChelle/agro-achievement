@@ -274,6 +274,15 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     }
 
     @Override
+    public IPage<Achievement> findName(String findName, int current, int limit) {
+        QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("achievement_key",findName);
+        Page page = new Page(current,limit);
+        IPage<Achievement> iPage = baseMapper.selectPage(page,queryWrapper);
+        return iPage;
+    }
+
+    @Override
     public Result saveAchievement(MultipartFile[] myFileNames, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
         if (achievement != null) {
             //文件处理（真实存储名）

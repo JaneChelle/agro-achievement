@@ -14,12 +14,12 @@
 <!--主体-->
 <div class="current">
     <i class="fa fa-map-marker" aria-hidden="true"></i>
-    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/Announcement/selectAnnouncement(announcementType=${announcementList.announcementType})}">公告展示</a> >><a th:href="@{/admin/announcementDetails(announcementId=${announcement.announcementId})}">公告详情</a>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/Announcement/selectAnnouncement(announcementType=${announcement.announcementType})}">公告展示</a> >><a th:href="@{/Announcement/announcementDetails(announcementId=${announcement.announcementId})}">公告详情</a>
 </div>
 <div class="product">
     <div class="name">
         <h4 th:text="${announcement.announcementTitle}">强盛一号</h4>
-        <span th:text="'发布时间'+${announcement.releaseTime}"></span>&nbsp;&nbsp;&nbsp;
+        <span th:text="'发布时间'+${#temporals.format(announcement.releaseTime, 'yyyy-MM-dd')}"></span>&nbsp;&nbsp;&nbsp;
     </div>
     <div class="pro_msg">
         <ul>

@@ -37,10 +37,11 @@ public class AnnouncementController extends BaseController {
                                            @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
         Result result = iAnnouncementService.selectAnnouncement(announcementType, current, limit);
         List<Announcement> announcementList = (List<Announcement>) result.getData();
+        model.addAttribute("announcementType",announcementType);
         model.addAttribute("announcementList",announcementList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
-        return new ModelAndView("adminAnnouncementList");
+        return new ModelAndView("AnnouncementList");
     }
 }

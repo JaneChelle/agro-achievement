@@ -15,7 +15,7 @@
 <!--主体-->
 <div class="current">
     <i class="fa fa-map-marker" aria-hidden="true"></i>
-    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/Announcement/selectAnnouncement(announcementType=${announcementList.announcementType})}">公告展示</a>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/Announcement/selectAnnouncement(announcementType=${announcementType})}">公告展示</a>
 </div>
 <div class="cg-title">
     <img th:src="@{/images/san_lie_06.jpg}" alt="">
@@ -23,8 +23,8 @@
 <div class="cg-list">
     <ul>
         <li th:each="announcement : ${announcementList}">
-            <a th:href="@{/admin/announcementDetails(announcementId=${announcement.announcementId})}" th:text="${announcement.announcementTitle}"></a>
-            <span style='float: right;margin-right: 10px;' th:text="${announcement.releaseTime}"></span>
+            <a th:href="@{/Announcement/announcementDetails(announcementId=${announcement.announcementId})}" th:text="${announcement.announcementTitle}"></a>
+            <span style='float: right;margin-right: 10px;'  th:text="${#temporals.format(announcement.releaseTime, 'yyyy-MM-dd')}"></span>
             <input type="hidden" th:value="${announcement.announcementType}">
         </li>
     </ul>

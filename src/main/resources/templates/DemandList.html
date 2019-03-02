@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>列表-农业科技成果转化交易服务平台</title>
+    <title>需求列表-农业科技成果转化交易服务平台</title>
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen" />
     <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
@@ -15,19 +15,17 @@
 <!--主体-->
 <div class="current">
     <i class="fa fa-map-marker" aria-hidden="true"></i>
-    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a th:href="@{/HomeController/AchievementHome}">成果展示</a> >><a th:href="@{/achievement/rankingAchievement}">列表展示</a>
+    <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a>  >><a th:href="@{/demand/selectAllDemand}">列表展示</a>
 </div>
 <div class="cg-title">
     <img th:src="@{/images/san_lie_06.jpg}" alt="">
-    <span style="color: #41A809;font-weight: 800">图片列表</span>
-    <span class="text">0</span>
+    <span style="color: #41A809;font-weight: 800">需求列表</span>
 </div>
 <div class="cg-list">
     <ul>
-        <li th:each="achievement : ${achievementList}">
-            <a th:href="@{/achievement/achievementDetails(achievementId=${achievement.achievementId})}" th:text="${achievement.achievementIntroduce}"></a>
-            <span style='float: right;margin-right: 10px;' th:text="${#temporals.format(achievement.endTime, 'yyyy-MM-dd')}" ></span>
-            <input type="hidden" th:value="${achievement.pageView}" class="pageView">
+        <li th:each="demand : ${demandList}">
+            <a th:href="@{/demand/demandDetails(demandId=${demand.demandId})}" th:text="${demand.demandName}"></a>
+            <span style='float: right;margin-right: 10px;'  th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}"></span>
         </li>
     </ul>
     <div class="fenye">

@@ -9,7 +9,6 @@
     <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
     <link rel="stylesheet" th:href="@{/font-awesome-4.7.0/css/font-awesome.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
-
     <link rel="stylesheet" th:href="@{/css/MxSlider.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
 </head>
@@ -24,7 +23,7 @@
 <div class="cg-contain">
     <div class="left">
         <!--政策-->
-        <a href=""><img th:src="@{/images/zc_10.jpg}" alt="" style="height: 34px;"></a>
+        <a th:href="@{/Announcement/selectAnnouncement(announcementType=政策中心)}"><img th:src="@{/images/zc_10.jpg}" alt="" style="height: 34px;"></a>
         <ul >
             <li th:each="PolicyCenter : ${PolicyCenter}">
                 <i class="fa fa-forward" aria-hidden="true"></i>
@@ -54,7 +53,7 @@
         <div class="best_new">
          <!--新闻中心-->
                 <a href="" style="font-weight: 800;left: 14px;" class="title zj_more">新闻中心</a>
-                <a href="" class="zj_more">更多</a>
+                <a th:href="@{/Announcement/selectAnnouncement(announcementType=新闻中心)}" class="zj_more">更多</a>
             <ul style="padding: 20px 0 0 15px;">
             <li th:each="NewsCenter : ${NewsCenter}">
                 <i class="fa fa-forward" aria-hidden="true" style="color: #41A809"></i>
@@ -66,7 +65,7 @@
     </div>
     <div class="right">
         <!--交易活动-->
-        <a href="" class="po_more">更多</a>
+        <a th:href="@{/Announcement/selectAnnouncement(announcementType=交易活动)}" class="po_more">更多</a>
         <img th:src="@{/images/jf_05.jpg}" alt="" style="height: 34px;">
         <ul>
             <li th:each="Trading  : ${TradingActivity}">

@@ -19,7 +19,7 @@
 <div class="product">
     <div class="name">
         <h4 th:text="${example.exampleTitle}">强盛一号</h4>
-        <span th:text="'发布时间'+${example.releaseTime}"></span>&nbsp;&nbsp;&nbsp;
+        <span th:text="'发布时间'+${#temporals.format(example.releaseTime, 'yyyy-MM-dd')}"></span>&nbsp;&nbsp;&nbsp;
     </div>
     <div class="pro_msg">
         <ul>

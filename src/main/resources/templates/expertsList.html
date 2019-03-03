@@ -19,12 +19,12 @@
 </div>
 <div class="experts">
     <ul>
-        <li th:each="expert : ${experts}">
+        <li th:each="expert : ${expertsList}">
             <img th:src="${expert.pictureAddress}"  alt="">
             <div class="zj_js">
-                <sapn th:text="${expert.expertsName}">王毅</sapn><br>
-                <span>研究方向：</span><span th:text="${expert.researchField}">生物技术与种质资源创新；药用</span><br>
-                <span>所在单位：</span><span th:text="${expert.unit}">长春市新城大街2888号吉林</span>
+                <a th:href="@{/HomeController/expertsDetails(expertsId=${expert.expertsId})}"><sapn th:text="${expert.expertsName}">王毅</sapn></a><br>
+                <span>研究方向：</span><span th:text="${expert.researchField}" class="intro">生物技术与种质资源创新；药用</span><br>
+                <span>所在单位：</span><span th:text="${expert.unit}" class="intro">长春市新城大街2888号吉林</span>
             </div>
         </li>
         <div class="fenye">

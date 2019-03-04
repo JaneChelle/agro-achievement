@@ -23,29 +23,29 @@ public class AdminExampleController extends BaseController {
     //查询所有案例(分页)
     @RequestMapping(value = "/adminExampleList")
     public ModelAndView adminExampleList(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
-                                             @RequestParam(value = "limit", defaultValue = "8") int limit,
-                                             @RequestParam(value = "findName", defaultValue = "") String findName){
-        Result result = iCaseService.findExampleList(findName,current,limit);
+                                         @RequestParam(value = "limit", defaultValue = "8") int limit,
+                                         @RequestParam(value = "findName", defaultValue = "") String findName) {
+        Result result = iCaseService.findExampleList(findName, current, limit);
 
         List<Example> exampleList = (List<Example>) result.getData();
-        model.addAttribute("exampleList",exampleList);
+        model.addAttribute("exampleList", exampleList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
-
+        model.addAttribute("findName", findName);
         return new ModelAndView("admin/adminExample");
     }
 
     //去添加成果
     @RequestMapping(value = "/toAdminExample")
-    public ModelAndView toAdd(){
+    public ModelAndView toAdd() {
         return new ModelAndView("adminAddExample");
     }
 
     //管理员添加成果
     @RequestMapping(value = "/adminAddExample")
-    public ModelAndView adminAddExample(Model model,Example example){
+    public ModelAndView adminAddExample(Model model, Example example) {
         Result result = iCaseService.addExample(example);
-        model.addAttribute("msg",result.getMsg());
+        model.addAttribute("msg", result.getMsg());
         return new ModelAndView("redirect:/admin/adminExampleList");
     }
 
@@ -59,7 +59,7 @@ public class AdminExampleController extends BaseController {
 
     //修改成果
     @RequestMapping(value = "/adminEditExample")
-    public ModelAndView adminEditExample(Example example,Model model) {
+    public ModelAndView adminEditExample(Example example, Model model) {
         Result result = iCaseService.modifyExample(example);
         if (result.getCode() == 0) {
             Example example1 = (Example) result.getData();

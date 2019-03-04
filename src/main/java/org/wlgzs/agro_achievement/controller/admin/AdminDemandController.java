@@ -27,20 +27,20 @@ public class AdminDemandController extends BaseController {
     @RequestMapping(value = "/adminAdminDemand")
     public ModelAndView adminAdminDemand(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
                                          @RequestParam(value = "limit", defaultValue = "8") int limit,
-                                         @RequestParam(name = "findName",defaultValue = "") String findName){
-        Result result = iDemandService.adminDemandList(findName,current,limit);
+                                         @RequestParam(name = "findName", defaultValue = "") String findName) {
+        Result result = iDemandService.adminDemandList(findName, current, limit);
         List<Demand> demandList = (List<Demand>) result.getData();
 
-        model.addAttribute("demandList",demandList);
+        model.addAttribute("demandList", demandList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
-
+        model.addAttribute("findName", findName);
         return new ModelAndView("admin/adminDemand");
     }
 
     //去添加需求
     @RequestMapping(value = "/toAdminAddDemand")
-    public ModelAndView toAdd(Model model){
+    public ModelAndView toAdd(Model model) {
         //查询所有类型
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
@@ -50,9 +50,9 @@ public class AdminDemandController extends BaseController {
 
     //管理员添加需求
     @RequestMapping(value = "/adminAddDemand")
-    public ModelAndView adminAddDemand(Model model ,Demand demand){
+    public ModelAndView adminAddDemand(Model model, Demand demand) {
         Result result = iDemandService.saveDemand(demand);
-        model.addAttribute("msg",result.getMsg());
+        model.addAttribute("msg", result.getMsg());
         return new ModelAndView("redirect:/admin/adminAdminDemand");
     }
 

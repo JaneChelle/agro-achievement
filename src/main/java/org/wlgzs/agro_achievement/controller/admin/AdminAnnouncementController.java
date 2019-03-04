@@ -69,10 +69,9 @@ public class AdminAnnouncementController extends BaseController {
         return new ModelAndView("redirect:/admin/selectAnnouncement");
     }
 
-//<<<<<<< HEAD:src/main/java/org/wlgzs/agro_achievement/controller/admin/AnnouncementController.java
     //按类别查询公告(默认查询所有的)
     @GetMapping("/selectAnnouncement")
-    public ModelAndView selectAnnouncement(Model model,
+    public ModelAndView selectAnnouncement(Model model,@RequestParam(value = "findName",defaultValue = "")String findName,
             @RequestParam(value = "announcementType", defaultValue = "") String announcementType,
             @RequestParam(value = "current", defaultValue = "1") Integer current,
             @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
@@ -81,11 +80,9 @@ public class AdminAnnouncementController extends BaseController {
         model.addAttribute("announcementList",announcementList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
+        model.addAttribute("findName",findName);
 
         return new ModelAndView("admin/adminAnnouncement");
     }
 
-
-//=======
-//>>>>>>> bf23dbe79543925ccfb61bae8725df35b157482b:src/main/java/org/wlgzs/agro_achievement/controller/admin/AdminAnnouncementController.java
 }

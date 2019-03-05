@@ -27,8 +27,10 @@
     <div class="header">
         <img th:src="@{/images/favicon.png}" alt="" style="vertical-align: super">
         <img th:src="@{/images/title.png}" alt="">
-        <input type="text" placeholder="请输入要搜索的关键词" class="search">
-        <input type="submit" value="搜索" class="submit">
+        <form th:action="@{/HomeController/globalSearch}" method="post" class="submit">
+            <input type="text" placeholder="请输入要搜索的关键词" name="findName" class="search" required>
+            <input type="submit" value="搜索" class="submit" style="padding: 10px;">
+        </form>
     </div>
     <!--导航栏-->
     <div class="nav">

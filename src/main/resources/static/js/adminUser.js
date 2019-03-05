@@ -1,3 +1,4 @@
+setInterval("data.innerHTML=new Date().toLocaleString()",1000);
 // 删除
 $(".deleteUser").on('click', function () {
     var parent = $(this).parent().parent();
@@ -20,8 +21,7 @@ $(".deleteUser").on('click', function () {
                         $('.cure').html('');
                     }, 2000);
                     setTimeout(function () {
-                        // location.reload(true);
-                        window.location.href="/admin/adminUserList";
+
                     }, 1000);
                 } else {
 
@@ -45,3 +45,15 @@ $(".deleteUser").on('click', function () {
 
     }
 });
+
+function addressUser() {
+    // 获取地区
+    var province = $(".province option:selected").val();
+    var city = $(".city option:selected").val();
+    var district = $(".district option:selected").val();
+    var userAddress = province +"-" + city +"-" + district;
+    $(".hiddenInput").val(userAddress);
+    console.log(userAddress);
+    return;
+}
+

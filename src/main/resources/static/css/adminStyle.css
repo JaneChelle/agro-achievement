@@ -275,17 +275,13 @@ th{
 	text-align: center!important;
 	vertical-align: middle!important;
 }
-td{
+.section_table td{
 	text-align: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
-	padding: 11px!important;
+	padding: 8px!important;
 	vertical-align: middle!important;
-}
-
-.section_table thead tr{
-	background-color: #EEF9FF;
 }
 .section td:last-child a{
 	display: inline-block;
@@ -326,7 +322,7 @@ td{
 .election span{
 	display: inline-block;
 	cursor: pointer;
-	width: 64px;
+	/*width: 64px;*/
 	padding: 12px;
 	position: relative;
 	top: -4px;
@@ -371,9 +367,14 @@ popup,popupModify{
 }
 .popup_bottom{
 	margin-top: 18px;
+	text-align: center;
 }
 .popup_bottom input{
 	margin: 0 3px;
+
+}
+.popup_table tr th{
+	padding: 0 12px;
 }
 /*重置  添加 取消*/
 .popup_table .table-bordered input {
@@ -382,17 +383,24 @@ popup,popupModify{
     font-size: 16px;
     border: 1px solid #EEF9FF;
 }
-input[type=submit],input[type=reset],input[type=button]{
+input[type=submit],input[type=button],input[type=reset]{
 	width: 64px;
 	height: 36px;
 	border: none;
-	color: #000;	
+	color: #fff;
 	font-size: 16px;
 	border-radius: 5px;
-	background: -webkit-linear-gradient(#F1F9FF, #0BB); /* Safari 5.1 - 6.0 */
-	background: -o-linear-gradient(#F1F9FF, #0BB); /* Opera 11.1 - 12.0 */
-	background: -moz-linear-gradient(#F1F9FF, #0BB); /* Firefox 3.6 - 15 */
-	background: linear-gradient(#F1F9FF, #0BB); /* 标准的语法 */
+	cursor: pointer;
+}
+
+input[type=reset]{
+	background-color: #5bc0de;
+}
+input[type=submit]{
+	background-color: #5CB85C;
+}
+input[type=button]{
+	background-color: #fc5656;
 }
 
 .table-bordered tr:hover {
@@ -435,4 +443,7 @@ figure{
 	padding: 12px;
 	margin: 0 150px;
 	line-height: 32px;
+}
+select{
+	height: 36px;
 }

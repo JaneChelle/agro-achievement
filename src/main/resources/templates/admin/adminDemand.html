@@ -18,13 +18,15 @@
     		<form action="">
     			<div class="select-list">
     				<ul>
-    					<li>
-    						<span>搜索：</span>
-    						<input type="text" name="" id="" value="" />
-    					</li>
-    					<li>
-    						<button class="btn" type="submit">搜 索</button>
-    					</li>
+						<form th:action="@{/admin/adminAdminDemand}">
+							<li>
+								<span>搜索：</span>
+								<input type="text" name="findName" value="" autocomplete="off"/>
+							</li>
+							<li>
+								<button class="btn" type="submit">搜 索</button>
+							</li>
+						</form>
     					<li></li>
     					<li class="exampleList">
     						<span>未审核【0】</span>
@@ -41,6 +43,7 @@
     			</div>
     		</form>
     	</div>
+		<div class="cure"></div>
     	<div class="section_table">
     		<div class="section">
 				<table class="table table-bordered table-hover">
@@ -50,17 +53,11 @@
 		                	<th>需求ID</th>
 		                	<th>需求名字</th>
 		                	<th>预期价格</th>
-		                	<th style="display: none;">用户id</th>
 		                	<th>需求者</th>
-		                	<th>需求说明</th>
 		                	<th>发布时间</th>
 		                	<th>联系人</th>
 		                	<th>电话</th>
 		                	<th>邮箱</th>
-		                	<th>点击量</th>
-		                	<th>用户id</th>
-		                	<th>机构id</th>
-		                	<th>审核状态码</th>
 		                    <th>操作</th>
 		                </tr>
 		            </thead>
@@ -74,31 +71,14 @@
 		            		<td th:text="${demand.demandName}">生物质成型燃料高效燃烧技术和装置</td>
 		            		<td th:text="${demand.expectedPrice}">23</td>
 		            		<td th:text="${demand.demanders}">胡亚星</td>
-		            		<td style="display: none;">3</td>
-		            		<td style="cursor: pointer;" class="exampleTd">
-		            			<span>详情</span>
-		            			<input type="hidden" name="" id="" value="2"/>
-		            			<div class="examplePopup">
-		            				<div class="exampleDetails">
-		            					<p th:text="${demand.demandIntroduce}">2222</p>
-		            					<button class="btn exampleCancel">取 消</button>
-		            				</div>
-		            			</div>
-		            		</td>
-
 		            		<!--<td th:text="${#dates.format(demand.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">2019-03-25 21:32:34</td>-->
-		            		<td th:text="${demand.releaseTime}">武凯焱</td>
+		            		<td th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">2019-03-25 21:32:34</td>
 		            		<td th:text="${demand.linkman}">武凯焱</td>
 		            		<td th:text="${demand.phone}">15993023617</td>
 		            		<td th:text="${demand.email}">911090257@qq.com</td>
-		            		<td th:text="${demand.pageView}">0</td>
-		            		<td th:text="${demand.userId}">2</td>
-		            		<td th:text="${demand.organizationTypeId}">1</td>
-		            		<td th:text="${demand.statusCode}">0</td>
 		            		<td>
-		            			<button type="button" class="btn modify">修改</button>
-		            			<button type="button" class="btn deleteExample">删除</button>
-		            			
+								<a th:href="@{/admin/toAdminEditDemand(demandId=${demand.demandId})}">详情</a>
+		            			<button type="button" class="btn deleteDemand">删除</button>
 		            		</td>
 		            	</tr>
 		            </tbody>
@@ -115,15 +95,39 @@
 								<input type="hidden" class="browider">
 		            		</th>
 		                    <th>
-		                    	<ul class="pagination">
-									<li><a href="#">&laquo;</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
+								<!--搜索分页-->
+								<div class="fenye" th:if="${TotalPages >0 and isSearch==0}">
+									<ul class="pagination" th:if="${Number == 1} and ${TotalPages > 1}">
+										<!--//如果当前页等于1，总页数大于1（不显示上一页）   Number&ndash;&gt;当前页-->
+										<li><a th:href="@{/admin/adminAdminDemand/1}">首页</a></li>
+										<li class="active" th:each="i:${#numbers.sequence(1,TotalPages)}">
+											<!--//从1到总页数遍历，并赋值给i    TotalPages&ndash;&gt;总页数-->
+											<a th:if="${i > Number-3} and ${i < Number+3} and ${i == Number}" href="javascript:void(0);" th:text="${i}">#</a>
+											<!--//限制显示页数的条数  4到6个页数   而且等于当前页，不能点击-->
+											<a th:if="${i > Number-3} and ${i < Number+3} and ${i != Number}"
+											   th:href="@{'/admin/adminAdminDemand/'+${i}}" th:text="${i}"
+											   style="color: #337ab7;background-color: #fff;border-color: #fff;">#</a><!--//限制显示页数的条数  4到6个页数-->
+										</li>
+										<li><a th:href="@{'/admin/adminAdminDemand/'+${Number+1}}">下一页</a></li><!--//请求页数+1-->
+									</ul>
+
+									<ul class="pagination" th:if="${Number > 1} and ${TotalPages > 1}"><!--//显示上一页-->
+										<li><a th:href="@{/admin/adminAdminDemand/1}">首页</a></li><!--//跳转至第一页-->
+										<li><a th:href="@{'/admin/adminAdminDemand/'+${Number-1}}">上一页</a></li><!--//请求页数-1-->
+										<li class="active" th:each="i:${#numbers.sequence(1,TotalPages)}">
+											<!--//从1到总页数遍历，并赋值给i    TotalPages&ndash;&gt;总页数-->
+											<a th:if="${i > Number-3} and ${i < Number+3} and ${i == Number}" href="javascript:void(0);" th:text="${i}">#</a>
+											<!--//限制显示页数的条数  4到6个页数   而且等于当前页，不能点击-->
+											<a th:if="${i > Number-3} and ${i < Number+3} and ${i != Number}"
+											   th:href="@{'/admin/adminAdminDemand/'+${i}}" th:text="${i}"
+											   style="color: #337ab7;background-color: #fff;border-color: #fff;">#</a><!--//限制显示页数的条数  4到6个页数-->
+										</li>
+										<li th:if="${Number != TotalPages}"><a
+												th:href="@{'/admin/adminAdminDemand/'+${Number+1}}">下一页</a></li><!--//请求页数+1-->
+										<li><a th:href="@{'/admin/adminAdminDemand/'+${TotalPages}}">尾页</a></li><!--//跳转至第Number页-->
+									</ul>
+
+								</div>
 		                    </th>
 		                </tr>
 		           </thead>
@@ -131,85 +135,8 @@
 			</div>
 		</div>
     </section>
-    <!--弹窗-->
-	<popup>
-		<div class="popup">
-			<h3>添加案例</h3>
-			<div class="popup_table">
-				<form action="" method="post">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-			                    <th>案例标题</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
-			                    </td>
-			                </tr>	
-			                <tr>
-			                    <th>案例内容</th>
-			                    <td class="exampleTextarea">
-			                    	<textarea name="" rows="" cols="" class=""></textarea>
-			                    </td>
-			                </tr>	
-			                <tr>
-			                    <th>用户ID</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
-			                    </td>
-			                </tr>	
-						</thead>
-					</table>
-					<div class="popup_bottom">
-						<input type="reset" name="" id="" value="重置" />
-						<input type="submit" value="添加"/>
-						<input type="button" name="" class="cancel_1" value="取消" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</popup>
-	
-	<!--修改-->
-	<popupModify>
-		<div class="popupModify">
-			<h3>修改案例</h3>
-			<div class="popup_table">
-				<form action="" method="post">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-			                    <th>案例名称</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" />
-			                    </td>
-			                </tr>	
-			                <tr>
-			                    <th>案例内容</th>
-			                    <td>
-			                    	<textarea name="" rows="" cols=""></textarea>
-			                    </td>
-			                </tr>	
-			               <tr style="display: none;">
-			               		<th>用户Id</th>
-			               		<td>
-			               			<input type="" name="" id="" value="" />
-			               		</td>
-			               </tr>
-						</thead>
-					</table>
-					<div class="popup_bottom">
-						<input type="reset" name="" id="" value="重置" />
-						<input type="submit" value="添加"/>
-						<input type="button" name="" class="cancel_1" value="取消" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</popupModify>	
-	
 	</body>
-	
-	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
-	<script type="text/javascript" src="../js/adminIndex.js" ></script>
-	<script type="text/javascript" src="../js/adminDemand.js" ></script>
+	<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
+	<script type="text/javascript" th:src="@{../js/adminDemand.js}" ></script>
 </html>

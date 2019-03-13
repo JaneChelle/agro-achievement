@@ -1,6 +1,7 @@
 package org.wlgzs.agro_achievement.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Organization;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.wlgzs.agro_achievement.util.Result;
@@ -20,7 +21,7 @@ import java.util.List;
 public interface IOrganizationService extends IService<Organization> {
 
     //添加机构
-    Result addOrganization(HttpSession session,Organization organization);
+    Result addOrganization(HttpServletRequest request,HttpSession session,Organization organization,MultipartFile myFileName);
 
     //删除机构
     Result deleteOrganization(Integer organizationId);
@@ -50,6 +51,6 @@ public interface IOrganizationService extends IService<Organization> {
     Result adminOrganizationList(String findName,int current, int limit);
 
     //添加机构
-    Result saveOrganization(Organization organization);
+    Result saveOrganization(Organization organization,MultipartFile myFileName,HttpServletRequest request);
 
 }

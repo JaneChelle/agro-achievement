@@ -38,6 +38,7 @@ public class UserController extends BaseController {
         model.addAttribute("Number", result.getCurrent());//当前页数
         model.addAttribute("userList",userList);
         System.out.println(userList);
+        model.addAttribute("findName", findName);
         return new ModelAndView("admin/adminUser");
     }
 

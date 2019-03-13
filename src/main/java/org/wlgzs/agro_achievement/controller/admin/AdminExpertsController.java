@@ -24,27 +24,27 @@ public class AdminExpertsController extends BaseController {
     //查询所有专家(分页)
     @RequestMapping(value = "/adminExpertsList")
     public ModelAndView adminExpertsList(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
-                                             @RequestParam(value = "limit", defaultValue = "8") int limit,
-                                             @RequestParam(value = "findName", defaultValue = "") String findName){
-        Result result = iExpertsService.findExpertsList(findName,current,limit);
+                                         @RequestParam(value = "limit", defaultValue = "8") int limit,
+                                         @RequestParam(value = "findName", defaultValue = "") String findName) {
+        Result result = iExpertsService.findExpertsList(findName, current, limit);
 
         List<Experts> expertsList = (List<Experts>) result.getData();
-        model.addAttribute("expertsList",expertsList);
+        model.addAttribute("expertsList", expertsList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
-
+        model.addAttribute("findName", findName);
         return new ModelAndView("admin/adminExperts");
     }
 
     //去添加专家
     @RequestMapping(value = "/toAdminAddExperts")
-    public ModelAndView toAdd(){
+    public ModelAndView toAdd() {
         return new ModelAndView("admin/addExpert");
     }
 
     //管理员添加专家
     @RequestMapping(value = "/adminAddExperts")
-    public ModelAndView adminAddExperts(Model model,Experts experts){
+    public ModelAndView adminAddExperts(Model model, Experts experts) {
         Result result = iExpertsService.addAdminExperts(experts);
         return new ModelAndView("redirect:/admin/adminExpertsList");
     }
@@ -59,7 +59,7 @@ public class AdminExpertsController extends BaseController {
 
     //修改专家
     @RequestMapping(value = "/adminEditExperts")
-    public ModelAndView modifyExperts(Experts experts,Model model) {
+    public ModelAndView modifyExperts(Experts experts, Model model) {
         Result result = iExpertsService.modifyExperts(experts);
         if (result.getCode() == 0) {
             Experts experts1 = (Experts) result.getData();

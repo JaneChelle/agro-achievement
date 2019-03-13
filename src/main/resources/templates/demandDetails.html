@@ -19,12 +19,12 @@
 <div class="product">
     <div class="name">
         <h4 th:text="${demand.demandName}">强盛一号</h4>
-        <span th:text="'发布时间'+${demand.releaseTime}"></span>&nbsp;&nbsp;&nbsp;
+        <span th:text="'发布时间'+${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}"></span>&nbsp;&nbsp;&nbsp;
         <span th:text="${demand.pageView}"></span>
     </div>
     <div class="pro_msg">
         <ul>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><span>研 发 时 间:</span><span th:text="${demand.releaseTime}"></span></li>
+            <li><i class="fa fa-forward" aria-hidden="true"></i><span>研 发 时 间:</span><span th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}"></span></li>
             <!--<li><i class="fa fa-forward" aria-hidden="true"></i><span>成果成熟度:</span><span>可以量产</span></li>-->
             <!--<li><i class="fa fa-forward" aria-hidden="true"></i><span>预期交易方式:</span><span>合作生产</span></li>-->
             <!--<li><i class="fa fa-forward" aria-hidden="true"></i><span>技 术 水 平:</span><span>国际先进</span></li>-->

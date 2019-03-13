@@ -273,7 +273,7 @@ public class HomeController extends BaseController {
     @RequestMapping(value = "/organizationDetails")
     public ModelAndView organizationDetails(Model model, Integer organizationId) {
         Organization organization = iOrganizationService.getById(organizationId);
-        model.addAttribute("organization",organization);
+        model.addAttribute("organization", organization);
         return new ModelAndView("OrganizationDetails");
     }
 
@@ -281,39 +281,69 @@ public class HomeController extends BaseController {
     @RequestMapping(value = "/globalSearch")
     public ModelAndView globalSearch(Model model, @RequestParam(value = "findName", defaultValue = "") String findName,
                                      @RequestParam(value = "current", defaultValue = "1") int current,
-                                     @RequestParam(value = "limit", defaultValue = "8") int limit) {
+                                     @RequestParam(value = "limit", defaultValue = "20") int limit) {
+        IPage<Experts> Experts = iExpertsService.findName(findName, current, limit);
+        IPage<Organization> Organization = iOrganizationService.findName(findName, current, limit);
         //搜索成果
         IPage<Achievement> iPage = iAchievementService.findName(findName, current, limit);
-        //成果总数
-        model.addAttribute("AchievementNumber", iPage.getTotal());
-        model.addAttribute("findAchievement", iPage.getRecords());
+        int a = (int) Math.ceil(iPage.getTotal() / 20f);//成果页数
+        int size = 20 - iPage.getRecords().size();//当页缺少的成果条数
+        if(size == 20){
+            //成果总数
+            model.addAttribute("AchievementNumber",null);
+            model.addAttribute("findAchievement",null);
+        }else{
+            //成果总数
+            model.addAttribute("AchievementNumber", iPage.getTotal());
+            model.addAttribute("findAchievement", iPage.getRecords());
+        }
 
-        //搜索专家
-        IPage<Experts> iPage1 = iExpertsService.findName(findName, current, limit);
-        //专家总数
-        model.addAttribute("ExpertsNumber", iPage1.getTotal());
-        model.addAttribute("findExperts", iPage1.getRecords());
+        if (current >= a && size > 0) {//到达成果的最后一页，且数据量不足
+            //搜索专家
+            IPage<Experts> iPage1 = iExpertsService.findName(findName, current, size);
+            int b = 0;
+            if (a * 20 == iPage.getTotal()) {
+                b = (int) Math.ceil(iPage1.getTotal() / 20f) + a;//专家的最后页数
+            } else {
+                b = (int) Math.ceil(iPage1.getTotal() / 20f) + a - 1;//专家的最后页数
+            }
 
-        //搜索机构
-        IPage<Organization> iPage2 = iOrganizationService.findName(findName, current, limit);
-        //机构总数
-        model.addAttribute("OrganizationNumber", iPage2.getTotal());
-        model.addAttribute("findOrganization", iPage2.getRecords());
+            int size1 = 20 - iPage1.getRecords().size();//当页缺少的专家条数
+            //专家总数
+            model.addAttribute("ExpertsNumber", iPage1.getTotal());
+            model.addAttribute("findExperts", iPage1.getRecords());
+            if (current >= b && size1 > 0) {//到达成果的最后一页，且数据量不足
+                //搜索机构
+                IPage<Organization> iPage2 = iOrganizationService.findName(findName, current, size1);
+                int c = (int) Math.ceil(iPage2.getTotal() / 20f);//机构页数
+                //机构总数
+                model.addAttribute("OrganizationNumber", iPage2.getTotal());
+                model.addAttribute("findOrganization", iPage2.getRecords());
+            }else{
+                model.addAttribute("OrganizationNumber", null);
+                model.addAttribute("findOrganization", null);
+            }
+        } else {
+            //专家总数
+            model.addAttribute("ExpertsNumber", null);
+            model.addAttribute("findExperts", null);
+        }
 
         //分页信息
-        //总条数
-        model.addAttribute("TotalNumber", iPage.getTotal() + iPage1.getTotal() + iPage2.getTotal());
+        //总条数(可以写一个方法)
+        long TotalNumber = iPage.getTotal() + Experts.getTotal() + Organization.getTotal();
+        model.addAttribute("TotalNumber", TotalNumber);
 
-        model.addAttribute("TotalPages", iPage.getPages());//总页数
-        model.addAttribute("Number", iPage.getCurrent());//当前页数
-
+        //总条数/20,向上取整
+        model.addAttribute("TotalPages", Math.ceil(TotalNumber / 20));//总页数
+        model.addAttribute("Number", current);//当前页数
         model.addAttribute("findName", findName);//搜索关键字
         return new ModelAndView("findHome");
     }
 
     //按照类型搜索
     @RequestMapping(value = "/globalSearch/{type}")
-    public ModelAndView globalSearchType(Model model,String findName, @PathVariable("type") String type,
+    public ModelAndView globalSearchType(Model model, String findName, @PathVariable("type") String type,
                                          @RequestParam(value = "current", defaultValue = "1") int current,
                                          @RequestParam(value = "limit", defaultValue = "8") int limit) {
         if ("Achievement".equals(type)) {

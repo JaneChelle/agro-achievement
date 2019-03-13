@@ -20,15 +20,17 @@
                 <li><a th:if="${session.user!=null}" href="/LogUser/login">退出</a></li>
                 <li th:if="${session.user!=null}">欢迎：<span th:text="${session.user.userName}"></span></li>
                 <li th:if="${session.user==null}"><span></span></li>
+            </ul>
         </div>
-        </ul>
     </div>
     <!--头部图片-->
     <div class="header">
         <img th:src="@{/images/favicon.png}" alt="" style="vertical-align: super">
         <img th:src="@{/images/title.png}" alt="">
-        <input type="text" placeholder="请输入要搜索的关键词" class="search">
-        <input type="submit" value="搜索" class="submit">
+        <form th:action="@{/HomeController/globalSearch}" method="post" class="submit">
+            <input type="text" placeholder="请输入要搜索的关键词" name="findName" class="search" required>
+            <input type="submit" value="搜索" class="submit" style="padding: 10px;">
+        </form>
     </div>
     <!--导航栏-->
     <div class="nav">
@@ -40,7 +42,6 @@
                     <li><a th:href="@{/UserManagement/toUserManagement}" th:if="${session.user!=null}" href="/LogUser/login" title="成果发布">成果发布</a></li>
                     <li><a th:href="@{/LogUser/login}" th:if="${session.user==null}"  title="成果发布">成果发布</a></li>
                     <li><a th:href="@{/HomeController/AchievementHome}" title="成果分类导航">成果分类导航</a></li>
-                    <li><a href="" title="成果检索">成果检索</a></li>
                     <li><a th:href="@{/achievement/rankingAchievement}" title="优秀成果推荐">优秀成果推荐</a></li>
                 </ul>
             </li>
@@ -49,15 +50,14 @@
                 <a th:href="@{/HomeController/ExpertsHome}">专家服务</a>
                 <ul class="son">
                     <li><a th:href="@{/HomeController/ExpertsHome}" title="专家分类导航">专家分类导航</a></li>
-                    <li><a href="" title="专家检索">专家检索</a></li>
-                    <li><a href="" title="专家推荐">专家推荐</a></li>
+                    <li><a th:href="@{/HomeController/selectExperts}" title="专家推荐">专家推荐</a></li>
                 </ul>
             </li>
             <li class="hover_li">
                 <a th:href="@{/HomeController/SupplyHome}">供需服务</a>
                 <ul class="son">
-                    <li><a  title="供需对接">需求案例</a></li>
-                    <li><a href="" title="成功案例">成功案例</a></li>
+                    <li><a  title="供需对接" th:href="@{/demand/selectAllDemand}">需求案例</a></li>
+                    <li><a th:href="@{/HomeController/selectExample}" title="成功案例">成功案例</a></li>
                 </ul>
             </li>
             <li><a th:href="@{/HomeController/PolicyHome}">政策服务</a></li>

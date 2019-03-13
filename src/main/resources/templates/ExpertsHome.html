@@ -27,11 +27,6 @@
         <ul>
             <li th:each="type : ${typeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/selectExperts}" th:text="${type.typeName}">种业</a></li>
         </ul>
-        <!--<img th:src="@{/images/cg_expert2.jpg}" alt="" style="z-index: 1">-->
-        <!--专家排行-->
-        <!--<ul class="area" th:each="expertsRanking: ${expertsRankingList}">-->
-            <!--<li><a th:href="@{/HomeController/expertsDetails(expertsId=${expertsRanking.expertsId})}" th:text="${expertsRanking.expertsName}"></a></li>-->
-        <!--</ul>-->
     </div>
     <div class="middle">
         <div class="htmleaf-container">
@@ -66,29 +61,29 @@
             <!--</ul>-->
         <!--</div>-->
         <div class="jishu">
-            <a href="" class="zj_more">更多</a>
+            <!--<a href="" class="zj_more">更多</a>-->
             <ul style="padding: 34px 0 0 15px;">
-                <li>
+                <li th:each="expertsRanking : ${expertsRankingList}">
                     <i class="fa fa-forward" aria-hidden="true"></i>
-                    <a href="" >欧拉型藏羊繁育及生产技术推广</a>
-                    <span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span>
+                    <a th:href="@{/HomeController/expertsDetails(expertsId=${expertsRanking.expertsId})}" th:text="${expertsRanking.expertsName}">欧拉型藏羊繁育及生产技术推广</a>
+                    <!--<span style="float: right;margin-right: 25px;color: #cccccc;" th:text="${expertsRanking.expertsName}">2018-10-12</span>-->
                 </li>
             </ul>
         </div>
     </div>
     <div class="right">
         <!--申请成为专家-->
-        <a th:href="@{/experts/addExperts}"><img th:src="@{/images/zj_03.jpg}" alt=""></a>
+        <a th:href="@{/UserManagement/toUserManagement}"  onclick="method()"><img th:src="@{/images/zj_03.jpg}" alt=""></a>
         <img th:src="@{/images/zj_04.jpg}" alt="">
         <!--推荐专家-->
         <div class="expert_one_people">
-            <div class="erpert_picbox">
+            <div class="erpert_picbox" th:each="recommend : ${recommendList}">
                 <div class="expert_picbox">
-                    <img src="images/expert1.jpg" width="45" height="45">
+                    <img th:src="${recommend.pictureAddress}" width="45" height="45">
                 </div>
                 <div class="expert_picex">
-                    <a href="" target="_blank">康绍忠</a><br>
-                    <sapn>农业水土工程、旱区农业节</sapn>
+                    <a th:href="@{/HomeController/expertsDetails(expertsId=${recommend.expertsId})}" target="_blank" th:text="${recommend.expertsName}">康绍忠</a><br>
+                    <span th:text="${recommend.researchField}">农业水土工程、旱区农业节</span>
                 </div>
             </div>
         </div>
@@ -115,12 +110,15 @@
 <script th:src="@{/js/MxSlider.js}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $( '.ZI-slider' ).MxSlider( {
+        $( '.ZI-slider' ).MxSlider({
             autoPlay: true,
             dots: true,
             timeSlide: 500
         } );
-    })
+
+
+    });
+
 </script>
 </body>
 </html>

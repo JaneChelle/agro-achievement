@@ -45,7 +45,7 @@
             </div>
             <ul class="newsCon">
                 <li th:each="news: ${newsList}">
-                    <a target="_blank" th:href="@{/admin/announcementDetails(announcementId=${news.announcementId})}" title=""><span th:text="${news.announcementTitle}"></span></a>
+                    <a target="_blank" th:href="@{/Announcement/announcementDetails(announcementId=${news.announcementId})}" title=""><span th:text="${news.announcementTitle}"></span></a>
                     <span style="color:#666;float: right" th:text="${#temporals.format(news.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
@@ -173,7 +173,7 @@
             </div>
             <ul>
                 <li th:each="trading : ${tradingList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/admin/announcementDetails(announcementId=${trading.announcementId})}" th:title="${trading.announcementTitle}"  th:text="${trading.announcementTitle}" target="_blank">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/Announcement/announcementDetails(announcementId=${trading.announcementId})}" th:title="${trading.announcementTitle}"  th:text="${trading.announcementTitle}" target="_blank">
                 </a><span style="float: right"   th:text="${#temporals.format(trading.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
@@ -186,7 +186,7 @@
             </div>
             <ul>
                 <li th:each="policy : ${policyList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/admin/announcementDetails(announcementId=${policy.announcementId})}" th:title="${policy.announcementTitle}" th:text="${policy.announcementTitle}" target="_blank">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/Announcement/announcementDetails(announcementId=${policy.announcementId})}" th:title="${policy.announcementTitle}" th:text="${policy.announcementTitle}" target="_blank">
                 </a><span style="float: right"  th:text="${#temporals.format(policy.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>

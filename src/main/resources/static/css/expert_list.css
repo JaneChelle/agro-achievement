@@ -20,15 +20,40 @@
     padding: 15px 25px;
     display: inline-block;
 }
+
 .experts>ul>li>img{
-     width: 50px;
-     height:50px;
+     width: 60px;
+     height:60px;
     display: inline-block;
  }
+.zj_js>a{
+    text-decoration: none;
+    color: #000;
+}
+.zj_js>a:hover{
+    text-decoration: underline;
+    color: #41A809;
+}
  .zj_js{
      display: inline-block;
      padding-left: 10px;
- }.fenye{
+ }
+ .zj_js>span{
+     display: inline-block;
+    line-height: 20px;
+     overflow: hidden;
+ }
+ .intro{
+     color: #000;
+     text-decoration: none;
+     display: inline-block;
+     width: 190px;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     line-height: 35px;
+ }
+.fenye{
       width:1200px;
       margin: 0 auto;
       background-color: #F2F2F2;

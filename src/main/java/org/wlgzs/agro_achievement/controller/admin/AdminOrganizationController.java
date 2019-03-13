@@ -4,6 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Organization;
@@ -33,7 +34,7 @@ public class AdminOrganizationController extends BaseController {
         model.addAttribute("organizationList",organizationList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
-
+        model.addAttribute("findName", findName);
         return new ModelAndView("OrganizationList");
     }
 
@@ -49,9 +50,9 @@ public class AdminOrganizationController extends BaseController {
 
     //管理员添加机构
     @RequestMapping(value = "/adminAddOrganization")
-    public ModelAndView adminAddOrganization(Model model, HttpServletRequest request,
+    public ModelAndView adminAddOrganization(@RequestParam(value = "file",required = false)MultipartFile myFileName, Model model, HttpServletRequest request,
                                              Organization organization){
-        Result result = iOrganizationService.saveOrganization(organization);
+        Result result = iOrganizationService.saveOrganization(organization,myFileName,request);
         return new ModelAndView("redirect:/admin/adminOrganizationList");
     }
 

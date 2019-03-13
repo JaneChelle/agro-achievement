@@ -158,8 +158,8 @@
     border-bottom: 1px solid #cccccc;
 }
 .expert_picbox>img{
-    width:45px;
-    height:45px;
+    width:60px;
+    height:60px;
     vertical-align: bottom;
 }
 .expert_picbox{
@@ -169,6 +169,16 @@
     display: inline-block;
     line-height: 25px;
     padding-left: 10px;
+}
+.expert_picex>span{
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    width: 190px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 35px;
 }
 .expert_picex>a{
     color: #000;

@@ -301,38 +301,7 @@ th{
 .section>table>tbody>tr:nth-child(even){
 	background-color: #ECF0F3;
 }
-/*底部*/
-.admin_bottom{
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 16px;
-	height: 32px;
-}
-.admin_bottom th{
-	overflow: hidden;
-}
-/*分页*/
-.pagination{ margin: 0 !important;}
-/*全选*/
-.election{
-	position: relative;
-	overflow: hidden;
-}
-.election span{
-	display: inline-block;
-	cursor: pointer;
-	/*width: 64px;*/
-	padding: 12px;
-	position: relative;
-	top: -4px;
-	transition: all .5s;
-	border-radius: 5px;
-	background-color: #0BB;
-}
-.election span:hover{
-	box-shadow: 2px 2px 7px #999;
-}
+
 /*弹窗*/
 popup,popupModify{
 	position: fixed;

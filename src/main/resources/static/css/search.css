@@ -117,3 +117,15 @@
     color: #41A809;
     text-decoration: underline;
 }
+.form{
+    display: inline-block;
+}
+.find{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    color: red;
+    margin: 6px 10px;
+    outline: none;
+}

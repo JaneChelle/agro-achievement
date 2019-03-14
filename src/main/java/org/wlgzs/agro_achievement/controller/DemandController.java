@@ -63,7 +63,7 @@ public class DemandController extends BaseController {
     //修改需求
     @RequestMapping(value = "/modifyDemand")
     public ModelAndView modifyDemand(Model model, Demand demand) {
-        Result result = iDemandService.modifyDemand(demand);
+        Result result = iDemandService.modifyDemand(demand,null);
         if (result.getCode() == 0) {
             Demand demand1 = (Demand) result.getData();
             model.addAttribute("msg", "修改成功！");

@@ -50,9 +50,9 @@ public class AdminDemandController extends BaseController {
 
     //管理员添加需求
     @RequestMapping(value = "/adminAddDemand")
-    public ModelAndView adminAddDemand(Model model, Demand demand) {
-        Result result = iDemandService.saveDemand(demand);
-        model.addAttribute("msg", result.getMsg());
+    public ModelAndView adminAddDemand(Model model ,Demand demand,String time){
+        Result result = iDemandService.saveDemand(demand,time);
+        model.addAttribute("msg",result.getMsg());
         return new ModelAndView("redirect:/admin/adminAdminDemand");
     }
 
@@ -62,18 +62,18 @@ public class AdminDemandController extends BaseController {
         Result result = iDemandService.demandDetails(demandId);
         Demand demand = (Demand) result.getData();
         model.addAttribute("demand", demand);
-        return new ModelAndView("adminEditDemand");
+        return new ModelAndView("admin/adminEditDemand");
     }
 
     //修改需求
     @RequestMapping(value = "/adminEditDemand")
-    public ModelAndView modifyDemand(Demand demand, Model model) {
-        Result result = iDemandService.modifyDemand(demand);
+    public ModelAndView modifyDemand(Demand demand, Model model,String time) {
+        Result result = iDemandService.modifyDemand(demand,time);
         if (result.getCode() == 0) {
             Demand demand1 = (Demand) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("demand", demand1);
-            return new ModelAndView("adminDemandDetails");
+            return new ModelAndView("admin/adminEditDemand");
         } else {
             model.addAttribute("msg", "修改失败！");
         }

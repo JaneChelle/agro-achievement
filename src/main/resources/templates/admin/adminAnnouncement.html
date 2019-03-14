@@ -66,9 +66,9 @@
 								<a href="Announcement.html" th:title="${announcement.announcementTitle}" th:text="${announcement.announcementTitle}">
 									科技成果转移转化：拆除阻碍产业化的“篱笆墙
 								</a>
+								<a th:title="${announcement.announcementTitle}" th:text="${announcement.announcementTitle}" th:href="@{/admin/announcementAdminDetails(announcementId=${announcement.announcementId})}">详情</a>
 							</td>
-							<td th:text="${announcement.releaseTime}">B133</td>
-							<!--<td th:text="${#dates.format(announcement.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">B133</td>-->
+							<td th:text="${#temporals.format(announcement.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">B133</td>
 							<td th:text="${announcement.announcementType}">农产品与食品加工</td>
 							<td>
 								<button type="button" class="btn modify">修改</button>
@@ -79,8 +79,54 @@
 				</table>
 			</div>
 		</div>
+		<div class="cure"></div>
 	</section>
+
+<popupModify>
+	<div class="popupModify">
+		<h3>修改用户</h3>
+		<div class="popup_table">
+			<form th:action="@{/admin/modifyAnnouncement}">
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th>公告id</th>
+						<td>
+							<input type="" name="announcementId" value="" required="required"/>
+						</td>
+					</tr>
+					<tr>
+						<th>公告标题</th>
+						<td>
+							<input type="" name="announcementTitle" value="" required="required"/>
+						</td>
+					</tr>
+					<tr>
+						<th>公告内容</th>
+						<td>
+							<template type="" name="announcementContent" value="" required="required"/>
+						</td>
+					</tr>
+					<tr>
+						<th>公告类型</th>
+						<td>
+							<input type="" name="announcementType" value="" required="required"/>
+						</td>
+					</tr>
+					</thead>
+				</table>
+				<div class="popup_bottom">
+					<input type="reset" name="" id="" value="重置" />
+					<input type="submit" value="添加"/>
+					<input type="button" name="" class="cancel_1" value="取消" />
+				</div>
+			</form>
+		</div>
+	</div>
+</popupModify>
+
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
 <script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
+<script type="text/javascript" th:src="@{../js/announcement.js}"></script>
 </html>

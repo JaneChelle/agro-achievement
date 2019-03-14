@@ -5,9 +5,18 @@
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>农业科技成果转化交易服务平台注册</title>
     <link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
-    <link rel="stylesheet" th:href="@{../css/admindemo.css}" />
+    <link rel="stylesheet" th:href="@{../css/adminDemo.css}" />
 	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
     <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+	<style>
+		.popup_table input{
+			width: auto;
+		}
+		.popup_table input[type=button],.popup_table input[type=submit],.popup_table input[type=reset]{
+			width: 94px;
+		}
+
+	</style>
 </head>
 <body>
 
@@ -18,15 +27,23 @@
     		<form action="">
     			<div class="select-list">
     				<ul>
-    					<li>
-    						<span>搜索：</span>
-    						<input type="text" name="findName" value="" />
-    					</li>
-    					<li>
-    						<button class="btn" type="submit">搜 索</button>
-    					</li>
+						<form th:action="@{/admin/adminUserList}">
+							<li>
+								<span>搜索：</span>
+								<input type="text" name="findName" value="" />
+							</li>
+							<li>
+								<button class="btn" type="submit">搜 索</button>
+							</li>
+						</form>
+						<li></li>
+						<li class="exampleList">
+							<span>管理员【1】</span>
+							<span>普通用户【2】</span>
+							<span>专家【3】</span>
+						</li>
     					<li class="img_add">
-    						<a href="JavaScript:;">
+    						<a th:href="@{/admin/toAddUser}">
 	                			<img src="../images/添加.svg" title="添加用户"/>
 	                			<span>添加</span>
 	                		</a>
@@ -74,136 +91,67 @@
 			</div>
     	</div>
 		<div class="cure"></div>
-		<div class="admin_bottom">
-			<div class="section">
-				<table class="table table-bordered table-hover">
-					<thead>
-		                <tr>
-		                	<th class="election">
-								<span class="electionDelete">批量删除</span>
-								<input type="hidden" class="browider">
-		            		</th>
-		                    <th>
-		                    	<ul class="pagination">
-									<li><a href="#">&laquo;</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
-		                    </th>
-		                </tr>
-		           </thead>
-		        </table>
-			</div>
-		</div>
-    </section>
 
-	<!--弹窗-->
-	<popup>
-		<div class="popup">
-			<h3>添加用户</h3>
-			<div class="popup_table">
-				<form action="" method="post">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-			                    <th>用户名</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
-			                    </td>
-			                </tr>				                    
-			                <tr>
-			                	<th>密码</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" required="required"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                    <th>手机</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
-			                    </td>
-			                </tr>				                    
-			                <tr>
-			                	<th>邮箱</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" required="required"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                	<th>用户等级</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" required="required"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                    <th>所在地区</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
-			                    </td>
-			                </tr>	
-						</thead>
-					</table>
-					<div class="popup_bottom">
-						<input type="reset" name="" id="" value="重置" />
-						<input type="submit" value="添加"/>
-						<input type="button" name="" class="cancel_1" value="取消" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</popup>
+    </section>
 	<!--修改-->
 	<popupModify>
 		<div class="popupModify">
 			<h3>修改用户</h3>
 			<div class="popup_table">
-				<form action="" method="post">
+				<form th:action="@{/admin/adminModifyUser}" onsubmit="return addressUser()">
 					<table class="table table-bordered">
 						<thead>
+							<tr style="display: none;">
+								<th>用户ID</th>
+								<td>
+									<input type="text" name="userId" value="" required="required"/>
+								</td>
+							</tr>
 							<tr>
 			                    <th>用户名</th>
 			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
+			                    	<input type="text" name="userName" value="" required="required"/>
 			                    </td>
 			                </tr>				                    
 			                <tr>
 			                	<th>密码</th>
 			                	<td>
-			                		<input type="" name="" id="" value="" required="required"/>
+			                		<input type="text" name="password" value="" required="required"/>
 			                	</td>
 			                </tr>
 			                <tr>
 			                    <th>手机</th>
 			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
+			                    	<input type="text" name="userPhone" value="" required="required"/>
 			                    </td>
 			                </tr>				                    
 			                <tr>
 			                	<th>邮箱</th>
 			                	<td>
-			                		<input type="" name="" id="" value="" required="required"/>
+			                		<input type="text" name="userEmail" value="" required="required"/>
 			                	</td>
 			                </tr>
 			                <tr>
 			                	<th>用户等级</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" required="required"/>
-			                	</td>
+								<td>
+									<input type="text" name="userLevel" value="" required="required"/>
+								</td>
 			                </tr>
 			                <tr>
 			                    <th>所在地区</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
-			                    </td>
-			                </tr>	
+								<td>
+									<span data-toggle="distpicker" class="data-toggle">
+										<select name="" class="province" data-province="选择省"></select>
+										<select name="" class="city" data-city="选择市"></select>
+										<select name="" class="district" data-district="选择区"></select>
+										<input type="hidden" name="userAddress" class="hiddenInput">
+									</span>
+								</td>
+			                </tr>
 						</thead>
 					</table>
 					<div class="popup_bottom">
-						<input type="reset" name="" id="" value="重置" />
+						<input type="reset" name="" value="重置" />
 						<input type="submit" value="添加"/>
 						<input type="button" name="" class="cancel_1" value="取消" />
 					</div>
@@ -216,4 +164,5 @@
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
 <script type="text/javascript" th:src="@{../js/adminIndex.js}" ></script>
 <script type="text/javascript" th:src="@{../js/adminUser.js}" ></script>
+<script type="text/javascript" th:src="@{../js/distpicker.js}" ></script>
 </html>

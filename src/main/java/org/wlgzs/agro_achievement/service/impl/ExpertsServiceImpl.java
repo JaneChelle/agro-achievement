@@ -162,7 +162,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     @Override
     public Result findExpertsList(String findName, int current, int limit) {
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("achievement_name", findName).like("achievement_key", findName);
+        queryWrapper.like("experts_name", findName);
         Page page = new Page(current, limit);
         IPage<Experts> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Experts> expertsList = iPage.getRecords();

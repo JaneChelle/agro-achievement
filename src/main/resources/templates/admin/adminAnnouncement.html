@@ -66,9 +66,9 @@
 								<a href="Announcement.html" th:title="${announcement.announcementTitle}" th:text="${announcement.announcementTitle}">
 									科技成果转移转化：拆除阻碍产业化的“篱笆墙
 								</a>
+								<a th:title="${announcement.announcementTitle}" th:text="${announcement.announcementTitle}" th:href="@{/admin/announcementAdminDetails(announcementId=${announcement.announcementId})}">详情</a>
 							</td>
-							<td th:text="${announcement.releaseTime}">B133</td>
-							<!--<td th:text="${#dates.format(announcement.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">B133</td>-->
+							<td th:text="${#temporals.format(announcement.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">B133</td>
 							<td th:text="${announcement.announcementType}">农产品与食品加工</td>
 							<td>
 								<button type="button" class="btn modify">修改</button>

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
@@ -25,19 +26,19 @@ public class TypeController extends BaseController {
 
     //增加类型
     @RequestMapping(value = "/addType",method = RequestMethod.PUT)
-    public Result addType(Type type){
+    public ModelAndView addType(Type type){
             return iTypeService.addType(type);
     }
 
     //删除类型
     @RequestMapping(value = "/deleteType", method = RequestMethod.DELETE)
-    public Result deleteTyped(Integer typeId) {
+    public ModelAndView deleteTyped(Integer typeId) {
         return iTypeService.deleteType(typeId);
     }
 
     //查找所有类型
     @GetMapping("/selectAllType")
-    public Result selectAllType(){
+    public ModelAndView selectAllType(){
         return iTypeService.selectAllType();
     }
 

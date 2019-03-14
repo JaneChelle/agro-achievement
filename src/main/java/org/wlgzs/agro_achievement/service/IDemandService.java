@@ -21,7 +21,7 @@ public interface IDemandService extends IService<Demand> {
     Result deleteDemand(Integer demandId);
 
     //修改需求
-    Result modifyDemand(Demand demand);
+    Result modifyDemand(Demand demand,String time);
 
     //按照用户查询所有需求（状态码）
     Result selectDemand(Integer userId, String statusCode, int current, int limit);
@@ -36,7 +36,7 @@ public interface IDemandService extends IService<Demand> {
     Result adminDemandList(String findName,int current, int limit);
 
     //添加需求
-    Result saveDemand(Demand demand);
+    Result saveDemand(Demand demand,String time);
 
     //按需求状态查询需求
     Result selectDemandByCode(String statusCode,int current,int limit);

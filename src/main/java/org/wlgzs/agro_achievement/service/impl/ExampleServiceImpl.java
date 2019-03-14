@@ -122,7 +122,7 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
     @Override
     public Result findExampleList(String findName, int current, int limit) {
         QueryWrapper<Example> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("achievement_name",findName).like("achievement_key",findName);
+        queryWrapper.like("example_title",findName);
         Page page = new Page(current,limit);
         IPage<Example> iPage = baseMapper.selectPage(page,queryWrapper);
         List<Example> exampleList = iPage.getRecords();

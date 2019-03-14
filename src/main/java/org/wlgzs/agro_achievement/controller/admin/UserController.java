@@ -37,6 +37,7 @@ public class UserController extends BaseController {
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
         model.addAttribute("userList",userList);
+        System.out.println(userList);
         model.addAttribute("findName", findName);
         return new ModelAndView("admin/adminUser");
     }
@@ -44,7 +45,7 @@ public class UserController extends BaseController {
     //去添加用户
     @RequestMapping(value = "/toAddUser")
     public ModelAndView toAddUser(){
-        return new ModelAndView("adminAddUser");
+        return new ModelAndView("admin/addUser");
     }
 
 

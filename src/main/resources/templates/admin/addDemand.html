@@ -1,64 +1,127 @@
 <!DOCTYPE html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>农业科技成果转化交易服务平台注册</title>
-    <link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
-    <link rel="stylesheet" th:href="@{../css/admindemo.css}" />
-    <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
-    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>农业科技成果转化交易服务平台注册</title>
+	<link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{../css/jeDate_test.css}">
+	<link rel="stylesheet" th:href="@{../css/jedate.css}">
+	<style>
+		select{
+			width: 84%;
+			height: 35px;
+			text-align: center;
+			position: relative;
+			left: -6%;
+		}
+		option{
+			height: 35px;
+		}
+	</style>
 </head>
 <body>
 
 <body>
 <div th:include="common/adminCommon :: nav"></div>
-    <section>
-    	<div class="search-collapse">
-    		<h3>
-				<img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
-				<!--<img src="../images/成果 (1).svg" alt="" />-->
-    			<span>发布需求</span>
-    		</h2>
-    	</div>
-    	<div class="section_table">
-    		<div class="section">
-				<div class="apply_expert applyDemand ">
-					<div class="applyExpert">
-						<label>需求名字</label>
-						<input type="text" name="" id="" value="" />
-						<label>预期价格</label>
-						<input type="text" name="" id="" value="" />
-						<label>需求者</label>
-						<input type="text" name="" id="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>联系人</label>
-						<input type="text" name="" id="" value="" />
-						<label>电话</label>
-						<input type="text" name="" id="" value="" />
-						<label>邮箱</label>
-						<input type="text" name="" id="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>机构ID</label>
-						<input type="text" name="" id="" value="" />
-						<label>用户ID</label>
-						<input type="text" name="" id="" value="" />
-						<label>类型名称</label>
-						<input type="text" name="" id="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>需求说明</label>
-						<textarea name="" rows="" cols=""></textarea>
-					</div>
-				</div>
-			</div>
-    	</div>
-    	
-    </section>
+<section>
+	<div class="search-collapse">
+		<h3>
+			<img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
+			<!--<img src="../images/成果 (1).svg" alt="" />-->
+			<span>发布需求</span>
+		</h3>
+	</div>
+	<div class="section_table">
+		<div class="section sectionDemand">
+			<form th:action="@{/admin/adminAddDemand}" method="post">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<td>需求名字:	</td>
+						<td>
+							<input type="text" name="demandName" class="form-control" required="required">
+						</td>
+						<td>预期价格:	</td>
+						<td>
+							<input type="text" name="expectedPrice" class="form-control" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td>需求者:	</td>
+						<td>
+							<input type="text" name="demanders" class="form-control" required="required">
+						</td>
+						<td>需求说明:	</td>
+						<td>
+							<input type="text" name="demandIntroduce" class="form-control" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td>联系人:	</td>
+						<td>
+							<input type="text" name="linkman" class="form-control" required="required">
+						</td>
+						<input type="hidden"  value="2">
+						<td>审核状态码:	</td>
+						<td>
+							<select name="statusCode">
+								<option value="未审核">未审核</option>
+								<option value="通过">通过</option>
+								<option value="失败">失败</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>电话:	</td>
+						<td>
+							<input type="text" name="phone" class="form-control" required="required">
+						</td>
+						<td>邮箱:	</td>
+						<td>
+							<input type="text" name="email" class="form-control" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td>发布时间:	</td>
+						<td>
+							<div class="jeinpbox">
+								<input type="text" name="time" class="jeinput" id="test04" placeholder="YYYY-MM-DD hh:mm:ss">
+							</div>
+						</td>
+						<td>点击量:	</td>
+						<td>
+							<input type="text" name="pageView" class="form-control" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td>用户id:	</td>
+						<td>
+							<input type="text" name="userId" class="form-control" required="required">
+						</td>
+						<td>机构id:	</td>
+						<td>
+							<input type="text" name="organizationTypeId" class="form-control" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" class="pn-fbutton">
+							<input type="submit" value="添加"  class="btn btn-info" id="change"/>
+							<input type="reset" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered!important;"/>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+
+</section>
 
 </body>
-	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
-	<script type="text/javascript" src="../js/adminIndex.js" ></script>
+<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
+<script th:src="@{../js/jedate.js}"></script>
+<script th:src="@{../js/demo.js}"></script>
 </html>

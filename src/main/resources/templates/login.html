@@ -62,5 +62,9 @@
     <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}" ></script>
     <script type="text/javascript" th:src="@{/js/login.js}" ></script>
 </body>
-
+<script>
+    if(window.parent != window){
+        window.parent.location.reload(true);
+    }
+</script>
 </html>

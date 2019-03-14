@@ -149,7 +149,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                 queryWrapper.in("user_level", "2", "3");
                 iPage = baseMapper.selectPage(page, queryWrapper);
             } else {
-                queryWrapper.eq("user_level", userLevel);
+                queryWrapper.in("user_level", "1","2", "3");
                 iPage = baseMapper.selectPage(page, queryWrapper);
             }
         }

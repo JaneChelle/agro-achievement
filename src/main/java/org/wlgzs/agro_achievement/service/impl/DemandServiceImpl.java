@@ -60,7 +60,14 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
 
     //修改需求
     @Override
-    public Result modifyDemand(Demand demand) {
+    public Result modifyDemand(Demand demand,String time) {
+        if(time != null){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime releaseTime = LocalDateTime.parse(time, formatter);
+            baseMapper.updateById(demand);
+            return new Result(ResultCode.SUCCESS, "修改成功！");
+        }
+
         if (demand != null) {
             Demand demand1 = baseMapper.selectById(demand.getDemandId());
             if (demand1 != null) {
@@ -124,11 +131,13 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
 
 
     @Override
-    public Result saveDemand(Demand demand) {
+    public Result saveDemand(Demand demand,String time) {
         if (demand != null) {
             //获取现在时间
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime releaseTime = LocalDateTime.parse(time, formatter);
 //            demand.setStatusCode("0");//需要审核
+            demand.setReleaseTime(releaseTime);
             baseMapper.insert(demand);
             return new Result(ResultCode.SUCCESS, "发布成功！");
         }

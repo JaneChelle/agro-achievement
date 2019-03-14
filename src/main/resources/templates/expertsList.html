@@ -27,6 +27,8 @@
                 <span>所在单位：</span><span th:text="${expert.unit}" class="intro">长春市新城大街2888号吉林</span>
             </div>
         </li>
+    </ul>
+    <div class="fenye"></div>
         <!--分页-->
         <div class="SplitPage" th:if="${TotalPages > 0}">
             <ul class="SplitUl" th:if="${TotalPages > 1}">
@@ -61,7 +63,7 @@
                 </li><!--//跳转至第Number页-->
             </ul>
         </div>
-    </ul>
+
 </div>
 </div>
 </body>

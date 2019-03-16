@@ -26,21 +26,27 @@ import org.wlgzs.agro_achievement.util.Result;
 public class OrganizationTypeController extends BaseController {
 
     //增加机构类型
-    @RequestMapping(value = "/addOrganizationType",method = RequestMethod.PUT)
-    public ModelAndView addOrganizationType(OrganizationType organizationType){
-        return iOrganizationTypeService.addOrganizationType(organizationType);
+    @RequestMapping(value = "/addOrganizationType")
+    public ModelAndView addOrganizationType(Model model,OrganizationType organizationType){
+        Result result = iOrganizationTypeService.addOrganizationType(organizationType);
+        model.addAttribute("msg",result.getMsg());
+        return new ModelAndView("redirect:/admin/selectAllOrganizationType");
     }
 
     //删除机构类型
     @RequestMapping(value = "/deleteOrganizationType", method = RequestMethod.DELETE)
-    public ModelAndView deleteOrganizationType(Integer organizationTypeId) {
-        return iOrganizationTypeService.deleteOrganizationType(organizationTypeId);
+    public ModelAndView deleteOrganizationType(Model model,Integer organizationTypeId) {
+        Result result = iOrganizationTypeService.deleteOrganizationType(organizationTypeId);
+        model.addAttribute("msg",result.getMsg());
+        return new ModelAndView("redirect:/admin/selectAllOrganizationType");
     }
 
     //查找所有机构类型
     @GetMapping("/selectAllOrganizationType")
-    public ModelAndView selectAllOrganizationType(){
-        return iOrganizationTypeService.selectAllOrganizationType();
+    public ModelAndView selectAllOrganizationType(Model model){
+        Result result = iOrganizationTypeService.selectAllOrganizationType();
+        model.addAttribute("OrganizationTypeList",result.getData());
+        return new ModelAndView("OrganizationTypeList");
     }
 
 }

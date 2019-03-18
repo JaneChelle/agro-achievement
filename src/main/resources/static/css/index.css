@@ -104,7 +104,7 @@
 .supplyDemand{
     width: 580px;
     box-shadow: 0 0 1px 0px #6b6464;
-    height: 200px;
+    /*height: 200px;*/
     float: left;
     border: 1px solid #ccc;
     padding-bottom: 5px;
@@ -130,6 +130,10 @@ label div>ul>li{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.supplyDemand>ul{
+    overflow: hidden;
+    margin: 10px 10px 0 10px;
+}
 .supplyDemand>ul>li>i,label div>ul>li>i{
      vertical-align: super;
      margin-right: 2px;
@@ -143,6 +147,7 @@ label div>ul>li{
     overflow: hidden;
     padding: 10px 10px 0 10px;
 }
+
 .h_block>a{
     color: #41A809;
     text-decoration: none;
@@ -154,6 +159,7 @@ label div>ul>li{
 .wrap{
     /*margin: 20px auto;*/
     width:580px;
+    min-height: 180px;
     border:1px solid #ccc;
     position: relative;
 }

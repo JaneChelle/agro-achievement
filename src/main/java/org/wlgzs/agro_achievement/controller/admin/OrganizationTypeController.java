@@ -1,11 +1,13 @@
 package org.wlgzs.agro_achievement.controller.admin;
 
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.OrganizationType;
 import org.wlgzs.agro_achievement.entity.Type;
@@ -24,21 +26,27 @@ import org.wlgzs.agro_achievement.util.Result;
 public class OrganizationTypeController extends BaseController {
 
     //增加机构类型
-    @RequestMapping(value = "/addOrganizationType",method = RequestMethod.PUT)
-    public Result addOrganizationType(OrganizationType organizationType){
-        return iOrganizationTypeService.addOrganizationType(organizationType);
+    @RequestMapping(value = "/addOrganizationType")
+    public ModelAndView addOrganizationType(Model model,OrganizationType organizationType){
+        Result result = iOrganizationTypeService.addOrganizationType(organizationType);
+        model.addAttribute("msg",result.getMsg());
+        return new ModelAndView("redirect:/admin/selectAllOrganizationType");
     }
 
     //删除机构类型
     @RequestMapping(value = "/deleteOrganizationType", method = RequestMethod.DELETE)
-    public Result deleteOrganizationType(Integer organizationTypeId) {
-        return iOrganizationTypeService.deleteOrganizationType(organizationTypeId);
+    public ModelAndView deleteOrganizationType(Model model,Integer organizationTypeId) {
+        Result result = iOrganizationTypeService.deleteOrganizationType(organizationTypeId);
+        model.addAttribute("msg",result.getMsg());
+        return new ModelAndView("redirect:/admin/selectAllOrganizationType");
     }
 
     //查找所有机构类型
     @GetMapping("/selectAllOrganizationType")
-    public Result selectAllOrganizationType(){
-        return iOrganizationTypeService.selectAllOrganizationType();
+    public ModelAndView selectAllOrganizationType(Model model){
+        Result result = iOrganizationTypeService.selectAllOrganizationType();
+        model.addAttribute("OrganizationTypeList",result.getData());
+        return new ModelAndView("OrganizationTypeList");
     }
 
 }

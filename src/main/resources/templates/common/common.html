@@ -27,7 +27,7 @@
     <div class="header">
         <img th:src="@{/images/favicon.png}" alt="" style="vertical-align: super">
         <img th:src="@{/images/title.png}" alt="">
-        <form th:action="@{/HomeController/globalSearch}" method="post" class="submit">
+        <form th:action="@{/HomeController/globalSearch}" method="post">
             <input type="text" placeholder="请输入要搜索的关键词" name="findName" class="search" required>
             <input type="submit" value="搜索" class="submit" style="padding: 10px;">
         </form>
@@ -71,7 +71,7 @@
         <a href="">关于我们</a>|
         <a href="">免责声明</a><br>
         <p>Copyright©2012-2019 农转网 版权所有 京ICP备05039029号</p>
-        <p>主办单位：农业部科技教育司 承办单位：中国农学会 农业部人力资源开发中心</p>
+        <!--<p>主办单位：农业部科技教育司 承办单位：中国农学会 农业部人力资源开发中心</p>-->
         <p>技术支持单位：河南科技学院信息工程学院未来工作室</p>
         <p>不良信息举报中心 网络110报警服务</p>
         <p><img th:src="@{/images/beian.png}" alt="">京公网安备 11010502030296号</p>

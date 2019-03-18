@@ -30,15 +30,7 @@
             <input type="hidden" th:value="${achievement.pageView}" class="pageView">
         </li>
     </ul>
-    <div class="fenye">
-        <a href="javascript:history.back(-1)">【返回】</a>
-        <a href="">上一页</a>
-        <span>当前页数：[1/18]</span>
-        <a href="">下一页</a>
-        <a href="">最后一页</a>
-        转到第 <input type="text">页
-        <input type="submit" value="GO">
-    </div>
+    <div class="fenye"></div>
 </div>
 <!--分页-->
 <div class="SplitPage" th:if="${TotalPages > 0}">

@@ -46,7 +46,7 @@ public class AdminAnnouncementController extends BaseController {
             model.addAttribute("msg","数据不存在！");
             return new ModelAndView("redirect:/admin/selectAnnouncement");
         }
-        return new ModelAndView("admin/adminAnnouncement");
+        return new ModelAndView("admin/Announcement");
     }
 
     //修改公告

@@ -46,7 +46,7 @@ public class OrganizationTypeController extends BaseController {
     public ModelAndView selectAllOrganizationType(Model model){
         Result result = iOrganizationTypeService.selectAllOrganizationType();
         model.addAttribute("OrganizationTypeList",result.getData());
-        return new ModelAndView("OrganizationTypeList");
+        return new ModelAndView("admin/adminOrganizationType");
     }
 
 }

@@ -30,12 +30,12 @@
     						<span>通过【1】</span>
     						<span>失败【2】</span>
     					</li>
-    					<li class="img_add">
-    						<a href="JavaScript:;">
-	                			<img src="../images/添加.svg" title="添加案例"/>
-	                			<span>添加</span>
-	                		</a>
-    					</li>
+						<li class="img_add">
+							<a th:href="@{/admin/toAdminExample}">
+								<img src="../images/添加.svg" title="添加用户"/>
+								<span>添加</span>
+							</a>
+						</li>
     				</ul>
     			</div>
     		</form>
@@ -59,7 +59,7 @@
 		            <tbody>
 		            	<tr th:each="example : ${exampleList}">
 		            		<td>
-		            			<input th:id="${example.exampleId}" th:value="${example.exampleId}" class="selectall" />
+		            			<input type="checkbox" th:id="${example.exampleId}" th:value="${example.exampleId}" class="selectall" />
 								<label th:for="${example.exampleId}"></label>
 		            		</td>
 		            		<td th:text="${example.exampleId}">B133</td>
@@ -75,7 +75,7 @@
 		            				</div>
 		            			</div>
 		            		</td>
-		            		<td th:text="${#dates.format(example.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">2019-03-25 21:32:34</td>
+		            		<td th:text="${#temporals.format(example.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">2019-03-25 21:32:34</td>
 		            		<td th:text="${example.userId}">1</td>
 		            		<td th:text="${example.statusCode}">2</td>
 		            		<td>

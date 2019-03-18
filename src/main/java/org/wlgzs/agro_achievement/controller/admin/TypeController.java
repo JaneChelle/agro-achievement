@@ -46,7 +46,7 @@ public class TypeController extends BaseController {
     public ModelAndView selectAllType(Model model) {
         Result result = iTypeService.selectAllType();
         model.addAttribute("typeList",result.getData());
-        return new ModelAndView("admin/typeList");
+        return new ModelAndView("admin/adminType");
     }
 
 }

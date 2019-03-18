@@ -13,12 +13,12 @@
 <div th:include="common/adminCommon :: nav"></div>
     <section>
     	<div class="col-sm-12 search-collapse">
-    		<form action="">
+    		<form th:action="@{/admin/adminAchievementList}">
     			<div class="select-list">
     				<ul>
     					<li>
     						<span>搜索：</span>
-    						<input type="text" name="" id="" value="" />
+    						<input type="text" name="findName" id="" value="" />
     					</li>
     					<li>
     						<button class="btn" type="submit">搜 索</button>
@@ -67,7 +67,7 @@
 		            		<td th:text="${achievement.linkman}">徐德锋</td>
 		            		<td th:text="${achievement.statusCode}">0</td>
 		            		<td>
-		            			<a href="detailsAchievement.html">详情</a>
+								<a th:href="@{/admin/toAdminEditAchievement(achievementId=${achievement.achievementId})}">详情</a>
 		            			<button type="button" class="btn deleteAchievement">删除</button>
 		            		</td>
 		            	</tr>
@@ -80,6 +80,7 @@
     
 
 </body>
-	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
-	<script type="text/javascript" src="../js/adminIndex.js" ></script>
+	<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
+	<script type="text/javascript" th:src="@{../js/adminAchievement.js}"></script>
 </html>

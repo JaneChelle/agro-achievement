@@ -345,6 +345,10 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 achievement.setStartTime(timeOne);
                 achievement.setEndTime(timeTwo);
                 achievement.setPictureAddress(pictureAddress);
+                LocalDateTime time = LocalDateTime.now();
+                String localTime = formatter.format(time);
+                LocalDateTime ldt = LocalDateTime.parse(localTime, formatter);
+                achievement.setReleaseTime(ldt);
                 System.out.println("pictureAddress===" + pictureAddress);
             }
             baseMapper.insert(achievement);

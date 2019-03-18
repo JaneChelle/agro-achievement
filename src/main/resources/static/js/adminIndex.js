@@ -74,19 +74,6 @@ $(".modify").on('click', function () {
     }
 });
 
-//批量删除
-//获取选中选项的值
-$(".electionDelete").click(function(){
-	var listarr = [];
-    listarr.splice(0,listarr.length);
-    var list=$('.selectall');
-	$(".section_table :checkbox").each(function(){
-		if($(this).prop("checked")==true){
-            listarr.push($(this).val());
-            $('.browider').val(listarr);
-		}
-	})
-	console.log( $('.browider').val());
-});
+
 
 

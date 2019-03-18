@@ -1,3 +1,29 @@
+/*日历修改*/
+.jeinpbox{
+	float: inherit!important;
+	margin: 0 auto!important;
+	display: inline-block;
+}
+.uploadImgBtn {
+	width: 80px;
+	padding: 9px;
+	cursor: pointer;
+	position: relative;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background: #E7E7E7;
+	border-radius: 4px;
+}
+
+.uploadImgBtn .uploadImg {
+	position: absolute;
+	right: 0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
 /*成果管理*/
 .noticeImg span{
 	position: relative;
@@ -15,6 +41,7 @@
 }
 .section input[type=text]{
 	height: 32px;
+	width: 220px;
 	outline: none;
 	padding-left: 12px;
 	font-size: 18px;
@@ -170,6 +197,7 @@ popup .popup_table textarea{
 	width: 32%;
 	height: 42px;
 	margin: 0 12px;
+	display: inline;
 }
 .applyExpert input[type=radio]{
 	width: 21px;

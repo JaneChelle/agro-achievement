@@ -27,7 +27,8 @@ public class AdminAnnouncementController extends BaseController {
     //去添加公告
     @RequestMapping(value = "/toAddAnnouncement")
     public ModelAndView toAddAnnouncement() {
-        return new ModelAndView("addAnnouncement");
+
+        return new ModelAndView("admin/addAnnouncement");
     }
 
     //添加公告（管理员）
@@ -47,6 +48,18 @@ public class AdminAnnouncementController extends BaseController {
             return new ModelAndView("redirect:/admin/selectAnnouncement");
         }
         return new ModelAndView("admin/Announcement");
+    }
+
+    //修改公告详情（管理员）
+    @RequestMapping("/announcementAdminModify")
+    public ModelAndView announcementAdminModify(Model model,Integer announcementId){
+        Announcement announcement = iAnnouncementService.announcementDetails(announcementId);
+        model.addAttribute("announcement",announcement);
+        if(announcement == null){
+            model.addAttribute("msg","数据不存在！");
+            return new ModelAndView("redirect:/admin/selectAnnouncement");
+        }
+        return new ModelAndView("admin/modifyAnnouncement");
     }
 
     //修改公告

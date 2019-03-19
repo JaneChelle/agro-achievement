@@ -1,0 +1,50 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>农业科技成果转化交易服务平台注册</title>
+    <link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+    <link rel="stylesheet" th:href="@{../css/admindemo.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div th:include="common/adminCommon :: nav"></div>
+
+<section>
+    <div class="search-collapse">
+        <h3 th:text="${announcement.announcementTitle}">关于2018-2019年度神农中华农业科技奖推荐工作的通知</h3>
+    </div>
+    <div class="section_table">
+        <div class="noticeImg">
+            <img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
+            <img src="../images/公告1.svg" alt="" />
+        </div>
+        <figure>
+            <form th:action="@{/admin/modifyAnnouncement}">
+                <input type="hidden" th:value="${announcement.announcementId}" name="announcementId">
+                <div class="announcementTitle">
+                    <label>公告标题：</label>
+                        <input name="announcementTitle" th:value="${announcement.announcementTitle}">
+
+                    <label>公告类型： </label>
+                        <input name="announcementType" th:value="${announcement.announcementType}">
+
+                </div>
+                <div class="announcementContent" style="text-align: center">
+                    <textarea name="announcementContent" th:text="${announcement.announcementContent}" style="width: 94%; min-height: 320px; margin: 12px;"></textarea>
+                </div>
+                <div class="applyExpert" style="text-align: center">
+                    <input type="reset" name="" value="重置" />
+                    <input type="submit" value="修改"/>
+                </div>
+            </form>
+        </figure>
+    </div>
+</section>
+</body>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="../js/adminIndex.js" ></script>
+</html>

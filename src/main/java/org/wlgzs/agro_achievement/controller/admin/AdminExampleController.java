@@ -35,13 +35,14 @@ public class AdminExampleController extends BaseController {
         return new ModelAndView("admin/adminExample");
     }
 
-    //去添加成果
+    //去添加案例
     @RequestMapping(value = "/toAdminExample")
     public ModelAndView toAdd() {
+
         return new ModelAndView("admin/adminAddExample");
     }
 
-    //管理员添加成果
+    //管理员添加案例
     @RequestMapping(value = "/adminAddExample")
     public ModelAndView adminAddExample(Model model, Example example) {
         Result result = iCaseService.addExample(example);
@@ -49,15 +50,15 @@ public class AdminExampleController extends BaseController {
         return new ModelAndView("redirect:/admin/adminExampleList");
     }
 
-    //跳转到修改成果
+    //跳转到修改案例
     @RequestMapping("/toAdminEditExample")
     public ModelAndView toEdit(Model model, Integer exampleId) {
         Example example = iCaseService.exampleDetails(exampleId);
         model.addAttribute("example", example);
-        return new ModelAndView("adminEditExample");
+        return new ModelAndView("admin/modifyExample");
     }
 
-    //修改成果
+    //修改案例
     @RequestMapping(value = "/adminEditExample")
     public ModelAndView adminEditExample(Example example, Model model) {
         Result result = iCaseService.modifyExample(example);
@@ -72,7 +73,7 @@ public class AdminExampleController extends BaseController {
         return new ModelAndView("redirect:/admin/adminExampleList");
     }
 
-    //删除成果
+    //删除案例
     @RequestMapping(value = "/adminDeleteExample")
     public ModelAndView adminDeleteAchievement(Integer exampleId, Model model) {
         Result result = iCaseService.deleteExample(exampleId);

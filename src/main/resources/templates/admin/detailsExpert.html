@@ -38,7 +38,7 @@
 						<div class="applyExpert">
 							<label>出生日期</label>
 							<div class="jeinpbox">
-								<input type="text" name="expertsBirth" th:value="${#temporals.format(experts.expertsBirth, 'yyyy-MM-dd HH:mm:ss')}" class="jeinput" id="test04" placeholder="YYYY-MM-DD hh:mm:ss">
+								<input type="text" name="time" th:value="${#temporals.format(experts.expertsBirth, 'yyyy-MM-dd HH:mm:ss')}" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
 							</div>
 							<label>国籍</label>
 							<input type="text" name="expertsCountry" th:value="${experts.expertsCountry}"/>
@@ -118,7 +118,7 @@
 						</div>
 						<div class="applyExpert" style="text-align: center">
 							<input type="reset" name="" value="重置" />
-							<input type="submit" value="添加"/>
+							<input type="submit" value="修改"/>
 						</div>
 					</div>
 				</form>

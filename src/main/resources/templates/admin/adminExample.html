@@ -48,8 +48,6 @@
 		                	<th>选择</th>
 		                	<th>案例ID</th>
 		                	<th>案例标题</th>
-		                	<th style="display: none;">用户id</th>
-		                	<th>案例内容</th>
 		                	<th>发布时间</th>
 		                	<th>用户id</th>
 		                	<th>审核状态码</th>
@@ -64,22 +62,11 @@
 		            		</td>
 		            		<td th:text="${example.exampleId}">B133</td>
 		            		<td th:text="${example.exampleTitle}">“羊肉加工增值关键技术”顺利转化，经济社会效益显著</td>
-		            		<td th:text="${example.exampleId}" style="display: none;">3</td>
-		            		<td style="cursor: pointer;" class="exampleTd">
-		            			<span>详情</span>
-		            			<input type="hidden" name="" th:id="${example.exampleId}"/>
-		            			<div class="examplePopup">
-		            				<div class="exampleDetails">
-		            					<p th:text="${example.exampleContent}">1111</p>
-		            					<button class="btn exampleCancel">取 消</button>
-		            				</div>
-		            			</div>
-		            		</td>
 		            		<td th:text="${#temporals.format(example.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">2019-03-25 21:32:34</td>
 		            		<td th:text="${example.userId}">1</td>
 		            		<td th:text="${example.statusCode}">2</td>
 		            		<td>
-		            			<button type="button" class="btn modify">修改</button>
+								<a th:href="@{/admin/toAdminEditExample(exampleId=${example.exampleId})}">详情</a>
 		            			<button type="button" class="btn deleteExample">删除</button>
 		            			
 		            		</td>
@@ -89,85 +76,9 @@
 			</div>
     	</div>
     </section>
-    <!--弹窗-->
-	<popup>
-		<div class="popup">
-			<h3>添加案例</h3>
-			<div class="popup_table">
-				<form action="" method="post">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-			                    <th>案例标题</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
-			                    </td>
-			                </tr>	
-			                <tr>
-			                    <th>案例内容</th>
-			                    <td class="exampleTextarea">
-			                    	<textarea name="" rows="" cols="" class=""></textarea>
-			                    </td>
-			                </tr>	
-			                <tr>
-			                    <th>用户ID</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
-			                    </td>
-			                </tr>	
-						</thead>
-					</table>
-					<div class="popup_bottom">
-						<input type="reset" name="" id="" value="重置" />
-						<input type="submit" value="添加"/>
-						<input type="button" name="" class="cancel_1" value="取消" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</popup>
-	
-	<!--修改-->
-	<popupModify>
-		<div class="popupModify">
-			<h3>修改案例</h3>
-			<div class="popup_table">
-				<form action="" method="post">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-			                    <th>案例名称</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" />
-			                    </td>
-			                </tr>	
-			                <tr>
-			                    <th>案例内容</th>
-			                    <td>
-			                    	<textarea name="" rows="" cols=""></textarea>
-			                    </td>
-			                </tr>	
-			               <tr style="display: none;">
-			               		<th>用户Id</th>
-			               		<td>
-			               			<input type="" name="" id="" value="" />
-			               		</td>
-			               </tr>
-						</thead>
-					</table>
-					<div class="popup_bottom">
-						<input type="reset" name="" id="" value="重置" />
-						<input type="submit" value="添加"/>
-						<input type="button" name="" class="cancel_1" value="取消" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</popupModify>	
-	
 	</body>
 	
 	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
-	<script type="text/javascript" src="../js/adminIndex.js" ></script>
-	<script type="text/javascript" src="../js/adminExample.js" ></script>
+	<script type="text/javascript" th:src="@{../js/wangEditor.min.js}"></script>
+	<script type="text/javascript" th:src="@{../js/adminExample.js}"></script>
 </html>

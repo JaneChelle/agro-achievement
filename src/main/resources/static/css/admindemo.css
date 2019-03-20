@@ -148,18 +148,6 @@
 	padding: 12px 18px;
 	font-weight: 600;
 }
-/*添加案例*/
-popup .popup_table textarea{
-	height: 210px;
-}
-.popupModify,.popup{
-	width: 482px;
-	margin-left: -241px;
-}
-.popupModify input,.popupModify textarea,.popup input,.popup textarea{
-	width: 373px;
-}
-
 /*专家*/
 /*申请为专家*/
 .apply_expert{
@@ -185,8 +173,9 @@ popup .popup_table textarea{
 	text-align: center;
 }
 .applyExpert textarea{
-	width: 32%;
+	width: 34%;
 	height: 200px;
+	padding: 6px 12px;
 	vertical-align: middle;
 }
 .applyExpert select{

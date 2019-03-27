@@ -37,8 +37,8 @@
 						</div>
 						<div class="applyExpert">
 							<label>出生日期</label>
-							<div class="jeinpbox">
-								<input type="text" name="expertsBirth" class="jeinput" id="test04" placeholder="YYYY-MM-DD hh:mm:ss">
+							<div class="jeinpbox" style="width: 456px;">
+								<input style="width: 91%" type="text" name="expertsBirth" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
 							</div>
 							<label>国籍</label>
 							<input type="text" name="expertsCountry" value="" />
@@ -123,7 +123,7 @@
 									<img th:src="@{/images/paper.png}" id="imgshow" style="width: 80px;height: 80px;" />
 								</div>
 							</div>
-							<input id="fileds" style="display: none;" name="file" type="file" accept="image/*" value="上传图片" />
+							<input id="fileds" style="display: none;" name="pictureAddress" type="file" accept="image/*" value="上传图片" />
 						</div>
 						<div class="applyExpert" style="text-align: center">
 							<input type="reset" name="" value="重置" />

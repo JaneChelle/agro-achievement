@@ -14,7 +14,6 @@ $(".deleteType").on('click', function () {
                 window.location.reload();
             },
             error: function (msg) {
-                console.log("网络错误");
                 window.location.reload();
             }
         })

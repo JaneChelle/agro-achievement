@@ -79,7 +79,7 @@ public class AdminAchievementController extends BaseController {
             achievement.setPictureAddress(img);
         }
         model.addAttribute("achievement", achievement);
-        return new ModelAndView("adminEditAchievement");
+        return new ModelAndView("admin/detailsAchievement");
     }
 
     //修改成果

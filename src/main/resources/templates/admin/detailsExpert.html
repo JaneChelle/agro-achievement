@@ -8,10 +8,11 @@
 	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
 	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
 	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{../css/jeDate_test.css}">
+	<link rel="stylesheet" th:href="@{../css/jedate.css}">
 </head>
 <body>
 
-<body>
 <div th:include="common/adminCommon :: nav"></div>
     <section>
     	<div class="search-collapse">
@@ -23,73 +24,112 @@
     	</div>
     	<div class="section_table">
     		<div class="section">
-				<div class="apply_expert">
-					<div class="applyExpert">
-						<label>姓名</label>
-						<input type="text" name="" value="" />
-						<label>性别</label>
-						<input type="radio" name="sex" value="" />男
-						<input type="radio" name="sex" value="" />女
+				<form th:action="@{/admin/adminEditExperts}">
+					<div class="apply_expert">
+						<div class="applyExpert">
+							<label>姓名</label>
+							<input type="text" name="expertsName" value="" th:value="${experts.expertsName}"/>
+							<label>性别</label>
+							<select name="expertsSex" th:value="${experts.expertsSex}">
+								<option value="男">男</option>
+								<option value="女">女</option>
+							</select>
+						</div>
+						<div class="applyExpert">
+							<label>出生日期</label>
+							<div class="jeinpbox">
+								<input type="text" name="time" th:value="${#temporals.format(experts.expertsBirth, 'yyyy-MM-dd HH:mm:ss')}" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
+							</div>
+							<label>国籍</label>
+							<input type="text" name="expertsCountry" th:value="${experts.expertsCountry}"/>
+						</div>
+						<div class="applyExpert">
+							<label>学历</label>
+							<select name="expertsEducation" th:filed="${experts.expertsEducation}" th:value="${experts.expertsEducation}">
+								<option value="">请选择学历</option>
+								<option th:selected="${experts.expertsEducation=='研究生'}" value="研究生">研究生</option>
+								<option th:selected="${experts.expertsEducation=='博士研究生'}" value="博士研究生">博士研究生</option>
+								<option th:selected="${experts.expertsEducation=='硕士研究生'}" value="硕士研究生">硕士研究生</option>
+								<option th:selected="${experts.expertsEducation=='大学'}" value="大学">大学</option>
+								<option th:selected="${experts.expertsEducation=='大专'}" value="大专">大专</option>
+								<option th:selected="${experts.expertsEducation=='中专'}" value="中专">中专</option>
+								<option th:selected="${experts.expertsEducation=='其他'}" value="其他">其他</option>
+							</select>
+							<label>学位</label>
+							<select name="degree" th:field="${experts.degree}" th:value="${experts.degree}">
+								<option value="">请选择学位</option>
+								<option th:selected="${experts.degree=='名誉博士'}" value="其他">名誉博士</option>
+								<option th:selected="${experts.degree=='博士'}" value="博士">博士</option>
+								<option th:selected="${experts.degree=='硕士'}" value="硕士">硕士</option>
+								<option th:selected="${experts.degree=='学士'}" value="学士">学士</option>
+								<option th:selected="${experts.degree=='其他'}" value="其他">其他</option>
+							</select>
+						</div>
+						<div class="applyExpert">
+							<label>毕业院校</label>
+							<input type="text" name="school" value="" th:value="${experts.school}"/>
+							<label>所学专业</label>
+							<input type="text" name="major" value="" th:value="${experts.major}"/>
+						</div>
+						<div class="applyExpert">
+							<label>所在单位</label>
+							<input type="text" name="unit" value="" th:value="${experts.unit}"/>
+							<label>行政职务</label>
+							<input type="text" name="position" value="" th:value="${experts.position}"/>
+						</div>
+						<div class="applyExpert">
+							<label>专家类型ID</label>
+							<input type="text" name="typeId" value="" th:value="${experts.typeId}"/>
+							<label>用户ID</label>
+							<input type="text" name="userId" value="" th:value="${experts.userId}"/>
+						</div>
+						<div class="applyExpert">
+							<label>研究领域</label>
+							<textarea name="researchField" rows="" cols="" th:text="${experts.researchField}"></textarea>
+							<label>主要研究成果简介</label>
+							<textarea name="researchAchievements" rows="" cols="" th:text="${experts.researchAchievements}"></textarea>
+						</div>
+						<div class="applyExpert">
+							<label>个人获奖状况</label>
+							<input type="text" name="personalPrize" th:value="${experts.personalPrize}">
+							<label>成果获奖状况</label>
+							<input type="text" name="resultsPrize" th:value="${experts.resultsPrize}"/>
+						</div>
+						<div class="applyExpert">
+							<label>联系方式</label>
+							<input type="text" name="expertsPhone" th:value="${experts.expertsPhone}"/>
+							<label>邮箱</label>
+							<input type="text" name="expertsEmail" th:value="${experts.expertsEmail}"/>
+						</div>
+						<div class="applyExpert">
+							<label>点击量</label>
+							<input type="text" name="pageView" th:value="${experts.pageView}"/>
+							<input type="hidden" name="" th:value="${experts.statusCode}"/>
+							<label>审核状态码</label>
+							<select name="statusCode">
+								<option value="0">未审核</option>
+								<option value="1">通过</option>
+								<option value="2">失败</option>
+							</select>
+						</div>
+						<div class="applyExpert">
+							<label>照片地址</label>
+							<input type="image" name="pictureAddress" th:value="${experts.pictureAddress}"/>
+						</div>
+						<div class="applyExpert" style="text-align: center">
+							<input type="reset" name="" value="重置" />
+							<input type="submit" value="修改"/>
+						</div>
 					</div>
-					<div class="applyExpert">
-						<label>出生日期</label>
-						<input type="text" name="" value="" />
-						<label>国籍</label>
-						<input type="text" name="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>学历</label>
-						<input type="text" name="" value="" />
-						<label>学位</label>
-						<input type="text" name="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>毕业院校</label>
-						<input type="text" name="" value="" />
-						<label>所学专业</label>
-						<input type="text" name="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>所在单位</label>
-						<input type="text" name="" value="" />
-						<label>行政职务</label>
-						<input type="text" name="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>专家类型ID</label>
-						<input type="text" name="" value="" />
-						<label>用户ID</label>
-						<input type="text" name="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>研究领域</label>
-						<textarea name="" rows="" cols=""></textarea>
-						<label>主要研究成果简介</label>
-						<textarea name="" rows="" cols=""></textarea>
-					</div>
-					<div class="applyExpert">
-						<label>个人获奖状况</label>
-						<input type="text" name="" value="" />
-						<label>成果获奖状况</label>
-						<input type="text" name="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>联系方式</label>
-						<input type="text" name="" value="" />
-						<label>邮箱</label>
-						<input type="text" name="" value="" />
-					</div>
-					<div class="applyExpert">
-						<label>照片地址</label>
-						<input type="text" name="" value="" />
-					</div>
-				</div>
+				</form>
 			</div>
     	</div>
     	
     </section>
 
 </body>
-	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
-	<script type="text/javascript" src="../js/adminIndex.js" ></script>
+	<script th:src="@{../js/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{../js/adminIndex.js}"></script>
+	<script th:src="@{../js/jedate.js}"></script>
+	<script th:src="@{../js/demo.js}"></script>
 </html>

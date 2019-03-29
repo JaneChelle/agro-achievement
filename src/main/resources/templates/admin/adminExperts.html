@@ -11,7 +11,6 @@
 </head>
 <body>
 
-<body>
 <div th:include="common/adminCommon :: nav"></div>
     <section>
     	<div class="col-sm-12 search-collapse">
@@ -58,8 +57,6 @@
 		                    <th>所学专业</th>
 		                    <th>所在单位</th>
 		                    <th>行政职务</th>
-		                    <th>类型ID</th>
-		                    <th>审核状态码</th>
 		                    <th>操作</th>
 		                </tr>
 		            </thead>
@@ -80,10 +77,8 @@
 		            		<td th:text="${experts.major}">农业水土工程</td>
 		            		<td th:text="${experts.unit}">中国农业大学中国农业水问题研究中心</td>
 		            		<td th:text="${experts.position}">中国工程院院士</td>
-		            		<td th:text="${experts.userId}">1</td>
-		            		<td th:text="${experts.statusCode}">0</td>
 		            		<td>
-		            			<a href="detailsExpert.html">详情</a>
+								<a th:href="@{/admin/toAdminEditExperts(expertsId=${experts.expertsId})}">详情</a>
 		            			<button type="button" class="btn deleteAchievement">删除</button>
 		            		</td>
 		            	</tr>

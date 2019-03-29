@@ -24,18 +24,16 @@
     
     <section>
     	<div class="col-sm-12 search-collapse">
-    		<form action="">
+    		<form th:action="@{/admin/adminUserList}">
     			<div class="select-list">
     				<ul>
-						<form th:action="@{/admin/adminUserList}">
-							<li>
-								<span>搜索：</span>
-								<input type="text" name="findName" value="" />
-							</li>
-							<li>
-								<button class="btn" type="submit">搜 索</button>
-							</li>
-						</form>
+						<li>
+							<span>搜索：</span>
+							<input type="text" name="findName" value="" />
+						</li>
+						<li>
+							<button class="btn" type="submit">搜 索</button>
+						</li>
 						<li></li>
 						<li class="exampleList">
 							<span>管理员【1】</span>

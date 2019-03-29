@@ -11,17 +11,16 @@
 </head>
 <body>
 
-<body>
 <div th:include="common/adminCommon :: nav"></div>
     
     <section>
     	<div class="col-sm-12 search-collapse">
-    		<form action="">
+    		<form th:action="@{/admin/selectAnnouncement}">
     			<div class="select-list">
     				<ul>
     					<li>
     						<span>搜索：</span>
-    						<input type="text" name="" id="" value="" />
+    						<input type="text" name="findName" value="" />
     					</li>
     					<li>
     						<button class="btn" type="submit">搜 索</button>
@@ -33,7 +32,7 @@
     						<span>失败【2】</span>
     					</li>
     					<li>
-    						<a href="JavaScript:;">
+    						<a th:href="@{/admin/toAddAnnouncement}">
 	                			<img src="../images/添加.svg" title="添加公告"/>
 	                			<span>添加</span>
 	                		</a>
@@ -61,18 +60,15 @@
 								<input type="checkbox" th:value="${announcement.announcementId}" th:id="${announcement.announcementId}"  class="selectall" />
 								<label th:for="${announcement.announcementId}"></label>
 							</td>
-							<td th:text="${announcement.announcementId}">B133</td>
+							<td th:text="${announcement.announcementId}" class="announcementID">B133</td>
 							<td>
-								<a href="Announcement.html" th:title="${announcement.announcementTitle}" th:text="${announcement.announcementTitle}">
-									科技成果转移转化：拆除阻碍产业化的“篱笆墙
-								</a>
 								<a th:title="${announcement.announcementTitle}" th:text="${announcement.announcementTitle}" th:href="@{/admin/announcementAdminDetails(announcementId=${announcement.announcementId})}">详情</a>
 							</td>
 							<td th:text="${#temporals.format(announcement.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">B133</td>
 							<td th:text="${announcement.announcementType}">农产品与食品加工</td>
 							<td>
-								<button type="button" class="btn modify">修改</button>
-								<button type="button" class="btn delete">删除</button>
+								<a th:href="@{/admin/announcementAdminModify(announcementId=${announcement.announcementId})}">修改</a>
+								<button type="button" class="btn delete deleteAnnouncement">删除</button>
 							</td>
 						</tr>
 					</tbody>
@@ -82,51 +78,8 @@
 		<div class="cure"></div>
 	</section>
 
-<popupModify>
-	<div class="popupModify">
-		<h3>修改用户</h3>
-		<div class="popup_table">
-			<form th:action="@{/admin/modifyAnnouncement}">
-				<table class="table table-bordered">
-					<thead>
-					<tr>
-						<th>公告id</th>
-						<td>
-							<input type="" name="announcementId" value="" required="required"/>
-						</td>
-					</tr>
-					<tr>
-						<th>公告标题</th>
-						<td>
-							<input type="" name="announcementTitle" value="" required="required"/>
-						</td>
-					</tr>
-					<tr>
-						<th>公告内容</th>
-						<td>
-							<template type="" name="announcementContent" value="" required="required"/>
-						</td>
-					</tr>
-					<tr>
-						<th>公告类型</th>
-						<td>
-							<input type="" name="announcementType" value="" required="required"/>
-						</td>
-					</tr>
-					</thead>
-				</table>
-				<div class="popup_bottom">
-					<input type="reset" name="" id="" value="重置" />
-					<input type="submit" value="添加"/>
-					<input type="button" name="" class="cancel_1" value="取消" />
-				</div>
-			</form>
-		</div>
-	</div>
-</popupModify>
-
 </body>
-<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
+<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
-<script type="text/javascript" th:src="@{../js/announcement.js}"></script>
+<script type="text/javascript" th:src="@{../js/adminAnouncement.js}"></script>
 </html>

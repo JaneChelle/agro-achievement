@@ -23,7 +23,6 @@
 		}
 	</style>
 </head>
-<body>
 
 <body>
 <div th:include="common/adminCommon :: nav"></div>
@@ -68,9 +67,9 @@
 						<td>审核状态码:	</td>
 						<td>
 							<select name="statusCode">
-								<option value="未审核">未审核</option>
-								<option value="通过">通过</option>
-								<option value="失败">失败</option>
+								<option value="0">未审核</option>
+								<option value="1">通过</option>
+								<option value="2">失败</option>
 							</select>
 						</td>
 					</tr>

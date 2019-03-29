@@ -54,7 +54,7 @@ public class AdminExpertsController extends BaseController {
     public ModelAndView toEdit(Model model, Integer expertsId) {
         Experts experts = iExpertsService.expertsDetails(expertsId);
         model.addAttribute("experts", experts);
-        return new ModelAndView("adminEditExperts");
+        return new ModelAndView("admin/detailsExpert");
     }
 
     //修改专家

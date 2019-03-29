@@ -8,176 +8,161 @@
 	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
 	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
 	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{../css/jeDate_test.css}">
+	<link rel="stylesheet" th:href="@{../css/jedate.css}">
 </head>
-<body>
 
 <body>
-<div th:include="common/adminCommon :: nav"></div>
-    <section>
-    	<div class="search-collapse">
-    		<h3>
+	<div th:include="common/adminCommon :: nav"></div>
+	<section>
+		<div class="search-collapse">
+			<h3>
 				<img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
 				<img src="../images/成果 (1).svg" alt="" />
-    			<span>添加成果</span>
-    		</h3>
-    	</div>
+				<span>添加成果</span>
+			</h3>
+		</div>
 		<div class="section_table">
-    		<figure>
-    			<div class="section">
-					<table class="table table-bordered">
-						<thead>
+			<form th:action="@{/admin/adminAddAchievement}">
+				<figure>
+					<div class="section">
+						<table class="table table-bordered">
+							<thead>
 							<tr>
-			                    <th>编号id</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                    </td>
-			                    <th>审核状态码</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			               	</tr>	
-			               	<tr>
-			               		<th>类型名称</th>
-			                    <td>
-			                    	<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                    </td>
-			                    <th>成果名称</th>
-				                <td>
-				                	<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-				                </td>
-			               	</tr>
-			               	<tr>
-			               		<th>联系人</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                	<th>用户id</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			               	</tr>
-			                <tr>
-			                	<th>发布时间</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                	<th>点击量</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                	<th>成果简介</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                	<th>成果关键词</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                	
-			                	<th>研发开始时间</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                	<th>研发结束时间</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                	<th>联系电话</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                	<th>手机</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                	<th>邮箱</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                	<th>联系地址</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                	<th>获奖情况</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                	<th>预期交易价格（万元）</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                </tr>
-			                 <tr>
-			                 	<th>知识产权编号</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                	<th>知识产权说明</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                	<th>产权归属者</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                	<th>产权归属地</th>
-			                	<td>
-			                		<input type="" name="" id="" value="" />
-			                		<img src="../images/modify.svg"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                	<th>成品图片展示（1到3张）</th>
-			                	<td colspan="3" class="achievementImg">
-			                		<button id="select">(重新)选择图片</button>  
-					                <button id="add">(追加)图片</button>  
-					                <input type="file" id="file_input" multiple accept="image/*" capture="camera"/> 
-					                	<!--用input标签并选择type=file，记得带上multiple，不然就只能单选图片了-->    
-					                <button id="submit">添加</button>  
-			                	</td>
-			                </tr>
-						</thead>
-					</table>
-				</div>
-    		</figure>
-    	</div>
-    </section>
+								<th>类型名称</th>
+								<td>
+									<input type="text" name="typeName" value="" />
+								</td>
+								<th>成果名称</th>
+								<td>
+									<input type="text" name="achievementName" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>联系人</th>
+								<td>
+									<input type="text" name="linkman" value="" />
+								</td>
+								<th>用户id</th>
+								<td>
+									<input type="text" name="userId" value="" />
+								</td>
+							</tr>
 
+							<tr>
+								<th>成果简介</th>
+								<td>
+									<input type="text" name="achievementIntroduce" value="" />
+								</td>
+								<th>成果关键词</th>
+								<td>
+									<input type="text" name="achievementKey" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>审核状态码</th>
+								<td>
+									<select name="statusCode" style="width: 226px">
+										<option value="0">未审核</option>
+										<option value="1">通过</option>
+										<option value="2">失败</option>
+									</select>
+								</td>
+								<th>点击量</th>
+								<td>
+									<input type="text" name="pageView" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>研发开始时间</th>
+								<td>
+									<div class="jeinpbox">
+										<input type="text" name="start_time" class="jeinput moredate"
+											   placeholder="YYYY-MM-DD" required>
+									</div>
+								</td>
+								<th>研发结束时间</th>
+								<td>
+									<div class="jeinpbox">
+										<input type="text" name="end_time" class="jeinput moredate"
+											   placeholder="YYYY-MM-DD" required>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>联系电话</th>
+								<td>
+									<input type="text" name="phone" value="" />
+								</td>
+								<th>手机</th>
+								<td>
+									<input type="text" name="cellNumber" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>邮箱</th>
+								<td>
+									<input type="text" name="email" value="" />
+								</td>
+								<th>联系地址</th>
+								<td>
+									<input type="text" name="contactAddress" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>获奖情况</th>
+								<td>
+									<input type="text" name="awards" value="" />
+								</td>
+								<th>预期交易价格（万元）</th>
+								<td>
+									<input type="text" name="expectedPrice" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>知识产权编号</th>
+								<td>
+									<input type="text" name="propertyNumber" value="" />
+								</td>
+								<th>知识产权说明</th>
+								<td>
+									<input type="text" name="propertyIntroduce" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>产权归属者</th>
+								<td>
+									<input type="text" name="propertyMan" value="" />
+								</td>
+								<th>产权归属地</th>
+								<td>
+									<input type="text" name="propertyAddress" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>相关图片上传（最多三张）:</th>
+								<td id="thimg">
+									<div class="uploadImgBtn" id="uploadImgBtn">点击上传
+										<input class="uploadImg" type="file" name="file" multiple id="file">
+									</div>
+								</td>
+								<th>操作</th>
+								<td>
+									<input type="reset" name="" value="重置" onclick="formReset()"/>
+									<input type="submit" value="添加"/>
+								</td>
+							</tr>
+							</thead>
+						</table>
+					</div>
+				</figure>
+			</form>
+		</div>
+	</section>
 </body>
-	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
-	<script type="text/javascript" src="../js/adminIndex.js" ></script>
-	<script type="text/javascript" src="../js/achievement.js" ></script>
+	<script th:src="@{../js/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{../js/adminIndex.js}"></script>
+	<script th:src="@{../js/adminAchievement.js}"></script>
+	<script th:src="@{../js/jedate.js}"></script>
+	<script th:src="@{../js/demo.js}"></script>
 </html>

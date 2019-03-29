@@ -8,10 +8,18 @@
 	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
 	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
 	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+	<style>
+		.popup_table input{
+			width: auto;
+		}
+		.popup_table input[type=button],.popup_table input[type=submit],.popup_table input[type=reset]{
+			width: 94px;
+		}
+
+	</style>
 </head>
 <body>
 
-<body>
 <div th:include="common/adminCommon :: nav"></div>
     <section>
     	<div class="col-sm-12 search-collapse">
@@ -47,16 +55,16 @@
 		                </tr>
 		            </thead>
 		            <tbody>
-		            	<tr>
+		            	<tr th:each="adminType : ${typeList}">
 		            		<td>
-		            			<input type="checkbox" id="awesome2" value="1"class="selectall" />
-								<label for="awesome2"></label>
+		            			<input type="checkbox" th:id="${adminType.typeId}" th:value="${adminType.typeId}" class="selectall" />
+								<label th:for="${adminType.typeId}"></label>
 		            		</td>
-		            		<td>B133</td>
-		            		<td>农产品与食品加工</td>
+		            		<td th:text="${adminType.typeId}">B133</td>
+		            		<td th:text="${adminType.typeName}">农产品与食品加工</td>
 		            		<td>
 		            			<button type="button" class="btn modify">修改</button>
-		            			<button type="button" class="btn delete">删除</button>
+		            			<button type="button" class="btn delete deleteType">删除</button>
 		            		</td>
 		            	</tr>
 		            </tbody>
@@ -69,19 +77,19 @@
 		<div class="popup">
 			<h3>添加类型</h3>
 			<div class="popup_table">
-				<form action="" method="post">
+				<form th:action="@{/admin/addType}">
 					<table class="table table-bordered">
 						<thead>
 							<tr>
 			                    <th>类型名称</th>
 			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
+			                    	<input type="text" name="typeName" value="" required="required"/>
 			                    </td>
 			                </tr>	
 						</thead>
 					</table>
 					<div class="popup_bottom">
-						<input type="reset" name="" id="" value="重置" />
+						<input type="reset" name="" value="重置" />
 						<input type="submit" value="添加"/>
 						<input type="button" name="" class="cancel_1" value="取消" />
 					</div>
@@ -98,9 +106,15 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
+								<th>类型名称</th>
+								<td>
+									<input type="text" name="typeId" value="" required="required"/>
+								</td>
+							</tr>
+							<tr>
 			                    <th>类型名称</th>
 			                    <td>
-			                    	<input type="" name="" id="" value="" required="required"/>
+			                    	<input type="" name="typeName" value="" required="required"/>
 			                    </td>
 			                </tr>	
 						</thead>
@@ -117,4 +131,5 @@
 </body>
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
 <script type="text/javascript" src="../js/adminIndex.js" ></script>
+<script type="text/javascript" src="../js/adminType.js" ></script>
 </html>

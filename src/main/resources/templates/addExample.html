@@ -19,16 +19,16 @@
             <table class="table table-hover table-bordered">
                 <tr>
                     <td>案例标题:	</td>
-                    <td><input type="text" name="exampleTitle" class="form-control"></td>
+                    <td><input type="text" name="exampleTitle" class="form-control" required></td>
                     <input type="hidden"  th:value="${session.user.userId}">
                     <td>案例内容:	</td>
-                    <td><input type="text" name="exampleContent" class="form-control"></td>
+                    <td><input type="text" name="exampleContent" class="form-control" required></td>
                 </tr>
                 <tr>
                     <td>发布时间:	</td>
                     <td style="border-left: none;border-right: none;">
                         <div class="jeinpbox">
-                            <input type="text" name="releaseTime" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
+                            <input type="text" name="releaseTime" class="jeinput moredate" placeholder="YYYY-MM-DD" required autocomplete="off">
                         </div>
                     </td>
                     <td style="border-left: none;border-right: none;">	</td>

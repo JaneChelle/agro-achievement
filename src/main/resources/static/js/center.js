@@ -13,7 +13,7 @@ $(document).ready(function() {
         $(".ifm").attr("src","/UserManagement/toFindPassword");
     });
     $("#result2").click(function () {
-        $(".ifm").attr("src","/achievement/selectAchievement");
+        $(".ifm").attr("src","/achievement/selectAchievement?statusCode=0");
     });
     $("#supply").click(function () {
         $(".ifm").attr("src","/demand/toAddDemand");

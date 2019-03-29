@@ -33,7 +33,7 @@
                     <td>发布时间:	</td>
                     <td>
                         <div class="jeinpbox">
-                            <input type="text" name="releaseTime" th:value="${demand.releaseTime}" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
+                            <input type="text" name="releaseTime" th:value="${#temporals.format(demand.releaseTime,'yyy-MM-dd')}" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
                         </div>
                     </td>
                     <td>联系人:</td>

@@ -43,7 +43,7 @@
             <input type="hidden" th:value="${example.exampleId}" class="exampleId">
             <input type="hidden" th:value="${session.user.userId}">
             <td>
-                <a class="a-div adiv1" id="deletes">删除</a>
+                <a class="a-div adiv1" id="deletesExample">删除</a>
                 <a class="a-div adiv3" th:href="@{/example/toModifyExample(exampleId=${example.exampleId})}">修改</a>
                 <a class="a-div adiv2" th:href="@{/example/selectOrganizationByUser}">返回</a>
             </td>

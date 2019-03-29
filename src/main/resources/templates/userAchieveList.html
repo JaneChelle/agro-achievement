@@ -8,7 +8,6 @@
     <link rel="stylesheet" th:href="@{/css/register.css}">
     <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
     <script th:src="@{/js/jquery.js}"></script>
-    <script th:src="@{/js/userAchieveList.js}"></script>
     <style>
         th,td{
             text-align: center;
@@ -42,10 +41,10 @@
             <td th:text="${achievement.achievementName}" class="achievementName"></td>
             <td th:text="${achievement.typeName}"></td>
             <td th:text="${achievement.linkman}"></td>
-            <td th:text="${achievement.releaseTime}"></td>
+            <td th:text="${#temporals.format(achievement.releaseTime, 'yyyy-MM-dd')}"></td>
             <td th:text="${achievement.statusCode}"></td>
             <td>
-                <a class="a-div adiv1" id="deletes">删除</a>
+                <a class="a-div adiv1" id="deletesAchievement">删除</a>
                 <a class="a-div adiv2" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">修改</a>
                 <a class="a-div adiv3" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">详情</a>
             </td>
@@ -120,5 +119,6 @@
         }
     }
 </script>
+<script th:src="@{/js/userAchieveList.js}"></script>
 </body>
 </html>

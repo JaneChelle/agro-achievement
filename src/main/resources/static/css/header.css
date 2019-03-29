@@ -140,3 +140,14 @@ ul{
 }
 .clearfloat{clear:both}
 
+.SplitPage{
+    width: 1200px;
+    margin: 0 auto;
+}
+.SplitUl>li{
+    display: inline-block;
+}
+.SplitUl>li>a{
+    color: #fff;
+    text-decoration: none;
+}

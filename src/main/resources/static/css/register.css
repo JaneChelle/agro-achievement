@@ -137,3 +137,29 @@ textarea{
 .uu{
     display: block;
 }
+.SplitPage{
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+.SplitUl{
+    font-size: 0;
+}
+.SplitUl>li{
+    display: inline-block;
+}
+.SplitUl>li>a{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    color: #00b3ee;
+    font-size: 12px;
+    text-decoration: none;
+    border: 1px solid #CCCCCC;
+    margin: 0;
+}
+.active{
+    background: #00b3ee;
+    color: #fff !important;
+}

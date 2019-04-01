@@ -302,6 +302,44 @@ th{
 	background-color: #ECF0F3;
 }
 
+
+/*底部*/
+.section_Bottom{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 45px;
+}
+.section_Bottom li{
+	list-style-type: none;
+	display: inline-block;
+	text-align: center;
+}
+/*分页*/
+.fenye{
+	width:1200px;
+	margin: 0 auto;
+	background-color: #F2F2F2;
+	text-align: center;
+	line-height: 30px;
+	border-bottom: 1px solid #41A809;
+}
+.fenye>a{
+	text-decoration: none;
+	color: #000;
+	margin: 0 15px;
+}
+.fenye>a:hover{
+	color: #41A809;
+	text-decoration: underline;
+}
+.fenye>input{
+	width: 30px;
+	vertical-align: middle;
+	padding: 0;
+	line-height: 18px;
+}
 /*弹窗*/
 popup,popupModify{
 	position: fixed;

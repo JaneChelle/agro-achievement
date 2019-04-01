@@ -31,7 +31,7 @@
                 <th>成果类型:</th>
                 <td>
                     <div th:each="type : ${typeList}">
-                        <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}"/><label
+                        <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" required/><label
                             th:text="${type.typeName}" th:for="${type.typeName}"></label>
                     </div>
                 </td>
@@ -44,9 +44,9 @@
                 <th>研发起止时间:</th>
                 <td>
                     <div class="jeinpbox">开始时间：<input type="text" name="start_time" class="jeinput moredate"
-                                                      placeholder="YYYY-MM-DD" required></div>
+                                                      placeholder="YYYY-MM-DD" required autocomplete="off"></div>
                     <div class="jeinpbox">结束时间：<input type="text" name="end_time" class="jeinput moredate"
-                                                      placeholder="YYYY-MM-DD" required></div>
+                                                      placeholder="YYYY-MM-DD" required autocomplete="off"></div>
                 </td>
                 <!--时间插件-->
             </tr>

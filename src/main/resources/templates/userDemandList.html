@@ -46,7 +46,7 @@
             <td th:text="${demand.linkman}"></td>
             <input type="hidden" th:value="${demand.demandId}" class="demandId">
             <td>
-                <a class="a-div adiv1" id="deletes">删除</a>
+                <a class="a-div adiv1" id="deletesDemand">删除</a>
                 <a class="a-div adiv2" th:href="@{/demand/demandUserDetails(demandId=${demand.demandId})}">修改</a>
                 <a class="a-div adiv3" th:href="@{/demand/demandUserDetails(demandId=${demand.demandId})}">详情</a>
             </td>

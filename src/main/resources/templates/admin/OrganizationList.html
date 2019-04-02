@@ -1,0 +1,99 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>农业科技成果转化交易服务平台注册</title>
+    <link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+    <link rel="stylesheet" th:href="@{../css/admindemo.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div th:include="common/adminCommon :: nav"></div>
+
+<section>
+    <div class="col-sm-12 search-collapse">
+        <form th:action="@{/admin/selectAnnouncement}">
+            <div class="select-list">
+                <ul>
+                    <li>
+                        <span>搜索：</span>
+                        <input type="text" name="findName" value="" />
+                    </li>
+                    <li>
+                        <button class="btn" type="submit">搜 索</button>
+                    </li>
+                    <li></li>
+                    <li class="exampleList">
+                        <span>未审核【0】</span>
+                        <span>通过【1】</span>
+                        <span>失败【2】</span>
+                    </li>
+                    <li>
+                        <a th:href="@{/admin/toAddAnnouncement}">
+                            <img src="../images/添加.svg" title="添加公告"/>
+                            <span>添加</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <div class="section_table">
+        <div class="section">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>机构id</th>
+                    <th>机构名称</th>
+                    <th>所在国家</th>
+                    <th>所在地区</th>
+                    <th>法人类别</th>
+                    <th>机构简介</th>
+                    <th>联系人</th>
+                    <th>电话</th>
+                    <th>邮箱</th>
+                    <th>网址</th>
+                    <th>地址</th>
+                    <th>发布者id</th>
+                    <th>机构类型id</th>
+                    <th>机构类型</th>
+                    <th>审核状态码</th>
+                    <th>机构logo</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="organization : ${organizationList}">
+                        <td th:text="${organization.organizationTypeId}"></td>
+                        <td th:text="${organization.organizationName}"></td>
+                        <td th:text="${organization.organizationCountry}"></td>
+                        <td th:text="${organization.legalCategory}"></td>
+                        <td th:text="${organization.organizationIntroduce}"></td>
+                        <td th:text="${organization.linkman}"></td>
+                        <td th:text="${organization.phone}"></td>
+                        <td th:text="${organization.email}"></td>
+                        <td th:text="${organization.organizationUrl}"></td>
+                        <td th:text="${organization.contactAddress}"></td>
+                        <td th:text="${organization.userId}"></td>
+                        <td th:text="${organization.organizationTypeId}"></td>
+                        <td th:text="${organization.typeName}"></td>
+                        <td th:text="${organization.statusCode}"></td>
+                        <td th:text="${organization.organizationLogo}"></td>
+                        <td>
+                            <button type="button" class="btn delete deleteOrganization">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="cure"></div>
+</section>
+
+</body>
+<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
+</html>

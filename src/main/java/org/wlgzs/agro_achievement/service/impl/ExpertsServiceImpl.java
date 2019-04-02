@@ -171,7 +171,34 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     }
 
     @Override
-    public Result addAdminExperts(Experts experts) {
+    public Result addAdminExperts(HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) {
+        //文件处理（真实存储名）
+        String realName = "";
+
+        String fileName = myFileName.getOriginalFilename();
+        //截取后缀名
+        String suffixName = fileName.substring(fileName.indexOf("."), fileName.length());
+
+        //生成实际储存的文件名（不能重复）
+        realName = RandomNumberUtils.getRandomFileName() + suffixName;
+        // "/upload"是你自己定义的上传目录
+        String realPath = System.getProperty("user.dir") + "/HeadPortrait";
+        File uploadFile = new File(realPath, realName);
+
+        //上传文件
+        try {
+            myFileName.transferTo(uploadFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String str = request.getContextPath() + "/HeadPortrait/" + realName;
+        System.out.println(experts);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime ldt = LocalDateTime.parse(time + " 00:00:00", formatter);
+        experts.setExpertsBirth(ldt);
+        experts.setPictureAddress(str);
+        experts.setPageView(0);
+        experts.setStatusCode("0");
         baseMapper.insert(experts);
         return new Result(ResultCode.SUCCESS);
     }

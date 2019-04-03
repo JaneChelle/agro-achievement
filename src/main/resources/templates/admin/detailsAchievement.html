@@ -4,10 +4,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>农业科技成果转化交易服务平台注册</title>
+	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
 	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
 	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
-	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{../css/jeDate_test.css}">
 	<link rel="stylesheet" th:href="@{../css/jedate.css}">
 </head>
@@ -39,17 +39,23 @@
 							<tr>
 								<th>编号id</th>
 								<td>
-									<input type="text" name="achievementId"  th:value="${achievement.achievementId}"/>
-									<img src="../images/modify.svg"/>
+									<input type="hidden" name="achievementId"  th:value="${achievement.achievementId}"/>
+									<span th:text="${achievement.achievementId}"></span>
 								</td>
 								<th>审核状态码</th>
 								<td>
-									<input type="text" name="statusCode" th:value="${achievement.statusCode}" />
+									<select class="modifyAchievementCode" name="statusCode" style="width: 226px">
+										<option value="">请选择审核状态码</option>
+										<option value="0">未审核</option>
+										<option value="1">通过</option>
+										<option value="2">失败</option>
+									</select>
+									<input type="hidden" name="statusCode" class="statusCode" th:value="${achievement.statusCode}" />
 									<img src="../images/modify.svg"/>
 								</td>
 							</tr>
 							<tr>
-								<th>类型名称</th>
+								<th>成果类型</th>
 								<td>
 									<input type="text" name="typeName" th:value="${achievement.typeName}" />
 									<img src="../images/modify.svg"/>
@@ -103,14 +109,16 @@
 
 								<td>
 									<div class="jeinpbox">
-										<input type="text" name="startTime" th:value="${#temporals.format(achievement.startTime, 'yyyy-MM-dd HH:mm:ss')}" class="jeinput" placeholder="YYYY-MM-DD hh:mm:ss">
+										<input type="text" name="start_time" class="jeinput moredate"
+											   placeholder="YYYY-MM-DD" required autocomplete="off">
 									</div>
 									<img src="../images/modify.svg"/>
 								</td>
 								<th>研发结束时间</th>
 								<td>
 									<div class="jeinpbox">
-										<input type="text" name="endTime" th:value="${#temporals.format(achievement.endTime, 'yyyy-MM-dd HH:mm:ss')}" class="jeinput" placeholder="YYYY-MM-DD hh:mm:ss">
+										<input type="text" name="end_time" class="jeinput moredate"
+											   placeholder="YYYY-MM-DD" required autocomplete="off">
 									</div>
 									<img src="../images/modify.svg"/>
 								</td>
@@ -177,7 +185,7 @@
 							</tr>
 							<tr>
 								<th>成品图片展示（1到3张）</th>
-								<td><input type="text" name="pictureAddress" th:value="${achievement.pictureAddress}"></td>
+								<img src="${achievement.pictureAddress}" alt="">
 							</tr>
 							</thead>
 						</table>
@@ -194,4 +202,16 @@
 	<script type="text/javascript" th:src="@{../js/achievement.js}" ></script>
 <script th:src="@{../js/jedate.js}"></script>
 <script th:src="@{../js/demo.js}"></script>
+<script>
+    // 状态码
+    var options = $('.modifyAchievementCode option');
+    var statusCode = $('.statusCode').val();
+    for (var i = 0; i < options.length; i++) {
+        if ($(options[i]).val() == statusCode) {
+            $(options[i]).attr("selected", true);
+        } else {
+            $(options[i]).attr("selected", false);
+        }
+    }
+</script>
 </html>

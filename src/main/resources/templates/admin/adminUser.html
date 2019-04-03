@@ -198,4 +198,22 @@
 <script type="text/javascript" th:src="@{../js/adminIndex.js}" ></script>
 <script type="text/javascript" th:src="@{../js/adminUser.js}" ></script>
 <script type="text/javascript" th:src="@{../js/distpicker.js}" ></script>
+<script>
+    // var province = $(".province option:selected").val();
+    // var city = $(".city option:selected").val();
+    // var district = $(".district option:selected").val();
+
+    // 状态码
+    // var options = $('.modifyAchievementCode option');
+    var distpicker = $('.hiddenInput').val();
+    var a = distpicker.split(/-/);
+    console.log(a)
+    // for (var i = 0; i < options.length; i++) {
+    //     if ($(options[i]).val() == statusCode) {
+    //         $(options[i]).attr("selected", true);
+    //     } else {
+    //         $(options[i]).attr("selected", false);
+    //     }
+    // }
+</script>
 </html>

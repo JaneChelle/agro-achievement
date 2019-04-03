@@ -206,8 +206,9 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     @Override
     public Result modifyExperts(Experts experts) {
         if (experts != null) {
+            System.out.println(experts);
             baseMapper.updateById(experts);
-            return new Result(ResultCode.SUCCESS);
+            return new Result(ResultCode.SUCCESS,experts);
         }
         return new Result(ResultCode.FAIL);
     }

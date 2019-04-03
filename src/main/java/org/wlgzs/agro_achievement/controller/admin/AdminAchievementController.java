@@ -85,12 +85,12 @@ public class AdminAchievementController extends BaseController {
     //修改成果
     @RequestMapping(value = "/adminEditAchievement")
     public ModelAndView modifyAchievement(Achievement achievement, String start_time, String end_time, Model model) {
-        Result result = iAchievementService.modifyAchievement(achievement, start_time, end_time);
+        Result result = iAchievementService.modifyAdminAchievement(achievement, start_time, end_time);
         if (result.getCode() == 0) {
             Achievement achievement1 = (Achievement) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("achievement", achievement1);
-            return new ModelAndView("adminAchieveDetails");
+            return new ModelAndView("admin/detailsAchievement");
         } else {
             model.addAttribute("msg", "修改失败！");
         }

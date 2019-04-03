@@ -50,7 +50,7 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
         if (example != null) {
             if(example.getUserId() != null){
                 baseMapper.updateById(example);
-                return new Result(ResultCode.SUCCESS, "修改成功！");
+                return new Result(ResultCode.SUCCESS, "修改成功！",1,example);
             }
             Example example1 = baseMapper.selectById(example.getExampleId());
             if (example1 != null) {

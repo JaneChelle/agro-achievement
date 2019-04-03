@@ -28,7 +28,7 @@
 					<div class="apply_expert">
 						<div class="applyExpert">
 							<label>姓名</label>
-							<input type="hidden" th:value="${experts.expertsId}">
+							<input type="hidden" name="expertsId" th:value="${experts.expertsId}">
 							<input type="text" name="expertsName" value="" th:value="${experts.expertsName}"/>
 							<label>性别</label>
 							<select name="expertsSex" th:value="${experts.expertsSex}">

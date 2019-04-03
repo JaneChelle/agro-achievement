@@ -30,6 +30,9 @@ public interface IAchievementService extends IService<Achievement> {
     //修改需求
     Result modifyAchievement(Achievement achievement, String start_time, String end_time);
 
+    //修改需求
+    Result modifyAdminAchievement(Achievement achievement, String start_time, String end_time);
+
     //按照用户查询所有需求（状态码）
     Result selectAchievement(Integer userId, String statusCode, int current, int limit);
 

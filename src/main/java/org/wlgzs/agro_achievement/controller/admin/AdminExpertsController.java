@@ -71,7 +71,7 @@ public class AdminExpertsController extends BaseController {
             Experts experts1 = (Experts) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("experts", experts1);
-            return new ModelAndView("adminExpertsDetails");
+            return new ModelAndView("admin/detailsExpert");
         } else {
             model.addAttribute("msg", "修改失败！");
         }

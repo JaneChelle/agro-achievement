@@ -179,6 +179,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();
             System.out.println(achievementList);
+            System.out.println(iPage);
             return new Result(ResultCode.SUCCESS, "", achievementList, iPage.getPages(), iPage.getCurrent());
         } else {
             queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", statusCode));

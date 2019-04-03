@@ -51,7 +51,7 @@ public class OrganizationController extends BaseController {
         } else {
             model.addAttribute("msg", "添加失败！");
         }
-        return new ModelAndView("redirect:/HomeController/ExpertsHome");
+        return new ModelAndView("redirect:/organization/selectOrganizationByUser");
     }
 
     //删除机构

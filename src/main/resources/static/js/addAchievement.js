@@ -53,3 +53,7 @@ $(document).ready(function(){
     })
 
 })
+function fomrReset()
+{
+    document.getElementById("myform").reset();
+}

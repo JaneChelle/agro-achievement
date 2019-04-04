@@ -15,6 +15,11 @@ ul{
 	color: #fff!important;
 	padding: 2px!important;
 }
+.splitUl{
+	text-align: center;
+	position: relative;
+	top: 11px;
+}
 .uu{
 	position: fixed;
 	top: 50%;

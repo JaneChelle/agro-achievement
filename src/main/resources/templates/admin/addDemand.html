@@ -67,6 +67,7 @@
 						<td>审核状态码:	</td>
 						<td>
 							<select name="statusCode">
+								<option value="">请选择审核状态码</option>
 								<option value="0">未审核</option>
 								<option value="1">通过</option>
 								<option value="2">失败</option>
@@ -87,7 +88,7 @@
 						<td>发布时间:	</td>
 						<td>
 							<div class="jeinpbox">
-								<input type="text" name="time" class="jeinput" id="test04" placeholder="YYYY-MM-DD hh:mm:ss">
+								<input type="text" name="time" class="jeinput" id="test04" placeholder="YYYY-MM-DD hh:mm:ss" autocomplete="off">
 							</div>
 						</td>
 						<td>点击量:	</td>
@@ -107,8 +108,9 @@
 					</tr>
 					<tr>
 						<td colspan="6" class="pn-fbutton">
-							<input type="submit" value="添加"  class="btn btn-info" id="change"/>
-							<input type="reset" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered!important;"/>
+							<input type="submit" value="添加"  class="btn-info" id="change"/>
+							<input type="reset" value="重置"  class="btn-info" id="cancel" style="background-color: orangered!important;"/>
+							<a th:href="@{/admin/adminAdminDemand}" class="returnList">返回</a>
 						</td>
 					</tr>
 				</table>
@@ -120,7 +122,6 @@
 
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
-<script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
 <script th:src="@{../js/jedate.js}"></script>
 <script th:src="@{../js/demo.js}"></script>
 </html>

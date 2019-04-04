@@ -6,6 +6,15 @@
 *, ::after, ::before{
 	box-sizing: content-box!important;
 }
+ul{
+	margin-bottom: 0!important;
+}
+/*返回*/
+.returnList{
+	background-color: #fc5656!important;
+	color: #fff!important;
+	padding: 2px!important;
+}
 .uu{
 	position: fixed;
 	top: 50%;

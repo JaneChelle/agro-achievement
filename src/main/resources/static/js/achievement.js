@@ -109,15 +109,4 @@ function ReSizePic(ThisPic) {
         var reHeight = RePicWidth;    
         ThisPic.height = reHeight;    
     }    
-}   
-
-$('.achievementModify').on('click',function(){
-	$(this).hide();
-	$('.sureModify').fadeIn();
-	$('.section table thead tr td img').fadeIn();
-})
-$('.sureModify').on('click',function(){
-	$(this).hide();
-	$('.achievementModify').fadeIn();
-	$('.section table thead tr td img').fadeOut();
-})
+}

@@ -95,8 +95,9 @@
                     </tr>
                     <tr>
                         <td colspan="6" class="pn-fbutton">
-                            <input type="submit" value="提交"  class="btn btn-info" id="change"/>
-                            <input type="reset" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered!important;"/>
+                            <input type="submit" value="提交"  class="btn-info" id="change"/>
+                            <input type="reset" value="重置"  class="btn-info" id="cancel" style="background-color: orangered!important;"/>
+                            <a th:href="@{/admin/adminAdminDemand}" class="returnList">返回</a>
                         </td>
                     </tr>
                 </table>
@@ -108,7 +109,6 @@
 
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
-<script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
 <script th:src="@{../js/jedate.js}"></script>
 <script th:src="@{../js/demo.js}"></script>
 </html>

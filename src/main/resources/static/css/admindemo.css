@@ -31,14 +31,12 @@
 	float: right;
 	cursor: pointer;
 }
-.achievementModify,.sureModify{
+.achievementModify{
 	cursor: pointer;
 	display: inline-block;
 	height: 100%;
 }
-.sureModify{
-	display: none;
-}
+
 .section input[type=text]{
 	height: 32px;
 	width: 220px;

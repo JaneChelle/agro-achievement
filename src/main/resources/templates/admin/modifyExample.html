@@ -17,7 +17,7 @@
     <div class="search-collapse">
         <h3>
             <img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
-            <span>修改用户</span>
+            <span>案例ID <b th:text="${example.exampleId}"></b></span>
         </h3>
     </div>
     <div class="section_table">
@@ -52,12 +52,13 @@
                         <tr>
                             <th>审核状态码</th>
                             <td>
-                                <select name="statusCode">
+                                <select name="statusCode" class="modifyAchievementCode">
                                     <option>请选择审核状态码</option>
                                     <option value="0">未审核</option>
                                     <option value="1">通过</option>
                                     <option value="2">失败</option>
                                 </select>
+                                <input type="hidden" class="statusCode" th:value="${example.statusCode}">
                             </td>
                         </tr>
                         </thead>
@@ -65,6 +66,7 @@
                     <div class="popup_bottom">
                         <input type="reset" name="" value="重置" />
                         <input type="submit" value="修改"/>
+                        <a th:href="@{/admin/adminExampleList}" class="btn returnList">返回</a>
                     </div>
                 </form>
             </div>
@@ -85,5 +87,17 @@
     // 赋值
     var content = $('.exampleContent').val();
     editor.txt.text(content);
+
+
+    // 状态码
+    var options = $('.modifyAchievementCode option');
+    var statusCode = $('.statusCode').val();
+    for (var i = 0; i < options.length; i++) {
+        if ($(options[i]).val() == statusCode) {
+            $(options[i]).attr("selected", true);
+        } else {
+            $(options[i]).attr("selected", false);
+        }
+    }
 </script>
 </html>

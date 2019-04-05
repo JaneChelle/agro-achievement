@@ -139,7 +139,7 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
 //            demand.setStatusCode("0");//需要审核
             demand.setReleaseTime(releaseTime);
             baseMapper.insert(demand);
-            return new Result(ResultCode.SUCCESS, "发布成功！");
+            return new Result(ResultCode.SUCCESS, "发布成功！",1,demand);
         }
         return new Result(ResultCode.FAIL, "请输入正确的信息！");
     }

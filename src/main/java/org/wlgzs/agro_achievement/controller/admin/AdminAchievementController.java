@@ -70,6 +70,10 @@ public class AdminAchievementController extends BaseController {
     //跳转到修改成果
     @RequestMapping("/toAdminEditAchievement")
     public ModelAndView toEdit(Model model, Integer achievementId) {
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
         Result result = iAchievementService.achievementDetails(achievementId);
         Achievement achievement = (Achievement) result.getData();
         String img;
@@ -89,6 +93,10 @@ public class AdminAchievementController extends BaseController {
         if (result.getCode() == 0) {
             Achievement achievement1 = (Achievement) result.getData();
             model.addAttribute("msg", "修改成功！");
+            //查询所有类型
+            Result result1 = iTypeService.selectAllType();
+            List<Type> typeList = (List<Type>) result1.getData();
+            model.addAttribute("typeList", typeList);
             model.addAttribute("achievement", achievement1);
             return new ModelAndView("admin/detailsAchievement");
         } else {

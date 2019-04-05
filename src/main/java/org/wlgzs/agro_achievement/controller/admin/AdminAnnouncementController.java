@@ -88,7 +88,7 @@ public class AdminAnnouncementController extends BaseController {
             @RequestParam(value = "announcementType", defaultValue = "") String announcementType,
             @RequestParam(value = "current", defaultValue = "1") Integer current,
             @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
-        Result result = iAnnouncementService.selectAnnouncement(announcementType, current, limit);
+        Result result = iAnnouncementService.selectAnnouncement(findName, current, limit);
         List<Announcement> announcementList = (List<Announcement>) result.getData();
         model.addAttribute("announcementList",announcementList);
         model.addAttribute("TotalPages", result.getPages());//总页数

@@ -31,7 +31,7 @@ $(document).ready(function() {
         $(".ifm").attr("src","/organization/toAddOrganization");
     });
     $("#userOrganizationList").click(function () {
-        $(".ifm").attr("src","/organization/selectOrganizationByUser");
+        $(".ifm").attr("src","/organization/selectOrganizationByUser?statusCode=0");
     });
     $("#addExample").click(function () {
         $(".ifm").attr("src","/example/toAddExample");

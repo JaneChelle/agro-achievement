@@ -54,7 +54,7 @@ public class ExampleController extends BaseController {
             Example example1 = (Example) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("example1", example1);
-            return new ModelAndView("exampleDetails");
+            return new ModelAndView("modifyExample");
         } else {
             model.addAttribute("msg", "修改失败！");
         }

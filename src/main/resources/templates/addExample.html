@@ -15,7 +15,7 @@
     <script type="text/javascript">
         function modifyContent() {
             var content = document.getElementById("content");
-            content.value = editor.txt.html();
+            content.value = editor.txt.text();
         }
     </script>
 </head>
@@ -27,6 +27,7 @@
             <table class="table table-hover table-bordered">
                 <tr>
                     <td>案例标题:	</td>
+                    <input type="hidden"  th:value="${session.user.userId}" name="userId">
                     <td style="border-right: none;"><input type="text" name="exampleTitle" class="form-control" required></td>
                     <input type="hidden"  th:value="${session.user.userId}">
                     <td style="border-right: none;border-left: none;"></td>
@@ -35,10 +36,10 @@
             </table>
             <div class="form-group">
                 <!-- 编辑器编辑，提交时执行js，获得编辑器的内容，赋值给textarea，用于向后台提交存入数据库 -->
-                <input type="hidden" name="exampleContent" id="content">
-                <!--<textarea rows="5" cols="35" name="exampleContent" style="display:none;" id="content"></textarea>-->
+                <!--<input type="hidden" name="exampleContent" id="content">-->
+                <textarea rows="5" cols="35" name="exampleContent" style="display:none;" id="content"></textarea>
                 <div id="editor">
-                    <p>请编写该案例的<b>内容详情</b></p>
+
                 </div>
             </div>
             <input type="submit" value="提交"  class="btn btn-info" id="change"/>

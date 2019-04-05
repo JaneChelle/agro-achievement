@@ -61,13 +61,6 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
     //修改需求
     @Override
     public Result modifyDemand(Demand demand,String time) {
-        if(time != null){
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime releaseTime = LocalDateTime.parse(time, formatter);
-            baseMapper.updateById(demand);
-            return new Result(ResultCode.SUCCESS, "修改成功！");
-        }
-
         if (demand != null) {
             Demand demand1 = baseMapper.selectById(demand.getDemandId());
             if (demand1 != null) {
@@ -76,10 +69,10 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
                     demand.setStatusCode(demand1.getStatusCode());
                     demand.setPageView(demand1.getPageView());
                     baseMapper.updateById(demand);
-                    return new Result(ResultCode.SUCCESS, "修改成功！");
+                    return new Result(ResultCode.SUCCESS, "修改成功！",1,demand);
                 }
                 baseMapper.updateById(demand);
-                return new Result(ResultCode.SUCCESS, "修改成功！");
+                return new Result(ResultCode.SUCCESS, "修改成功！",1,demand);
             }
             return new Result(ResultCode.FAIL, "该条记录不存在！");
         }

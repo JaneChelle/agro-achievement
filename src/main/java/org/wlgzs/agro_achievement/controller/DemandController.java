@@ -68,7 +68,7 @@ public class DemandController extends BaseController {
             Demand demand1 = (Demand) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("demand", demand1);
-            return new ModelAndView("demandDetails");
+            return new ModelAndView("demandUserDetails");
         } else {
             model.addAttribute("msg", "修改失败！");
         }

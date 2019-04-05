@@ -1,7 +1,8 @@
 //删除成果
 $(document).on("click", "#deletesAchievement",function() {
     var achievementName = $(this).parent().parent().children('.achievementName').text();
-    var achievementId = $(this).parent().parent().children('.achievementId').text();
+    var achievementId = $(this).parent().parent().children('.achievementId').val();
+    console.log(achievementId);
     var inform = "您确定要删除 " + achievementName + " 发布的成果吗？";
     var r = confirm(inform);
     if (r == true) {
@@ -91,6 +92,7 @@ $(document).on("click", "#deletesOrganization",function() {
     var r = confirm(inform);
     if (r == true) {
         $.ajax({
+            type : 'DELETE',
             url: "/organization/deleteOrganization",
             data: {
                 'organizationId': organizationId
@@ -133,6 +135,7 @@ $(document).on("click", "#deletesExample",function() {
     var r = confirm(inform);
     if (r == true) {
         $.ajax({
+            type : 'DELETE',
             url: "/example/deleteExample",
             data: {
                 'exampleId': exampleId
@@ -160,7 +163,6 @@ $(document).on("click", "#deletesExample",function() {
                     location.reload(true);
                 }, 1000);
 
-                alert(data.msg)
             }
         });
     } else {

@@ -37,7 +37,7 @@
         <tbody>
         <!--遍历-->
         <tr th:each="achievement : ${achievementList}">
-            <!--<td th:text="${session.user.userId}" class="achievementId"></td>-->
+            <input type="hidden" th:value="${achievement.achievementId}" class="achievementId">
             <td th:text="${achievement.achievementName}" class="achievementName"></td>
             <td th:text="${achievement.typeName}"></td>
             <td th:text="${achievement.linkman}"></td>

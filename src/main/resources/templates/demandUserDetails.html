@@ -18,6 +18,7 @@
     <form th:action="@{/demand/modifyDemand(demandId=${demand.demandId})}" method="post">
             <table class="table table-hover table-bordered">
                 <tr>
+                    <input type="hidden"  th:value="${session.user.userId}">
                     <td>需求名字:	</td>
                     <td><input type="text" name="demandName" th:value="${demand.demandName}" class="form-control"></td>
                     <td>预期价格:	</td>
@@ -32,9 +33,7 @@
                 <tr>
                     <td>发布时间:	</td>
                     <td>
-                        <div class="jeinpbox">
-                            <input type="text" name="releaseTime" th:value="${#temporals.format(demand.releaseTime,'yyy-MM-dd')}" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
-                        </div>
+                        <input type="text" th:value="${#temporals.format(demand.releaseTime,'yyy-MM-dd')}" disabled="disabled">
                     </td>
                     <td>联系人:</td>
                     <td><input type="text" name="linkman" th:value="${demand.linkman}" class="form-control"  /></td>
@@ -48,7 +47,7 @@
                 <tr>
                     <td colspan="6" class="pn-fbutton">
                         <input type="submit" value="修改" class="btn btn-info">
-                        <a th:href="@{/achievement/selectAchievement}" class="a-div adiv3">返回</a>
+                        <a th:href="@{/demand/selectDemand}" class="a-div adiv3">返回</a>
                     </td>
                 </tr>
             </table>

@@ -39,14 +39,14 @@
 						<div class="applyExpert">
 							<label>出生日期</label>
 							<div class="jeinpbox" style="width: 456px;">
-								<input style="width: 91%" type="text" name="time" th:value="${#temporals.format(experts.expertsBirth, 'yyyy-MM-dd HH:mm:ss')}" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
+								<input style="width: 91%" type="text" name="time" th:value="${#temporals.format(experts.expertsBirth, 'yyyy-MM-dd')}" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
 							</div>
 							<label>国籍</label>
 							<input type="text" name="expertsCountry" th:value="${experts.expertsCountry}"/>
 						</div>
 						<div class="applyExpert">
 							<label>学历</label>
-							<select name="expertsEducation" th:filed="${experts.expertsEducation}" th:value="${experts.expertsEducation}">
+							<select name="expertsEducation" th:filed="${experts.expertsEducation}" th:value="${experts.expertsEducation}" required>
 								<option value="">请选择学历</option>
 								<option th:selected="${experts.expertsEducation=='研究生'}" value="研究生">研究生</option>
 								<option th:selected="${experts.expertsEducation=='博士研究生'}" value="博士研究生">博士研究生</option>
@@ -57,7 +57,7 @@
 								<option th:selected="${experts.expertsEducation=='其他'}" value="其他">其他</option>
 							</select>
 							<label>学位</label>
-							<select name="degree" th:field="${experts.degree}" th:value="${experts.degree}">
+							<select name="degree" th:field="${experts.degree}" th:value="${experts.degree}" required>
 								<option value="">请选择学位</option>
 								<option th:selected="${experts.degree=='名誉博士'}" value="其他">名誉博士</option>
 								<option th:selected="${experts.degree=='博士'}" value="博士">博士</option>
@@ -117,7 +117,7 @@
 							<label>照片地址</label>
 							<div class="all-photo" onclick="photoup()">
 								<div class="all-photo-left">
-									<span class="upload">点击上传图片</span>
+									<span class="upload">点击修改图片</span>
 								</div>
 								<div class="all-photo-right">
 									<img th:src="${experts.pictureAddress}" id="imgshow" style="width: 80px;height: 80px;" />

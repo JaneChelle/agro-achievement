@@ -33,7 +33,7 @@
     </div>
     <div class="section_table">
         <figure>
-            <form th:action="@{/admin/adminEditAchievement}">
+            <form th:action="@{/admin/adminEditAchievement}" method="post">
                 <div class="section">
                     <table class="table table-bordered">
                         <thead>
@@ -172,7 +172,7 @@
                                 <td>
                                     <input type="reset" name="" value="重置" onclick="formReset()"/>
                                     <input type="submit" value="修改"/>
-                                    <a th:href="@{/admin/adminAchievementList}" class="returnList">返回</a>
+                                    <a th:href="@{/admin/adminAchievementList}" class="returnList" style="text-align: center; padding: 0px!important">返回</a>
                                 </td>
                             </tr>
 

@@ -9,9 +9,6 @@ $(document).ready(function() {
     $("#modifyPassword").click(function () {
         $(".ifm").attr("src","/UserManagement/toChangePassword");
     });
-    $("#findPassword").click(function () {
-        $(".ifm").attr("src","/UserManagement/toFindPassword");
-    });
     $("#result2").click(function () {
         $(".ifm").attr("src","/achievement/selectAchievement?statusCode=0");
     });

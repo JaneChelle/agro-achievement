@@ -19,7 +19,7 @@
                     <form th:action="@{/LogUser/login}" method="get" class="mt-4" onsubmit="return userLogin()">
                         <div class="input-group my-4">
                             <div class="input-group-prepend">
-                                <label for="formGroupExampleInput" class="d-block mx-auto">
+                                <label th:for="formGroupExampleInput" class="d-block mx-auto">
                                 	<img th:src="@{/images/8dq.svg}"  width="18" height="18" class="mt-2">
                                 </label>
                             </div>
@@ -29,7 +29,7 @@
 
                         <div class="input-group my-4">
                             <div class="input-group-prepend">
-                                <label for="formGroupExampleInput" class="d-block mx-auto">
+                                <label th:for="formGroupExampleInput" class="d-block mx-auto">
                                     <img th:src="@{/images/password.svg}" width="18" height="18" class="mt-2">
                                 </label>
                             </div>
@@ -37,7 +37,7 @@
                         	<small class="pWord_small"></small>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a th:href="@{/UserManagement/toFindPassword}" class="link">忘记密码？</a>
+                            <a th:href="@{/UserManagement/toFindPassword}" class="link">忘记密码？找回密码</a>
                             <button type="submit" class="btn btn-primary">登录</button>
                         </div>
                         <div class="form-check float-left my-3">

@@ -61,13 +61,6 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
     //修改需求
     @Override
     public Result modifyDemand(Demand demand,String time) {
-        if(time != null){
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime releaseTime = LocalDateTime.parse(time, formatter);
-            baseMapper.updateById(demand);
-            return new Result(ResultCode.SUCCESS, "修改成功！");
-        }
-
         if (demand != null) {
             Demand demand1 = baseMapper.selectById(demand.getDemandId());
             if (demand1 != null) {
@@ -76,10 +69,10 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
                     demand.setStatusCode(demand1.getStatusCode());
                     demand.setPageView(demand1.getPageView());
                     baseMapper.updateById(demand);
-                    return new Result(ResultCode.SUCCESS, "修改成功！");
+                    return new Result(ResultCode.SUCCESS, "修改成功！",1,demand);
                 }
                 baseMapper.updateById(demand);
-                return new Result(ResultCode.SUCCESS, "修改成功！");
+                return new Result(ResultCode.SUCCESS, "修改成功！",1,demand);
             }
             return new Result(ResultCode.FAIL, "该条记录不存在！");
         }
@@ -121,7 +114,7 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
     @Override
     public Result adminDemandList(String findName, int current, int limit) {
         QueryWrapper<Demand> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("demand_name", findName).like("demand_introduce", findName);
+        queryWrapper.like("demand_name", findName).or().like("demand_introduce", findName);
         Page page = new Page(current, limit);
         IPage<Demand> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Demand> achievementList = iPage.getRecords();
@@ -139,7 +132,7 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
 //            demand.setStatusCode("0");//需要审核
             demand.setReleaseTime(releaseTime);
             baseMapper.insert(demand);
-            return new Result(ResultCode.SUCCESS, "发布成功！");
+            return new Result(ResultCode.SUCCESS, "发布成功！",1,demand);
         }
         return new Result(ResultCode.FAIL, "请输入正确的信息！");
     }

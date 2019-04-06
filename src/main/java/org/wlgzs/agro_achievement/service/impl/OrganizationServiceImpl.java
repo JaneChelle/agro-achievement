@@ -49,7 +49,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
             if (organizationType != null) {
                 organization.setOrganizationTypeId(organizationType.getOrganizationTypeId());
                 organization.setUserId(user.getUserId());
-                if (!myFileName.getOriginalFilename().equals("")) {
+                if (myFileName != null && !"".equals(myFileName.getOriginalFilename())) {
                     String fileName = myFileName.getOriginalFilename();
 
                     //后缀名
@@ -70,9 +70,10 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
 
                     String str = request.getContextPath() + "/OrganizationLogo/" + realName;
                     organization.setOrganizationLogo(str);
-                    baseMapper.insert(organization);
-                    return new Result(ResultCode.SUCCESS, "添加成功！");
                 }
+                organization.setStatusCode("0");
+                baseMapper.insert(organization);
+                return new Result(ResultCode.SUCCESS, "添加成功！");
             }
             return new Result(ResultCode.FAIL);
         }
@@ -100,6 +101,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
             queryWrapper.eq("user_id", user.getUserId()).eq("status_code", statusCode);
             List<Organization> organization = baseMapper.selectList(queryWrapper);
             if (organization != null) {
+                System.out.println(organization);
                 return new Result(ResultCode.SUCCESS, organization);
             }
             return new Result(ResultCode.FAIL, "暂无所属机构！");

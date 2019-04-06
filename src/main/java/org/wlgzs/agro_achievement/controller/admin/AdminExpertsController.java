@@ -4,12 +4,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Experts;
 import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -38,14 +40,18 @@ public class AdminExpertsController extends BaseController {
 
     //去添加专家
     @RequestMapping(value = "/toAdminAddExperts")
-    public ModelAndView toAdd() {
+    public ModelAndView toAdd(Model model) {
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
         return new ModelAndView("admin/addExpert");
     }
 
     //管理员添加专家
     @RequestMapping(value = "/adminAddExperts")
-    public ModelAndView adminAddExperts(Model model, Experts experts) {
-        Result result = iExpertsService.addAdminExperts(experts);
+    public ModelAndView adminAddExperts(Model model, HttpServletRequest request, String time, Experts experts, @RequestParam(value = "file", required = false)MultipartFile myFileName) {
+        Result result = iExpertsService.addAdminExperts(request,time, experts, myFileName);
         return new ModelAndView("redirect:/admin/adminExpertsList");
     }
 
@@ -65,7 +71,7 @@ public class AdminExpertsController extends BaseController {
             Experts experts1 = (Experts) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("experts", experts1);
-            return new ModelAndView("adminExpertsDetails");
+            return new ModelAndView("admin/detailsExpert");
         } else {
             model.addAttribute("msg", "修改失败！");
         }

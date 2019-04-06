@@ -9,9 +9,6 @@ $(document).ready(function() {
     $("#modifyPassword").click(function () {
         $(".ifm").attr("src","/UserManagement/toChangePassword");
     });
-    $("#findPassword").click(function () {
-        $(".ifm").attr("src","/UserManagement/toFindPassword");
-    });
     $("#result2").click(function () {
         $(".ifm").attr("src","/achievement/selectAchievement?statusCode=0");
     });
@@ -31,7 +28,7 @@ $(document).ready(function() {
         $(".ifm").attr("src","/organization/toAddOrganization");
     });
     $("#userOrganizationList").click(function () {
-        $(".ifm").attr("src","/organization/selectOrganizationByUser");
+        $(".ifm").attr("src","/organization/selectOrganizationByUser?statusCode=0");
     });
     $("#addExample").click(function () {
         $(".ifm").attr("src","/example/toAddExample");

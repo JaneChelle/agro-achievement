@@ -4,45 +4,64 @@
     <meta charset="UTF-8">
     <title>成功案例-个人中心</title>
     <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/release/wangEditor-fullscreen-plugin.css}">
     <link rel="stylesheet" th:href="@{/css/jeDate_test.css}">
     <link rel="stylesheet" th:href="@{/css/jedate.css}">
     <link rel="stylesheet" th:href="@{/css/register.css}">
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen"/>
     <script th:src="@{/js/jquery.js}"></script>
     <script th:src="@{/js/jedate.js}"></script>
+    <!-- 编辑器编辑后，提交时执行js，获得编辑器的内容，赋值给textarea，用于向后台提交存入数据库 -->
+    <script type="text/javascript">
+        function modifyContent() {
+            var content = document.getElementById("content");
+            content.value = editor.txt.text();
+        }
+    </script>
 </head>
 <body>
 <div class="box">
     <h3>填写基本信息</h3>
     <div class="title">案例信息</div>
-        <form th:action="@{/example/addExample}" method="post">
+        <form th:action="@{/example/addExample}" method="post" id="myform" onsubmit="modifyContent()">
             <table class="table table-hover table-bordered">
                 <tr>
                     <td>案例标题:	</td>
-                    <td><input type="text" name="exampleTitle" class="form-control" required></td>
+                    <input type="hidden"  th:value="${session.user.userId}" name="userId">
+                    <td style="border-right: none;"><input type="text" name="exampleTitle" class="form-control" required></td>
                     <input type="hidden"  th:value="${session.user.userId}">
-                    <td>案例内容:	</td>
-                    <td><input type="text" name="exampleContent" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>发布时间:	</td>
-                    <td style="border-left: none;border-right: none;">
-                        <div class="jeinpbox">
-                            <input type="text" name="releaseTime" class="jeinput moredate" placeholder="YYYY-MM-DD" required autocomplete="off">
-                        </div>
-                    </td>
-                    <td style="border-left: none;border-right: none;">	</td>
-                    <td style="border-left: none"></td>
-                </tr>
-                <tr>
-                    <td colspan="6" class="pn-fbutton">
-                        <input type="submit" value="提交"  class="btn btn-info" id="change"/>
-                        <input type="button" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered"/>
-                    </td>
+                    <td style="border-right: none;border-left: none;"></td>
+                    <td style="border-left: none;"></td>
                 </tr>
             </table>
+            <div class="form-group">
+                <!-- 编辑器编辑，提交时执行js，获得编辑器的内容，赋值给textarea，用于向后台提交存入数据库 -->
+                <!--<input type="hidden" name="exampleContent" id="content">-->
+                <textarea rows="5" cols="35" name="exampleContent" style="display:none;" id="content"></textarea>
+                <div id="editor">
+
+                </div>
+            </div>
+            <input type="submit" value="提交"  class="btn btn-info" id="change"/>
         </form>
 </div>
 <script th:src="@{/js/demo.js}"></script>
+<script type="text/javascript" th:src="@{/release/wangEditor.min.js}"></script>
+<!-- 设置全屏功能的两个js文件，先引入jquery-3.2.1.min.js，在引入wangEditor-fullscreen-plugin.js -->
+<script type="text/javascript" th:src="@{/release/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/release/wangEditor-fullscreen-plugin.js}"></script>
+<script type="text/javascript">
+
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    /* 处理上传图片的请求URL */
+    // editor.customConfig.uploadImgServer = '/admin/upload'
+    /* 定义上传图片的默认名字 */
+    // editor.customConfig.uploadFileName = 'file'
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create();
+    //初始化全屏插件
+    E.fullscreen.init('#editor');
+</script>
 </body>
 </html>

@@ -28,8 +28,8 @@
         <tr>
             <th>案例标题</th>
             <th>案例内容</th>
-            <th>发布时间</th>
-            <th>审核状态码</th>
+            <!--<th>发布时间</th>-->
+            <!--<th>审核状态码</th>-->
             <th>操作选择</th>
         </tr>
         </thead>
@@ -37,15 +37,15 @@
         <!--遍历-->
         <tr th:each="example : ${exampleList}">
             <td th:text="${example.exampleTitle}" class="exampleTitle"></td>
-            <td th:text="${example.exampleContent}"></td>
-            <td th:text="${example.releaseTime}"></td>
-            <td th:text="${example.statusCode}"></td>
+            <td th:text="${example.exampleContent}" style="width: 30%;overflow: hidden;"></td>
+            <!--<td th:text="${example.releaseTime}"></td>-->
+            <!--<td th:text="${example.statusCode}"></td>-->
             <input type="hidden" th:value="${example.exampleId}" class="exampleId">
             <input type="hidden" th:value="${session.user.userId}">
             <td>
                 <a class="a-div adiv1" id="deletesExample">删除</a>
                 <a class="a-div adiv3" th:href="@{/example/toModifyExample(exampleId=${example.exampleId})}">修改</a>
-                <a class="a-div adiv2" th:href="@{/example/selectOrganizationByUser}">返回</a>
+                <!--<a class="a-div adiv2" th:href="@{/example/selectExampleByUser}">返回</a>-->
             </td>
         </tr>
         </tbody>
@@ -59,10 +59,10 @@
         </li>
         <!--//跳转至第一页-->
         <li th:if="${Number > 1}">
-            <a th:href="@{/example/selectExampleByUser(pageNum=1)}">首页</a>
+            <a th:href="@{/example/selectExampleByUser(current=1)}">首页</a>
         </li>
         <li th:if="${Number > 1}">
-            <a th:href="@{/example/selectExampleByUser(pageNum=${Number-1})}">Prev</a>
+            <a th:href="@{/example/selectExampleByUser(current=${Number-1})}">Prev</a>
         </li>
         <!--//请求页数-1-->
         <li th:each="i:${#numbers.sequence(1,TotalPages)}">
@@ -71,17 +71,17 @@
                th:text="${i}">#</a>
             <!--//限制显示页数的条数  4到6个页数   而且等于当前页，不能点击-->
             <a th:if="${i > Number-3} and ${i < Number+3} and ${i != Number}"
-               th:href="@{/example/selectExampleByUser(pageNum=${i})}" th:text="${i}">#</a>
+               th:href="@{/example/selectExampleByUser(current=${i})}" th:text="${i}">#</a>
             <!--//限制显示页数的条数  4到6个页数-->
         </li>
         <li th:if="${Number != TotalPages}">
-            <a th:href="@{/example/selectExampleByUser(pageNum=${Number+1})}">Next</a>
+            <a th:href="@{/example/selectExampleByUser(current=${Number+1})}">Next</a>
         </li><!--//请求页数+1-->
         <li th:if="${Number == TotalPages}">
             <a class="noclick" href="javascript:;">尾页</a>
         </li>
         <li th:if="${Number != TotalPages}">
-            <a th:href="@{/example/selectExampleByUser(pageNum=${TotalPages})}">尾页</a>
+            <a th:href="@{/example/selectExampleByUser(current=${TotalPages})}">尾页</a>
         </li><!--//跳转至第Number页-->
     </ul>
 </div>

@@ -54,7 +54,7 @@ public class AchievementController extends BaseController {
         Result result = iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
         if (result.getCode() == 0) {
             model.addAttribute("msg", "发布成功！");
-            return new ModelAndView("redirect:/achievement/selectAchievement");
+            return new ModelAndView("redirect:/achievement/selectAchievement?statusCode=0");
         }
         model.addAttribute("msg", "输入正确的信息！");
         return new ModelAndView("redirect:/achievement/toAddAchievement");
@@ -80,6 +80,7 @@ public class AchievementController extends BaseController {
             Achievement achievement1 = (Achievement) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("achievement", achievement1);
+            System.out.println("修改成功" + achievement1);
             return new ModelAndView("achievementUserDetails");
         } else {
             model.addAttribute("msg", "修改失败！");
@@ -90,8 +91,13 @@ public class AchievementController extends BaseController {
     //查询所有成果（用户）
     @GetMapping("/selectAchievement")//分页
     public ModelAndView selectAchievement(Model model, String statusCode, HttpSession session,
-                                          @RequestParam(value = "current", defaultValue = "1") Integer current,
-                                          @RequestParam(value = "limit", defaultValue = "8") Integer limit) {
+                                          @RequestParam(value = "current", defaultValue = "1") int current,
+                                          @RequestParam(value = "limit", defaultValue = "8") int limit) {
+        if("".equals(statusCode) || statusCode == null){
+            model.addAttribute("statusCode",0);
+        }else{
+            model.addAttribute("statusCode",statusCode);
+        }
         User user = (User) session.getAttribute("user");
         int userId = user.getUserId();
         Result result = iAchievementService.selectAchievement(userId, statusCode, current, limit);
@@ -181,7 +187,7 @@ public class AchievementController extends BaseController {
         String img = achievement.getPictureAddress();
         //图片集合
         List<String> achievementImg = Arrays.asList(img.split(","));
-
+        System.out.println("achievementImg"+achievementImg);
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String start_time = df.format(achievement.getStartTime());
         String end_time = df.format(achievement.getStartTime());

@@ -85,6 +85,7 @@ ul{
     list-style-type: none;
 }
 .nav li a{
+    display: block;
      color: #ffffff;
      text-decoration: none;
  }

@@ -137,7 +137,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         Page page = new Page(current, limit);
         IPage<User> iPage = null;
         if (!"".equals(find)) {
-            if (userLevel.equals("")) {//查询普通用户和专家
+            if ("".equals(userLevel)) {//查询普通用户和专家
                 queryWrapper.in("user_level", "2", "3").like("user_name", find).or().like("user_email", find).or().like("user_phone", find);
                 iPage = baseMapper.selectPage(page, queryWrapper);
             } else {

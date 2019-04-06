@@ -36,7 +36,9 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
             String localTime = formatter.format(time);
             LocalDateTime ldt = LocalDateTime.parse(localTime, formatter);
             example.setReleaseTime(ldt);
-            example.setStatusCode("0");
+            if(example.getStatusCode() == null || "".equals(example.getStatusCode())){
+                example.setStatusCode("0");
+            }
             baseMapper.insert(example);
             return new Result(ResultCode.SUCCESS, "录入成功！");
         }
@@ -48,17 +50,13 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
     public Result modifyExample(Example example) {
         System.out.println(example);
         if (example != null) {
-            if(example.getUserId() != null){
-                baseMapper.updateById(example);
-                return new Result(ResultCode.SUCCESS, "修改成功！");
-            }
             Example example1 = baseMapper.selectById(example.getExampleId());
             if (example1 != null) {
                 example.setReleaseTime(example1.getReleaseTime());
                 example.setStatusCode(example1.getStatusCode());
                 example.setUserId(example1.getUserId());
                 baseMapper.updateById(example);
-                return new Result(ResultCode.SUCCESS, "修改成功！");
+                return new Result(ResultCode.SUCCESS, "修改成功！",1,example);
             }
             return new Result(ResultCode.FAIL, "该条记录不存在！");
         }

@@ -35,7 +35,7 @@ public class AdminOrganizationController extends BaseController {
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
         model.addAttribute("findName", findName);
-        return new ModelAndView("OrganizationList");
+        return new ModelAndView("admin/OrganizationList");
     }
 
     //去添加机构

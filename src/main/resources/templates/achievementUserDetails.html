@@ -16,24 +16,24 @@
 <body>
 <div class="box">
     <h3>成果发布详情</h3>
-    <form th:action="@{/achievement/modifyAchievement(achievementId=${achievement.achievementId})}" method="post">
+    <form th:action="@{/achievement/modifyAchievement(achievementId=${achievement.achievementId})}" method="post" id="myform">
             <table class="table table-hover table-bordered">
                 <tr>
                     <th>成果名称:</th>
                     <td >
-                        <input type="text" th:value="${achievement.achievementName}">
+                        <input type="text" th:value="${achievement.achievementName}" name="achievementName">
                     </td>
                 </tr>
                 <tr>
                     <th>成果简介:</th>
                     <td >
-                        <input type="text" th:value="${achievement.achievementIntroduce}">
+                        <input type="text" th:value="${achievement.achievementIntroduce}" name="achievementIntroduce">
                     </td>
                 </tr>
                 <tr>
                     <th>成果类型:</th>
                     <td>
-                        <input type="hidden" th:value="${achievement.typeName}" id="typeName">
+                        <input type="hidden" th:value="${achievement.typeName}" id="typeName" name="typeName">
                         <div th:each="type : ${typeList}">
                             <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" class="Name"/>
                             <label th:text="${type.typeName}" th:for="${type.typeName}"></label>
@@ -43,7 +43,7 @@
                 <tr>
                     <th>成果关键词:	</th>
                     <td>
-                        <input type="text" th:value="${achievement.achievementKey}">
+                        <input type="text" th:value="${achievement.achievementKey}" name="achievementKey">
                     </td>
                 </tr>
                 <tr>
@@ -63,7 +63,7 @@
                     <!--地区插件-->
                     <td>
                         <div data-toggle="distpicker" >
-                            <input type="hidden" th:value="${achievement.propertyAddress}" id="provice">
+                            <input type="hidden" th:value="${achievement.propertyAddress}" id="provice" name="propertyAddress">
                             <select th:name="${achievement.propertyAddress}" required th:text="${achievement.propertyAddress}" id="city">
                             </select>
                         </div>
@@ -73,67 +73,67 @@
                 <tr>
                     <th>成果获奖情况:</th>
                     <td>
-                        <input type="text" th:value="${achievement.awards}">
+                        <input type="text" th:value="${achievement.awards}" name="awards">
                     </td>
                 </tr>
                 <tr>
                     <th>*预期交易价格:</th>
                     <td>
-                        <input type="text" th:value="${achievement.expectedPrice}+'万元'">
+                        <input type="text" th:value="${achievement.expectedPrice}+'万元'" name="expectedPrice">
                     </td>
                 </tr>
                 <tr>
                     <th>联系人：</th>
                     <td>
-                        <input type="text" th:value="${achievement.linkman}">
+                        <input type="text" th:value="${achievement.linkman}" name="linkman">
                     </td>
                 </tr>
                 <tr>
                     <th>*联系电话:</th>
                     <td>
-                        <input type="text" th:value="${achievement.phone}">
+                        <input type="text" th:value="${achievement.phone}" name="phone">
                     </td>
                 </tr>
                 <tr>
                     <th>手机:</th>
                     <td>
-                        <input type="text" th:value="${achievement.cellNumber}">
+                        <input type="text" th:value="${achievement.cellNumber}" name="cellNumber">
                     </td>
                 </tr>
                 <tr>
                     <th>E-mail:</th>
                     <td>
-                        <input type="text" th:value="${achievement.email}">
+                        <input type="text" th:value="${achievement.email}" name="email">
                     </td>
                 </tr>
                 <tr>
                     <th>联系地址（邮编）:</th>
                     <td>
-                        <input type="text" th:value="${achievement.contactAddress}">
+                        <input type="text" th:value="${achievement.contactAddress}" name="contactAddress">
                     </td>
                 </tr>
                 <tr>
                     <th>*知识产权编号:</th>
                     <td>
-                        <input type="text" th:value="${achievement.propertyNumber}">
+                        <input type="text" th:value="${achievement.propertyNumber}" name="propertyNumber">
                     </td>
                 </tr>
                 <tr>
                     <th>*知识产权情况说明:	</th>
                     <td>
-                        <input type="text" th:value="${achievement.propertyIntroduce}">
+                        <input type="text" th:value="${achievement.propertyIntroduce}" name="propertyIntroduce">
                     </td>
                 </tr>
                 <tr>
                     <th>相关图片上传:</th>
-                    <td id="thimg" th:each="Imgs : ${achievementImg}">
-                        <img th:src="${Imgs}"  style="width:50px;height:50px;" alt="">
+                    <td id="thimg" >
+                        <img th:each="Imgs : ${achievementImg}" th:src="${Imgs}"  style="width:50px;height:50px;" alt="">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6" class="pn-fbutton">
                         <input type="submit" value="修改" class="btn btn-info">
-                        <a th:href="@{/achievement/selectAchievement}" class="a-div adiv3">返回</a>
+                        <a th:href="@{/achievement/selectAchievement(statusCode=0)}" class="a-div adiv3">返回</a>
                     </td>
                 </tr>
             </table>

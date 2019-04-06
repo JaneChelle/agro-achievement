@@ -10,6 +10,14 @@
 	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{../css/jeDate_test.css}">
 	<link rel="stylesheet" th:href="@{../css/jedate.css}">
+	<style>
+		.pic img{
+			width: 220px;
+		}
+		td{
+			text-align: left!important;
+		}
+	</style>
 </head>
 
 <body>
@@ -23,19 +31,49 @@
 			</h3>
 		</div>
 		<div class="section_table">
-			<form th:action="@{/admin/adminAddAchievement}">
+			<form th:action="@{/admin/adminAddAchievement}" method="post" enctype="multipart/form-data">
 				<figure>
 					<div class="section">
 						<table class="table table-bordered">
 							<thead>
 							<tr>
-								<th>类型名称</th>
-								<td>
-									<input type="text" name="typeName" value="" />
-								</td>
 								<th>成果名称</th>
 								<td>
 									<input type="text" name="achievementName" value="" />
+								</td>
+								<th>成果关键词</th>
+								<td>
+									<input type="text" name="achievementKey" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>成果类型</th>
+								<td>
+									<div th:each="type : ${typeList}">
+										<input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" required/><label
+											th:text="${type.typeName}" th:for="${type.typeName}"></label>
+									</div>
+								</td>
+								<th>成果简介</th>
+								<td>
+									<textarea cols="60" rows="5" required name="achievementIntroduce"></textarea>
+								</td>
+
+							</tr>
+							<tr>
+								<th>开始时间</th>
+								<td>
+									<div class="jeinpbox">
+									<input type="text" name="start_time" class="jeinput moredate"
+										   placeholder="YYYY-MM-DD" required autocomplete="off">
+									</div>
+								</td>
+								<th>开始时间</th>
+								<td>
+									<div class="jeinpbox">
+									<input type="text" name="end_time" class="jeinput moredate"
+										   placeholder="YYYY-MM-DD" required autocomplete="off">
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -48,21 +86,11 @@
 									<input type="text" name="userId" value="" />
 								</td>
 							</tr>
-
-							<tr>
-								<th>成果简介</th>
-								<td>
-									<input type="text" name="achievementIntroduce" value="" />
-								</td>
-								<th>成果关键词</th>
-								<td>
-									<input type="text" name="achievementKey" value="" />
-								</td>
-							</tr>
 							<tr>
 								<th>审核状态码</th>
 								<td>
 									<select name="statusCode" style="width: 226px">
+										<option value="">请选择审核状态码</option>
 										<option value="0">未审核</option>
 										<option value="1">通过</option>
 										<option value="2">失败</option>
@@ -73,22 +101,7 @@
 									<input type="text" name="pageView" value="" />
 								</td>
 							</tr>
-							<tr>
-								<th>研发开始时间</th>
-								<td>
-									<div class="jeinpbox">
-										<input type="text" name="start_time" class="jeinput moredate"
-											   placeholder="YYYY-MM-DD" required>
-									</div>
-								</td>
-								<th>研发结束时间</th>
-								<td>
-									<div class="jeinpbox">
-										<input type="text" name="end_time" class="jeinput moredate"
-											   placeholder="YYYY-MM-DD" required>
-									</div>
-								</td>
-							</tr>
+
 							<tr>
 								<th>联系电话</th>
 								<td>
@@ -136,7 +149,9 @@
 								</td>
 								<th>产权归属地</th>
 								<td>
-									<input type="text" name="propertyAddress" value="" />
+									<div data-toggle="distpicker">
+										<select name="propertyAddress" required></select>
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -150,6 +165,7 @@
 								<td>
 									<input type="reset" name="" value="重置" onclick="formReset()"/>
 									<input type="submit" value="添加"/>
+									<a th:href="@{/admin/adminAchievementList}" class="returnList">返回</a>
 								</td>
 							</tr>
 							</thead>
@@ -161,8 +177,9 @@
 	</section>
 </body>
 	<script th:src="@{../js/jquery-3.3.1.min.js}"></script>
-	<script th:src="@{../js/adminIndex.js}"></script>
 	<script th:src="@{../js/adminAchievement.js}"></script>
 	<script th:src="@{../js/jedate.js}"></script>
 	<script th:src="@{../js/demo.js}"></script>
+	<script th:src="@{../js/jedate.js}"></script>
+	<script th:src="@{../js/distpicker.js}"></script>
 </html>

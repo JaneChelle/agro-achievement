@@ -22,26 +22,25 @@
 
 <div th:include="common/adminCommon :: nav"></div>
     <section>
-    	<div class="col-sm-12 search-collapse">
-    		<form action="">
-    			<div class="select-list">
-    				<ul>
-    					<li>
-    						<span>搜索：</span>
-    						<input type="text" name="" id="" value="" />
-    					</li>
-    					<li>
-    						<button class="btn" type="submit">搜 索</button>
-    					</li>
-    					<li class="img_add">
-    						<a href="JavaScript:;">
-	                			<img src="../images/添加.svg" title="添加类型"/>
-	                			<span>添加</span>
-	                		</a>
-    					</li>
-    				</ul>
-    			</div>
-    		</form>
+    	<div class="search-collapse">
+			<form action="">
+				<div class="select-list">
+					<ul>
+						<li>
+
+						</li>
+						<li>
+
+						</li>
+						<li class="img_add">
+							<a href="JavaScript:;">
+								<img src="../images/添加.svg" title="添加机构类型"/>
+								<span>添加</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</form>
     	</div>
     	<div class="section_table">
     		<div class="section">
@@ -63,7 +62,7 @@
 		            		<td th:text="${adminType.typeId}">B133</td>
 		            		<td th:text="${adminType.typeName}">农产品与食品加工</td>
 		            		<td>
-		            			<button type="button" class="btn modify">修改</button>
+		            			<!--<button type="button" class="btn modify">修改</button>-->
 		            			<button type="button" class="btn delete deleteType">删除</button>
 		            		</td>
 		            	</tr>

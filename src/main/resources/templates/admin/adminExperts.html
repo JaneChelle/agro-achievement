@@ -14,12 +14,12 @@
 <div th:include="common/adminCommon :: nav"></div>
     <section>
     	<div class="col-sm-12 search-collapse">
-    		<form action="">
+    		<form th:action="@{/admin/adminExpertsList}">
     			<div class="select-list">
     				<ul>
     					<li>
     						<span>搜索：</span>
-    						<input type="text" name="" id="" value="" />
+    						<input type="text" name="findName" id="" value="" />
     					</li>
     					<li>
     						<button class="btn" type="submit">搜 索</button>
@@ -72,14 +72,14 @@
 		            		<td th:text="${experts.expertsEducation}">研究生</td>
 		            		<td th:text="${experts.degree}">名誉博士</td>
 		            		<td th:text="${experts.school}">西北农业大学</td>
-		            		<td th:text="${#temporals.format(experts.expertsBirth, 'yyyy-MM-dd HH:mm:ss')}">1962-11-01T00:00:00</td>
+		            		<td th:text="${#temporals.format(experts.expertsBirth, 'yyyy-MM-dd')}">1962-11-01T00:00:00</td>
 		            		<td th:text="${experts.expertsPhone}">15936571965</td>
 		            		<td th:text="${experts.major}">农业水土工程</td>
 		            		<td th:text="${experts.unit}">中国农业大学中国农业水问题研究中心</td>
 		            		<td th:text="${experts.position}">中国工程院院士</td>
 		            		<td>
 								<a th:href="@{/admin/toAdminEditExperts(expertsId=${experts.expertsId})}">详情</a>
-		            			<button type="button" class="btn deleteAchievement">删除</button>
+		            			<button type="button" class="btn deleteExperts">删除</button>
 		            		</td>
 		            	</tr>
 		            </tbody>
@@ -87,9 +87,48 @@
 			</div>
     	</div>
 
+		<div class="section_Bottom">
+			<div class="fenye"></div>
+			<!--分页-->
+			<div class="SplitPage" th:if="${TotalPages > 0}">
+				<ul class="SplitUl" th:if="${TotalPages > 1}">
+					<li th:if="${Number == 1}">
+						<a href="javascript:;">首页</a>
+					</li>
+					<!--//跳转至第一页-->
+					<li th:if="${Number > 1}">
+						<a th:href="@{/admin/adminExpertsList(current=1)}">首页</a>
+					</li>
+					<li th:if="${Number > 1}">
+						<a th:href="@{/admin/adminExpertsList(current=${Number-1})}">Prev</a>
+					</li>
+					<!--//请求页数-1-->
+					<li th:each="i:${#numbers.sequence(1,TotalPages)}">
+						<!--//从1到总页数遍历，并赋值给i    TotalPages&ndash;&gt;总页数-->
+						<a th:if="${i > Number-3} and ${i < Number+3} and ${i == Number}" class="active" href="javascript:;"
+						   th:text="${i}">#</a>
+						<!--//限制显示页数的条数  4到6个页数   而且等于当前页，不能点击-->
+						<a th:if="${i > Number-3} and ${i < Number+3} and ${i != Number}"
+						   th:href="@{/admin/adminExpertsList(current=${i})}" th:text="${i}">#</a>
+						<!--//限制显示页数的条数  4到6个页数-->
+					</li>
+					<li th:if="${Number != TotalPages}">
+						<a th:href="@{/admin/adminExpertsList(current=${Number+1})}">Next</a>
+					</li><!--//请求页数+1-->
+					<li th:if="${Number == TotalPages}">
+						<a class="noclick" href="javascript:;">尾页</a>
+					</li>
+					<li th:if="${Number != TotalPages}">
+						<a th:href="@{/admin/adminExpertsList(current=${TotalPages})}">尾页</a>
+					</li><!--//跳转至第Number页-->
+				</ul>
+			</div>
+		</div>
+
     </section>
 
 </body>
 	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
-	<script type="text/javascript" src="../js/adminIndex.js" ></script>
+	<script type="text/javascript" src="../js/adminExperts.js" ></script>
+
 </html>

@@ -50,7 +50,7 @@ public interface IExpertsService extends IService<Experts> {
     Result findExpertsList(String findName, int current, int limit);
 
     //管理添加专家
-    Result addAdminExperts(Experts experts);
+    Result addAdminExperts(HttpServletRequest request, String time, Experts experts, MultipartFile myFileName);
 
     //修改专家信息
     Result modifyExperts(Experts experts);

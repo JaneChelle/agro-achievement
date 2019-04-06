@@ -23,7 +23,7 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form th:action="@{/admin/adminAddUser}" onsubmit="return addressUser()">
+                <form th:action="@{/admin/adminAddUser}" method="post" onsubmit="return addressUser()">
                     <table class="table table-bordered addUser">
                         <thead>
                         <tr>
@@ -54,6 +54,7 @@
                             <th>用户等级</th>
                             <td>
                                 <select name="userLevel">
+                                    <option value="">请选择用户等级</option>
                                     <option value="1">管理员</option>
                                     <option value="2">普通用户</option>
                                     <option value="3">专家</option>
@@ -76,6 +77,7 @@
                     <div class="popup_bottom">
                         <input type="reset" name="" value="重置" />
                         <input type="submit" value="添加"/>
+                        <a th:href="@{/admin/adminUserList}" class="btn returnList">返回</a>
                     </div>
                 </form>
             </div>

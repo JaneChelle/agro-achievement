@@ -23,7 +23,7 @@
             <img src="../images/公告1.svg" alt="" />
         </div>
         <figure>
-            <form th:action="@{/admin/modifyAnnouncement}">
+            <form th:action="@{/admin/modifyAnnouncement}" method="post">
                 <input type="hidden" th:value="${announcement.announcementId}" name="announcementId">
                 <div class="announcementTitle">
                     <label>公告标题：</label>
@@ -39,6 +39,7 @@
                 <div class="applyExpert" style="text-align: center">
                     <input type="reset" name="" value="重置" />
                     <input type="submit" value="修改"/>
+                    <a th:href="@{/admin/selectAnnouncement}" class="btn returnList">返回</a>
                 </div>
             </form>
         </figure>
@@ -46,5 +47,4 @@
 </section>
 </body>
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
-<script type="text/javascript" src="../js/adminIndex.js" ></script>
 </html>

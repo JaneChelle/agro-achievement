@@ -31,21 +31,18 @@
 	float: right;
 	cursor: pointer;
 }
-.achievementModify,.sureModify{
+.achievementModify{
 	cursor: pointer;
 	display: inline-block;
 	height: 100%;
 }
-.sureModify{
-	display: none;
-}
+
 .section input[type=text]{
 	height: 32px;
 	width: 220px;
 	outline: none;
 	padding-left: 12px;
 	font-size: 18px;
-	border-radius: 5px;
 	border: 1px solid #999;
 }
 .section table thead tr td>img{
@@ -154,14 +151,12 @@
 	margin: 0 24px;
 	padding: 0 24px;
 	font-size: 21px;
-	font-weight: 600;
 }
 
 .applyExpert{
 	margin: 18px;
 	padding: 12px;
 	overflow: hidden;
-	border-radius: 5px;
 	border: 1px solid #999;
 }
 /*隔行换色*/
@@ -179,12 +174,11 @@
 	vertical-align: middle;
 }
 .applyExpert select{
-	width: 32%;
+	width: 32.5%;
 	margin-left: 14px;
 }
 .applyExpert input[type=text]{
 	width: 32%;
-	height: 42px;
 	margin: 0 12px;
 	display: inline;
 }

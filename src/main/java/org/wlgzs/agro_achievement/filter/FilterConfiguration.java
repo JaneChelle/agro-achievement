@@ -48,7 +48,11 @@ public class FilterConfiguration {
         registration.addUrlPatterns("/demand/demandUserDetails");
 
         registration.addUrlPatterns("/example/*");
-        registration.addUrlPatterns("/UserManagement/*");
+        registration.addUrlPatterns("/UserManagement/toUserManagement");
+        registration.addUrlPatterns("/UserManagement/toModifyUser");
+        registration.addUrlPatterns("/UserManagement/toChangePassword");
+        registration.addUrlPatterns("/UserManagement/changePassword");
+        registration.addUrlPatterns("/UserManagement/changeInformation");
         registration.addUrlPatterns("/experts/*");
         registration.addUrlPatterns("/organization/*");
         //过滤器名称

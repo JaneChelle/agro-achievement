@@ -39,7 +39,7 @@ function CheckPassWord(){
 		$('.pWord_small').html("<i class='fa fa-times'></i> 请先输入登录密码");
 		return false;
 	}else{
-		$('.pWord_small').html("<i class='fa fa-check'>");
+
 		return true;
 	}
 }
@@ -47,7 +47,7 @@ function CheckPassWord(){
 //登录
 function userLogin(){
 	if(!CheckUserName()){
-        $('.userName_small').html("<i class='fa fa-times'></i> 请先完善登录账号");
+        $('.userName_small').html("<i class='fa fa-times'></i> 请先完善登录账号，该账号不正确");
         return false;
 	}else if(!CheckPassWord()){
         $('.pWord_small').html("<i class='fa fa-times'></i> 请先输入登录密码");

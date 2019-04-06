@@ -136,10 +136,12 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         if (achievement != null) {
             //删除文件
             String Img = achievement.getPictureAddress();
-            String[] arr = Img.split(",");
-            for (int i = 0; i < arr.length; i++) {
-                File file = new File(System.getProperty("user.dir") + arr[i]);
-                System.out.println(file.delete());
+            if(Img != null){
+                String[] arr = Img.split(",");
+                for (int i = 0; i < arr.length; i++) {
+                    File file = new File(System.getProperty("user.dir") + arr[i]);
+                    System.out.println(file.delete());
+                }
             }
             baseMapper.deleteById(achievement);
             return new Result(ResultCode.SUCCESS, "删除成功！");
@@ -181,7 +183,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             if (achievement1 != null) {
                 achievement.setReleaseTime(achievement1.getReleaseTime());
                 String str = achievement1.getPictureAddress();
-                if(str.contains(",")){
+                if(str != null && str.contains(",")){
                     str = str.substring(0,str.indexOf(","));
                 }
                 achievement.setPictureAddress(str);
@@ -293,7 +295,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         List<Achievement> achievementList = iPage.getRecords();
         String img;
         for (int i = 0; i < achievementList.size(); i++) {
-            if (achievementList.get(i).getPictureAddress().contains(",")) {
+            if (achievementList.get(i).getPictureAddress()!=null && achievementList.get(i).getPictureAddress().contains(",")) {
                 img = achievementList.get(i).getPictureAddress();
                 img = img.substring(0, img.indexOf(","));
                 System.out.println("img==" + img);

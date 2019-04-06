@@ -22,7 +22,7 @@
     </div>
     <div class="section_table">
         <figure>
-            <form th:action="@{/admin/addAnnouncement}" onsubmit="return adminContent()">
+            <form th:action="@{/admin/addAnnouncement}" method="post" onsubmit="return adminContent()">
                 <div class="announcementTitle">
                     <input type="hidden" name="announcementContent" class="announcementContent">
                     <small>公告标题：

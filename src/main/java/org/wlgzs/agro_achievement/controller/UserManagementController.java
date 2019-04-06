@@ -80,26 +80,29 @@ public class UserManagementController extends BaseController {
         return new ModelAndView("findPassword");
     }
 
+    //去找回密码
+    @RequestMapping(value = "/toPassword")
+    public ModelAndView toPassword() {
+        return new ModelAndView("password");
+    }
+
     //找回密码
     @RequestMapping(value = "/findPassword")
-    public ModelAndView findPassword(Model model,String password, String userEmail, HttpServletRequest request) {
+    public Result findPassword(Model model, String password, String userEmail, HttpServletRequest request) {
         Result result = iUserService.findPassword(password, userEmail, request);
-        if(result.getCode() == 0){
-            model.addAttribute("msg","修改成功！");
-            return new ModelAndView("login");
-        }
-        model.addAttribute("msg","验证失效！");
-        return new ModelAndView("redirect:/UserManagement/toFindPassword");
+        return result;
+//        model.addAttribute("msg","验证失效！");
+//        return new ModelAndView("redirect:/UserManagement/toFindPassword");
     }
 
     //修改个人信息
     @RequestMapping(value = "/changeInformation")
-    public ModelAndView changeInformation(Model model,HttpSession session, User user) {
+    public ModelAndView changeInformation(Model model, HttpSession session, User user) {
         Result result = iUserService.changeInformation(session, user);
-        if(result.getCode() == 0){
-            model.addAttribute("msg","修改成功！");
-        }else{
-            model.addAttribute("msg","修改失败！");
+        if (result.getCode() == 0) {
+            model.addAttribute("msg", "修改成功！");
+        } else {
+            model.addAttribute("msg", "修改失败！");
         }
         return new ModelAndView("redirect:/UserManagement/toUserManagement");
     }

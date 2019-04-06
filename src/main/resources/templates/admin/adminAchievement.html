@@ -45,11 +45,14 @@
 					<thead>
 		                <tr>
 		                	<th>选择</th>
-		                	<th>编号id</th>
+		                	<th>成果id</th>
 		                	<th>成果名称</th>
 		                    <th>成果关键词</th>
 		                    <th>类型名称</th>
+		                    <th>研发开始时间</th>
+		                    <th>研发结束时间</th>
 		                    <th>联系人</th>
+		                    <th>点击量</th>
 		                    <th>审核状态码</th>
 		                    <th>操作</th>
 		                </tr>
@@ -64,7 +67,10 @@
 		            		<td th:text="${achievement.achievementName}">高效除草剂双草醚和嘧啶肟草醚绿色制造工艺及应用</td>
 		            		<td th:text="${achievement.achievementKey}">农产品与食品加工</td>
 		            		<td th:text="${achievement.typeName}">除草剂</td>
+							<td th:text="${#temporals.format(achievement.startTime, 'yyyy-MM-dd')}"></td>
+							<td th:text="${#temporals.format(achievement.endTime, 'yyyy-MM-dd')}"></td>
 		            		<td th:text="${achievement.linkman}">徐德锋</td>
+		            		<td th:text="${achievement.pageView}">徐德锋</td>
 		            		<td th:text="${achievement.statusCode}">0</td>
 		            		<td>
 								<a th:href="@{/admin/toAdminEditAchievement(achievementId=${achievement.achievementId})}">详情</a>

@@ -169,10 +169,17 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
 
     @Override
     public Result modifyAdminAchievement(Achievement achievement, String start_time, String end_time) {
+        System.out.println(achievement);
         if (achievement != null) {
             Achievement achievement1 = baseMapper.selectById(achievement.getAchievementId());
+            System.out.println(achievement1);
             if (achievement1 != null) {
                 achievement.setReleaseTime(achievement1.getReleaseTime());
+                String str = achievement1.getPictureAddress();
+                if(str.contains(",")){
+                    str = str.substring(0,str.indexOf(","));
+                }
+                achievement.setPictureAddress(str);
                 if (!"".equals(start_time) && !"".equals(end_time)) {
                     //存入开始结束时间
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -385,7 +392,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     @Override
     public Result adminAchievementList(String findName, int current, int limit) {
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("achievement_name", findName).like("achievement_key", findName);
+        queryWrapper.like("achievement_name", findName).or().like("achievement_key", findName);
         Page page = new Page(current, limit);
         IPage<Achievement> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Achievement> achievementList = iPage.getRecords();

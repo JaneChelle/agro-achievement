@@ -10,6 +10,11 @@
     <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}" media="screen"/>
     <link rel="stylesheet" th:href="@{../css/jeDate_test.css}">
     <link rel="stylesheet" th:href="@{../css/jedate.css}">
+    <style>
+        td{
+            text-align: left!important;
+        }
+    </style>
 </head>
 <body>
 
@@ -28,32 +33,33 @@
     </div>
     <div class="section_table">
         <figure>
-            <form th:action="@{/admin/adminEditAchievement}">
+            <form th:action="@{/admin/adminEditAchievement}" method="post">
                 <div class="section">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>成果名称</th>
                                 <td>
+                                    <input type="hidden" name="achievementId" th:value="${achievement.achievementId}">
                                     <input type="text" name="achievementName" th:value="${achievement.achievementName}"/>
                                 </td>
-                                <th>成果类型</th>
+                                <th>成果关键词</th>
                                 <td>
-                                    <div th:each="type : ${typeList}">
-                                        <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" required/><label
-                                            th:text="${type.typeName}" th:for="${type.typeName}"></label>
-                                    </div>
+                                    <input type="text" name="achievementKey" th:value="${achievement.achievementKey}"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>成果简介</th>
                                 <td>
-                                    <input type="text" name="achievementIntroduce"
-                                           th:value="${achievement.achievementIntroduce}"/>
+                                    <textarea cols="50" rows="6" required="required" name="achievementIntroduce" th:text="${achievement.achievementIntroduce}"/></textarea>
                                 </td>
-                                <th>成果关键词</th>
+                                <th>成果类型</th>
                                 <td>
-                                    <input type="text" name="achievementKey" th:value="${achievement.achievementKey}"/>
+                                    <div th:each="type : ${typeList}">
+                                        <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" class="Name" required>
+                                        <label th:text="${type.typeName}" th:for="${type.typeName}"></label>
+                                    </div>
+                                    <input type="hidden" th:value="${achievement.typeName}" id="typeName">
                                 </td>
                             </tr>
                             <tr>
@@ -146,27 +152,27 @@
                             <tr>
                                 <th>产权归属者</th>
                                 <td>
-
                                     <input type="text" name="propertyMan" th:value="${achievement.propertyMan}"/>
                                 </td>
                                 <th>产权归属地</th>
                                 <td>
-                                    <div data-toggle="distpicker">
-                                        <select class="modifyDistPicker" name="propertyAddress" required></select>
+                                    <div data-toggle="distpicker" >
+                                        <input  type="hidden" th:value="${achievement.propertyAddress}" id="provice">
+                                        <select name="propertyAddress" required th:text="${achievement.propertyAddress}" id="city">
+                                        </select>
                                     </div>
-                                    <input type="hidden" class="hiddenDistPicker" th:value="${achievement.propertyAddress}"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>成品图片展示（1到3张）</th>
                                 <td>
-                                    <img src="${achievement.pictureAddress}" alt="${achievement.pictureAddress}">
+                                    <img style="width: 220px; display: block;" th:src="${achievement.pictureAddress}" th:alt="${achievement.pictureAddress}">
                                 </td>
                                 <th>操作</th>
                                 <td>
                                     <input type="reset" name="" value="重置" onclick="formReset()"/>
                                     <input type="submit" value="修改"/>
-                                    <a th:href="@{/admin/adminAchievementList}" class="returnList">返回</a>
+                                    <a th:href="@{/admin/adminAchievementList}" class="returnList" style="text-align: center; padding: 0px!important">返回</a>
                                 </td>
                             </tr>
 
@@ -186,26 +192,39 @@
 <script th:src="@{../js/jedate.js}"></script>
 <script th:src="@{../js/demo.js}"></script>
 <script>
-    // 状态码
-    var options = $('.modifyAchievementCode option');
-    var statusCode = $('.statusCode').val();
-    for (var i = 0; i < options.length; i++) {
-        if ($(options[i]).val() == statusCode) {
-            $(options[i]).attr("selected", true);
-        } else {
-            $(options[i]).attr("selected", false);
-        }
-    }
 
-    // 产权归属地
-    var distpicker = $('.modifyDistPicker option');
-    var hiddenDistPicker = $('.hiddenDistPicker').val();
-    for (var i = 0; i < distpicker.length; i++) {
-        if ($(distpicker[i]).val() == hiddenDistPicker) {
-            $(distpicker[i]).attr("selected", true);
-        } else {
-            $(distpicker[i]).attr("selected", false);
+    $(function () {
+        // 产权归属地
+        var provice=$('#provice').val();
+        $("#city option").each(function () {
+            var val = $(this).text();
+            if(val ==provice){
+                $(this).attr("selected",true);
+            }
+        });
+
+        //radio回显
+        $(".Name").each(function () {
+            var typeName=$('#typeName').val();
+            var val = $(this).val();
+            if(val ==typeName){
+                $(this).attr("checked",true);
+            }
+        });
+        // 状态码
+        var options = $('.modifyAchievementCode option');
+        var statusCode = $('.statusCode').val();
+        for (var i = 0; i < options.length; i++) {
+            if ($(options[i]).val() == statusCode) {
+                $(options[i]).attr("selected", true);
+            } else {
+                $(options[i]).attr("selected", false);
+            }
         }
-    }
+    });
+
+
+
+
 </script>
 </html>

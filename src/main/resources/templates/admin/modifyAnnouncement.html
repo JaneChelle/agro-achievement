@@ -23,7 +23,7 @@
             <img src="../images/公告1.svg" alt="" />
         </div>
         <figure>
-            <form th:action="@{/admin/modifyAnnouncement}">
+            <form th:action="@{/admin/modifyAnnouncement}" method="post">
                 <input type="hidden" th:value="${announcement.announcementId}" name="announcementId">
                 <div class="announcementTitle">
                     <label>公告标题：</label>

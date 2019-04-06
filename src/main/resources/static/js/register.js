@@ -17,7 +17,6 @@ function checkRegisterUserName(){
 	        	userName : $('.userName').val()
 	        },//要发送的数据（参数）格式为{'val1':"1","val2":"2"}
 	        dataType:"JSON",
-            async: false,
 	        success: function (data) {//ajax请求成功后触发的方法
 	            if(data.code==-1){
 	                $('.userName_small').html("<i class='fa fa-times'></i>" + data.msg);
@@ -80,7 +79,6 @@ function checkUserPhone(){
                 userPhone : phone
             },//要发送的数据（参数）格式为{'val1':"1","val2":"2"}
             dataType:"JSON",
-            async: false,
             success: function (data) {//ajax请求成功后触发的方法
                 if(data.code==-1){
                     $('.userPhone_small').html("<i class='fa fa-times'></i>" + data.msg);
@@ -123,7 +121,6 @@ function checkEmail() {
                 userEmail : mailbox
             },//要发送的数据（参数）格式为{'val1':"1","val2":"2"}
             dataType:"JSON",
-            async: false,
             success: function (data) {//ajax请求成功后触发的方法
                 if(data.code == -1){
                     $('.userEmail_small').html("<i class='fa fa-times'></i>" + data.msg);
@@ -147,11 +144,10 @@ function sendEmail() {
     var email = 1;
     $.ajax({
         type: "POST",//数据发送的方式（post 或者 get）
-        url: "/UserManagement/sendEmail",//要发送的后台地址
+        url: "/UserManagement/sendRegisterEmail",//要发送的后台地址
         data: {
             userEmail : $('.mailbox').val()
         },//要发送的数据（参数）格式为{'val1':"1","val2":"2"}
-        async: false,
         success: function (data) {//ajax请求成功后触发的方法
             console.log("成功");
             email = 1;

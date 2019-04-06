@@ -8,18 +8,84 @@
     <link rel="stylesheet" th:href="@{../css/admindemo.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
     <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{../font-awesome-4.7.0/css/font-awesome.css}">
+    <link rel="stylesheet" href="../css/matter.css" />
 </head>
 <body>
 
-<body>
-<div th:include="common/adminCommon :: nav"></div>
+    <div th:include="common/adminCommon :: nav"></div>
     
     <section>
 		<div class="title_img">
 			<img src="../images/title.png"/>
 		</div>
+        <div class="tables" style="margin: 0px">
+            <div class="matter">
+                <a th:href="@{/admin/adminUserList}" class="matter-chunk">
+                    <div class="chunk chunk-one">
+                        <div class="chunk-img">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="chunk-text">
+                            <p>用户管理</p>
+                        </div>
+                    </div>
+                </a>
+                <a th:href="@{/admin/adminExampleList}" class="matter-chunk">
+                    <div class="chunk chunk-two">
+                        <div class="chunk-img">
+                            <i class="fa fa-clock-o"></i>
+                        </div>
+                        <div class="chunk-text">
+                            <p>案例管理</p>
+                        </div>
+                    </div>
+                </a>
+                <a th:href="@{/admin/selectAllOrganizationType}" class="matter-chunk">
+                    <div class="chunk chunk-three">
+                        <div class="chunk-img">
+                            <i class="fa fa-navicon"></i>
+                        </div>
+                        <div class="chunk-text">
+                            <p>机构管理</p>
+                        </div>
+                    </div>
+                </a>
+                <a th:href="@{/admin/adminAdminDemand}" class="matter-chunk">
+                    <div class="chunk chunk-four">
+                        <div class="chunk-img">
+                            <i class="fa fa-cogs"></i>
+                        </div>
+                        <div class="chunk-text">
+                            <p>需求管理</p>
+                        </div>
+                    </div>
+                </a>
+                <a th:href="@{/admin/adminExpertsList}" class="matter-chunk">
+                    <div class="chunk chunk-four">
+                        <div class="chunk-img">
+                            <i class="fa fa-cogs"></i>
+                        </div>
+                        <div class="chunk-text">
+                            <p>专家管理</p>
+                        </div>
+                    </div>
+                </a>
+                <a th:href="@{/admin/adminAchievementList}" class="matter-chunk">
+                    <div class="chunk chunk-four">
+                        <div class="chunk-img">
+                            <i class="fa fa-cogs"></i>
+                        </div>
+                        <div class="chunk-text">
+                            <p>成果管理</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </section>
 
 </body>
 	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+    <script type="text/javascript" src="../js/admin.js"></script>
 </html>

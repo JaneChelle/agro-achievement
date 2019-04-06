@@ -36,7 +36,9 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
             String localTime = formatter.format(time);
             LocalDateTime ldt = LocalDateTime.parse(localTime, formatter);
             example.setReleaseTime(ldt);
-            example.setStatusCode("0");
+            if(example.getStatusCode() == null || "".equals(example.getStatusCode())){
+                example.setStatusCode("0");
+            }
             baseMapper.insert(example);
             return new Result(ResultCode.SUCCESS, "录入成功！");
         }

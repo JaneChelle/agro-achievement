@@ -23,7 +23,7 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form th:action="@{/admin/adminAddUser}" onsubmit="return addressUser()">
+                <form th:action="@{/admin/adminAddUser}" method="post" onsubmit="return addressUser()">
                     <table class="table table-bordered addUser">
                         <thead>
                         <tr>

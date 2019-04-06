@@ -13,12 +13,33 @@ ul{
 .returnList{
 	background-color: #fc5656!important;
 	color: #fff!important;
-	padding: 2px!important;
+	padding: 5px 13px!important;
 }
-.splitUl{
+.SplitPage{
+	width: 1200px;
+	margin: 0 auto;
 	text-align: center;
-	position: relative;
-	top: 11px;
+}
+.SplitUl{
+	font-size: 0;
+}
+.SplitUl>li{
+	display: inline-block;
+}
+.SplitUl>li>a{
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	display: inline-block;
+	color: #00b3ee;
+	font-size: 12px;
+	text-decoration: none;
+	border: 1px solid #CCCCCC;
+	margin: 0;
+}
+.active {
+	background: #337ab7;
+	color: #fff !important;
 }
 .uu{
 	position: fixed;

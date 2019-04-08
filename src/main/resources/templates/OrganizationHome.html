@@ -49,7 +49,7 @@
     <div class="right">
         <img th:src="@{/images/cg_09.jpg}" alt="">
         <ul >
-            <li th:each="organizationTime : ${organizationTimeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/ HomeController/organizationDetails(organizationId=${Organization.organizationId})}" th:text="${organizationTime.organizationName}"></a></li>
+            <li th:each="organizationTime : ${organizationTimeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/organizationDetails(organizationId=${organizationTime.organizationId})}" th:text="${organizationTime.organizationName}"></a></li>
         </ul>
     </div>
 </div>

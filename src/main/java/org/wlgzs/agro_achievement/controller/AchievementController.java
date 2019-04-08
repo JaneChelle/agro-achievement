@@ -158,8 +158,11 @@ public class AchievementController extends BaseController {
         Achievement achievement = (Achievement) result.getData();
 
         String img = achievement.getPictureAddress();
+        List<String> achievementImg = null;
         //图片集合
-        List<String> achievementImg = Arrays.asList(img.split(","));
+        if(img != null){
+            achievementImg = Arrays.asList(img.split(","));
+        }
 
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String start_time = df.format(achievement.getStartTime());

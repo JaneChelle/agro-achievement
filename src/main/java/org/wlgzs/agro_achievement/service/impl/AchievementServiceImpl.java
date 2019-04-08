@@ -90,12 +90,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             queryWrapperType.eq("type_name", typeName);
             System.out.println("type_name:" + typeName);
             Type typeOne = typeMapper.selectOne(queryWrapperType);
-            if (typeOne != null) {
-                AchievementType achievementType = new AchievementType();
-                achievementType.setAchievementId(achievement.getAchievementId());
-                achievementType.setTypeId(typeOne.getTypeId());
-                achievementTypeMapper.insert(achievementType);
-            } else {
+            if (typeOne == null) {
                 System.out.println("该类型不存在！");
                 return new Result(ResultCode.FAIL, "该类型不存在！");
             }
@@ -118,6 +113,16 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             }
             achievement.setUserId(user.getUserId());
             baseMapper.insert(achievement);
+
+            QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("type_name", achievement.getTypeName()).eq("achievement_introduce", achievement.getAchievementIntroduce());
+            Achievement achievement1 = baseMapper.selectOne(queryWrapper);
+            AchievementType achievementType = new AchievementType();
+            achievementType.setAchievementId(achievement.getAchievementId());
+            achievementType.setTypeId(typeOne.getTypeId());
+            achievementType.setAchievementId(achievement1.getAchievementId());
+            achievementTypeMapper.insert(achievementType);
+
             return new Result(ResultCode.SUCCESS, "录入成功！");
         }
         System.out.println("输入正确的信息！");
@@ -131,10 +136,12 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         if (achievement != null) {
             //删除文件
             String Img = achievement.getPictureAddress();
-            String[] arr = Img.split(",");
-            for (int i = 0; i < arr.length; i++) {
-                File file = new File(System.getProperty("user.dir") + arr[i]);
-                System.out.println(file.delete());
+            if(Img != null){
+                String[] arr = Img.split(",");
+                for (int i = 0; i < arr.length; i++) {
+                    File file = new File(System.getProperty("user.dir") + arr[i]);
+                    System.out.println(file.delete());
+                }
             }
             baseMapper.deleteById(achievement);
             return new Result(ResultCode.SUCCESS, "删除成功！");
@@ -176,7 +183,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             if (achievement1 != null) {
                 achievement.setReleaseTime(achievement1.getReleaseTime());
                 String str = achievement1.getPictureAddress();
-                if(str.contains(",")){
+                if(str != null && str.contains(",")){
                     str = str.substring(0,str.indexOf(","));
                 }
                 achievement.setPictureAddress(str);
@@ -287,11 +294,11 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         IPage<Achievement> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Achievement> achievementList = iPage.getRecords();
         String img;
-        for(int i = 0; i < achievementList.size(); i++) {
-            if (achievementList.get(i).getPictureAddress().contains(",")){
+        for (int i = 0; i < achievementList.size(); i++) {
+            if (achievementList.get(i).getPictureAddress()!=null && achievementList.get(i).getPictureAddress().contains(",")) {
                 img = achievementList.get(i).getPictureAddress();
-                img = img.substring(0,img.indexOf(","));
-                System.out.println("img=="+img);
+                img = img.substring(0, img.indexOf(","));
+                System.out.println("img==" + img);
                 achievementList.get(i).setPictureAddress(img);
             }
         }
@@ -306,9 +313,9 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     @Override
     public IPage<Achievement> findName(String findName, int current, int limit) {
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("achievement_key",findName);
-        Page page = new Page(current,limit);
-        IPage<Achievement> iPage = baseMapper.selectPage(page,queryWrapper);
+        queryWrapper.like("achievement_key", findName);
+        Page page = new Page(current, limit);
+        IPage<Achievement> iPage = baseMapper.selectPage(page, queryWrapper);
         return iPage;
     }
 
@@ -355,12 +362,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             queryWrapperType.eq("type_name", typeName);
             System.out.println("type_name:" + typeName);
             Type typeOne = typeMapper.selectOne(queryWrapperType);
-            if (typeOne != null) {
-                AchievementType achievementType = new AchievementType();
-                achievementType.setAchievementId(achievement.getAchievementId());
-                achievementType.setTypeId(typeOne.getTypeId());
-                achievementTypeMapper.insert(achievementType);
-            } else {
+            if (typeOne == null) {
                 System.out.println("该类型不存在！");
                 return new Result(ResultCode.FAIL, "该类型不存在！");
             }
@@ -382,6 +384,16 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 System.out.println("pictureAddress===" + pictureAddress);
             }
             baseMapper.insert(achievement);
+
+            QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("type_name", achievement.getTypeName()).eq("achievement_introduce", achievement.getAchievementIntroduce());
+            Achievement achievement1 = baseMapper.selectOne(queryWrapper);
+            AchievementType achievementType = new AchievementType();
+            achievementType.setAchievementId(achievement.getAchievementId());
+            achievementType.setTypeId(typeOne.getTypeId());
+            achievementType.setAchievementId(achievement1.getAchievementId());
+            achievementTypeMapper.insert(achievementType);
+
             return new Result(ResultCode.SUCCESS, "录入成功！");
         }
         System.out.println("输入正确的信息！");

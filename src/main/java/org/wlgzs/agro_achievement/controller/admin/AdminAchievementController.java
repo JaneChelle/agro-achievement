@@ -35,11 +35,13 @@ public class AdminAchievementController extends BaseController {
 
         List<Achievement> achievementList = (List<Achievement>) result.getData();
         String img;
-        for (int i = 0; i < achievementList.size(); i++) {
-            if (achievementList.get(i).getPictureAddress().contains(",")) {
-                img = achievementList.get(i).getPictureAddress();
-                img = img.substring(0, img.indexOf(","));
-                achievementList.get(i).setPictureAddress(img);
+        if(achievementList.size() > 0){
+            for (int i = 0; i < achievementList.size(); i++) {
+                if (achievementList.get(i).getPictureAddress() != null && achievementList.get(i).getPictureAddress().contains(",")) {
+                    img = achievementList.get(i).getPictureAddress();
+                    img = img.substring(0, img.indexOf(","));
+                    achievementList.get(i).setPictureAddress(img);
+                }
             }
         }
         model.addAttribute("achievementList", achievementList);
@@ -77,7 +79,7 @@ public class AdminAchievementController extends BaseController {
         Result result = iAchievementService.achievementDetails(achievementId);
         Achievement achievement = (Achievement) result.getData();
         String img;
-        if (achievement.getPictureAddress().contains(",")) {
+        if (achievement.getPictureAddress() != null && achievement.getPictureAddress().contains(",")) {
             img = achievement.getPictureAddress();
             img = img.substring(0, img.indexOf(","));
             achievement.setPictureAddress(img);

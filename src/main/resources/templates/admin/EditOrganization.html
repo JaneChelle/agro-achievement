@@ -1,0 +1,86 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>农业科技成果转化交易服务平台注册</title>
+    <link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
+    <link rel="stylesheet" th:href="@{../css/adminDemo.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div th:include="common/adminCommon :: nav"></div>
+
+<section>
+    <div class="search-collapse">
+        <h3>
+            <img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
+            <span>添加机构</span>
+        </h3>
+    </div>
+    <div class="section_table">
+        <div class="section">
+            <div class="popup_table addUserTable">
+                <form th:action="@{/admin/adminAddExample}" method="post" onsubmit="return adminContent()">
+                    <table class="table table-bordered addUser">
+                        <thead>
+                        <input type="hidden" name="exampleContent" class="exampleContent">
+                        <tr>
+                            <th>案例标题</th>
+                            <td>
+                                <input type="" name="exampleTitle" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <b>案例内容</b>
+                            <span>
+                                    <div id="editor">
+
+                                    </div>
+                                </span>
+                        </tr>
+                        <tr>
+                            <th>用户id</th>
+                            <td>
+                                <input type="" name="userId" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>审核状态码</th>
+                            <td>
+                                <select name="statusCode">
+                                    <option>请选择审核状态码</option>
+                                    <option value="0">未审核</option>
+                                    <option value="1">通过</option>
+                                    <option value="2">失败</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </thead>
+                    </table>
+                    <div class="popup_bottom">
+                        <input type="reset" name="" value="重置" />
+                        <input type="submit" value="添加"/>
+                        <a th:href="@{/admin/adminExampleList}" class="btn returnList">返回</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
+<script type="text/javascript" th:src="@{../js/wangEditor.min.js}"></script>
+<script type="text/javascript" th:src="@{../js/adminExample.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
+
+</script>
+</html>

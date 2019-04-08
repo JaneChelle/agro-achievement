@@ -8,6 +8,17 @@
     <link rel="stylesheet" th:href="@{../css/adminDemo.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
     <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <style>
+        td{
+            text-align: left!important;
+        }
+        .typeName input[type=radio]{
+            width: auto!important;
+        }
+        .typeName label{
+            vertical-align: top;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,7 +34,7 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form th:action="@{/admin/adminAddExample}" method="post" onsubmit="return adminContent()">
+                <form th:action="@{/admin/adminAddOrganization}" method="post" enctype="multipart/form-data" onsubmit="return adminContent()">
                     <table class="table table-bordered addUser">
                         <thead>
 
@@ -85,6 +96,12 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>地址</th>
+                                <td>
+                                    <input type="" name="contactAddress" value="" required="required"/>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>发布者id</th>
                                 <td>
                                     <input type="" name="userId" value="" required="required"/>
@@ -99,7 +116,10 @@
                             <tr>
                                 <th>机构类型</th>
                                 <td>
-                                    <input type="" name="typeName" value="" required="required"/>
+                                    <div th:each="type : ${typeList}" class="typeName">
+                                        <input type="radio" name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" required/><label
+                                            th:text="${type.typeName}" th:for="${type.typeName}"></label>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -111,6 +131,20 @@
                                         <option value="1">通过</option>
                                         <option value="2">失败</option>
                                     </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>机构logo</th>
+                                <td>
+                                    <div class="all-photo" onclick="photoup()">
+                                        <div class="all-photo-left">
+                                            <span class="upload">点击上传图片</span>
+                                        </div>
+                                        <div class="all-photo-right">
+                                            <img th:src="@{/images/paper.png}" id="imgshow" style="width: 80px;height: 80px;" />
+                                        </div>
+                                    </div>
+                                    <input id="fileds" style="display: none;" name="file" type="file" accept="image/*" value="上传图片" />
                                 </td>
                             </tr>
                         </thead>
@@ -130,12 +164,11 @@
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
 <script type="text/javascript" th:src="@{../js/wangEditor.min.js}"></script>
-<script type="text/javascript" th:src="@{../js/adminExample.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     var E = window.wangEditor;
     var editor = new E('#editor');
     // 或者 var editor = new E( document.getElementById('editor') )
     editor.create()
-
 </script>
+<script type="text/javascript" th:src="@{../js/adminOrganization.js}"></script>
 </html>

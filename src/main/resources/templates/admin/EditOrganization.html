@@ -8,6 +8,17 @@
     <link rel="stylesheet" th:href="@{../css/adminDemo.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
     <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <style>
+        td{
+            text-align: left!important;
+        }
+        .typeName input[type=radio]{
+            width: auto!important;
+        }
+        .typeName label{
+            vertical-align: top;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,18 +34,19 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form th:action="@{/admin/adminAddExample}" method="post" onsubmit="return adminContent()">
+                <form th:action="@{/admin/adminEditOrganization}" method="post" enctype="multipart/form-data" onsubmit="return modifyContent()">
                     <table class="table table-bordered addUser">
                         <thead>
-                        <input type="hidden" name="exampleContent" class="exampleContent">
+                        <input type="hidden" class="organizationContent" th:value="${organization.organizationIntroduce}" name="organizationIntroduce">
+                        <input type="hidden" th:value="${organization.organizationId}">
                         <tr>
-                            <th>案例标题</th>
+                            <th>机构名称</th>
                             <td>
-                                <input type="" name="exampleTitle" value="" required="required"/>
+                                <input type="" th:value="${organization.organizationName}" name="organizationName" value="" required="required"/>
                             </td>
                         </tr>
                         <tr>
-                            <b>案例内容</b>
+                            <b>机构简介</b>
                             <span>
                                     <div id="editor">
 
@@ -42,28 +54,93 @@
                                 </span>
                         </tr>
                         <tr>
-                            <th>用户id</th>
+                            <th>所在国家</th>
                             <td>
-                                <input type="" name="userId" value="" required="required"/>
+                                <input type="" th:value="${organization.organizationCountry}" name="organizationCountry" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>所在地区</th>
+                            <td>
+                                <input type="" th:value="${organization.organizationRegion}" name="organizationRegion" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>法人类别</th>
+                            <td>
+                                <input type="" th:value="${organization.legalCategory}" name="legalCategory" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>联系人</th>
+                            <td>
+                                <input type="" th:value="${organization.linkman}" name="linkman" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>电话</th>
+                            <td>
+                                <input type="" th:value="${organization.phone}" name="phone" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>邮箱</th>
+                            <td>
+                                <input type="" th:value="${organization.email}" name="email" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>网址</th>
+                            <td>
+                                <input type="" th:value="${organization.organizationUrl}" name="organizationUrl" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>发布者id</th>
+                            <td>
+                                <input type="" name="userId" th:value="${organization.userId}" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>机构类型id</th>
+                            <td>
+                                <input type="" name="organizationTypeId" th:value="${organization.organizationTypeId}" value="" required="required"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>机构类型</th>
+                            <td>
+                                <div th:each="type : ${typeList}" class="typeName">
+                                    <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" class="Name" required>
+                                    <label th:text="${type.typeName}" th:for="${type.typeName}"></label>
+                                </div>
+                                <input type="hidden" id="typeName" th:value="${organization.typeName}">
                             </td>
                         </tr>
                         <tr>
                             <th>审核状态码</th>
                             <td>
-                                <select name="statusCode">
+                                <select name="statusCode" class="selectStatusCode">
                                     <option>请选择审核状态码</option>
                                     <option value="0">未审核</option>
                                     <option value="1">通过</option>
                                     <option value="2">失败</option>
                                 </select>
+                                <input type="hidden" th:value="${organization.statusCode}" class="organizationStatusCode">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>机构logo</th>
+                            <td>
+                                <img style="width: 220px; display: block;" th:src="${organization.organizationLogo}" alt="">
                             </td>
                         </tr>
                         </thead>
                     </table>
                     <div class="popup_bottom">
                         <input type="reset" name="" value="重置" />
-                        <input type="submit" value="添加"/>
-                        <a th:href="@{/admin/adminExampleList}" class="btn returnList">返回</a>
+                        <input type="submit" value="修改"/>
+                        <a th:href="@{/admin/adminOrganizationList}" class="btn returnList">返回</a>
                     </div>
                 </form>
             </div>
@@ -75,12 +152,34 @@
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
 <script type="text/javascript" th:src="@{../js/wangEditor.min.js}"></script>
-<script type="text/javascript" th:src="@{../js/adminExample.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     var E = window.wangEditor;
     var editor = new E('#editor');
     // 或者 var editor = new E( document.getElementById('editor') )
-    editor.create()
+    editor.create();
+    // 赋值
+    var content = $('.organizationContent').val();
+    editor.txt.text(content);
 
+
+    // 状态码
+    var options = $('.selectStatusCode option');
+    var statusCode = $('.organizationStatusCode').val();
+    for (var i = 0; i < options.length; i++) {
+        if ($(options[i]).val() == statusCode) {
+            $(options[i]).attr("selected", true);
+        } else {
+            $(options[i]).attr("selected", false);
+        }
+    }
+
+    //radio回显
+    $(".Name").each(function () {
+        var typeName=$('#typeName').val();
+        var val = $(this).val();
+        if(val ==typeName){
+            $(this).attr("checked",true);
+        }
+    });
 </script>
 </html>

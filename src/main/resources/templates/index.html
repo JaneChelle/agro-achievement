@@ -124,7 +124,7 @@
                 <div>
                     <ul>
                         <li th:each="organization: ${organizationList}">
-                            <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/ HomeController/organizationDetails(organizationId=${Organization.organizationId})}" th:title="${organization.organizationIntroduce}" th:text="${organization.organizationIntroduce}" target="_blank">
+                            <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/organizationDetails(organizationId=${organization.organizationId})}" th:title="${organization.organizationIntroduce}" th:text="${organization.organizationIntroduce}" target="_blank">
                         </a>
                         </li>
                     </ul>

@@ -23,7 +23,7 @@
     </div>
     <div class="section_table">
         <div class="section sectionDemand">
-            <form th:action="@{/admin/adminEditDemand}" method="post">
+            <form th:action="@{/admin/adminEditDemand}" method="post" onsubmit="javascript:return confirm('你确定要添加一条需求吗？');">>
                 <table class="table table-hover table-bordered">
                     <tr>
                         <td>需求ID:	</td>

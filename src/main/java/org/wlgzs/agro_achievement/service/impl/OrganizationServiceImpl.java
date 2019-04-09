@@ -192,6 +192,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
 
                 // "/upload"是你自己定义的上传目录
                 String realPath = System.getProperty("user.dir") + "/OrganizationLogo";
+                System.out.println("realPath"+realPath);
                 File uploadFile = new File(realPath, realName);
 
                 //上传文件

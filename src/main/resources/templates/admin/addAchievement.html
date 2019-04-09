@@ -30,7 +30,7 @@
 			</h3>
 		</div>
 		<div class="section_table">
-			<form th:action="@{/admin/adminAddAchievement}" method="post" enctype="multipart/form-data">
+			<form th:action="@{/admin/adminAddAchievement}" method="post" enctype="multipart/form-data" onsubmit="javascript:return confirm('你确定要添加一条成功吗？');">>
 				<figure>
 					<div class="section">
 						<table class="table table-bordered">

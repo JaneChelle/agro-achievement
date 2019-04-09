@@ -23,7 +23,7 @@
     </div>
     <div class="section_table">
         <div class="section sectionDemand">
-            <form th:action="@{/admin/adminEditDemand}" method="post" onsubmit="javascript:return confirm('你确定要添加一条需求吗？');">>
+            <form th:action="@{/admin/adminEditDemand}" method="post" onsubmit="javascript:return confirm('你确定要修改此需求吗？');">>
                 <table class="table table-hover table-bordered">
                     <tr>
                         <td>需求ID:	</td>
@@ -94,7 +94,7 @@
                     </tr>
                     <tr>
                         <td colspan="6" class="pn-fbutton">
-                            <input type="submit" value="提交"  class="btn-info" id="change"/>
+                            <input type="submit" value="修改"  class="btn-info" id="change"/>
                             <input type="reset" value="重置"  class="btn-info" id="cancel" style="background-color: orangered!important;"/>
                             <a th:href="@{/admin/adminAdminDemand}" class="returnList" style="padding: 0!important;">返回</a>
                         </td>

@@ -65,6 +65,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
 
                     // "/upload"是你自己定义的上传目录
                     String realPath = System.getProperty("user.dir") + "/upload";
+                    System.out.println(realPath);
                     File uploadFile = new File(realPath, realName);
 
                     //上传文件

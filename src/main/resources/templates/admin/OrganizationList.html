@@ -32,7 +32,7 @@
                         <span>失败【2】</span>
                     </li>
                     <li>
-                        <a th:href="@{/admin/toAddAnnouncement}">
+                        <a th:href="@{/admin/toAdminAddOrganization}">
                             <img src="../images/添加.svg" title="添加公告"/>
                             <span>添加</span>
                         </a>
@@ -45,44 +45,35 @@
         <div class="section">
             <table class="table table-bordered table-hover">
                 <thead>
-                <tr>
+                    <th>选项</th>
                     <th>机构id</th>
                     <th>机构名称</th>
-                    <th>所在国家</th>
-                    <th>所在地区</th>
                     <th>法人类别</th>
-                    <th>机构简介</th>
                     <th>联系人</th>
                     <th>电话</th>
-                    <th>邮箱</th>
-                    <th>网址</th>
-                    <th>地址</th>
                     <th>发布者id</th>
                     <th>机构类型id</th>
                     <th>机构类型</th>
                     <th>审核状态码</th>
-                    <th>机构logo</th>
                     <th>操作</th>
-                </tr>
                 </thead>
                 <tbody>
                     <tr th:each="organization : ${organizationList}">
-                        <td th:text="${organization.organizationTypeId}"></td>
+                        <td>
+                            <input type="checkbox" th:id="${organization.organizationId}" th:value="${organization.organizationId}"  class="selectall" />
+                            <label th:for="${organization.organizationId}"></label>
+                        </td>
+                        <td th:text="${organization.organizationId}"></td>
                         <td th:text="${organization.organizationName}"></td>
-                        <td th:text="${organization.organizationCountry}"></td>
                         <td th:text="${organization.legalCategory}"></td>
-                        <td th:text="${organization.organizationIntroduce}"></td>
                         <td th:text="${organization.linkman}"></td>
                         <td th:text="${organization.phone}"></td>
-                        <td th:text="${organization.email}"></td>
-                        <td th:text="${organization.organizationUrl}"></td>
-                        <td th:text="${organization.contactAddress}"></td>
                         <td th:text="${organization.userId}"></td>
                         <td th:text="${organization.organizationTypeId}"></td>
                         <td th:text="${organization.typeName}"></td>
                         <td th:text="${organization.statusCode}"></td>
-                        <td th:text="${organization.organizationLogo}"></td>
                         <td>
+                            <a th:href="@{/admin/toAdminEditOrganization(organizationId=${organization.organizationId})}">详情</a>
                             <button type="button" class="btn delete deleteOrganization">删除</button>
                         </td>
                     </tr>
@@ -95,5 +86,5 @@
 
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
-<script type="text/javascript" th:src="@{../js/adminIndex.js}"></script>
+<script type="text/javascript" th:src="@{../js/adminOrganization.js}"></script>
 </html>

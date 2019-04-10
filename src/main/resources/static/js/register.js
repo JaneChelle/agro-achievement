@@ -232,16 +232,16 @@ function userRegister() {
     $(".hiddenInput").val(userAddress);
     console.log(userAddress);
     if(!checkRegisterUserName()){
-        alert("1");
+        alert("用户名信息错误");
         return false;
     }else if(!userPassWord()){
-        alert("2");
+        alert("请先输入密码");
         return false;
     }else if(!surePword()){
-        alert("3");
+        alert("请确认密码");
         return false;
     }else if(!checkUserPhone()){
-        alert("4");
+        alert("手机号信息错误");
         return false;
     }else if(!checkEmail()){
         alert("5");

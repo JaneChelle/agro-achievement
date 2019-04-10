@@ -23,7 +23,7 @@
     	</div>
     	<div class="section_table">
     		<div class="section">
-				<form th:action="@{/admin/adminAddExperts}" method="post" enctype="multipart/form-data">
+				<form th:action="@{/admin/adminAddExperts}" method="post" enctype="multipart/form-data" onsubmit="javascript:return confirm('你确定要添加一名专家吗？');">>
 					<div class="apply_expert">
 						<div class="applyExpert">
 							<label>姓名</label>

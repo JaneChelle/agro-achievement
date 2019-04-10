@@ -96,6 +96,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         HttpSession session = request.getSession();
         String sessionCode = (String) session.getAttribute("authCode"); //获取保存在session里面的验证码
         String sessionMail = (String) session.getAttribute("userEmail");//获取保存在session里面的邮箱
+        System.out.println("sessionCode"+sessionCode);
+        System.out.println("sessionMail"+sessionMail);
+        System.out.println("userEmail"+userEmail);
+        System.out.println("userCode"+userCode);
         if (userEmail != null && userCode != null && userEmail.equals(sessionMail) && userCode.equals(sessionCode)) {
             return new Result(ResultCode.SUCCESS);
         }

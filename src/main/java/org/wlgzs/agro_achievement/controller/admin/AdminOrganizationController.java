@@ -46,7 +46,7 @@ public class AdminOrganizationController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("adminAddOrganization");
+        return new ModelAndView("admin/addOrganization");
     }
 
     //管理员添加机构
@@ -62,7 +62,11 @@ public class AdminOrganizationController extends BaseController {
     public ModelAndView toEdit(Model model, Integer organizationId) {
         Organization organization = iOrganizationService.getById(organizationId);
         model.addAttribute("organization", organization);
-        return new ModelAndView("adminEditOrganization");
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
+        return new ModelAndView("admin/EditOrganization");
     }
 
     //修改机构
@@ -72,7 +76,7 @@ public class AdminOrganizationController extends BaseController {
         if (!result) {
             model.addAttribute("msg", "修改失败！");
             model.addAttribute("organization", organization);
-            return new ModelAndView("adminEditOrganization");
+            return new ModelAndView("admin/EditOrganization");
         } else {
             model.addAttribute("msg", "修改失败！");
         }

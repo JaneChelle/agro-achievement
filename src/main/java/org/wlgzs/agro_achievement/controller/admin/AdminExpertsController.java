@@ -12,6 +12,7 @@ import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -50,8 +51,8 @@ public class AdminExpertsController extends BaseController {
 
     //管理员添加专家
     @RequestMapping(value = "/adminAddExperts")
-    public ModelAndView adminAddExperts(Model model, HttpServletRequest request, String time, Experts experts, @RequestParam(value = "file", required = false)MultipartFile myFileName) {
-        Result result = iExpertsService.addAdminExperts(request,time, experts, myFileName);
+    public ModelAndView adminAddExperts(HttpSession session, Model model, HttpServletRequest request, String time, Experts experts, @RequestParam(value = "file", required = false)MultipartFile myFileName) {
+        Result result = iExpertsService.addAdminExperts(session,request,time, experts, myFileName);
         return new ModelAndView("redirect:/admin/adminExpertsList");
     }
 

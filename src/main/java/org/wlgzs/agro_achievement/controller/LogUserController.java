@@ -10,6 +10,7 @@ import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author:胡亚星
@@ -70,7 +71,6 @@ public class LogUserController extends BaseController {
             return new ModelAndView("login");
         }
         model.addAttribute("msg","您的信息有误！");
-        System.out.println("aaaaaaaaaaaa");
         return new ModelAndView("redirect:/LogUser/toRegister");
     }
 
@@ -103,4 +103,19 @@ public class LogUserController extends BaseController {
     public Result checkEmail(String userEmail){
         return loginService.checkEmail(userEmail);
     }
+
+    //普通用户退出登录
+    @RequestMapping(value = "/exit")
+    public ModelAndView exit(HttpSession session){
+        session.removeAttribute("user");
+        return new ModelAndView("redirect:/LogUser/toLogin");
+    }
+
+    //管理员退出登录
+    @RequestMapping(value = "/adminExit")
+    public ModelAndView adminExit(HttpSession session){
+        session.removeAttribute("adminUser");
+        return new ModelAndView("redirect:/LogUser/toLogin");
+    }
+
 }

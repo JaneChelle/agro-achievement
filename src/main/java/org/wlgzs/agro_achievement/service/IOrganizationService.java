@@ -51,6 +51,6 @@ public interface IOrganizationService extends IService<Organization> {
     Result adminOrganizationList(String findName,int current, int limit);
 
     //添加机构
-    Result saveOrganization(Organization organization,MultipartFile myFileName,HttpServletRequest request);
+    Result saveOrganization(HttpSession session,Organization organization,MultipartFile myFileName,HttpServletRequest request);
 
 }

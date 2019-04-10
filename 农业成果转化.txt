@@ -1,0 +1,130 @@
+数据库设计(agro-achievement)
+
+
+
+成果表：(achievement)
+
+  编号id                成果名称              成果简介              成果关键词        研发开始时间    研发结束时间    
+achievement_id      achievement_name     achievement_introduce     achievement_key     start_time        end_time
+
+成品图片展示（1到3张）     获奖情况       联系人    联系电话     手机         邮箱      
+  picture_address           awards       linkman      phone     cell_number   email
+  
+ 联系地址          知识产权编号        知识产权说明         产权归属者       产权归属地       
+contact_address   property_number    property_introduce    property_man    property_address
+
+  预期交易价格       发布时间       点击量      用户id     审核状态码（0未审核，1通过，2失败）
+expected_price     release_time    page_view    user_id     status_code
+
+
+
+
+成果专家类型表：（专家可能有多个类别）(type)
+ 
+ 类型id   类型名称   
+type_id   type_name
+
+
+
+
+成果类型关联表(achievement_type)
+
+      关联id              成果编号id        类型id
+ achievement_type_id    achievement_id      type_id
+
+
+ 
+
+机构表(organization)
+
+     机构id           机构名称              所在国家                所在地区            法人类别        
+organization_id  organization_name     organization_country      organization_region  legal_category   
+
+          机构简介           联系人     电话        邮箱         网址     
+    organization_introduce   linkman    phone       email    organization_url
+
+      地址           （对应）成果id          机构类型id   
+contact_address      achievement_id        organization_type_id
+
+
+
+
+机构类型表(organization_type)
+
+     机构类型id           类型名称          
+organization_type_id      type_name     
+
+
+
+
+需求表:(demand)
+
+  需求id       需求名字          预期价格        需求者（个人或机构）         需求说明      
+demand_id     demand_name     expected_price         demanders            demand_introduce
+
+   发布时间      联系人      电话       邮箱     点击量       用户id           机构id   
+release_time    linkman      phone     email    page_view    user_id     organization_type_id 
+
+审核状态码（0未审核，1通过，2失败）
+      status_code
+	
+	  
+	  
+	  
+需求类型关联表：（demand_type）
+
+   关联id           需求编号id        类型id
+demand_type_id       demand_id        type_id
+
+
+
+
+用户表user
+
+ 用户id    用户名       邮箱        手机号        密码       所在地区         用户等级（1是管理员，2是专家，3是普通用户）
+user_id    user_name   user_email  user_phone   password     user_address                   user_level
+
+
+
+
+专家表(experts)
+ 
+  专家id        姓名           性别        出生日期           国籍              学历                 学位    毕业院校        
+experts_id   experts_name    experts_sex  experts_birth  experts_country     experts_education      degree     school
+
+所学专业     所在单位     行政职务    专家类型id       照片地址             研究领域     
+  major        unit       position     type_id        picture_address      research_field
+  
+主要研究成果简介         个人获奖状况       成果获奖状况       联系方式             邮箱         用户id 
+research_achievements   personal_prize     results_prize     experts_phone     experts_email     user_id
+
+审核状态码（0未审核，1通过，2失败）    点击量
+      status_code                     page_view
+
+
+
+通知公告表(announcement)
+
+    公告id            公告标题                     公告内容                    发布时间
+announcement_id    announcement_title         announcement_content         release_time
+
+
+
+成功案例表(case)
+
+ 案例id         案例标题          案例内容          发布时间
+case_id       case_title        case_content      release_time
+
+
+
+
+<td>
+                    <select class="btn-success" th:each="tuinaType : ${tuinaTypeList}">
+                        <option th:text="${tuinaType.tuinaName}" th:value="${tuinaType.tuinaName}">近</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="btn-info " th:each="staff : ${staffList}">
+                        <option th:text="${staff.staffName}" th:value="${staff.staffName}"></option>
+                    </select>
+                </td>

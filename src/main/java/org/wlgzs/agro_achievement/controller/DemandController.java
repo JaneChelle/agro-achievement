@@ -43,8 +43,7 @@ public class DemandController extends BaseController {
     //发布一个新需求
     @RequestMapping(value = "/addDemand")
     public ModelAndView addDemand(Demand demand) {
-        System.out.println(demand);
-        System.out.println(iDemandService.addDemand(demand).toString());
+        iDemandService.addDemand(demand);
         return new ModelAndView("redirect:/demand/selectDemand");
     }
 
@@ -84,7 +83,6 @@ public class DemandController extends BaseController {
         int userId = user.getUserId();
         Result result = iDemandService.selectDemand(userId, statusCode, current, limit);
         List<Demand> demandList = (List<Demand>) result.getData();
-        System.out.println(demandList);
         model.addAttribute("demandList",demandList);
         model.addAttribute("statusCode",statusCode);
         model.addAttribute("TotalPages", result.getPages());//总页数

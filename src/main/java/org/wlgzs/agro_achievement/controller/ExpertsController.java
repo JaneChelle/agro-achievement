@@ -63,7 +63,6 @@ public class ExpertsController extends BaseController {
         } else {
             model.addAttribute("msg", "审核失败！");
         }
-        System.out.println("experts"+experts);
         return new ModelAndView("expertsUserDetails");
     }
 

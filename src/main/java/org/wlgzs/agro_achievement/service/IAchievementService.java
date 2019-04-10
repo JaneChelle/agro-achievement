@@ -59,7 +59,7 @@ public interface IAchievementService extends IService<Achievement> {
      */
 
     //添加成果
-    Result saveAchievement(MultipartFile[] myFileNames,HttpServletRequest request,
+    Result saveAchievement(HttpSession session,MultipartFile[] myFileNames,HttpServletRequest request,
                            Achievement achievement, String start_time, String end_time);
 
     //查询所有成果

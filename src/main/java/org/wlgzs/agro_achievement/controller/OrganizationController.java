@@ -53,10 +53,8 @@ public class OrganizationController extends BaseController {
             Model model, HttpSession session, Organization organization) {
         Result result = iOrganizationService.addOrganization(request,session, organization,myFileName);
         if (result.getCode() == 0) {
-            System.out.println("添加成功");
             model.addAttribute("msg", "添加成功！");
         } else {
-            System.out.println("添加失败");
             model.addAttribute("msg", "添加失败！");
         }
         return new ModelAndView("redirect:/organization/selectOrganizationByUser?statusCode=0");

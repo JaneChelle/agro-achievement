@@ -38,7 +38,7 @@ public class AdminExampleController extends BaseController {
     //去添加案例
     @RequestMapping(value = "/toAdminExample")
     public ModelAndView toAdd() {
-        return new ModelAndView("admin/adminAddExample");
+        return new ModelAndView("admin/addExample");
     }
 
     //管理员添加案例

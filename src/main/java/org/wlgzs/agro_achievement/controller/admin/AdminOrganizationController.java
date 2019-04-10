@@ -12,6 +12,7 @@ import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -44,15 +45,15 @@ public class AdminOrganizationController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("adminAddOrganization");
+        return new ModelAndView("admin/addOrganization");
     }
 
 
     //管理员添加机构
     @RequestMapping(value = "/adminAddOrganization")
-    public ModelAndView adminAddOrganization(@RequestParam(value = "file",required = false)MultipartFile myFileName, Model model, HttpServletRequest request,
+    public ModelAndView adminAddOrganization(HttpSession session, @RequestParam(value = "file",required = false)MultipartFile myFileName, Model model, HttpServletRequest request,
                                              Organization organization){
-        Result result = iOrganizationService.saveOrganization(organization,myFileName,request);
+        Result result = iOrganizationService.saveOrganization(session,organization,myFileName,request);
         return new ModelAndView("redirect:/admin/adminOrganizationList");
     }
 
@@ -61,7 +62,11 @@ public class AdminOrganizationController extends BaseController {
     public ModelAndView toEdit(Model model, Integer organizationId) {
         Organization organization = iOrganizationService.getById(organizationId);
         model.addAttribute("organization", organization);
-        return new ModelAndView("adminEditOrganization");
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
+        return new ModelAndView("admin/EditOrganization");
     }
 
     //修改机构
@@ -71,7 +76,7 @@ public class AdminOrganizationController extends BaseController {
         if (!result) {
             model.addAttribute("msg", "修改失败！");
             model.addAttribute("organization", organization);
-            return new ModelAndView("adminEditOrganization");
+            return new ModelAndView("admin/EditOrganization");
         } else {
             model.addAttribute("msg", "修改失败！");
         }

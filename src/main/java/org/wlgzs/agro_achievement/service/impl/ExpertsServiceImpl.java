@@ -59,7 +59,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         //生成实际储存的文件名（不能重复）
         realName = RandomNumberUtils.getRandomFileName() + suffixName;
         // "/upload"是你自己定义的上传目录
-        String realPath = System.getProperty("user.dir") + "/HeadPortrait";
+        String realPath = session.getServletContext().getRealPath("/HeadPortrait");
         File uploadFile = new File(realPath, realName);
 
         //上传文件
@@ -69,7 +69,6 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
             e.printStackTrace();
         }
         String str = request.getContextPath() + "/HeadPortrait/" + realName;
-        System.out.println(experts);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime ldt = LocalDateTime.parse(time + " 00:00:00", formatter);
         experts.setExpertsBirth(ldt);
@@ -171,7 +170,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     }
 
     @Override
-    public Result addAdminExperts(HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) {
+    public Result addAdminExperts(HttpSession session,HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) {
         //文件处理（真实存储名）
         String realName = "";
 
@@ -182,7 +181,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         //生成实际储存的文件名（不能重复）
         realName = RandomNumberUtils.getRandomFileName() + suffixName;
         // "/upload"是你自己定义的上传目录
-        String realPath = System.getProperty("user.dir") + "/HeadPortrait";
+        String realPath = session.getServletContext().getRealPath("/HeadPortrait");
         File uploadFile = new File(realPath, realName);
 
         //上传文件
@@ -192,7 +191,6 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
             e.printStackTrace();
         }
         String str = request.getContextPath() + "/HeadPortrait/" + realName;
-        System.out.println(experts);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime ldt = LocalDateTime.parse(time + " 00:00:00", formatter);
         experts.setExpertsBirth(ldt);
@@ -206,7 +204,6 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     @Override
     public Result modifyExperts(Experts experts) {
         if (experts != null) {
-            System.out.println(experts);
             baseMapper.updateById(experts);
             return new Result(ResultCode.SUCCESS,experts);
         }

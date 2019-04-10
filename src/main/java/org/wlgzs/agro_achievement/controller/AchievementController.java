@@ -80,7 +80,6 @@ public class AchievementController extends BaseController {
             Achievement achievement1 = (Achievement) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("achievement", achievement1);
-            System.out.println("修改成功" + achievement1);
             return new ModelAndView("achievementUserDetails");
         } else {
             model.addAttribute("msg", "修改失败！");
@@ -170,7 +169,6 @@ public class AchievementController extends BaseController {
         start_time = start_time.substring(0,10);
         end_time = end_time.substring(0,10);
 
-        System.out.println(start_time);
         //所有类别
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
@@ -190,14 +188,12 @@ public class AchievementController extends BaseController {
         String img = achievement.getPictureAddress();
         //图片集合
         List<String> achievementImg = Arrays.asList(img.split(","));
-        System.out.println("achievementImg"+achievementImg);
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String start_time = df.format(achievement.getStartTime());
         String end_time = df.format(achievement.getStartTime());
         start_time = start_time.substring(0,10);
         end_time = end_time.substring(0,10);
 
-        System.out.println(start_time);
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);

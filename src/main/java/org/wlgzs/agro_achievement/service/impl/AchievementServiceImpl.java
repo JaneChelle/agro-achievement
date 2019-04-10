@@ -64,7 +64,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                     realName = RandomNumberUtils.getRandomFileName() + suffixName;
 
                     // "/upload"是你自己定义的上传目录
-                    String realPath = System.getProperty("user.dir") + "/upload";
+                    String realPath = session.getServletContext().getRealPath("/upload");
                     File uploadFile = new File(realPath, realName);
 
                     //上传文件
@@ -88,7 +88,6 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             String typeName = achievement.getTypeName();
             QueryWrapper<Type> queryWrapperType = new QueryWrapper();
             queryWrapperType.eq("type_name", typeName);
-            System.out.println("type_name:" + typeName);
             Type typeOne = typeMapper.selectOne(queryWrapperType);
             if (typeOne == null) {
                 System.out.println("该类型不存在！");
@@ -109,7 +108,6 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 achievement.setStartTime(timeOne);
                 achievement.setEndTime(timeTwo);
                 achievement.setPictureAddress(pictureAddress);
-                System.out.println("pictureAddress===" + pictureAddress);
             }
             achievement.setUserId(user.getUserId());
             baseMapper.insert(achievement);
@@ -176,10 +174,8 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
 
     @Override
     public Result modifyAdminAchievement(Achievement achievement, String start_time, String end_time) {
-        System.out.println(achievement);
         if (achievement != null) {
             Achievement achievement1 = baseMapper.selectById(achievement.getAchievementId());
-            System.out.println(achievement1);
             if (achievement1 != null) {
                 achievement.setReleaseTime(achievement1.getReleaseTime());
                 String str = achievement1.getPictureAddress();
@@ -214,8 +210,6 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             Page page = new Page(current, limit);
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();
-            System.out.println(achievementList);
-            System.out.println(iPage);
             return new Result(ResultCode.SUCCESS, "", achievementList, iPage.getPages(), iPage.getCurrent());
         } else {
             queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", statusCode));
@@ -298,7 +292,6 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             if (achievementList.get(i).getPictureAddress()!=null && achievementList.get(i).getPictureAddress().contains(",")) {
                 img = achievementList.get(i).getPictureAddress();
                 img = img.substring(0, img.indexOf(","));
-                System.out.println("img==" + img);
                 achievementList.get(i).setPictureAddress(img);
             }
         }
@@ -320,7 +313,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     }
 
     @Override
-    public Result saveAchievement(MultipartFile[] myFileNames, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+    public Result saveAchievement(HttpSession session,MultipartFile[] myFileNames, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
         if (achievement != null) {
             //文件处理（真实存储名）
             String realName = "";
@@ -336,7 +329,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                     realName = RandomNumberUtils.getRandomFileName() + suffixName;
 
                     // "/upload"是你自己定义的上传目录
-                    String realPath = System.getProperty("user.dir") + "/upload";
+                    String realPath = session.getServletContext().getRealPath("/upload");
                     File uploadFile = new File(realPath, realName);
 
                     //上传文件
@@ -360,7 +353,6 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             String typeName = achievement.getTypeName();
             QueryWrapper<Type> queryWrapperType = new QueryWrapper();
             queryWrapperType.eq("type_name", typeName);
-            System.out.println("type_name:" + typeName);
             Type typeOne = typeMapper.selectOne(queryWrapperType);
             if (typeOne == null) {
                 System.out.println("该类型不存在！");
@@ -381,7 +373,6 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 String localTime = formatter.format(time);
                 LocalDateTime ldt = LocalDateTime.parse(localTime, formatter);
                 achievement.setReleaseTime(ldt);
-                System.out.println("pictureAddress===" + pictureAddress);
             }
             baseMapper.insert(achievement);
 

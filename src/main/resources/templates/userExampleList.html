@@ -37,7 +37,7 @@
         <!--遍历-->
         <tr th:each="example : ${exampleList}">
             <td th:text="${example.exampleTitle}" class="exampleTitle"></td>
-            <td th:text="${example.exampleContent}" style="width: 30%;overflow: hidden;"></td>
+            <td th:text="${example.exampleContent}" class="Introduce"></td>
             <!--<td th:text="${example.releaseTime}"></td>-->
             <!--<td th:text="${example.statusCode}"></td>-->
             <input type="hidden" th:value="${example.exampleId}" class="exampleId">

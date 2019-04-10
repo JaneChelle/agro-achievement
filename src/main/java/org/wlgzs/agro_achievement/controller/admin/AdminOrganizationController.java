@@ -37,7 +37,6 @@ public class AdminOrganizationController extends BaseController {
         model.addAttribute("findName", findName);
         return new ModelAndView("admin/OrganizationList");
     }
-
     //去添加机构
     @RequestMapping(value = "/toAdminAddOrganization")
     public ModelAndView toAdd(Model model){
@@ -47,6 +46,7 @@ public class AdminOrganizationController extends BaseController {
         model.addAttribute("typeList", typeList);
         return new ModelAndView("adminAddOrganization");
     }
+
 
     //管理员添加机构
     @RequestMapping(value = "/adminAddOrganization")

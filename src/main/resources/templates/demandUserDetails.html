@@ -33,7 +33,7 @@
                 <tr>
                     <td>发布时间:	</td>
                     <td>
-                        <input type="text" th:value="${#temporals.format(demand.releaseTime,'yyy-MM-dd')}" disabled="disabled">
+                        <input type="text" th:value="${#temporals.format(demand.releaseTime,'yyy-MM-dd')}" disabled="disabled" class="form-control">
                     </td>
                     <td>联系人:</td>
                     <td><input type="text" name="linkman" th:value="${demand.linkman}" class="form-control"  /></td>

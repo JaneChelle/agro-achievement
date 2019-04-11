@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <th>出生日期:	</th>
-                    <td th:text="${experts.expertsBirth}"></td>
+                    <td th:text="${#temporals.format(experts.expertsBirth,'yyy-MM-dd')}"></td>
                     <th>国籍:	</th>
                     <td th:text="${experts.expertsCountry}"></td>
                 </tr>
@@ -50,7 +50,13 @@
                     <td th:text="${experts.position}"></td>
                 </tr>
                 <tr>
-                    <th>专家类型id:</th>
+                    <th>联系方式:</th>
+                    <td th:text="${experts.expertsPhone}"></td>
+                    <th>邮箱:</th>
+                    <td th:text="${experts.expertsEmail}"></td>
+                </tr>
+                <tr>
+                    <th>专家类型:</th>
                     <td style="border-right:none;" th:text="${experts.typeId}">
                     </td>
                     <th style="border-left:none;border-right:none;"></th>
@@ -90,12 +96,6 @@
                     </td>
                     <th style="border-left:none;border-right:none;"></th>
                     <td style="border-left:none;"></td>
-                </tr>
-                <tr>
-                    <th>联系方式:</th>
-                    <td th:text="${experts.expertsPhone}"></td>
-                    <th>邮箱:</th>
-                    <td th:text="${experts.expertsEmail}"></td>
                 </tr>
                 <tr>
                     <td colspan="6" class="pn-fbutton">

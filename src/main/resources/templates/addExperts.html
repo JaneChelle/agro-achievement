@@ -89,15 +89,15 @@
                     <td><input type="text" name="expertsEmail"  id=""></td>
                 </tr>
                 <tr>
-                    <th>专家类型id:</th>
+                    <th>专家类型:</th>
                     <td style="border-right:none;">
                         <span th:each="type : ${typeList}">
-                            <input type="radio" th:name="typeId" th:id="${type.typeId}" th:value="${type.typeId}"/><label
-                                th:text="${type.typeId}" th:for="${type.typeId}"></label>
+                            <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}"/><label
+                                th:text="${type.typeName}" th:for="${type.typeName}"></label>
                         </span>
                     </td>
                     <th>研究领域:</th>
-                    <td style="border-right:none;"><input type="text" name="researchField"  id=""></td>
+                    <td style="border-right:none;"><input type="text" name="researchField" ></td>
                     <!--<th style="border-left:none;border-right:none;"></th>-->
                     <!--<td style="border-left:none;"></td>-->
                 </tr>

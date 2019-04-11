@@ -13,8 +13,6 @@ body{
     margin: 0 auto;
     background-color: #20222A;
     overflow: hidden;
-    font-family: "宋体";
-    overflow: hidden;
     font-size: 20px;
 }
 .left {
@@ -69,7 +67,7 @@ body{
 .list_one{
     /*width: 200px;*/
     height: 45px;
-    padding-left: 49px;
+    padding-left: 30px;
     border-left: solid 6px #393D49;
     text-align: left;
     line-height: 45px;
@@ -93,9 +91,9 @@ body{
     display: none;
 }
 .list_two>div{
-    width: 150px;
+    /*width: 150px;*/
     height: 45px;
-    padding-left: 50px;
+    padding-left: 62px;
 }
 .list_two>div:hover{
     color:darkgray;
@@ -126,7 +124,7 @@ body{
 
 }
 .tuichu{
-    padding:10px;
+    padding:5px;
     background: #41A809;
     border-radius: 5px;
 }

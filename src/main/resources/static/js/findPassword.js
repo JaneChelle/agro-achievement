@@ -141,7 +141,7 @@ $('.findPassWord').on('click',function () {
     }else if($('.userEmails').val() !=$('.userEmailFind').val()){
         console.log($('.userEmails').val())
         console.log($('.userEmailFind').val())
-        alert(" 11111111111");
+        alert(" 邮箱有误");
     }else {
         window.location.href = '/UserManagement/toPassword'
     }

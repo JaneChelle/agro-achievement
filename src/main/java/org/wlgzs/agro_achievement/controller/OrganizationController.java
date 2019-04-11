@@ -40,17 +40,21 @@ public class OrganizationController extends BaseController {
         model.addAttribute("typeList", typeList);
         return new ModelAndView("addOrganization");
     }
-
+    //去详情页
+    @RequestMapping("/organizationUserDetails")
+    public ModelAndView organizationUserDetails(Model model, Integer organizationId) {
+        Organization organization = iOrganizationService.getById(organizationId);
+        model.addAttribute("organization", organization);
+        return new ModelAndView("organizationUserDetails");
+    }
     //添加机构
     @RequestMapping(value = "/addOrganization")
     public ModelAndView addOrganization(HttpServletRequest request,@RequestParam(value = "file",required = false)MultipartFile myFileName,
             Model model, HttpSession session, Organization organization) {
         Result result = iOrganizationService.addOrganization(request,session, organization,myFileName);
         if (result.getCode() == 0) {
-            System.out.println("添加成功");
             model.addAttribute("msg", "添加成功！");
         } else {
-            System.out.println("添加失败");
             model.addAttribute("msg", "添加失败！");
         }
         return new ModelAndView("redirect:/organization/selectOrganizationByUser?statusCode=0");

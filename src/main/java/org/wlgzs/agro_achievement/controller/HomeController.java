@@ -59,7 +59,6 @@ public class HomeController extends BaseController {
         //机构推荐
         List<Organization> organizationList = iOrganizationService.selectAllOrganization(1, 10);
         model.addAttribute("organizationList", organizationList);
-        System.out.println("organizationList"+organizationList);
 
         //公告类型（新闻中心，交易活动，政策中心）
         List<Announcement> newsList = (List<Announcement>) iAnnouncementService.selectAnnouncement("", 1, 10).getData();

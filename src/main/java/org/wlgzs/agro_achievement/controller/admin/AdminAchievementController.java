@@ -64,8 +64,8 @@ public class AdminAchievementController extends BaseController {
     //管理员添加成果
     @RequestMapping(value = "/adminAddAchievement")
     public ModelAndView adminAddAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, Model model,
-                                            HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
-        Result result = iAchievementService.saveAchievement(myFileNames, request, achievement, start_time, end_time);
+                                            HttpSession session,HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+        Result result = iAchievementService.saveAchievement(session,myFileNames, request, achievement, start_time, end_time);
         return new ModelAndView("redirect:/admin/adminAchievementList");
     }
 

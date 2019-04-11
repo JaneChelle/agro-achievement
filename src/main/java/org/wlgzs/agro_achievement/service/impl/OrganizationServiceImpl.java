@@ -58,7 +58,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
                     String realName = RandomNumberUtils.getRandomFileName() + suffixName;
 
                     // "/upload"是你自己定义的上传目录
-                    String realPath = System.getProperty("user.dir") + "/OrganizationLogo";
+                    String realPath = session.getServletContext().getRealPath("/OrganizationLogo");
                     File uploadFile = new File(realPath, realName);
 
                     //上传文件
@@ -180,7 +180,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
     }
 
     @Override
-    public Result saveOrganization(Organization organization, MultipartFile myFileName, HttpServletRequest request) {
+    public Result saveOrganization(HttpSession session,Organization organization, MultipartFile myFileName, HttpServletRequest request) {
         if (organization != null) {
             if (!myFileName.getOriginalFilename().equals("")) {
                 String fileName = myFileName.getOriginalFilename();
@@ -191,8 +191,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
                 String realName = RandomNumberUtils.getRandomFileName() + suffixName;
 
                 // "/upload"是你自己定义的上传目录
-                String realPath = System.getProperty("user.dir") + "/OrganizationLogo";
-                System.out.println("realPath"+realPath);
+                String realPath = session.getServletContext().getRealPath("/OrganizationLogo");
                 File uploadFile = new File(realPath, realName);
 
                 //上传文件

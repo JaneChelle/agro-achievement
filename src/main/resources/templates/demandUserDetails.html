@@ -14,21 +14,21 @@
 <body>
 <div class="box">
     <h3>基本信息</h3>
-    <div class="title">需求信息</div>
-    <form th:action="@{/demand/modifyDemand(demandId=${demand.demandId})}" method="post">
+    <div class="title">需求说明</div>
+    <form th:action="@{/demand/modifyDemand(demandId=${demand.demandId})}" method="post" onsubmit="modifyContent()">
             <table class="table table-hover table-bordered">
                 <tr>
                     <input type="hidden"  th:value="${session.user.userId}">
-                    <td>需求名字:	</td>
+                    <td>需求名字:</td>
                     <td><input type="text" name="demandName" th:value="${demand.demandName}" class="form-control"></td>
-                    <td>预期价格:	</td>
+                    <td>预期价格:</td>
                     <td><input type="text" name="expectedPrice" th:value="${demand.expectedPrice}" class="form-control"></td>
                 </tr>
                 <tr>
                     <td>需求者:	</td>
                     <td><input type="text" name="demanders" th:value="${demand.demanders}" class="form-control"  /></td>
-                    <td>需求说明:	</td>
-                    <td><input type="text" name="demandIntroduce" th:value="${demand.demandIntroduce}" class="form-control"  /></td>
+                    <td >需求介绍：</td>
+                    <td ><textarea  name="demandIntroduce" id="content" style="width: 100%;height: 100%;border: none;overflow-y: scroll; resize:none" th:text="${demand.demandIntroduce}"></textarea></td>
                 </tr>
                 <tr>
                     <td>发布时间:	</td>

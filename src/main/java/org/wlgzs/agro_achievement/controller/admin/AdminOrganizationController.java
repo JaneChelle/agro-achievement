@@ -12,6 +12,7 @@ import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -37,7 +38,6 @@ public class AdminOrganizationController extends BaseController {
         model.addAttribute("findName", findName);
         return new ModelAndView("admin/OrganizationList");
     }
-
     //去添加机构
     @RequestMapping(value = "/toAdminAddOrganization")
     public ModelAndView toAdd(Model model){
@@ -48,11 +48,12 @@ public class AdminOrganizationController extends BaseController {
         return new ModelAndView("admin/addOrganization");
     }
 
+
     //管理员添加机构
     @RequestMapping(value = "/adminAddOrganization")
-    public ModelAndView adminAddOrganization(@RequestParam(value = "file",required = false)MultipartFile myFileName, Model model, HttpServletRequest request,
+    public ModelAndView adminAddOrganization(HttpSession session, @RequestParam(value = "file",required = false)MultipartFile myFileName, Model model, HttpServletRequest request,
                                              Organization organization){
-        Result result = iOrganizationService.saveOrganization(organization,myFileName,request);
+        Result result = iOrganizationService.saveOrganization(session,organization,myFileName,request);
         return new ModelAndView("redirect:/admin/adminOrganizationList");
     }
 

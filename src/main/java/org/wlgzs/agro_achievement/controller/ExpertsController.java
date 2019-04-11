@@ -56,6 +56,10 @@ public class ExpertsController extends BaseController {
     public ModelAndView expertsUserDetails(Model model, HttpServletRequest request) {
         Experts experts = iExpertsService.expertsUserDetails(request);
         model.addAttribute("experts", experts);//专家信息
+        //查询所有类型
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
         if (experts == null) {
             model.addAttribute("msg", "请先申请成为专家！");
         } else if (experts.getStatusCode().equals("0")) {

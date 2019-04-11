@@ -163,3 +163,13 @@ textarea{
     background: #00b3ee;
     color: #fff !important;
 }
+.Introduce{
+    width: 300px;
+    display: inline-block;
+    line-height: 32px !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border: none!important;
+    border-top: 1px solid #ccc !important;
+}

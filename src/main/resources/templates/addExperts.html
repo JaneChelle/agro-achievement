@@ -10,6 +10,14 @@
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen"/>
     <script th:src="@{/js/jquery.js}"></script>
     <script th:src="@{/js/jedate.js}"></script>
+    <style>
+        th{
+            width: 10%;
+        }
+        td{
+            width: 40%;
+        }
+    </style>
 </head>
 <body>
 <div class="box">
@@ -75,6 +83,12 @@
                     <td><input type="text" name="position"   id=""></td>
                 </tr>
                 <tr>
+                    <th>联系方式:</th>
+                    <td><input type="text" name="expertsPhone"  id=""></td>
+                    <th>邮箱:</th>
+                    <td><input type="text" name="expertsEmail"  id=""></td>
+                </tr>
+                <tr>
                     <th>专家类型id:</th>
                     <td style="border-right:none;">
                         <span th:each="type : ${typeList}">
@@ -82,8 +96,10 @@
                                 th:text="${type.typeId}" th:for="${type.typeId}"></label>
                         </span>
                     </td>
-                    <th style="border-left:none;border-right:none;"></th>
-                    <td style="border-left:none;"></td>
+                    <th>研究领域:</th>
+                    <td style="border-right:none;"><input type="text" name="researchField"  id=""></td>
+                    <!--<th style="border-left:none;border-right:none;"></th>-->
+                    <!--<td style="border-left:none;"></td>-->
                 </tr>
                 <tr>
                     <th>照片地址:</th>
@@ -98,12 +114,6 @@
                         </div>
                         <input id="fileds" style="display: none;" name="file" type="file" accept="image/*" value="上传图片" />
                     </td>
-                    <th style="border-left:none;border-right:none;"></th>
-                    <td style="border-left:none;"></td>
-                </tr>
-                <tr>
-                    <th>研究领域:</th>
-                    <td style="border-right:none;"><input type="text" name="researchField"  id=""></td>
                     <th style="border-left:none;border-right:none;"></th>
                     <td style="border-left:none;"></td>
                 </tr>
@@ -130,12 +140,6 @@
                     </td>
                     <th style="border-left:none;border-right:none;"></th>
                     <td style="border-left:none;"></td>
-                </tr>
-                <tr>
-                    <th>联系方式:</th>
-                    <td><input type="text" name="expertsPhone"  id=""></td>
-                    <th>邮箱:</th>
-                    <td><input type="text" name="expertsEmail"  id=""></td>
                 </tr>
                 <tr>
                     <td colspan="6" class="pn-fbutton">

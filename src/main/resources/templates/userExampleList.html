@@ -27,7 +27,7 @@
         <thead style="background-color: #F2F2F2;">
         <tr>
             <th>案例标题</th>
-            <th>案例内容</th>
+            <th style="width: 475px;">案例内容</th>
             <!--<th>发布时间</th>-->
             <!--<th>审核状态码</th>-->
             <th>操作选择</th>
@@ -37,7 +37,7 @@
         <!--遍历-->
         <tr th:each="example : ${exampleList}">
             <td th:text="${example.exampleTitle}" class="exampleTitle"></td>
-            <td th:text="${example.exampleContent}" style="width: 30%;overflow: hidden;"></td>
+            <td th:text="${example.exampleContent}" class="Introduce" style="width: 475px;"></td>
             <!--<td th:text="${example.releaseTime}"></td>-->
             <!--<td th:text="${example.statusCode}"></td>-->
             <input type="hidden" th:value="${example.exampleId}" class="exampleId">

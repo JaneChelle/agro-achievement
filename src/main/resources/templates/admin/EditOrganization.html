@@ -34,10 +34,10 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form th:action="@{/admin/adminEditOrganization}" method="post" enctype="multipart/form-data" onsubmit="return modifyContent()">
+                <form th:action="@{/admin/adminEditOrganization}" method="post" enctype="multipart/form-data" onsubmit="return adminContent()">
                     <table class="table table-bordered addUser">
                         <thead>
-                        <input type="hidden" class="organizationContent" th:value="${organization.organizationIntroduce}" name="organizationIntroduce">
+                        <input type="hidden" name="organizationIntroduce" class="organizationContent" th:value="${organization.organizationIntroduce}">
                         <input type="hidden" name="organizationId" th:value="${organization.organizationId}">
                         <tr>
                             <th>机构名称</th>
@@ -161,8 +161,15 @@
     var content = $('.organizationContent').val();
     editor.txt.text(content);
 
+    function adminContent() {
+        var getContent = editor.txt.text();
+        console.log(getContent);
+        $('.organizationContent').val(getContent);
+        return;
+    }
 
-    // 状态码
+
+    // 状态码回显
     var options = $('.selectStatusCode option');
     var statusCode = $('.organizationStatusCode').val();
     for (var i = 0; i < options.length; i++) {

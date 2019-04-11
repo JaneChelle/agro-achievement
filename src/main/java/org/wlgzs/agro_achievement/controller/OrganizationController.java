@@ -40,7 +40,13 @@ public class OrganizationController extends BaseController {
         model.addAttribute("typeList", typeList);
         return new ModelAndView("addOrganization");
     }
-
+    //去详情页
+    @RequestMapping("/organizationUserDetails")
+    public ModelAndView organizationUserDetails(Model model, Integer organizationId) {
+        Organization organization = iOrganizationService.getById(organizationId);
+        model.addAttribute("organization", organization);
+        return new ModelAndView("organizationUserDetails");
+    }
     //添加机构
     @RequestMapping(value = "/addOrganization")
     public ModelAndView addOrganization(HttpServletRequest request,@RequestParam(value = "file",required = false)MultipartFile myFileName,

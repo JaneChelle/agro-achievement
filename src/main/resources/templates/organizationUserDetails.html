@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>机构发布详情-个人中心</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/jeDate_test.css}">
+    <link rel="stylesheet" th:href="@{/css/jedate.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen"/>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/distpicker.js}"></script>
+    <script th:src="@{/js/jedate.js}"></script>
+    <script th:src="@{/js/addAchievement.js}"></script>
+</head>
+<body>
+<div class="box">
+    <h3>机构发布详情</h3>
+    <form  id="myform">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>机构名称:</th>
+                    <td th:text="${organization.organizationName}"></td>
+                </tr>
+                <tr>
+                    <th>所在国家:</th>
+                    <td th:text="${organization.organizationCountry}"></td>
+                </tr>
+                <tr>
+                    <th>所在地区:</th>
+                    <td th:text="${organization.organizationRegion}"></td>
+                </tr>
+                <tr>
+                    <th>法人类别:</th>
+                    <td th:text="${organization.legalCategory}"></td>
+                </tr>
+                <tr>
+                    <th>机构简介：</th>
+                    <td th:text="${organization.organizationIntroduce}" style="width: 80%; "></td>
+                </tr>
+                <tr>
+                    <th>地址：</th>
+                    <td th:text="${organization.contactAddress}"></td>
+                </tr>
+                <tr>
+                    <th>联系人:	</th>
+                    <!--地区插件-->
+                    <td th:text="${organization.linkman}"></td>
+
+                </tr>
+                <tr>
+                    <th>电话:</th>
+                    <td th:text="${organization.phone}"></td>
+                </tr>
+                <tr>
+                    <th>邮箱:</th>
+                    <td th:text="${organization.email}"></td>
+                </tr>
+                <tr>
+                    <th>网址：</th>
+                    <td th:text="${organization.organizationUrl}"></td>
+                </tr>
+                <tr>
+                    <th>机构类型:</th>
+                    <td th:text="${organization.organizationTypeId}"></td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="pn-fbutton">
+                        <a th:href="@{/organization/selectOrganizationByUser(statusCode=0)}" class="a-div adiv3">返回</a>
+                    </td>
+                </tr>
+            </table>
+    </form>
+</div>
+<script th:src="@{/js/demo.js}"></script>
+<script>
+
+    $(function () {
+        //
+        var provice=$('#provice').val();
+        $("#city option").each(function () {
+            var val = $(this).text();
+            //console.log(val);
+            if(val ==provice){
+                $(this).attr("selected",true);
+            }
+        });
+
+        //radio回显
+        $(".Name").each(function () {
+            var typeName=$('#typeName').val();
+            var val = $(this).val();
+            if(val ==typeName){
+                $(this).attr("checked",true);
+            }
+        });
+    });
+
+
+
+
+</script>
+</body>
+</html>

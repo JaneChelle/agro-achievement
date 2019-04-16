@@ -49,7 +49,7 @@ public class HomeController extends BaseController {
         model.addAttribute("exampleList", exampleList);
 
         //专家推荐
-        Result result1 = iExpertsService.selectExperts(1, 10);
+        Result result1 = iExpertsService.selectExperts(1, 4);
         List<Experts> expertsList = null;
         if (result1.getCode() == 0) {
             expertsList = (List<Experts>) result1.getData();
@@ -112,17 +112,17 @@ public class HomeController extends BaseController {
         model.addAttribute("typeList", typeList);
 
         //最新专家
-        Result result = iExpertsService.selectExpertsByTime(8);
+        Result result = iExpertsService.selectExpertsByTime(3);
         List<Experts> expertsTimeList = (List<Experts>) result.getData();
         model.addAttribute("expertsTimeList", expertsTimeList);
 
         //专家排行
-        Result result2 = iExpertsService.expertRanking(8);
+        Result result2 = iExpertsService.expertRanking(5);
         List<Experts> expertsRankingList = (List<Experts>) result2.getData();
         model.addAttribute("expertsRankingList", expertsRankingList);
 
         //专家推荐
-        List<Experts> recommendList = iExpertsService.recommend(8);
+        List<Experts> recommendList = iExpertsService.recommend(3);
         model.addAttribute("recommendList", recommendList);
 
         return new ModelAndView("ExpertsHome");

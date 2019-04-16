@@ -173,37 +173,45 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     public Result addAdminExperts(HttpSession session,HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) {
         //文件处理（真实存储名）
         String realName = "";
-
+        String str = "";
         String fileName = myFileName.getOriginalFilename();
-        //截取后缀名
-        String suffixName = fileName.substring(fileName.indexOf("."), fileName.length());
+        if(fileName != null && !"".equals(fileName)){
+            //截取后缀名
+            String suffixName = fileName.substring(fileName.indexOf("."), fileName.length());
 
-        //生成实际储存的文件名（不能重复）
-        realName = RandomNumberUtils.getRandomFileName() + suffixName;
-        // "/upload"是你自己定义的上传目录
-        String realPath = session.getServletContext().getRealPath("/HeadPortrait");
-        File uploadFile = new File(realPath, realName);
+            //生成实际储存的文件名（不能重复）
+            realName = RandomNumberUtils.getRandomFileName() + suffixName;
+            // "/upload"是你自己定义的上传目录
+            String realPath = session.getServletContext().getRealPath("/HeadPortrait");
+            File uploadFile = new File(realPath, realName);
 
-        //上传文件
-        try {
-            myFileName.transferTo(uploadFile);
-        } catch (IOException e) {
-            e.printStackTrace();
+            //上传文件
+            try {
+                myFileName.transferTo(uploadFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            str = request.getContextPath() + "/HeadPortrait/" + realName;
+        }else{
+            str = "/HeadPortrait/morende.jpg";
         }
-        String str = request.getContextPath() + "/HeadPortrait/" + realName;
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime ldt = LocalDateTime.parse(time + " 00:00:00", formatter);
         experts.setExpertsBirth(ldt);
         experts.setPictureAddress(str);
-        experts.setPageView(0);
-        experts.setStatusCode("0");
         baseMapper.insert(experts);
         return new Result(ResultCode.SUCCESS);
     }
 
     @Override
-    public Result modifyExperts(Experts experts) {
-        if (experts != null) {
+    public Result modifyExperts(String time,Experts experts) {
+        if (experts.getExpertsId() != null) {
+            Experts experts1 = baseMapper.selectById(experts.getExpertsId());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime ldt = LocalDateTime.parse(time + " 00:00:00", formatter);
+            experts.setExpertsBirth(ldt);
+            experts.setPictureAddress(experts1.getPictureAddress());
             baseMapper.updateById(experts);
             return new Result(ResultCode.SUCCESS,experts);
         }

@@ -17,7 +17,7 @@
                 <li><a href="/LogUser/login">忘记密码?</a></li>
                 <li><a href="/LogUser/login">请注册</a></li>
                 <li><a th:if="${session.user==null}" href="/LogUser/login">登录</a></li>
-                <li><a th:if="${session.user!=null}" href="/LogUser/login">退出</a></li>
+                <li><a th:if="${session.user!=null}" href="/LogUser/exit">退出</a></li>
                 <li th:if="${session.user!=null}">欢迎：<span th:text="${session.user.userName}"></span></li>
                 <li th:if="${session.user==null}"><span></span></li>
             </ul>

@@ -57,7 +57,7 @@
 }
 .left>ul>li{
     border-bottom: 1px dotted #cccccc;
-    line-height: 40px;
+    line-height: 48px;
 }
 .left>ul>li>i,.right>ul>li>i,.best_new>ul>li>i{
     vertical-align: middle;
@@ -93,7 +93,6 @@
     text-decoration: none;
 }
 .mx-navigation {
-    margin: 4px;
     top: 42%;
 }
 .mx-prev, .mx-next{

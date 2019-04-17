@@ -65,6 +65,10 @@
                     <td th:text="${organization.organizationTypeId}"></td>
                 </tr>
                 <tr>
+                    <th>机构logo:</th>
+                    <td th:text="${organization.organizationLogo}"></td>
+                </tr>
+                <tr>
                     <td colspan="6" class="pn-fbutton">
                         <a th:href="@{/organization/selectOrganizationByUser(statusCode=0)}" class="a-div adiv3">返回</a>
                     </td>

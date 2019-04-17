@@ -46,23 +46,9 @@
                 </div>
             </div>
         </div>
-        <!--<div class="best_new">-->
-            <!--<a href="" class="zj_more">更多</a>-->
-            <!--<ul style="padding: 34px 0 0 15px;">-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">欧拉型藏羊繁育及生产技术推广</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">强盛1号</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">节水抗旱稻不育系、杂</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">抗植物病毒活性新农药</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">优质超细毛羊和绒山羊</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">大田专用缓/控释肥料</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">评价暑热证及中药药效的基因芯片</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-                <!--<li><i class="fa fa-forward" aria-hidden="true"></i><a href="">新型湍旋式废气处理装置-->
-                <!--</a><span style="float: right;margin-right: 25px;color: #cccccc;">2018-10-12</span></li>-->
-            <!--</ul>-->
-        <!--</div>-->
         <div class="jishu">
             <!--<a href="" class="zj_more">更多</a>-->
-            <ul style="padding: 34px 0 0 15px;">
+            <ul style="padding: 34px 15px 0 15px;">
                 <li th:each="expertsRanking : ${expertsRankingList}">
                     <i class="fa fa-forward" aria-hidden="true"></i>
                     <a th:href="@{/HomeController/expertsDetails(expertsId=${expertsRanking.expertsId})}" th:text="${expertsRanking.expertsName}">欧拉型藏羊繁育及生产技术推广</a>

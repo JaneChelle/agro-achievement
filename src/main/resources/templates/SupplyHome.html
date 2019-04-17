@@ -19,11 +19,6 @@
 </div>
 <div class="cg-contain">
     <div class="left">
-        <!--成果排行榜-->
-        <img th:src="@{/images/cg3.jpg}" alt="">
-        <ul >
-            <li th:each="achievement : ${achievement}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${achievement.achievementId})}"  th:text="${achievement.typeName}">种业</a></li>
-        </ul>
         <img th:src="@{/images/zj_04.jpg}" alt="" style="z-index: 1">
         <!--专家-->
         <ul class="area" th:each="expert : ${experts}">
@@ -35,7 +30,7 @@
         <div class="best_new">
             <a href="" class="zj_more">更多</a>
             <ul style="padding: 52px 0 0 15px;" >
-                <li th:each="demand : ${demand}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/demand/demandDetails(demandId=${demand.demandId})}" th:text="${demand.demandIntroduce}"></a></li>
+                <li th:each="demand : ${demand}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/demand/demandDetails(demandId=${demand.demandId})}" th:text="${demand.demandIntroduce}" style="width: 430px;"></a></li>
             </ul>
         </div>
         <!--<div class="jishu">-->
@@ -57,7 +52,12 @@
     <div class="right">
         <img th:src="@{/images/cg_09.jpg}" alt="">
         <ul >
-            <li th:each="organization : ${organization}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/ HomeController/organizationDetails(organizationId=${Organization.organizationId})}" th:text="${organization.organizationIntroduce}"></a></li>
+            <li th:each="organ : ${organization}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/ HomeController/organizationDetails(organizationId=${organ.organizationId})}" th:text="${organ.organizationName}"></a></li>
+        </ul>
+        <!--成果排行榜-->
+        <img th:src="@{/images/cg3.jpg}" alt="">
+        <ul >
+            <li th:each="achievement : ${achievement}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${achievement.achievementId})}"  th:text="${achievement.typeName}">种业</a></li>
         </ul>
     </div>
 </div>

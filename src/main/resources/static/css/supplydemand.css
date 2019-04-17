@@ -45,12 +45,13 @@
     margin-right: 10px;
 }
 .best_new{
-    background-image: url(../images/jf_06.jpg);
-    background-size:590px 319px;
+    background-image: url(../images/jf_061.jpg);
+    background-size:590px 52px;
     background-repeat:no-repeat;
     width:590px;
     margin-top: 10px;
     position: relative;
+    box-shadow: 2px 2px 2px #eee;
 }
 .zj_more{
     position: absolute;
@@ -93,7 +94,6 @@
     color: #000;
     text-decoration: none;
     display: inline-block;
-    width: 430px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

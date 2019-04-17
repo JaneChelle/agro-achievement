@@ -113,15 +113,10 @@
 .supplyDemand>ul>li,label div>ul>li{
     padding: 0 10px 10px 10px;
  }
-label div>ul>li{
-    padding: 0 10px 10px 10px;
-    height:25px;
-    line-height: 25px;
-}
 .supplyDemand>ul>li:nth-last-child(5){
     padding-top: 10px;
 }
-.supplyDemand>ul>li>a,label div>ul>li>a{
+.supplyDemand>ul>li>a{
     color: #000;
     text-decoration: none;
     display: inline-block;
@@ -134,7 +129,7 @@ label div>ul>li{
     overflow: hidden;
     margin: 10px 10px 0 10px;
 }
-.supplyDemand>ul>li>i,label div>ul>li>i{
+.supplyDemand>ul>li>i{
      vertical-align: super;
      margin-right: 2px;
      color: #41A809;
@@ -152,46 +147,33 @@ label div>ul>li{
     color: #41A809;
     text-decoration: none;
     font-size: 17px;
-
     font-weight: 800;
 }
-/*tab切换*/
-.wrap{
-    /*margin: 20px auto;*/
-    width:580px;
-    min-height: 180px;
-    border:1px solid #ccc;
-    position: relative;
-}
-
-label{
-    width: 100px;
-    height: 30px;
-    float: left;
-    text-align: center;
-    line-height:30px;
-    border-right: 1px solid #41A809;
-    border-bottom: 1px solid #41A809;
-}
-label:nth-of-type(4){
-    border-right: none;
-}
-label span{
+.tab{
+    display: inline-block;
+    padding: 8px 10px;
     cursor: pointer;
 }
-label div{
-    width:100%;
-    text-align: left;
-    position: absolute;
-    left: 0;
-    top: 31px;
-    /*background: #eeeeee;*/
+.tabpane{
     display: none;
-}
-label input{
-    width: 0;
-}
-input:checked+div{
-    display: block;
 
+}
+.tabpane>ul>li{
+    padding: 0 10px 10px 10px;
+    color: #41A809;
+}
+.tabpane>ul>li>a{
+    color: #000;
+    text-decoration: none;
+}
+.tabpane>ul>li>a:hover{
+    color: #41A809;
+    text-decoration: underline;
+}
+.active{
+    background-color: #41A809;
+    color: #fff;
+}
+.selected{
+    display: block;
 }

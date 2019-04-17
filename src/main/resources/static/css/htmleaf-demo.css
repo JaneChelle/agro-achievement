@@ -39,7 +39,6 @@ a{ color: rgba(255, 255, 255, 0.6);outline: none;text-decoration: none;-webkit-t
 a:hover,a:focus{color:#74777b;text-decoration: none;}
 .htmleaf-container{
 	margin: 0 auto;
-	height:300px;
 }
 
 .bgcolor-1 { background: #f0efee; }

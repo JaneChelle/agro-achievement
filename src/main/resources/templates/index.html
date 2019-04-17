@@ -45,7 +45,7 @@
             </div>
             <ul class="newsCon">
                 <li th:each="news: ${newsList}">
-                    <a target="_blank" th:href="@{/Announcement/announcementDetails(announcementId=${news.announcementId})}" title=""><span th:text="${news.announcementTitle}"></span></a>
+                    <a target="_blank" th:href="@{/Announcement/announcementDetails(announcementId=${news.announcementId})}" th:title="${news.announcementTitle}"><span th:text="${news.announcementTitle}"></span></a>
                     <span style="color:#666;float: right" th:text="${#temporals.format(news.releaseTime, 'yyyy-MM-dd')}"></span>
                 </li>
             </ul>
@@ -94,7 +94,7 @@
             </div>
             <ul >
                 <li th:each="achievement : ${achievementList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.achievementIntroduce}" th:text="${achievement.achievementIntroduce}" target="_blank">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.achievementName}" th:text="${achievement.achievementName}" target="_blank">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(achievement.endTime,'yyyy-MM-dd')}"></span>-->
                     <span  th:text="${#temporals.format(achievement.endTime, 'yyyy-MM-dd')}"></span>
@@ -109,7 +109,7 @@
             </div>
             <ul>
                 <li th:each="demand : ${demandList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${demand.demandIntroduce}" target="_blank" th:text="${demand.demandIntroduce}">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${demand.demandName}" target="_blank" th:text="${demand.demandName}">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(demand.releaseTime,'yyyy-MM-dd')}"></span>-->
                     <span  th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}" style="float: right;"></span>
@@ -118,22 +118,19 @@
         </div>
         <!--成果推荐-->
         <div class="supplyDemand wrap" style="margin-top: 20px">
-            <label>
-                <span>机构推荐</span>
-                <input type="radio" name="tab">
-                <div>
+            <div  id="tab">
+                <div class="active tab">机构推荐</div><div class="tab">专家推荐</div>
+            </div>
+            <div class="tabdiv">
+                <div class="organization tabpane selected">
                     <ul>
                         <li th:each="organization: ${organizationList}">
-                            <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/organizationDetails(organizationId=${organization.organizationId})}" th:title="${organization.organizationIntroduce}" th:text="${organization.organizationIntroduce}" target="_blank">
+                            <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/organizationDetails(organizationId=${organization.organizationId})}" th:title="${organization.organizationName}" th:text="${organization.organizationName}" target="_blank">
                         </a>
                         </li>
                     </ul>
                 </div>
-            </label>
-            <label>
-                <span>专家推荐</span>
-                <input type="radio" name="tab">
-                <div>
+                <div class="experts tabpane">
                     <ul>
                         <li th:each="experts : ${expertsList}">
                             <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/expertsDetails(expertsId=${experts.expertsId})}" th:title="${experts.expertsName}" th:text="${experts.expertsName}" target="_blank">
@@ -141,7 +138,8 @@
                         </li>
                     </ul>
                 </div>
-            </label>
+            </div>
+
         </div>
         <!--成功案例-->
         <div class="supplyDemand" style="float: right;margin-top: 20px">

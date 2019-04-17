@@ -66,31 +66,31 @@
 }
 .jishu{
     background-image: url(../images/zj_02.jpg);
-    background-size:590px 282px;
+    background-size:590px 310px;
     background-repeat:no-repeat;
     width:590px;
     margin-top: 10px;
     position: relative;
 }
-.right>ul>li,.best_new>ul>li,.jishu>ul>li{
+.jishu>ul>li{
     border-bottom: 1px dotted #cccccc;
-    line-height: 30px;
+    line-height: 53px;
 }
 .left>ul>li{
     border-bottom: 1px dotted #cccccc;
-    line-height: 38px;
+    line-height: 50px;
 }
-.left>ul>li>i,.right>ul>li>i,.best_new>ul>li>i,.jishu>ul>li>i{
+.left>ul>li>i,.jishu>ul>li>i{
     vertical-align: middle;
     margin-right: 2px;
     padding-left: 10px;
     color: #41A809;
 }
-.left>ul>li>a,.right>ul>li>a,.best_new>ul>li>a,.jishu>ul>li>a{
+.left>ul>li>a,.jishu>ul>li>a{
     color: #000;
     text-decoration: none;
 }
-.left>ul>li>a:hover,.right>ul>li>a:hover,.best_new>ul>li>a:hover,.jishu>ul>li>a:hover{
+.left>ul>li>a:hover,.jishu>ul>li>a:hover{
     color: #41A809;
     text-decoration: underline;
 }
@@ -98,6 +98,7 @@
 .mx-bugs_bunny{
     width: 100%;
     max-width: 700px;
+    overflow: hidden;
 }
 .mx-bugs_info{
     position: absolute;
@@ -114,7 +115,6 @@
     text-decoration: none;
 }
 .mx-navigation {
-    margin: 4px;
     top: 42%;
 }
 .mx-prev, .mx-next{

@@ -36,3 +36,17 @@ function setDate() {
         hrDegrees = ((hrs / 12) * 360) + 115;
     hourHand.style.transform = `rotate(${hrDegrees}deg)`;
 }
+
+var span = document.getElementsByClassName('tab'),       //css选择器
+    div = document.getElementsByClassName('tabpane');
+
+for(let i=0; i<span.length; i++){
+    span[i].onclick = function(){
+        for(let j=0;j<div.length;j++){
+            span[j].classList.remove("active");
+            div[j].style.display ="none";
+        }
+        div[i].style.display ="block";
+        span[i].classList.add("active");
+    }
+}

@@ -66,8 +66,8 @@ public class AdminExpertsController extends BaseController {
 
     //修改专家
     @RequestMapping(value = "/adminEditExperts")
-    public ModelAndView modifyExperts(Experts experts, Model model) {
-        Result result = iExpertsService.modifyExperts(experts);
+    public ModelAndView modifyExperts(String time,Experts experts, Model model) {
+        Result result = iExpertsService.modifyExperts(time,experts);
         if (result.getCode() == 0) {
             Experts experts1 = (Experts) result.getData();
             model.addAttribute("msg", "修改成功！");

@@ -54,7 +54,7 @@ public interface IExpertsService extends IService<Experts> {
     Result addAdminExperts(HttpSession session, HttpServletRequest request, String time, Experts experts, MultipartFile myFileName);
 
     //修改专家信息
-    Result modifyExperts(Experts experts);
+    Result modifyExperts(String time,Experts experts);
 
     //删除专家信息
     Result adminDeleteExpertsId(Integer expertsId);

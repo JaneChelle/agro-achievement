@@ -161,8 +161,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public Result adminAddUser(User user) {
         if(user != null){
-            baseMapper.insert(user);
-            return new Result(ResultCode.SUCCESS,"添加成功！");
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("user_name",user.getUserName());
+            User user1 = baseMapper.selectOne(queryWrapper);
+            if(user1 == null){
+                baseMapper.insert(user);
+                return new Result(ResultCode.SUCCESS,"添加成功！");
+            }
+            return new Result(ResultCode.FAIL,"添加失败！");
         }
         return new Result(ResultCode.FAIL,"添加失败！");
     }

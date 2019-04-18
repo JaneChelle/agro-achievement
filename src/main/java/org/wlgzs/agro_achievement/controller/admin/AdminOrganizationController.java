@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Organization;
+import org.wlgzs.agro_achievement.entity.OrganizationType;
 import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
 
@@ -42,8 +43,8 @@ public class AdminOrganizationController extends BaseController {
     @RequestMapping(value = "/toAdminAddOrganization")
     public ModelAndView toAdd(Model model){
         //查询所有类型
-        Result result1 = iTypeService.selectAllType();
-        List<Type> typeList = (List<Type>) result1.getData();
+        Result result1 = iOrganizationTypeService.selectAllOrganizationType();
+        List<OrganizationType> typeList = (List<OrganizationType>) result1.getData();
         model.addAttribute("typeList", typeList);
         return new ModelAndView("admin/addOrganization");
     }
@@ -63,8 +64,8 @@ public class AdminOrganizationController extends BaseController {
         Organization organization = iOrganizationService.getById(organizationId);
         model.addAttribute("organization", organization);
         //查询所有类型
-        Result result1 = iTypeService.selectAllType();
-        List<Type> typeList = (List<Type>) result1.getData();
+        Result result1 = iOrganizationTypeService.selectAllOrganizationType();
+        List<OrganizationType> typeList = (List<OrganizationType>) result1.getData();
         model.addAttribute("typeList", typeList);
         return new ModelAndView("admin/EditOrganization");
     }

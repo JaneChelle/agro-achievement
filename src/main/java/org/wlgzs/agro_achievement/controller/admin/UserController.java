@@ -47,13 +47,12 @@ public class UserController extends BaseController {
         return new ModelAndView("admin/addUser");
     }
 
-
     //后台增加用户
     @RequestMapping(value = "/adminAddUser")
-    public ModelAndView adminAddUser(Model model,User user){
+    public Result adminAddUser(User user){
+        System.out.println(user);
         Result result = iUserService.adminAddUser(user);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/adminUserList");
+        return result;
     }
 
     //后台删除用户

@@ -22,21 +22,24 @@
 <div class="me_con">
     <div class="me_left" >
         <div class="center">
-            <h4><a  th:text="${Organization.organizationName}"></a></h4>
+            <h4><a  th:text="${organization.organizationName}"></a></h4>
         </div>
-        <div class="img_bian">
+        <div th:if="${organization.organizationLogo} == null" class="img_bian">
             <img th:src="@{/images/show9.JPG}" alt="">
         </div>
+        <div th:if="${organization.organizationLogo} != null" class="img_bian">
+            <img th:src="${organization.organizationLogo}" alt="">
+        </div>
         <div class="me_details">
-            <div>所在地区：<span th:text="${Organization.organizationRegion}">---</span></div>
+            <div>所在地区：<span th:text="${organization.organizationRegion}">---</span></div>
             <hr>
             <div>联系方式</div>
             <ul>
-                <li>联系人：<span th:text="${Organization.linkman}"></span></li>
-                <li>电 话：<span th:text="${Organization.phone}"></span></li>
-                <li>邮 箱：<span th:text="${Organization.email}"></span></li>
-                <li>网 址：<span th:text="${Organization.organizationUrl}"></span></li>
-                <li>地 址：<span th:text="${Organization.contactAddress}"></span></li>
+                <li>联系人：<span th:text="${organization.linkman}"></span></li>
+                <li>电 话：<span th:text="${organization.phone}"></span></li>
+                <li>邮 箱：<span th:text="${organization.email}"></span></li>
+                <li>网 址：<span th:text="${organization.organizationUrl}"></span></li>
+                <li>地 址：<span th:text="${organization.contactAddress}"></span></li>
             </ul>
         </div>
     </div>
@@ -44,15 +47,15 @@
         <div class="people">
             <img th:src="@{/images/peopleicon.png}" alt=""><span>机构基本信息</span><br>
             <ul>
-                <li>所在国家：<span th:text="${Organization.organizationCountry}">中国大陆</span></li>
-                <li>法人类别：<span th:text="${Organization.legalCategory}">事业单位法人</span></li>
-                <li>机构类型:<span th:text="${Organization.organizationTypeId}">科研教学单位</span></li>
-                <li>所在地区:<span th:text="${Organization.organizationRegion}">--</span></li>
+                <li>所在国家：<span th:text="${organization.organizationCountry}">中国大陆</span></li>
+                <li>法人类别：<span th:text="${organization.legalCategory}">事业单位法人</span></li>
+                <li>机构类型:<span th:text="${organization.typeName}">科研教学单位</span></li>
+                <li>所在地区:<span th:text="${organization.organizationRegion}">--</span></li>
             </ul>
         </div>
         <div class="people">
             <img th:src="@{/images/icon2.png}" alt=""><span>机构简介</span><br>
-            <p th:text="${Organization.organizationIntroduce}">
+            <p th:text="${organization.organizationIntroduce}">
             </p>
         </div>
         <!--<div class="people" >-->

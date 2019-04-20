@@ -23,7 +23,7 @@
     <h3>填写基本信息</h3>
     <div class="title">需求说明</div>
         <form th:action="@{/demand/addDemand}" method="post" id="myform" onsubmit="modifyContent()">
-            <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered">
                 <div class="form-group">
                     <!-- 编辑器编辑，提交时执行js，获得编辑器的内容，赋值给textarea，用于向后台提交存入数据库 -->
                     <input type="hidden" name="demandIntroduce" id="content">

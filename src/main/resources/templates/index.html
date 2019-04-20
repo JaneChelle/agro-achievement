@@ -43,7 +43,7 @@
                 <a href="" style="font-weight: 800" class="title">新闻中心</a>
                 <a th:href="@{/Announcement/selectAnnouncement}"  class="more">更多</a>
             </div>
-            <ul class="newsCon">
+            <ul class="newsCon" style="padding-top: 20px;">
                 <li th:each="news: ${newsList}">
                     <a target="_blank" th:href="@{/Announcement/announcementDetails(announcementId=${news.announcementId})}" th:title="${news.announcementTitle}"><span th:text="${news.announcementTitle}"></span></a>
                     <span style="color:#666;float: right" th:text="${#temporals.format(news.releaseTime, 'yyyy-MM-dd')}"></span>

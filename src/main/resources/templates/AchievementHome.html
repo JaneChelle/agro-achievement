@@ -49,7 +49,7 @@
         </div>
         <div class="best_new">
             <!--最新发布-->
-            <ul style="padding: 30px 0 0 15px;">
+            <ul style="padding: 40px 0 0 15px;">
                 <li th:each="achievementTime : ${achievementTimeList}">
                     <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${achievementTime.achievementId})}" th:text="${achievementTime.achievementName}"></a>
                 </li>
@@ -74,10 +74,10 @@
 <!--成果图片展示-->
 <div class="cg-show2">
     <a th:href="@{/achievement/selectAchieveByType}" class="cg-more">更多</a>
-    <div class="imgs" th:each="achievementTime : ${achievementTimeList}">
-        <div class="cg_pic">
+    <div class="imgs" >
+        <div class="cg_pic" th:each="achievementTime : ${achievementTimeList}">
             <img th:src="${achievementTime.pictureAddress}" alt="">
-            <a th:href="@{/achievement/achievementDetails(achievementId=${achievementTime.achievementId})}" th:text="${achievementTime.achievementIntroduce}">玉米新品种 “衡玉1182” 河南省经营权预转让</a>
+            <a th:href="@{/achievement/achievementDetails(achievementId=${achievementTime.achievementId})}" th:text="${achievementTime.achievementName}" th:title="${achievementTime.achievementName}">玉米新品种 “衡玉1182” 河南省经营权预转让</a>
         </div>
     </div>
 </div>

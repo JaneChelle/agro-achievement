@@ -90,11 +90,11 @@
         <div class="supplyDemand">
             <div class="h_block">
                 <a style="float: left">技术供给</a>
-                <a href="" style="float: right">更多</a>
+                <a th:href="@{/achievement/selectAllAchievement}" style="float: right">更多</a>
             </div>
             <ul >
                 <li th:each="achievement : ${achievementList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${achievement.achievementName}" th:text="${achievement.achievementName}" target="_blank">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${achievement.achievementId})}" th:title="${achievement.achievementName}" th:text="${achievement.achievementName}" target="_blank">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(achievement.endTime,'yyyy-MM-dd')}"></span>-->
                     <span  th:text="${#temporals.format(achievement.endTime, 'yyyy-MM-dd')}"></span>
@@ -105,11 +105,11 @@
         <div class="supplyDemand" style="float: right">
             <div class="h_block">
                 <a style="float: left">技术需求</a>
-                <a href="" style="float: right">更多</a>
+                <a th:href="@{/demand/selectAllDemand}" style="float: right">更多</a>
             </div>
             <ul>
                 <li th:each="demand : ${demandList}">
-                    <i class="fa fa-forward" aria-hidden="true"></i><a href="" th:title="${demand.demandName}" target="_blank" th:text="${demand.demandName}">
+                    <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/demand/demandDetails(demandId=${demand.demandId})}" th:title="${demand.demandName}" target="_blank" th:text="${demand.demandName}">
                     </a>
                     <!--<span style="float: right" th:text="${#dates.format(demand.releaseTime,'yyyy-MM-dd')}"></span>-->
                     <span  th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}" style="float: right;"></span>
@@ -161,7 +161,7 @@
     <div class="three">
         <div class="item" style="width: 1200px;margin-bottom: 20px">
             <i class="fa fa-life-ring" aria-hidden="true"></i>
-            <a href="" style="font-weight: 800" class="title">最新资讯</a>
+            <a th:href="@{/Announcement/selectAnnouncement}" style="font-weight: 800" class="title">最新资讯</a>
         </div>
         <!--交易活动动态-->
         <div class="supplyDemand">

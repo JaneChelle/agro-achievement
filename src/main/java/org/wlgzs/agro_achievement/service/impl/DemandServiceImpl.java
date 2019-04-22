@@ -127,6 +127,7 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
     public Result saveDemand(Demand demand,String time) {
         if (demand != null) {
             //获取现在时间
+            System.out.println(time);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime releaseTime = LocalDateTime.parse(time, formatter);
 //            demand.setStatusCode("0");//需要审核

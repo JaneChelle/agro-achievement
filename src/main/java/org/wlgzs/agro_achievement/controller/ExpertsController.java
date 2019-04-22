@@ -55,6 +55,10 @@ public class ExpertsController extends BaseController {
     @RequestMapping(value = "/expertsUserDetails")
     public ModelAndView expertsUserDetails(Model model, HttpServletRequest request) {
         Experts experts = iExpertsService.expertsUserDetails(request);
+        if(experts != null){
+            experts.setPageView(experts.getPageView() + 1);
+            iExpertsService.updateById(experts);
+        }
         model.addAttribute("experts", experts);//专家信息
         //查询所有类型
         Result result1 = iTypeService.selectAllType();

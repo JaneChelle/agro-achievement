@@ -48,8 +48,8 @@
         <div class="list_one" id="two"><i class="fa fa-user-circle-o" aria-hidden="true"></i>专家服务</div>
         <div class="list_two">
             <input th:type="hidden" th:value="${session.user.userLevel}">
-            <div  th:if="${session.user.userLevel } == 3 "  class="addColor" id="expertInfo">专家信息</div>
-            <div class="addColor" id="expertsUserDetails">专家详情</div>
+            <div  th:if="${session.user.userLevel } == 3 "  class="addColor" id="expertInfo">申请专家</div>
+            <div  th:if="${session.user.userLevel } == 2 " class="addColor" id="expertsUserDetails">专家详情</div>
         </div>
     </div>
     <div>

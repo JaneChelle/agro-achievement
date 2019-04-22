@@ -29,7 +29,7 @@ public class HomeController extends BaseController {
     @RequestMapping("/home")
     public ModelAndView home(Model model) {
         //首页技术供给
-        List<Achievement> achievementList = iAchievementService.selectAchieveByTime();
+        List<Achievement> achievementList = iAchievementService.selectAchieveByTime("home");
         model.addAttribute("achievementList", achievementList);
 
         //首页技术需求
@@ -80,7 +80,7 @@ public class HomeController extends BaseController {
         model.addAttribute("typeList", typeList);
 
         //最新发布
-        List<Achievement> achievementTimeList = iAchievementService.selectAchieveByTime();
+        List<Achievement> achievementTimeList = iAchievementService.selectAchieveByTime("");
         String img;
         for (int i = 0; i < achievementTimeList.size(); i++) {
             if (achievementTimeList.get(i).getPictureAddress().contains(",")) {
@@ -92,8 +92,15 @@ public class HomeController extends BaseController {
         model.addAttribute("achievementTimeList", achievementTimeList);
 
         //排行榜
-        Result result = iAchievementService.rankingAchievement(1, 10);
+        Result result = iAchievementService.rankingAchievement(1, 5);
         List<Achievement> achievementRankingList = (List<Achievement>) result.getData();
+        for (int i = 0; i < achievementRankingList.size(); i++) {
+            if (achievementRankingList.get(i).getPictureAddress().contains(",")) {
+                img = achievementRankingList.get(i).getPictureAddress();
+                img = img.substring(0, img.indexOf(","));
+                achievementRankingList.get(i).setPictureAddress(img);
+            }
+        }
         model.addAttribute("achievementRankingList", achievementRankingList);
 
         //推荐

@@ -46,7 +46,7 @@ public interface IAchievementService extends IService<Achievement> {
     Result selectAchieveByType(String type, int current, int limit);
 
     //按时间查询（首页）
-    List<Achievement> selectAchieveByTime();
+    List<Achievement> selectAchieveByTime(String home);
 
     //推荐成果
     List<Achievement> hotAchievement();

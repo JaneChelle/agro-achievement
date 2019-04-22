@@ -46,8 +46,8 @@
             <img th:src="@{/images/tu-3.png}" alt="">
         </h4>
             <div class="imgkuang">
-                <ul>
-                    <li class="lii"><a href="#"><img th:src="${achievement.pictureAddress}" style="height:200px"/></a></li>
+                <ul th:each="achievementImg : ${achievementImg}">
+                    <li class="lii"><a href="#"><img th:src="${achievementImg}" style="height:200px"/></a></li>
                 </ul>
             </div>
     </div>

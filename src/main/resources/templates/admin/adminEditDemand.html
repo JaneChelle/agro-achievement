@@ -46,9 +46,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>审核状态码:	</td>
+                        <th>审核状态码:</th>
                         <td>
-                            <input type="text" name="statusCode" class="form-control" required="required" th:value="${demand.statusCode}">
+                            <select class="form-control" name="statusCode" style="width: 226px">
+                                <option value="">请选择审核状态码</option>
+                                <option value="0">未审核</option>
+                                <option value="1">通过</option>
+                                <option value="2">失败</option>
+                            </select>
+                            <input type="hidden" class="statusCode" th:value="${demand.statusCode}"/>
                         </td>
                         <td>发布时间:	</td>
                         <td>

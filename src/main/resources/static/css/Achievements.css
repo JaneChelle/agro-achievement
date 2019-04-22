@@ -151,11 +151,12 @@
 }
 .cg-show2{
     position: relative;
-    width:1200px;
+    width: 1200px;
     margin: 0 auto;
     background-image: url(../images/cg6.jpg);
-    background-repeat:no-repeat;
-    background-size: 1200px 300px;
+    background-repeat: no-repeat;
+    background-size: 1200px 65px;
+    box-shadow: 2px 2px 2px 2px #eee;
 }
 .cg-more{
     position: absolute;
@@ -169,6 +170,7 @@
 }
 .cg_pic{
     float: left;
+    margin-left: 8px;
 }
 .cg_pic>a{
      display: block;

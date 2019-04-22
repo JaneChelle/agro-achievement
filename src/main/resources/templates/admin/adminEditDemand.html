@@ -36,6 +36,7 @@
                 <input type="hidden" name="demandId" class="form-control" required="required" th:value="${demand.demandId}" readonly="readonly" unselectable="on" disabled="disabled">
                 <table class="table table-hover table-bordered">
                     <tr>
+                        <input type="hidden" name="demandId" th:value="${demand.demandId}">
                         <td>需求名字:	</td>
                         <td>
                             <input type="text" name="demandName" class="form-control" required="required" th:value="${demand.demandName}">
@@ -58,7 +59,7 @@
                     <tr>
                         <th>审核状态码:</th>
                         <td>
-                            <select class="form-control" name="statusCode" style="width: 226px">
+                            <select class="modifyDemand" name="statusCode" style="width: 85%; height: 35px; margin-left: -70px;">
 
                                 <option value="">请选择审核状态码</option>
                                 <option value="0">未审核</option>

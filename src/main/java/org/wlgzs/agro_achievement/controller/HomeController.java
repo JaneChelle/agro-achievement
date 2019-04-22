@@ -41,7 +41,7 @@ public class HomeController extends BaseController {
         model.addAttribute("demandList", demandList);
 
         //成功案例
-        Result result = iCaseService.selectExample(1, 10);
+        Result result = iCaseService.selectExample(1, 4);
         List<Example> exampleList = null;
         if (result.getCode() == 0) {
             exampleList = (List<Example>) result.getData();
@@ -49,7 +49,7 @@ public class HomeController extends BaseController {
         model.addAttribute("exampleList", exampleList);
 
         //专家推荐
-        Result result1 = iExpertsService.selectExperts(1, 4);
+        Result result1 = iExpertsService.selectExperts(1, 5);
         List<Experts> expertsList = null;
         if (result1.getCode() == 0) {
             expertsList = (List<Experts>) result1.getData();
@@ -57,7 +57,7 @@ public class HomeController extends BaseController {
         model.addAttribute("expertsList", expertsList);
 
         //机构推荐
-        List<Organization> organizationList = iOrganizationService.selectAllOrganization(1, 10);
+        List<Organization> organizationList = iOrganizationService.selectAllOrganization(1, 5);
         model.addAttribute("organizationList", organizationList);
 
         //公告类型（新闻中心，交易活动，政策中心）

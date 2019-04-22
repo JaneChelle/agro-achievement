@@ -115,7 +115,7 @@ public class LogUserController extends BaseController {
     @RequestMapping(value = "/exit")
     public ModelAndView exit(HttpSession session){
         session.removeAttribute("user");
-        return new ModelAndView("redirect:/LogUser/toLogin");
+        return new ModelAndView("redirect:/HomeController/home");
     }
 
     //管理员退出登录

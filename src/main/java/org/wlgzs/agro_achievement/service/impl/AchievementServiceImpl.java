@@ -134,7 +134,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         if (achievement != null) {
             //删除文件
             String Img = achievement.getPictureAddress();
-            if(Img != null){
+            if (Img != null) {
                 String[] arr = Img.split(",");
                 for (int i = 0; i < arr.length; i++) {
                     File file = new File(System.getProperty("user.dir") + arr[i]);
@@ -179,8 +179,8 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             if (achievement1 != null) {
                 achievement.setReleaseTime(achievement1.getReleaseTime());
                 String str = achievement1.getPictureAddress();
-                if(str != null && str.contains(",")){
-                    str = str.substring(0,str.indexOf(","));
+                if (str != null && str.contains(",")) {
+                    str = str.substring(0, str.indexOf(","));
                 }
                 achievement.setPictureAddress(str);
                 if (!"".equals(start_time) && !"".equals(end_time)) {
@@ -281,15 +281,21 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     }
 
     @Override
-    public List<Achievement> selectAchieveByTime() {
+    public List<Achievement> selectAchieveByTime(String home) {
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("status_code", "1").orderByDesc(true, "release_time");
-        Page page = new Page(1, 10);
+        Page page;
+        if("home".equals(home)){
+            page = new Page(1,10);
+        }else{
+            page = new Page(1,3);
+        }
+
         IPage<Achievement> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Achievement> achievementList = iPage.getRecords();
         String img;
         for (int i = 0; i < achievementList.size(); i++) {
-            if (achievementList.get(i).getPictureAddress()!=null && achievementList.get(i).getPictureAddress().contains(",")) {
+            if (achievementList.get(i).getPictureAddress() != null && achievementList.get(i).getPictureAddress().contains(",")) {
                 img = achievementList.get(i).getPictureAddress();
                 img = img.substring(0, img.indexOf(","));
                 achievementList.get(i).setPictureAddress(img);
@@ -300,7 +306,8 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
 
     @Override
     public List<Achievement> hotAchievement() {
-        return null;
+        List<Achievement> achievementList = baseMapper.hotAchievement();
+        return achievementList;
     }
 
     @Override
@@ -313,7 +320,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     }
 
     @Override
-    public Result saveAchievement(HttpSession session,MultipartFile[] myFileNames, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+    public Result saveAchievement(HttpSession session, MultipartFile[] myFileNames, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
         if (achievement != null) {
             //文件处理（真实存储名）
             String realName = "";

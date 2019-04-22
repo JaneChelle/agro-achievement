@@ -155,13 +155,22 @@ public class AchievementController extends BaseController {
     public ModelAndView achievementDetails(Model model, Integer achievementId) {
         Result result = iAchievementService.achievementDetails(achievementId);
         Achievement achievement = (Achievement) result.getData();
-
+        achievement.setPageView(achievement.getPageView() + 1);
+        iAchievementService.updateById(achievement);
         String img = achievement.getPictureAddress();
         List<String> achievementImg = null;
         //图片集合
         if(img != null){
             achievementImg = Arrays.asList(img.split(","));
         }
+        System.out.println(achievementImg);
+//        for (int i = 0; i < achievementImg.size(); i++) {
+//            if (achievementImg.get(i).contains(",")) {
+//                img = achievementImg.get(i);
+//                img = img.substring(0, img.indexOf(","));
+//                achievementImg.set(i,img);
+//            }
+//        }
 
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String start_time = df.format(achievement.getStartTime());

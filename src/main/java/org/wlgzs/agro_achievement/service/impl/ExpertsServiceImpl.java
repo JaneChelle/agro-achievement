@@ -3,10 +3,12 @@ package org.wlgzs.agro_achievement.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Experts;
 import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.mapper.ExpertsMapper;
+import org.wlgzs.agro_achievement.mapper.UserMapper;
 import org.wlgzs.agro_achievement.service.IExpertsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,9 @@ import java.util.List;
  */
 @Service
 public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> implements IExpertsService {
+
+    @Autowired
+    UserMapper userMapper;
 
     //申请成为专家
     @Override
@@ -77,6 +82,8 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         experts.setStatusCode("0");
         experts.setUserId(user.getUserId());
         baseMapper.insert(experts);
+        user.setUserLevel("2");
+        userMapper.updateById(user);
         return new Result(ResultCode.SUCCESS, "请耐心等待审核！");
     }
 

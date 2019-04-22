@@ -115,6 +115,10 @@ public class DemandController extends BaseController {
     public ModelAndView demandDetails(Model model,Integer demandId) {
         Result result = iDemandService.demandDetails(demandId);
         Demand demand = (Demand) result.getData();
+        if(demand != null){
+            demand.setPageView(demand.getPageView() + 1);
+            iDemandService.updateById(demand);
+        }
         model.addAttribute("demand",demand);
         return new ModelAndView("demandDetails");
     }

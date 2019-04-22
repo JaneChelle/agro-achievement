@@ -1,4 +1,4 @@
-setInterval("data.innerHTML=new Date().toLocaleString()",1000);
+// setInterval("data.innerHTML=new Date().toLocaleString()",1000);
 //侧边栏 换色
 var list = $('.list');
 list.on('click',function (){
@@ -7,7 +7,7 @@ list.on('click',function (){
 	}
 	$(this).addClass('sliber_active');			
 	
-})
+});
 
 //添加弹框
 $(document).ready(function(){
@@ -25,14 +25,14 @@ $(document).ready(function(){
 			})
 		}
 		
-	})
+	});
 	$('.popup_bottom>input[type=button]').click(function(){
 		$('popup').fadeOut();
 		$('.popup').animate({
 			top:"-32px"
 		})
 	})
-})
+});
 
 //修改弹框
 $(document).ready(function(){

@@ -52,8 +52,6 @@
 		                    <th>研发开始时间</th>
 		                    <th>研发结束时间</th>
 		                    <th>联系人</th>
-		                    <th>点击量</th>
-		                    <th>审核状态码</th>
 		                    <th>操作</th>
 		                </tr>
 		            </thead>
@@ -70,8 +68,6 @@
 							<td th:text="${#temporals.format(achievement.startTime, 'yyyy-MM-dd')}"></td>
 							<td th:text="${#temporals.format(achievement.endTime, 'yyyy-MM-dd')}"></td>
 		            		<td th:text="${achievement.linkman}">徐德锋</td>
-		            		<td th:text="${achievement.pageView}">徐德锋</td>
-		            		<td th:text="${achievement.statusCode}">0</td>
 		            		<td>
 								<a th:href="@{/admin/toAdminEditAchievement(achievementId=${achievement.achievementId})}">详情</a>
 		            			<button type="button" class="btn deleteAchievement">删除</button>
@@ -122,9 +118,6 @@
 		</div>
 
     </section>
-    
-    
-
 </body>
 	<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{../js/adminAchievement.js}"></script>

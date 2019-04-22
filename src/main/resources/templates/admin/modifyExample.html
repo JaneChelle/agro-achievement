@@ -52,8 +52,8 @@
                         <tr>
                             <th>审核状态码</th>
                             <td>
-                                <select name="statusCode" class="modifyAchievementCode">
-                                    <option>请选择审核状态码</option>
+                                <select name="statusCode" class="modifyExample" style="width: 231px;">
+                                    <option value="">请选择审核状态码</option>
                                     <option value="0">未审核</option>
                                     <option value="1">通过</option>
                                     <option value="2">失败</option>
@@ -90,7 +90,7 @@
 
 
     // 状态码
-    var options = $('.modifyAchievementCode option');
+    var options = $('.modifyExample option');
     var statusCode = $('.statusCode').val();
     for (var i = 0; i < options.length; i++) {
         if ($(options[i]).val() == statusCode) {

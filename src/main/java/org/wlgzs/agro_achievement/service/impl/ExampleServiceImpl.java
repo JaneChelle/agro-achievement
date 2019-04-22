@@ -48,13 +48,10 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
     //修改案例
     @Override
     public Result modifyExample(Example example) {
-        System.out.println(example);
         if (example != null) {
             Example example1 = baseMapper.selectById(example.getExampleId());
             if (example1 != null) {
                 example.setReleaseTime(example1.getReleaseTime());
-                example.setStatusCode(example1.getStatusCode());
-                example.setUserId(example1.getUserId());
                 baseMapper.updateById(example);
                 return new Result(ResultCode.SUCCESS, "修改成功！",1,example);
             }

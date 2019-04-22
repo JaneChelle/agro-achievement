@@ -49,6 +49,7 @@ public class AnnouncementServiceImpl extends ServiceImpl<AnnouncementMapper, Ann
             Announcement announcement1 = baseMapper.selectById(announcement.getAnnouncementId());
             if (announcement1 != null) {
                 announcement.setReleaseTime(announcement1.getReleaseTime());
+                System.out.println("announcement"+announcement);
                 baseMapper.updateById(announcement);
                 return new Result(ResultCode.SUCCESS, "修改成功！");
             }

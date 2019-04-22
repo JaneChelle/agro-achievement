@@ -1,4 +1,4 @@
-setInterval("data.innerHTML=new Date().toLocaleString()",1000);
+// setInterval("data.innerHTML=new Date().toLocaleString()",1000);
 // 删除
 $(".deleteUser").on('click', function () {
     var parent = $(this).parent().parent();

@@ -10,6 +10,15 @@
     <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
     <link rel="stylesheet" th:href="@{../css/jeDate_test.css}">
     <link rel="stylesheet" th:href="@{../css/jedate.css}">
+    <style>
+        .demandTextarea{
+            resize: none;
+            padding: 6px;
+            text-indent: 2em;
+            width: 93% !important;
+            height: 148px;
+        }
+    </style>
 </head>
 <body>
 
@@ -18,27 +27,18 @@
     <div class="search-collapse">
         <h3>
             <img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
-            <span>需求详情</span>
+            <span>需求ID:<span th:text="${demand.demandId}"></span></span>
         </h3>
     </div>
     <div class="section_table">
         <div class="section sectionDemand">
             <form th:action="@{/admin/adminEditDemand}" method="post" onsubmit="javascript:return confirm('你确定要修改此需求吗？');">>
+                <input type="hidden" name="demandId" class="form-control" required="required" th:value="${demand.demandId}" readonly="readonly" unselectable="on" disabled="disabled">
                 <table class="table table-hover table-bordered">
                     <tr>
-                        <td>需求ID:	</td>
-                        <td>
-                            <input type="text" name="demandId" class="form-control" required="required" th:value="${demand.demandId}" readonly="readonly" unselectable="on" disabled="disabled">
-                        </td>
                         <td>需求名字:	</td>
                         <td>
                             <input type="text" name="demandName" class="form-control" required="required" th:value="${demand.demandName}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>预期价格:	</td>
-                        <td>
-                            <input type="text" name="expectedPrice" class="form-control" required="required" th:value="${demand.expectedPrice}">
                         </td>
                         <td>需求者:	</td>
                         <td>
@@ -46,13 +46,30 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>预期价格:	</td>
+                        <td>
+                            <input type="text" name="expectedPrice" class="form-control" required="required" th:value="${demand.expectedPrice}">
+                        </td>
+                        <td>点击量:	</td>
+                        <td>
+                            <input type="text" name="pageView" class="form-control" required="required" th:value="${demand.pageView}">
+                        </td>
+                    </tr>
+                    <tr>
                         <td>审核状态码:	</td>
                         <td>
-                            <input type="text" name="statusCode" class="form-control" required="required" th:value="${demand.statusCode}">
+                            <select name="statusCode" class="modifyDemand">
+                                <option value="">请选择审核状态码</option>
+                                <option value="0">未审核</option>
+                                <option value="1">通过</option>
+                                <option value="2">失败</option>
+                            </select>
                         </td>
-                        <td>发布时间:	</td>
+                        <input type="hidden" class="statusCodeDemand" th:value="${demand.statusCode}">
+
+                        <td>邮箱:	</td>
                         <td>
-                            <input type="text" name="time" class="form-control" required="required" th:value="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">
+                            <input type="text" name="email" class="form-control" required="required" th:value="${demand.email}">
                         </td>
                     </tr>
                     <tr>
@@ -63,16 +80,6 @@
                         <td>电话:	</td>
                         <td>
                             <input type="text" name="phone" class="form-control" required="required" th:value="${demand.phone}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>邮箱:	</td>
-                        <td>
-                            <input type="text" name="email" class="form-control" required="required" th:value="${demand.email}">
-                        </td>
-                        <td>点击量:	</td>
-                        <td>
-                            <input type="text" name="pageView" class="form-control" required="required" th:value="${demand.pageView}">
                         </td>
                     </tr>
                     <tr>
@@ -88,8 +95,7 @@
                     <tr>
                         <td>需求说明:	</td>
                         <td colspan="4">
-                            <textarea type="text" name="demandIntroduce" class="form-control" required="required" th:text="${demand.demandIntroduce}"
-                            style="resize: none; padding: 6px; text-indent: 2em"></textarea>
+                            <textarea name="demandIntroduce" class="demandTextarea form-control" required="required" th:text="${demand.demandIntroduce}"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -110,4 +116,16 @@
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
 <script th:src="@{../js/jedate.js}"></script>
 <script th:src="@{../js/demo.js}"></script>
+<script>
+    // 状态码
+    var options = $('.modifyDemand option');
+    var statusCode = $('.statusCodeDemand').val();
+    for (var i = 0; i < options.length; i++) {
+        if ($(options[i]).val() == statusCode) {
+            $(options[i]).attr("selected", true);
+        } else {
+            $(options[i]).attr("selected", false);
+        }
+    }
+</script>
 </html>

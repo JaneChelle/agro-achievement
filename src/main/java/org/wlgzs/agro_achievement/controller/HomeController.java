@@ -111,6 +111,11 @@ public class HomeController extends BaseController {
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
 
+        //新闻中心
+        Result result3 = iAnnouncementService.selectAnnouncement("新闻中心", 1, 10);
+        List<Announcement> NewsCenter = (List<Announcement>) result3.getData();
+        model.addAttribute("NewsCenter", NewsCenter);
+
         //最新专家
         Result result = iExpertsService.selectExpertsByTime(3);
         List<Experts> expertsTimeList = (List<Experts>) result.getData();

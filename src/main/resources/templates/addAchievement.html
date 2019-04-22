@@ -16,19 +16,19 @@
 <body>
 <div class="box">
     <h3>填写基本信息</h3>
-    <div class="title">带*的为非必填项</div>
+    <div class="title">带*的为必填项</div>
     <form th:action="@{/achievement/addAchievement}" method="post" enctype="multipart/form-data" id="myform" target="fwjl">
         <table class="table table-hover table-bordered">
             <tr>
-                <th>成果名称:</th>
+                <th>*成果名称:</th>
                 <td><input type="text" name="achievementName" class="" id="price2" required/></td>
             </tr>
             <tr>
-                <th>成果简介:</th>
+                <th>*成果简介:</th>
                 <td><textarea name="achievementIntroduce" id="" cols="60" rows="5" required></textarea></td>
             </tr>
             <tr>
-                <th>成果类型:</th>
+                <th>*成果类型:</th>
                 <td>
                     <div th:each="type : ${typeList}">
                         <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" required/><label
@@ -37,11 +37,11 @@
                 </td>
             </tr>
             <tr>
-                <th>成果关键词:</th>
+                <th>*成果关键词:</th>
                 <td><input type="text" name="achievementKey" class="" id="condition" required/></td>
             </tr>
             <tr>
-                <th>研发起止时间:</th>
+                <th>*研发起止时间:</th>
                 <td>
                     <div class="jeinpbox">开始时间：<input type="text" name="start_time" class="jeinput moredate"
                                                       placeholder="YYYY-MM-DD" required autocomplete="off"></div>
@@ -51,7 +51,7 @@
                 <!--时间插件-->
             </tr>
             <tr>
-                <th>产权归属地:</th>
+                <th>*产权归属地:</th>
                 <!--地区插件-->
                 <td>
                     <div data-toggle="distpicker">
@@ -60,37 +60,37 @@
                 </td>
             </tr>
             <tr>
-                <th>成果获奖情况:</th>
+                <th>*成果获奖情况:</th>
                 <td><textarea name="awards" id="" cols="60" rows="5" required></textarea></td>
             </tr>
             <tr>
-                <th>*预期交易价格:</th>
+                <th>预期交易价格:</th>
                 <td><input type="text" name="expectedPrice" class="" onKeyUp="value=value.replace(/\D/g,'')"
                            id="details"/>万元
                 </td>
             </tr>
             <tr>
-                <th>联系人：</th>
+                <th>*联系人：</th>
                 <td><input type="text" name="linkman" id="" required></td>
             </tr>
             <tr>
-                <th>*联系电话:</th>
+                <th>联系电话:</th>
                 <td><input type="text" name="phone" id="" onkeyup="phone()"></td>
             </tr>
             <tr>
-                <th>手机:</th>
+                <th>*手机:</th>
                 <td><input type="text" name="cellNumber" id="" required></td>
             </tr>
             <tr>
-                <th>E-mail:</th>
+                <th>*E-mail:</th>
                 <td><input type="text" name="email" id="" required></td>
             </tr>
             <tr>
-                <th>联系地址（邮编）:</th>
+                <th>*联系地址（邮编）:</th>
                 <td><input type="text" name="contactAddress" id="" required></td>
             </tr>
             <tr>
-                <th>*知识产权编号:</th>
+                <th>知识产权编号:</th>
                 <td>
                     <input type="text" name="propertyNumber"></br>
                     <!--<input type="checkbox" name="1" id=""> 植物新品种权编号: <input type="text"></br>-->
@@ -98,11 +98,11 @@
                 </td>
             </tr>
             <tr>
-                <th>*知识产权情况说明:</th>
+                <th>知识产权情况说明:</th>
                 <td><textarea name="propertyIntroduce" id="" cols="60" rows="5"></textarea></td>
             </tr>
             <tr>
-                <th>相关图片上传（最多三张）:</th>
+                <th>*相关图片上传（最多三张）:</th>
                 <td id="thimg">
                     <div class="uploadImgBtn" id="uploadImgBtn">点击上传
                         <input class="uploadImg" type="file" name="file" multiple id="file">

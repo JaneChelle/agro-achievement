@@ -89,6 +89,7 @@ public class ExampleController extends BaseController {
         return new ModelAndView("userExampleList");
     }
 
+
     //查看案列详情
     @RequestMapping(value = "/exampleDetails")
     public ModelAndView exampleDetails(Model model,Integer exampleId){

@@ -107,6 +107,8 @@ public class DemandController extends BaseController {
         model.addAttribute("demandList",demandList);
         model.addAttribute("TotalPages", iPage.getPages());//总页数
         model.addAttribute("Number", iPage.getCurrent());//当前页数
+        System.out.println(iPage.getPages());
+        System.out.println(demandList);
         return new ModelAndView("DemandList");
     }
 

@@ -59,21 +59,31 @@
 }
 .right>ul>li{
     border-bottom: 1px dotted #cccccc;
-    line-height: 31px;
+    line-height: 67px;
+    height: 67px;
 }
 .left>ul>li{
     border-bottom: 1px dotted #cccccc;
-    line-height: 36px;
+    line-height: 67px;
+    height: 67px;
 }
 .left>ul>li>i,.right>ul>li>i{
-    vertical-align: middle;
     margin-right: 2px;
     padding-left: 10px;
     color: #41A809;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 68px;
 }
 .left>ul>li>a,.right>ul>li>a{
     color: #000;
+    display: inline-block;
     text-decoration: none;
+    width: 140px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 68px;
 }
 .left>ul>li>a:hover,.right>ul>li>a:hover{
     color: #41A809;
@@ -138,7 +148,6 @@
     position: relative;
     border: 1px solid #6b6464;
     box-shadow: 0 0 1px 1px #6b6464;
-    padding-bottom: 10px;
 }
 .best_new>ul>li{
     border-bottom: 1px dotted #cccccc;

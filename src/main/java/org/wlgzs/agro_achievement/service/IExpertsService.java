@@ -44,6 +44,9 @@ public interface IExpertsService extends IService<Experts> {
     //搜索专家
     IPage<Experts> findName(String findName, int current, int limit);
 
+    //按类型查询专家
+    Result selectExpertsByType(String type,int current,int limit);
+
     /**
      * 管理员
      */

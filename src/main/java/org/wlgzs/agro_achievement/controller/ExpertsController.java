@@ -1,7 +1,6 @@
 package org.wlgzs.agro_achievement.controller;
 
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +10,6 @@ import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Experts;
 import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
-import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -36,7 +34,7 @@ public class ExpertsController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("addExperts");
+        return new ModelAndView("/information/addExperts");
     }
 
     //申请成为专家
@@ -71,7 +69,7 @@ public class ExpertsController extends BaseController {
         } else {
             model.addAttribute("msg", "审核失败！");
         }
-        return new ModelAndView("expertsUserDetails");
+        return new ModelAndView("/information/expertsUserDetails");
     }
 
 }

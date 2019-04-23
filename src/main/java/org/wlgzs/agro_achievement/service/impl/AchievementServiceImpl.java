@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -259,19 +260,19 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         QueryWrapper<Type> queryWrapperType = new QueryWrapper();
         queryWrapperType.eq("type_name", type);
         Type typeOne = typeMapper.selectOne(queryWrapperType);
-
         if (typeOne != null) {
             //查询类型id对应的记录
             QueryWrapper<AchievementType> queryWrapperAchievement = new QueryWrapper();
             queryWrapperAchievement.eq("type_id", typeOne.getTypeId());
             List<AchievementType> achievementType = achievementTypeMapper.selectList(queryWrapperAchievement);
-
+            if(achievementType.size() <= 0){
+                return new Result(ResultCode.FAIL, "不存在！");
+            }
             //将需求id存入集合
-            List<Integer> achievementId = null;
+            List<Integer> achievementId = new ArrayList<>();
             for (AchievementType achievementTypeOne : achievementType) {
                 achievementId.add(achievementTypeOne.getAchievementId());
             }
-
             queryWrapper.in("achievement_id", achievementId);
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();

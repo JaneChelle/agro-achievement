@@ -236,7 +236,7 @@ public class AchievementController extends BaseController {
         //所有类别
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
-        model.addAttribute("typeList", typeList);
+        model.addAttribute("size", typeList.size());
         return new ModelAndView("/achievement/AchievementList");
     }
 

@@ -249,7 +249,7 @@ public class HomeController extends BaseController {
         return new ModelAndView("/experts/expertsList");
     }
 
-    //前台查询所有机构
+    //前台查询所有专家
     @RequestMapping(value = "/selectAllOrganization")
     public ModelAndView selectAllOrganization(Model model, @RequestParam(value = "current", defaultValue = "1") int current,
                                               @RequestParam(value = "limit", defaultValue = "8") int limit) {
@@ -261,6 +261,26 @@ public class HomeController extends BaseController {
         }
         model.addAttribute("organizationList", organizationList);
         return new ModelAndView("/Organization/OrganizationList");
+    }
+
+    //前台按类型查询专家
+    @RequestMapping(value = "/selectExpertsByType")
+    public ModelAndView selectExpertsByType(Model model, @RequestParam(value = "type", defaultValue = "") String type, @RequestParam(value = "current", defaultValue = "1") int current,
+                                                 @RequestParam(value = "limit", defaultValue = "8") int limit) {
+        Result result = iExpertsService.selectExpertsByType(type, current, limit);
+        List<Experts> expertsList = (List<Experts>) result.getData();
+        System.out.println("expertsList"+expertsList);
+        model.addAttribute("expertsList", expertsList);
+        model.addAttribute("TotalPages", result.getPages());//总页数
+        model.addAttribute("Number", result.getCurrent());//当前页数
+
+        //所有类别
+        Result result1 = iTypeService.selectAllType();
+        List<Type> typeList = (List<Type>) result1.getData();
+        model.addAttribute("typeList", typeList);
+        model.addAttribute("type", type);
+
+        return new ModelAndView("expertsTypeList");
     }
 
     //前台按类型查询机构

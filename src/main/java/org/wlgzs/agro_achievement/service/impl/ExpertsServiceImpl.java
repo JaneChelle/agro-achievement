@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Experts;
+import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.entity.User;
 import org.wlgzs.agro_achievement.mapper.ExpertsMapper;
+import org.wlgzs.agro_achievement.mapper.TypeMapper;
 import org.wlgzs.agro_achievement.mapper.UserMapper;
 import org.wlgzs.agro_achievement.service.IExpertsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -37,6 +39,10 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    private TypeMapper typeMapper;
+
 
     //申请成为专家
     @Override
@@ -160,9 +166,24 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     public IPage<Experts> findName(String findName, int current, int limit) {
         Page page = new Page(current, limit);
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("experts_name",findName).like("research_field",findName);
+        queryWrapper.like("experts_name", findName).like("research_field", findName);
         IPage<Experts> iPage = baseMapper.selectPage(page, queryWrapper);
         return iPage;
+    }
+
+    @Override
+    public Result selectExpertsByType(String type, int current, int limit) {
+        //查询类型id
+        QueryWrapper<Type> queryWrapperType = new QueryWrapper();
+        queryWrapperType.eq("type_name", type);
+        Type typeOne = typeMapper.selectOne(queryWrapperType);
+        if (typeOne == null) {
+            return new Result(ResultCode.FAIL);
+        }
+        QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("type_id", typeOne.getTypeId()).eq("status_code", "1");
+        List<Experts> expertsList = baseMapper.selectList(queryWrapper);
+        return new Result(ResultCode.SUCCESS, expertsList);
     }
 
     @Override
@@ -177,12 +198,12 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     }
 
     @Override
-    public Result addAdminExperts(HttpSession session,HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) {
+    public Result addAdminExperts(HttpSession session, HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) {
         //文件处理（真实存储名）
         String realName = "";
         String str = "";
         String fileName = myFileName.getOriginalFilename();
-        if(fileName != null && !"".equals(fileName)){
+        if (fileName != null && !"".equals(fileName)) {
             //截取后缀名
             String suffixName = fileName.substring(fileName.indexOf("."), fileName.length());
 
@@ -199,7 +220,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
                 e.printStackTrace();
             }
             str = request.getContextPath() + "/HeadPortrait/" + realName;
-        }else{
+        } else {
             str = "/HeadPortrait/morende.jpg";
         }
 
@@ -212,7 +233,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     }
 
     @Override
-    public Result modifyExperts(String time,Experts experts) {
+    public Result modifyExperts(String time, Experts experts) {
         if (experts.getExpertsId() != null) {
             Experts experts1 = baseMapper.selectById(experts.getExpertsId());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -220,7 +241,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
             experts.setExpertsBirth(ldt);
             experts.setPictureAddress(experts1.getPictureAddress());
             baseMapper.updateById(experts);
-            return new Result(ResultCode.SUCCESS,experts);
+            return new Result(ResultCode.SUCCESS, experts);
         }
         return new Result(ResultCode.FAIL);
     }

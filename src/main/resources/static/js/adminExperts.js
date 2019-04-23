@@ -12,6 +12,7 @@ $(".deleteExperts").on('click', function () {
             },
             dataType: "JSON",
             success: function (data) {
+                alert("删除成功");
                 window.location.reload();
             },
             error: function (msg) {

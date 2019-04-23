@@ -1,13 +1,5 @@
 // setInterval("data.innerHTML=new Date().toLocaleString()",1000);
 //侧边栏 换色
-var list = $('.list');
-list.on('click',function (){
-	for (let i=0;i<list.length;i++) {
-		$(list[i]).removeClass('sliber_active');
-	}
-	$(this).addClass('sliber_active');			
-	
-});
 
 //添加弹框
 $(document).ready(function(){

@@ -1,4 +1,17 @@
-// setInterval("data.innerHTML=new Date().toLocaleString()",1000);
+// 用户等级回显
+$('.modifyUser').val($('.userLevel').val());
+
+var hiddenInput = $('.hiddenInput').val();
+console.log(hiddenInput);
+var result=hiddenInput.split("-");
+for(var i=0;i<result.length;i++) {
+    console.log(result[i]);
+}
+
+$('.result_1').data("province",result[0]);
+$('.result_2').data("city",result[1]);
+$('.result_3').data("district",result[2]);
+
 // 删除
 $(".deleteUser").on('click', function () {
     var parent = $(this).parent().parent();

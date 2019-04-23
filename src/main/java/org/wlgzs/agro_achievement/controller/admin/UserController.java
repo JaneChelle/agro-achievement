@@ -70,7 +70,7 @@ public class UserController extends BaseController {
         if(user != null){
             model.addAttribute("user",user);
             model.addAttribute("msg","");
-            return new ModelAndView("adminModifyUser");
+            return new ModelAndView("admin/modifyUser");
         }
         model.addAttribute("msg","不存在！");
         return new ModelAndView("redirect:/admin/adminUserList");

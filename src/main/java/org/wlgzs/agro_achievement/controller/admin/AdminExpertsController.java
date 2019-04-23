@@ -69,14 +69,14 @@ public class AdminExpertsController extends BaseController {
     public ModelAndView modifyExperts(String time,Experts experts, Model model) {
         Result result = iExpertsService.modifyExperts(time,experts);
         if (result.getCode() == 0) {
-            Experts experts1 = (Experts) result.getData();
             model.addAttribute("msg", "修改成功！");
-            model.addAttribute("experts", experts1);
-            return new ModelAndView("admin/detailsExpert");
+            return new ModelAndView("redirect:/admin/adminExpertsList");
         } else {
             model.addAttribute("msg", "修改失败！");
         }
-        return new ModelAndView("redirect:/admin/adminExpertsList");
+        Experts experts1 = (Experts) result.getData();
+        model.addAttribute("experts", experts1);
+        return new ModelAndView("admin/detailsExpert");
     }
 
     //删除专家

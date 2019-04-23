@@ -12,11 +12,7 @@
 	<link rel="stylesheet" th:href="@{../css/jedate.css}">
 	<style>
 		select{
-			width: 84%;
-			height: 35px;
-			text-align: center;
-			position: relative;
-			left: -6%;
+			width: 49%;
 		}
 		option{
 			height: 35px;
@@ -26,98 +22,109 @@
 
 <body>
 <div th:include="common/adminCommon :: nav"></div>
+
 <section>
 	<div class="search-collapse">
-		<h3>
-			<img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
-			<span>添加需求</span>
-		</h3>
+		<h3>添加需求</h3>
 	</div>
 	<div class="section_table">
-		<div class="section sectionDemand">
-			<form th:action="@{/admin/adminAddDemand}" method="post" onsubmit="javascript:return confirm('你确定要添加一条需求吗？');">
-				<table class="table table-hover table-bordered">
-					<tr>
-						<td>需求名字:	</td>
-						<td>
-							<input type="text" name="demandName" class="form-control" required="required">
-						</td>
-						<td>预期价格:	</td>
-						<td>
-							<input type="text" name="expectedPrice" class="form-control" required="required">
-						</td>
-					</tr>
-					<tr>
-						<td>需求者:	</td>
-						<td>
-							<input type="text" name="demanders" class="form-control" required="required">
-						</td>
-						<td>需求说明:	</td>
-						<td>
-							<input type="text" name="demandIntroduce" class="form-control" required="required">
-						</td>
-					</tr>
-					<tr>
-						<td>联系人:	</td>
-						<td>
-							<input type="text" name="linkman" class="form-control" required="required">
-						</td>
-						<input type="hidden"  value="2">
-						<td>审核状态码:	</td>
-						<td>
-							<select name="statusCode">
-								<option value="">请选择审核状态码</option>
-								<option value="0">未审核</option>
-								<option value="1">通过</option>
-								<option value="2">失败</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>电话:	</td>
-						<td>
-							<input type="text" name="phone" class="form-control" required="required">
-						</td>
-						<td>邮箱:	</td>
-						<td>
-							<input type="text" name="email" class="form-control" required="required">
-						</td>
-					</tr>
-					<tr>
-						<td>发布时间:	</td>
-						<td>
-							<div class="jeinpbox">
-								<input type="text" name="time" class="jeinput" id="test04" placeholder="YYYY-MM-DD hh:mm:ss" autocomplete="off">
-							</div>
-						</td>
-						<td>点击量:	</td>
-						<td>
-							<input type="text" name="pageView" class="form-control" required="required">
-						</td>
-					</tr>
-					<tr>
-						<td>用户id:	</td>
-						<td>
-							<input type="text" name="userId" class="form-control" required="required">
-						</td>
-						<td>机构id:	</td>
-						<td>
-							<input type="text" name="organizationTypeId" class="form-control" required="required">
-						</td>
-					</tr>
-					<tr>
-						<td colspan="6" class="pn-fbutton">
-							<input type="submit" value="添加"  class="btn-info" id="change"/>
-							<input type="reset" value="重置"  class="btn-info" id="cancel" style="background-color: orangered!important;"/>
-							<a th:href="@{/admin/adminAdminDemand}" class="returnList" style="padding: 0!important;">返回</a>
-						</td>
-					</tr>
-				</table>
-			</form>
+		<div class="section">
+			<div class="popup_table addUserTable">
+				<form id="form1" th:action="@{/admin/adminAddDemand}" method="post" onsubmit="javascript:return confirm('你确定要添加一条需求吗？');">
+					<table class="table table-bordered addUser">
+						<thead>
+							<tr>
+								<th>需求名字:</th>
+								<td>
+									<input type="" name="demandName" value="" required="required"/>
+								</td>
+							</tr>
+							<tr>
+								<th>预期价格:</th>
+								<td>
+									<input type="" name="expectedPrice" value="" required="required"/>
+								</td>
+							</tr>
+							<tr>
+								<th>需求者：</th>
+								<td>
+									<input type="" name="demanders" value="" required="required"/>
+								</td>
+							</tr>
+							<tr>
+								<th>需求说明：</th>
+								<td>
+									<input type="" name="demandIntroduce" value="" required="required"/>
+								</td>
+							</tr>
+							<tr>
+								<th>联系人：</th>
+								<td>
+									<input type="" name="linkman" value="" required="required"/>
+								</td>
+							</tr>
+							<tr>
+								<th>审核状态码：</th>
+								<td>
+									<select name="statusCode">
+										<option value="">请选择审核状态码</option>
+										<option value="0">未审核</option>
+										<option value="1">通过</option>
+										<option value="2">失败</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>电话：</th>
+								<td>
+									<input type="" name="phone" value="" required="required"/>
+								</td>
+							</tr>
+							<tr>
+								<th>邮箱：</th>
+								<td>
+									<input type="" name="email" value="" required="required"/>
+								</td>
+							</tr>
+							<tr>
+								<th>发布时间：</th>
+								<td>
+									<div class="jeinpbox">
+										<input type="text" name="time" class="jeinput" id="test04" placeholder="YYYY-MM-DD hh:mm:ss" autocomplete="off">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>点击量：</th>
+								<td>
+									<input type="" name="pageView" value="" required="required"/>
+								</td>
+							</tr>
+							<tr>
+								<td>用户id:	</td>
+								<td>
+									<input type="" name="userId" required="required">
+								</td>
+							</tr>
+							<tr>
+								<td>机构id:	</td>
+								<td>
+									<input type="" name="organizationTypeId" required="required">
+								</td>
+							</tr>
+						</thead>
+					</table>
+					<div class="popup_bottom">
+						<input type="reset" name="" value="重置" />
+						<input type="submit" value="添加"/>
+						<a th:href="@{/admin/adminAdminDemand}" class="btn returnList">返回</a>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-
 </section>
+
 
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>

@@ -27,7 +27,7 @@
         <ul >
             <li th:each="PolicyC : ${PolicyCenter}">
                 <i class="fa fa-forward" aria-hidden="true"></i>
-                <a th:href="@{/Announcement/announcementDetails(announcementId=${PolicyC.announcementId})}" th:text="${PolicyC.announcementTitle}"></a>
+                <a th:href="@{/Announcement/announcementDetails(announcementId=${PolicyC.announcementId})}" th:text="${PolicyC.announcementTitle}" th:title="${PolicyC.announcementTitle}"></a>
                 <span style="margin-right: 10px;color: #cccccc;float: right"  th:text="${#temporals.format(PolicyC.releaseTime, 'yyyy-MM-dd')}"></span>
             </li>
         </ul>
@@ -57,7 +57,7 @@
             <ul style="padding: 20px 0 0 15px;">
             <li th:each="NewsC : ${NewsCenter}">
                 <i class="fa fa-forward" aria-hidden="true" style="color: #41A809"></i>
-                <a th:href="@{/Announcement/announcementDetails(announcementId=${NewsC.announcementId})}" style="color: #74777b;" th:text="${NewsC.announcementTitle}"></a>
+                <a th:href="@{/Announcement/announcementDetails(announcementId=${NewsC.announcementId})}" th:title="${NewsC.announcementTitle}" style="color: #000;" th:text="${NewsC.announcementTitle}"></a>
                 <span style="margin-right: 10px;color: #cccccc;float: right"  th:text="${#temporals.format(NewsC.releaseTime, 'yyyy-MM-dd')}"></span>
             </li>
         </ul>
@@ -68,9 +68,9 @@
         <a th:href="@{/Announcement/selectAnnouncement(announcementType=交易活动)}" class="po_more">更多</a>
         <img th:src="@{/images/jf_05.jpg}" alt="" style="height: 34px;">
         <ul>
-            <li th:each="Trading  : ${TradingActivity}">
+            <li th:each="Trading  : ${TradingActivity}" >
                 <i class="fa fa-forward" aria-hidden="true" ></i>
-                <a th:href="@{/Announcement/announcementDetails(announcementId=${Trading.announcementId})}" th:text="${Trading.announcementTitle}"></a>
+                <a th:href="@{/Announcement/announcementDetails(announcementId=${Trading.announcementId})}" th:text="${Trading.announcementTitle}" th:title="${Trading.announcementTitle}" style="width: 250px"></a>
             </li>
         </ul>
     </div>

@@ -29,6 +29,8 @@
         </li>
     </ul>
     <!--分页-->
+    <div class="fenye"></div>
+</div>
     <div class="SplitPage" th:if="${TotalPages > 0}">
         <ul class="SplitUl" th:if="${TotalPages > 1}">
             <li th:if="${Number == 1}">
@@ -71,7 +73,6 @@
         <!--转到第 <input type="text">页-->
         <!--<input type="submit" value="GO">-->
     <!--</div>-->
-</div>
 <!--尾部-->
 <div th:include="common/common :: footer"></div>
 

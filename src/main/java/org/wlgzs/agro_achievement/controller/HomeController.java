@@ -279,7 +279,7 @@ public class HomeController extends BaseController {
         model.addAttribute("typeList", typeList);
         model.addAttribute("type", type);
 
-        return new ModelAndView("expertsTypeList");
+        return new ModelAndView("/experts/expertsTypeList");
     }
 
     //前台按类型查询机构

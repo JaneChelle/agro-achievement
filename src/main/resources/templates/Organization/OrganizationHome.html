@@ -48,8 +48,12 @@
     </div>
     <div class="right">
         <img th:src="@{/images/cg_09.jpg}" alt="">
-        <ul >
+        <ul>
             <li th:each="organizationTime : ${organizationTimeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/organizationDetails(organizationId=${organizationTime.organizationId})}" th:text="${organizationTime.organizationName}"></a></li>
+        </ul>
+        <img th:src="@{/images/orR.jpg}" alt="">
+        <ul >
+            <li th:each="RankingList : ${organizationRankingList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/organizationDetails(organizationId=${RankingList.organizationId})}" th:text="${RankingList.organizationName}"></a></li>
         </ul>
     </div>
 </div>

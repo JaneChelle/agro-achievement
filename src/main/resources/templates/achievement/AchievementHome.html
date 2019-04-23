@@ -50,7 +50,7 @@
         <div class="best_new">
             <!--最新发布-->
             <ul style="padding: 40px 0 0 15px;">
-                <li th:each="achievementTime : ${achievementTimeList}">
+                <li th:each="achievementTime : ${achievementTimeList}" style="height: 46px;">
                     <i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/achievement/achievementDetails(achievementId=${achievementTime.achievementId})}" th:text="${achievementTime.achievementName}"></a>
                 </li>
             </ul>

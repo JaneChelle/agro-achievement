@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Organization;
 import org.wlgzs.agro_achievement.entity.OrganizationType;
-import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,14 +37,14 @@ public class OrganizationController extends BaseController {
         Result result1 = iOrganizationTypeService.selectAllOrganizationType();
         List<OrganizationType> typeList = (List<OrganizationType>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("addOrganization");
+        return new ModelAndView("/information/addOrganization");
     }
     //去详情页
     @RequestMapping("/organizationUserDetails")
     public ModelAndView organizationUserDetails(Model model, Integer organizationId) {
         Organization organization = iOrganizationService.getById(organizationId);
         model.addAttribute("organization", organization);
-        return new ModelAndView("organizationUserDetails");
+        return new ModelAndView("/information/organizationUserDetails");
     }
     //添加机构
     @RequestMapping(value = "/addOrganization")
@@ -79,7 +78,7 @@ public class OrganizationController extends BaseController {
         Result result = iOrganizationService.selectOrganizationByUser(request, statusCode);
         List<Organization> organizationList = (List<Organization>) result.getData();
         model.addAttribute("organizationList", organizationList);
-        return new ModelAndView("userOrganizationList");
+        return new ModelAndView("/information/userOrganizationList");
     }
 
 }

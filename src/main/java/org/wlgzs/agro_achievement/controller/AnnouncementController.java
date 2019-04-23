@@ -26,7 +26,7 @@ public class AnnouncementController extends BaseController {
     public ModelAndView announcementDetails(Model model, Integer announcementId){
         Announcement announcement = iAnnouncementService.announcementDetails(announcementId);
         model.addAttribute("announcement",announcement);
-        return new ModelAndView("announcementDetails");
+        return new ModelAndView("/announcement/announcementDetails");
     }
 
     //按类别查询公告(默认查询所有的)
@@ -42,6 +42,6 @@ public class AnnouncementController extends BaseController {
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
-        return new ModelAndView("AnnouncementList");
+        return new ModelAndView("/announcement/AnnouncementList");
     }
 }

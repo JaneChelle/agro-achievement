@@ -47,7 +47,13 @@ public class FilterConfiguration {
         registration.addUrlPatterns("/demand/selectDemand");
         registration.addUrlPatterns("/demand/demandUserDetails");
 
-        registration.addUrlPatterns("/example/*");
+        registration.addUrlPatterns("/example/toAddExample");
+        registration.addUrlPatterns("/example/addExample");
+        registration.addUrlPatterns("/example/toModifyExample");
+        registration.addUrlPatterns("/example/modifyExample");
+        registration.addUrlPatterns("/example/deleteExample");
+        registration.addUrlPatterns("/example/selectExampleByUser");
+
         registration.addUrlPatterns("/UserManagement/toUserManagement");
         registration.addUrlPatterns("/UserManagement/toModifyUser");
         registration.addUrlPatterns("/UserManagement/toChangePassword");

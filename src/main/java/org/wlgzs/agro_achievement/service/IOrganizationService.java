@@ -44,6 +44,7 @@ public interface IOrganizationService extends IService<Organization> {
     //搜索机构
     IPage<Organization> findName(String findName, int current, int limit);
 
+
     /**
      * 管理员
      */

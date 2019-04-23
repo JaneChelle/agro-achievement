@@ -64,41 +64,17 @@
     </div>
     <ul class="dx-fen">
         <li>
-            <ul class="colleges">
-                <li ><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
-                <li><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
-                <li><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
-                <li><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
-                <li><i class="fa fa-caret-right" aria-hidden="true"></i><a href="">中国农业大学</a></li>
+            <ul class="colleges" th:each="school : ${schoolList}">
+                <li ><i class="fa fa-caret-right" aria-hidden="true"></i><a href="" th:text="${school.organizationName}">中国农业大学</a></li>
             </ul>
         </li>
-        <li>
+        <li th:each="school : ${schoolList}">
             <div class="pic">
-                <img th:src="@{/images/nongda.png}" alt="">
+                <img th:src="${school.organizationLogo}" alt="">
             </div>
             <div class="wenzi">
-                <a href="">中国农业大学</a><br>
-                <span>地区：</span><span>中国大陆</span><br>
-                <span>研究领域：</span>
-            </div>
-        </li>
-        <li>
-            <div class="pic">
-                <img th:src="@{/images/nongda.png}" alt="">
-            </div>
-            <div class="wenzi">
-                <a href="">中国农业大学</a><br>
-                <span>地区：</span><span>中国大陆</span><br>
-                <span>研究领域：</span>
-            </div>
-        </li>
-        <li>
-            <div class="pic">
-                <img th:src="@{/images/nongda.png}" alt="">
-            </div>
-            <div class="wenzi">
-                <a href="">中国农业大学</a><br>
-                <span>地区：</span><span>中国大陆</span><br>
+                <a href="" th:text="${school.organizationName}">中国农业大学</a><br>
+                <span>地区：</span><span th:text="${school.organizationRegion}">中国大陆</span><br>
                 <span>研究领域：</span>
             </div>
         </li>

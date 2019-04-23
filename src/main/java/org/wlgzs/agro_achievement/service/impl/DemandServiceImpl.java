@@ -66,8 +66,6 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
             if (demand1 != null) {
                 if(demand.getReleaseTime() == null){
                     demand.setReleaseTime(demand1.getReleaseTime());
-                    demand.setStatusCode(demand1.getStatusCode());
-                    demand.setPageView(demand1.getPageView());
                     baseMapper.updateById(demand);
                     return new Result(ResultCode.SUCCESS, "修改成功！",1,demand);
                 }

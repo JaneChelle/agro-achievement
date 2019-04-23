@@ -233,6 +233,7 @@ public class AchievementController extends BaseController {
         model.addAttribute("type", type);
         //成果数据
         List<Achievement> achievementList = (List<Achievement>) result.getData();
+        System.out.println(achievementList);
         model.addAttribute("achievementList", achievementList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数

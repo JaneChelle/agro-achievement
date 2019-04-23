@@ -269,7 +269,6 @@ public class HomeController extends BaseController {
                                                  @RequestParam(value = "limit", defaultValue = "8") int limit) {
         Result result = iExpertsService.selectExpertsByType(type, current, limit);
         List<Experts> expertsList = (List<Experts>) result.getData();
-        System.out.println("expertsList"+expertsList);
         model.addAttribute("expertsList", expertsList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数

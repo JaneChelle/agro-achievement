@@ -106,7 +106,7 @@ public class HomeController extends BaseController {
         //推荐
         List<Achievement> hotAchievement = iAchievementService.hotAchievement();
         model.addAttribute("hotAchievement", hotAchievement);
-        return new ModelAndView("AchievementHome");
+        return new ModelAndView("/achievement/AchievementHome");
     }
 
 
@@ -137,7 +137,7 @@ public class HomeController extends BaseController {
         List<Experts> recommendList = iExpertsService.recommend(3);
         model.addAttribute("recommendList", recommendList);
 
-        return new ModelAndView("ExpertsHome");
+        return new ModelAndView("/experts/ExpertsHome");
     }
 
     //机构小首页
@@ -156,7 +156,7 @@ public class HomeController extends BaseController {
         List<Organization> organizationRankingList = iOrganizationService.rankingOrganization(1, 10);
         model.addAttribute("organizationRankingList", organizationRankingList);
 
-        return new ModelAndView("OrganizationHome");
+        return new ModelAndView("/Organization/OrganizationHome");
     }
 
     //供需首页数据
@@ -185,7 +185,7 @@ public class HomeController extends BaseController {
         List<Organization> organizationRankingList = iOrganizationService.rankingOrganization(1, 10);
         model.addAttribute("organization", organizationRankingList);
 
-        return new ModelAndView("SupplyHome");
+        return new ModelAndView("/demand/SupplyHome");
     }
 
     //政策首页
@@ -204,7 +204,7 @@ public class HomeController extends BaseController {
         List<Announcement> PolicyCenter = (List<Announcement>) result3.getData();
         model.addAttribute("PolicyCenter", PolicyCenter);
 
-        return new ModelAndView("PolicyHome");
+        return new ModelAndView("/Policy/PolicyHome");
     }
 
     //查询成功案例（显示的）
@@ -221,7 +221,7 @@ public class HomeController extends BaseController {
         model.addAttribute("exampleList", exampleList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
-        return new ModelAndView("ExampleList");
+        return new ModelAndView("/example/ExampleList");
     }
 
     //查看专家信息
@@ -232,7 +232,7 @@ public class HomeController extends BaseController {
         if (experts == null) {
             model.addAttribute("msg", "不存在！");
         }
-        return new ModelAndView("expertsDetails");
+        return new ModelAndView("/experts/expertsDetails");
     }
 
     //前台查询所有专家（通过的）
@@ -246,7 +246,7 @@ public class HomeController extends BaseController {
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
 
-        return new ModelAndView("expertsList");
+        return new ModelAndView("/experts/expertsList");
     }
 
     //前台查询所有专家
@@ -260,7 +260,7 @@ public class HomeController extends BaseController {
             model.addAttribute("msg", "查询成功！");
         }
         model.addAttribute("organizationList", organizationList);
-        return new ModelAndView("OrganizationList");
+        return new ModelAndView("/Organization/OrganizationList");
     }
 
     //前台按类型查询专家
@@ -297,7 +297,7 @@ public class HomeController extends BaseController {
         List<OrganizationType> list = (List<OrganizationType>) iOrganizationTypeService.selectAllOrganizationType().getData();
         model.addAttribute("OrganizationTypeList", list);
 
-        return new ModelAndView("OrganizationList");
+        return new ModelAndView("/Organization/OrganizationList");
     }
 
     //查看机构详情
@@ -305,7 +305,7 @@ public class HomeController extends BaseController {
     public ModelAndView organizationDetails(Model model, Integer organizationId) {
         Organization organization = iOrganizationService.getById(organizationId);
         model.addAttribute("organization", organization);
-        return new ModelAndView("OrganizationDetails");
+        return new ModelAndView("/Organization/OrganizationDetails");
     }
 
     //首页搜索（全局搜索）

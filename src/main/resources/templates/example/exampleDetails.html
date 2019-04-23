@@ -19,12 +19,15 @@
 <div class="product">
     <div class="name">
         <h3 th:text="${example.exampleTitle}">强盛一号</h3>
-        <span th:text="'发布时间'+${#temporals.format(example.releaseTime, 'yyyy-MM-dd')}"></span>&nbsp;&nbsp;&nbsp;
+        <span th:text="'发布时间:'+${#temporals.format(example.releaseTime, 'yyyy-MM-dd')}"></span>&nbsp;&nbsp;&nbsp;
     </div>
     <div class="pro_msg">
         <ul>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><span>用户id:</span><span th:text="${example.userId}"></span></li>
-            <li><i class="fa fa-forward" aria-hidden="true"></i><span>审核状态:</span><span th:text="${example.statusCode}">——</span></li>
+            <li><i class="fa fa-forward" aria-hidden="true"></i><span>审核状态:</span>
+                <span th:if="${example.statusCode}==1">通过</span>
+                <span th:if="${example.statusCode}==-1">失败</span>
+                <span th:if="${example.statusCode}==0">待审核</span>
+            </li>
         </ul>
     </div>
     <div class="introduce">

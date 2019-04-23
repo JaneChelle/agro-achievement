@@ -260,23 +260,19 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         QueryWrapper<Type> queryWrapperType = new QueryWrapper();
         queryWrapperType.eq("type_name", type);
         Type typeOne = typeMapper.selectOne(queryWrapperType);
-        System.out.println("typeOne" + typeOne);
         if (typeOne != null) {
             //查询类型id对应的记录
             QueryWrapper<AchievementType> queryWrapperAchievement = new QueryWrapper();
             queryWrapperAchievement.eq("type_id", typeOne.getTypeId());
             List<AchievementType> achievementType = achievementTypeMapper.selectList(queryWrapperAchievement);
-            System.out.println("achievementType" + achievementType);
             if(achievementType.size() <= 0){
                 return new Result(ResultCode.FAIL, "不存在！");
             }
             //将需求id存入集合
             List<Integer> achievementId = new ArrayList<>();
             for (AchievementType achievementTypeOne : achievementType) {
-                System.out.println(achievementTypeOne.getAchievementId());
                 achievementId.add(achievementTypeOne.getAchievementId());
             }
-            System.out.println("achievementId"+achievementId);
             queryWrapper.in("achievement_id", achievementId);
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();

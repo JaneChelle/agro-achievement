@@ -25,7 +25,7 @@
         <!--所有专家分类-->
         <img th:src="@{/images/cg_031.jpg}" alt="">
         <ul>
-            <li th:each="type : ${typeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/selectExperts}" th:text="${type.typeName}">种业</a></li>
+            <li th:each="type : ${typeList}"><i class="fa fa-forward" aria-hidden="true"></i><a th:href="@{/HomeController/selectExpertsByType(type=${type.typeName})}" th:text="${type.typeName}">种业</a></li>
         </ul>
     </div>
     <div class="middle">

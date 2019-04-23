@@ -233,7 +233,6 @@ public class AchievementController extends BaseController {
         model.addAttribute("type", type);
         //成果数据
         List<Achievement> achievementList = (List<Achievement>) result.getData();
-        System.out.println(achievementList);
         model.addAttribute("achievementList", achievementList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
@@ -242,6 +241,7 @@ public class AchievementController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
+        model.addAttribute("size", typeList.size());
         return new ModelAndView("AchievementList");
     }
 

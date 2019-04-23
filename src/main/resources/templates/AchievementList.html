@@ -20,9 +20,10 @@
 <div class="cg-title">
     <img th:src="@{/images/san_lie_06.jpg}" alt="">
     <span style="color: #41A809;font-weight: 800">图片列表</span>
-    <span class="text">0</span>
+    <span class="text" th:text="${size}">0</span>
 </div>
 <div class="cg-list">
+    <span th:if="${achievementList} == null" style="color: #FF0000;font-weight: 800">数据暂不存在！</span>
     <ul>
         <li th:each="achievement : ${achievementList}">
             <a th:href="@{/achievement/achievementDetails(achievementId=${achievement.achievementId})}" th:text="${achievement.achievementName}"></a>

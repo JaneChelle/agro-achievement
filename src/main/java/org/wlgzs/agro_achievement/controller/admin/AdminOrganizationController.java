@@ -11,6 +11,7 @@ import org.wlgzs.agro_achievement.entity.Organization;
 import org.wlgzs.agro_achievement.entity.OrganizationType;
 import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
+import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -52,10 +53,10 @@ public class AdminOrganizationController extends BaseController {
 
     //管理员添加机构
     @RequestMapping(value = "/adminAddOrganization")
-    public ModelAndView adminAddOrganization(HttpSession session, @RequestParam(value = "file",required = false)MultipartFile myFileName, Model model, HttpServletRequest request,
+    public Result adminAddOrganization(HttpSession session, @RequestParam(value = "file",required = false)MultipartFile myFileName, Model model, HttpServletRequest request,
                                              Organization organization){
         Result result = iOrganizationService.saveOrganization(session,organization,myFileName,request);
-        return new ModelAndView("redirect:/admin/adminOrganizationList");
+        return result;
     }
 
     //跳转到修改机构
@@ -72,28 +73,20 @@ public class AdminOrganizationController extends BaseController {
 
     //修改机构
     @RequestMapping(value = "/adminEditOrganization")
-    public ModelAndView modifyOrganization(Organization organization, Model model) {
+    public Result modifyOrganization(Organization organization, Model model) {
         Boolean result = iOrganizationService.updateById(organization);
-        if (!result) {
-            model.addAttribute("msg", "修改失败！");
-            model.addAttribute("organization", organization);
-            return new ModelAndView("admin/EditOrganization");
+        if (result) {
+            return new Result(ResultCode.SUCCESS,"修改成功！");
         } else {
-            model.addAttribute("msg", "修改失败！");
+            return new Result(ResultCode.FAIL,"修改失败！");
         }
-        return new ModelAndView("redirect:/admin/adminOrganizationList");
     }
 
     //删除机构
     @RequestMapping(value = "/adminDeleteOrganization")
-    public ModelAndView adminDeleteOrganization(Integer organizationId, Model model) {
+    public Result adminDeleteOrganization(Integer organizationId, Model model) {
         Result result = iOrganizationService.deleteOrganization(organizationId);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "删除成功！");
-        } else {
-            model.addAttribute("msg", "不存在！");
-        }
-        return new ModelAndView("redirect:/admin/adminOrganizationList");
+        return result;
     }
 
 }

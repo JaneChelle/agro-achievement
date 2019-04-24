@@ -39,14 +39,10 @@ public class ExpertsController extends BaseController {
 
     //申请成为专家
     @RequestMapping(value = "/addExperts")
-    public ModelAndView addExperts(Model model,@RequestParam(value = "file", required = false) MultipartFile myFileName,
+    public Result addExperts(Model model,@RequestParam(value = "file", required = false) MultipartFile myFileName,
                                    HttpServletRequest request, String time, Experts experts) {
         Result result = iExpertsService.addExperts(request, time, experts,myFileName);
-        if (result.getCode() == 0)//成功
-            model.addAttribute("msg", "请耐心等待审核！");
-        else
-            model.addAttribute("msg", "请先登录！");
-        return new ModelAndView("redirect:/experts/expertsUserDetails");
+        return result;
     }
 
     //查看(个人中心)专家信息

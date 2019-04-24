@@ -51,9 +51,9 @@ public class AdminExpertsController extends BaseController {
 
     //管理员添加专家
     @RequestMapping(value = "/adminAddExperts")
-    public ModelAndView adminAddExperts(HttpSession session, Model model, HttpServletRequest request, String time, Experts experts, @RequestParam(value = "file", required = false)MultipartFile myFileName) {
+    public Result adminAddExperts(HttpSession session, Model model, HttpServletRequest request, String time, Experts experts, @RequestParam(value = "file", required = false)MultipartFile myFileName) {
         Result result = iExpertsService.addAdminExperts(session,request,time, experts, myFileName);
-        return new ModelAndView("redirect:/admin/adminExpertsList");
+        return result;
     }
 
     //跳转到修改专家
@@ -66,29 +66,16 @@ public class AdminExpertsController extends BaseController {
 
     //修改专家
     @RequestMapping(value = "/adminEditExperts")
-    public ModelAndView modifyExperts(String time,Experts experts, Model model) {
+    public Result modifyExperts(String time,Experts experts, Model model) {
         Result result = iExpertsService.modifyExperts(time,experts);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "修改成功！");
-            return new ModelAndView("redirect:/admin/adminExpertsList");
-        } else {
-            model.addAttribute("msg", "修改失败！");
-        }
-        Experts experts1 = (Experts) result.getData();
-        model.addAttribute("experts", experts1);
-        return new ModelAndView("admin/detailsExpert");
+        return result;
     }
 
     //删除专家
     @RequestMapping(value = "/adminDeleteExperts")
-    public ModelAndView adminDeleteExperts(Integer expertsId, Model model) {
+    public Result adminDeleteExperts(Integer expertsId, Model model) {
         Result result = iExpertsService.adminDeleteExpertsId(expertsId);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "删除成功！");
-        } else {
-            model.addAttribute("msg", "不存在！");
-        }
-        return new ModelAndView("redirect:/admin/adminAchievementList");
+        return result;
     }
 
 }

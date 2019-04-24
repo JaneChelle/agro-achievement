@@ -43,10 +43,9 @@ public class AdminExampleController extends BaseController {
 
     //管理员添加案例
     @RequestMapping(value = "/adminAddExample")
-    public ModelAndView adminAddExample(Model model, Example example) {
+    public Result adminAddExample(Model model, Example example) {
         Result result = iCaseService.addExample(example);
-        model.addAttribute("msg", result.getMsg());
-        return new ModelAndView("redirect:/admin/adminExampleList");
+        return result;
     }
 
     //跳转到修改案例
@@ -59,30 +58,17 @@ public class AdminExampleController extends BaseController {
 
     //修改案例
     @RequestMapping(value = "/adminEditExample")
-    public ModelAndView adminEditExample(Example example, Model model) {
+    public Result adminEditExample(Example example, Model model) {
         Result result = iCaseService.modifyExample(example);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "修改成功！");
-            return new ModelAndView("redirect:/admin/adminExampleList");
-        } else {
-            model.addAttribute("msg", "修改失败！");
-        }
-        Example example1 = (Example) result.getData();
-        model.addAttribute("example", example1);
-        return new ModelAndView("admin/modifyExample");
+        return result;
 
     }
 
     //删除案例
     @RequestMapping(value = "/adminDeleteExample")
-    public ModelAndView adminDeleteAchievement(Integer exampleId, Model model) {
+    public Result adminDeleteAchievement(Integer exampleId, Model model) {
         Result result = iCaseService.deleteExample(exampleId);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "删除成功！");
-        } else {
-            model.addAttribute("msg", "不存在！");
-        }
-        return new ModelAndView("redirect:/admin/adminExampleList");
+        return result;
     }
 
 }

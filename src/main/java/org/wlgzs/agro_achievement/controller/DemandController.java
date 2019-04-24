@@ -41,36 +41,22 @@ public class DemandController extends BaseController {
 
     //发布一个新需求
     @RequestMapping(value = "/addDemand")
-    public ModelAndView addDemand(Demand demand) {
-        iDemandService.addDemand(demand);
-        return new ModelAndView("redirect:/demand/selectDemand");
+    public Result addDemand(Demand demand) {
+        return iDemandService.addDemand(demand);
     }
 
     //删除一个需求
     @RequestMapping(value = "/deleteDemand")
-    public ModelAndView deleteDemand(Model model, Integer demandId) {
+    public Result deleteDemand(Model model, Integer demandId) {
         Result result = iDemandService.deleteDemand(demandId);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "删除成功！");
-        } else {
-            model.addAttribute("msg", "不存在！");
-        }
-        return new ModelAndView("redirect:/demand/selectDemand");
+        return result;
     }
 
     //修改需求
     @RequestMapping(value = "/modifyDemand")
-    public ModelAndView modifyDemand(Model model, Demand demand) {
+    public Result modifyDemand(Model model, Demand demand) {
         Result result = iDemandService.modifyDemand(demand,null);
-        if (result.getCode() == 0) {
-            Demand demand1 = (Demand) result.getData();
-            model.addAttribute("msg", "修改成功！");
-            model.addAttribute("demand", demand1);
-            return new ModelAndView("/information/demandUserDetails");
-        } else {
-            model.addAttribute("msg", "修改失败！");
-        }
-        return new ModelAndView("redirect:/demand/selectDemand");
+        return result;
     }
 
     //按照用户查询所有需求（状态码）(用户自身操作)

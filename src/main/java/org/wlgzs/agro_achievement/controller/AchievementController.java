@@ -45,42 +45,24 @@ public class AchievementController extends BaseController {
 
     //发布成果
     @RequestMapping(value = "/addAchievement")
-    public ModelAndView addAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, HttpSession session, Model model,
+    public Result addAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, HttpSession session, Model model,
                                        HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
         Result result = iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "发布成功！");
-            return new ModelAndView("redirect:/achievement/selectAchievement?statusCode=0");
-        }
-        model.addAttribute("msg", "输入正确的信息！");
-        return new ModelAndView("redirect:/achievement/toAddAchievement");
+        return result;
     }
 
     //删除成果
     @RequestMapping(value = "/deleteAchievement")
-    public ModelAndView deleteAchievement(Integer achievementId, Model model) {
+    public Result deleteAchievement(Integer achievementId, Model model) {
         Result result = iAchievementService.deleteAchievement(achievementId);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "删除成功！");
-        } else {
-            model.addAttribute("msg", "不存在！");
-        }
-        return new ModelAndView("redirect:/achievement/selectAchievement");
+        return result;
     }
 
     //修改成果
     @RequestMapping(value = "/modifyAchievement")
-    public ModelAndView modifyAchievement(Achievement achievement, String start_time, String end_time, Model model) {
+    public Result modifyAchievement(Achievement achievement, String start_time, String end_time, Model model) {
         Result result = iAchievementService.modifyAchievement(achievement, start_time, end_time);
-        if (result.getCode() == 0) {
-            Achievement achievement1 = (Achievement) result.getData();
-            model.addAttribute("msg", "修改成功！");
-            model.addAttribute("achievement", achievement1);
-            return new ModelAndView("/information/achievementUserDetails");
-        } else {
-            model.addAttribute("msg", "修改失败！");
-        }
-        return new ModelAndView("redirect:/achievement/selectAchievement");
+        return result;
     }
 
     //查询所有成果（用户）

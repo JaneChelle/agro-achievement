@@ -35,9 +35,8 @@ public class ExampleController extends BaseController {
 
     //添加案例
     @RequestMapping(value = "/addExample")
-    public ModelAndView addExample(Example example) {
-        iCaseService.addExample(example);
-        return new ModelAndView("redirect:/example/selectExampleByUser");
+    public Result addExample(Example example) {
+        return iCaseService.addExample(example);
     }
 
     //去修改案例
@@ -50,29 +49,16 @@ public class ExampleController extends BaseController {
 
     //修改案例
     @RequestMapping(value = "/modifyExample")
-    public ModelAndView modifyExample(Model model, Example example) {
+    public Result modifyExample(Model model, Example example) {
         Result result = iCaseService.modifyExample(example);
-        if (result.getCode() == 0) {
-            Example example1 = (Example) result.getData();
-            model.addAttribute("msg", "修改成功！");
-            model.addAttribute("example1", example1);
-            return new ModelAndView("/information/modifyExample");
-        } else {
-            model.addAttribute("msg", "修改失败！");
-        }
-        return new ModelAndView("redirect:/example/selectExampleByUser");
+        return result;
     }
 
     //删除案例
     @RequestMapping(value = "/deleteExample", method = RequestMethod.DELETE)
-    public ModelAndView deleteExample(Model model, Integer exampleId) {
+    public Result deleteExample(Model model, Integer exampleId) {
         Result result = iCaseService.deleteExample(exampleId);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "删除成功！");
-        } else {
-            model.addAttribute("msg", "不存在！");
-        }
-        return new ModelAndView("redirect:/example/selectExampleByUser");
+        return result;
     }
 
     //按照用户查询所有成功案例（状态码）(用户自身操作)

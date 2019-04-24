@@ -76,7 +76,7 @@ public class AchievementController extends BaseController {
             Achievement achievement1 = (Achievement) result.getData();
             model.addAttribute("msg", "修改成功！");
             model.addAttribute("achievement", achievement1);
-            return new ModelAndView("achievementUserDetails");
+            return new ModelAndView("/information/achievementUserDetails");
         } else {
             model.addAttribute("msg", "修改失败！");
         }

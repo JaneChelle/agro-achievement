@@ -193,11 +193,11 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                     achievement.setEndTime(timeTwo);
                 }
                 baseMapper.updateById(achievement);
-                return new Result(ResultCode.SUCCESS, achievement);
+                return new Result(ResultCode.SUCCESS, "修改成功！");
             }
-            return new Result(ResultCode.FAIL, "该条记录不存在！");
+            return new Result(ResultCode.FAIL, "该条记录不存在！",1,achievement);
         }
-        return new Result(ResultCode.FAIL, "操作失败！");
+        return new Result(ResultCode.FAIL, "操作失败！",1,null);
     }
 
     //按照用户查询所有成果（状态码）

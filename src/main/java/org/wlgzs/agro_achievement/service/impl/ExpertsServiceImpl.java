@@ -241,9 +241,9 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
             experts.setExpertsBirth(ldt);
             experts.setPictureAddress(experts1.getPictureAddress());
             baseMapper.updateById(experts);
-            return new Result(ResultCode.SUCCESS, experts);
+            return new Result(ResultCode.SUCCESS,"修改成功！",1, experts);
         }
-        return new Result(ResultCode.FAIL);
+        return new Result(ResultCode.FAIL,"修改失败！");
     }
 
     @Override
@@ -251,9 +251,9 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
         Experts experts = baseMapper.selectById(expertsId);
         if (experts != null) {
             baseMapper.deleteById(expertsId);
-            return new Result(ResultCode.SUCCESS, "修改成功！");
+            return new Result(ResultCode.SUCCESS, "删除成功！");
         }
-        return new Result(ResultCode.FAIL, "修改失败！");
+        return new Result(ResultCode.FAIL, "删除失败！");
     }
 
     @Override

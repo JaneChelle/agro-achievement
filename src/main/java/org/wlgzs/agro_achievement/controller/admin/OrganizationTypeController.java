@@ -27,18 +27,16 @@ public class OrganizationTypeController extends BaseController {
 
     //增加机构类型
     @RequestMapping(value = "/addOrganizationType")
-    public ModelAndView addOrganizationType(Model model,OrganizationType organizationType){
+    public Result addOrganizationType(Model model,OrganizationType organizationType){
         Result result = iOrganizationTypeService.addOrganizationType(organizationType);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/selectAllOrganizationType");
+        return result;
     }
 
     //删除机构类型
     @RequestMapping(value = "/deleteOrganizationType", method = RequestMethod.DELETE)
-    public ModelAndView deleteOrganizationType(Model model,Integer organizationTypeId) {
+    public Result deleteOrganizationType(Model model,Integer organizationTypeId) {
         Result result = iOrganizationTypeService.deleteOrganizationType(organizationTypeId);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/selectAllOrganizationType");
+        return result;
     }
 
     //查找所有机构类型

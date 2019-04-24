@@ -27,15 +27,13 @@ public class AdminAnnouncementController extends BaseController {
     //去添加公告
     @RequestMapping(value = "/toAddAnnouncement")
     public ModelAndView toAddAnnouncement() {
-
         return new ModelAndView("admin/addAnnouncement");
     }
 
     //添加公告（管理员）
     @RequestMapping(value = "/addAnnouncement")
-    public ModelAndView addAnnouncement(Announcement announcement) {
-        iAnnouncementService.addAnnouncement(announcement);
-        return new ModelAndView("redirect:/admin/selectAnnouncement");
+    public Result addAnnouncement(Announcement announcement) {
+        return iAnnouncementService.addAnnouncement(announcement);
     }
 
     //查看公告详情（管理员）
@@ -64,22 +62,16 @@ public class AdminAnnouncementController extends BaseController {
 
     //修改公告
     @RequestMapping(value = "/modifyAnnouncement")
-    public ModelAndView modifyAnnouncement(Model model, Announcement announcement) {
+    public Result modifyAnnouncement(Announcement announcement) {
         Result result = iAnnouncementService.modifyAnnouncement(announcement);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "修改成功！");
-        } else {
-            model.addAttribute("msg", "修改失败！");
-        }
-        return new ModelAndView("redirect:/admin/selectAnnouncement");
+        return result;
     }
 
     //删除公告
     @RequestMapping(value = "/deleteAnnouncement")
-    public ModelAndView deleteAnnouncement(Integer announcementId,Model model) {
+    public Result deleteAnnouncement(Integer announcementId,Model model) {
         Result result = iAnnouncementService.deleteAnnouncement(announcementId);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/selectAnnouncement");
+        return result;
     }
 
     //按类别查询公告(默认查询所有的)

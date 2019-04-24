@@ -112,7 +112,7 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
     @Override
     public Result adminDemandList(String findName, int current, int limit) {
         QueryWrapper<Demand> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("demand_name", findName).or().like("demand_introduce", findName);
+        queryWrapper.like("demand_name", findName).or().like("demand_introduce", findName).orderByDesc("demand_id");
         Page page = new Page(current, limit);
         IPage<Demand> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Demand> achievementList = iPage.getRecords();

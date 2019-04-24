@@ -61,9 +61,9 @@ public class HomeController extends BaseController {
         model.addAttribute("organizationList", organizationList);
 
         //公告类型（新闻中心，交易活动，政策中心）
-        List<Announcement> newsList = (List<Announcement>) iAnnouncementService.selectAnnouncement("", 1, 4).getData();
-        List<Announcement> tradingList = (List<Announcement>) iAnnouncementService.selectAnnouncement("", 1, 4).getData();
-        List<Announcement> policyList = (List<Announcement>) iAnnouncementService.selectAnnouncement("", 1, 4).getData();
+        List<Announcement> newsList = (List<Announcement>) iAnnouncementService.selectAnnouncement("新闻中心", 1, 4).getData();
+        List<Announcement> tradingList = (List<Announcement>) iAnnouncementService.selectAnnouncement("交易活动", 1, 4).getData();
+        List<Announcement> policyList = (List<Announcement>) iAnnouncementService.selectAnnouncement("政策中心", 1, 4).getData();
         model.addAttribute("newsList", newsList);
         model.addAttribute("tradingList", tradingList);
         model.addAttribute("policyList", policyList);

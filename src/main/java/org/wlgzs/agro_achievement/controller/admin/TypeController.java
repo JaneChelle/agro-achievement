@@ -27,18 +27,16 @@ public class TypeController extends BaseController {
 
     //增加类型
     @RequestMapping(value = "/addType")
-    public ModelAndView addType(Model model,Type type) {
+    public Result addType(Model model,Type type) {
         Result result = iTypeService.addType(type);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/selectAllType");
+        return result;
     }
 
     //删除类型
     @RequestMapping(value = "/deleteType", method = RequestMethod.DELETE)
-    public ModelAndView deleteTyped(Model model,Integer typeId) {
+    public Result deleteTyped(Model model,Integer typeId) {
         Result result = iTypeService.deleteType(typeId);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/selectAllType");
+        return result;
     }
 
     //查找所有类型

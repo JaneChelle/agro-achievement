@@ -204,10 +204,10 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
                 String str = request.getContextPath() + "/OrganizationLogo/" + realName;
                 organization.setOrganizationLogo(str);
                 baseMapper.insert(organization);
-                return new Result(ResultCode.SUCCESS);
+                return new Result(ResultCode.SUCCESS,"添加成功！");
             }
         }
-        return new Result(ResultCode.FAIL);
+        return new Result(ResultCode.FAIL,"添加失败！");
     }
 
 

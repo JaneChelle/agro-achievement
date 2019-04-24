@@ -122,7 +122,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             achievementType.setAchievementId(achievement1.getAchievementId());
             achievementTypeMapper.insert(achievementType);
 
-            return new Result(ResultCode.SUCCESS, "录入成功！");
+            return new Result(ResultCode.SUCCESS, "请耐心等待审核！");
         }
         System.out.println("输入正确的信息！");
         return new Result(ResultCode.FAIL, "输入正确的信息！");
@@ -166,7 +166,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                     achievement.setEndTime(timeTwo);
                 }
                 baseMapper.updateById(achievement);
-                return new Result(ResultCode.SUCCESS, achievement);
+                return new Result(ResultCode.SUCCESS,"修改成功！",1 ,achievement);
             }
             return new Result(ResultCode.FAIL, "该条记录不存在！");
         }

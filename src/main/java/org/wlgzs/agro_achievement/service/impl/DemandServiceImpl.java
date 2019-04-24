@@ -42,7 +42,7 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
             demand.setReleaseTime(ldt);
             demand.setPageView(0);
             baseMapper.insert(demand);
-            return new Result(ResultCode.SUCCESS, "发布成功！");
+            return new Result(ResultCode.SUCCESS, "请耐心等待审核！");
         }
         return new Result(ResultCode.FAIL, "请输入正确的信息！");
     }

@@ -48,27 +48,17 @@ public class OrganizationController extends BaseController {
     }
     //添加机构
     @RequestMapping(value = "/addOrganization")
-    public ModelAndView addOrganization(HttpServletRequest request,@RequestParam(value = "file",required = false)MultipartFile myFileName,
+    public Result addOrganization(HttpServletRequest request,@RequestParam(value = "file",required = false)MultipartFile myFileName,
             Model model, HttpSession session, Organization organization) {
         Result result = iOrganizationService.addOrganization(request,session, organization,myFileName);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "添加成功！");
-        } else {
-            model.addAttribute("msg", "添加失败！");
-        }
-        return new ModelAndView("redirect:/organization/selectOrganizationByUser?statusCode=0");
+        return result;
     }
 
     //删除机构
     @RequestMapping(value = "/deleteOrganization")
-    public ModelAndView deleteOrganization(Model model, Integer organizationId) {
+    public Result deleteOrganization(Model model, Integer organizationId) {
         Result result = iOrganizationService.deleteOrganization(organizationId);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "删除成功！");
-        } else {
-            model.addAttribute("msg", "不存在！");
-        }
-        return new ModelAndView("redirect:/organization/selectOrganizationByUser");
+        return result;
     }
 
     //按用户查询机构（状态码）

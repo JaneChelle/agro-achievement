@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" http-equiv="Page-Enter" Content="revealTrans(duration=0.5, transition=1)">
     <title>机构列表-农业科技成果转化交易服务平台</title>
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="shortcut icon"type="image/x-icon" th:href="@{/images/favicon.ico}"media="screen" />
@@ -17,18 +17,10 @@
     <a th:href="@{/HomeController/home}" style="margin-left: 10px;">首页</a> >><a href="#">机构分类</a>
 </div>
 <div class="cg-list">
-    <!--<div class="query">-->
-        <!--<ul style="overflow: hidden">-->
-            <!--<li>名称：<input type="text"></li>-->
-            <!--<li> 所在省：<select name="" id="">-->
-                            <!--<option value="">河南省</option>-->
-                            <!--<option value="">江苏省</option>-->
-                        <!--</select>-->
-            <!--</li>-->
-            <!--<li><input type="submit" value="查询" class="me-submit"></li>-->
-        <!--</ul>-->
-    <!--</div>-->
     <ul class="college_inro">
+        <li th:if="${OrganizationTypeList}==null">
+           <h3 style="color:red;">暂无数据</h3>
+        </li>
         <li th:each="Organization : ${OrganizationTypeList }">
             <span  th:text="${Organization.typeName}">中国农业大学</span><br>
             <span>机构类型：</span><span th:text="${Organization.organizationTypeId}">--</span>&nbsp;&nbsp; <br>

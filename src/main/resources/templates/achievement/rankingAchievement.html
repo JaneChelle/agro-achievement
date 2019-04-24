@@ -30,6 +30,8 @@
             <input type="hidden" th:value="${achievement.pageView}" class="pageView">
         </li>
     </ul>
+    <div class="fenye"></div>
+</div>
     <!--分页-->
     <div class="SplitPage" th:if="${TotalPages > 0}">
         <ul class="SplitUl" th:if="${TotalPages > 1}">
@@ -64,21 +66,8 @@
             </li><!--//跳转至第Number页-->
         </ul>
     </div>
-</div>
 <!--尾部-->
-<footer>
-    <div class="foot">
-        <a href="">联系我们</a>|
-        <a href="">关于我们</a>|
-        <a href="">免责声明</a><br>
-        <p>Copyright©2012-2019 农转网 版权所有 京ICP备05039029号</p>
-        <p>主办单位：农业部科技教育司 承办单位：中国农学会 农业部人力资源开发中心</p>
-        <p>技术支持单位：河南科技学院信息工程学院未来工作室</p>
-        <p>不良信息举报中心 网络110报警服务</p>
-        <p><img src="images/beian.PNG" alt="">京公网安备 11010502030296号</p>
-
-    </div>
-</footer>
+<div th:include="common/common :: footer"></div>
 
 <script>
     $(function () {

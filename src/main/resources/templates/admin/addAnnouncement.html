@@ -16,7 +16,6 @@
 <section>
     <div class="search-collapse">
         <h3>
-            <img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
             <span>添加公告</span>
         </h3>
     </div>
@@ -29,7 +28,12 @@
                         <input name="announcementTitle" required>
                     </small>
                     <small>公告类型：
-                        <input name="announcementType" required>
+                        <select name="announcementType" id="" required>
+                            <option value="">请选择公告类型</option>
+                            <option value="新闻中心">新闻中心</option>
+                            <option value="交易活动">交易活动</option>
+                            <option value="政策中心">政策中心</option>
+                        </select>
                     </small>
                 </div>
                 <div class="announcementContent">

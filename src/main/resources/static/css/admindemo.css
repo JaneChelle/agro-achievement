@@ -93,7 +93,6 @@
 
 /*案例管理*/
 .exampleList span{
-	cursor: pointer;
 	display: inline-block;
 	height: 100%;
 	margin: 0 6px;

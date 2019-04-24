@@ -156,8 +156,7 @@ textarea{
     color: #00b3ee;
     font-size: 12px;
     text-decoration: none;
-    border: 1px solid #CCCCCC;
-    margin: 0;
+    margin: 10px;
 }
 .active{
     background: #00b3ee;

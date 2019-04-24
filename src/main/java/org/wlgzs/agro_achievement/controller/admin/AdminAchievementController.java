@@ -100,11 +100,12 @@ public class AdminAchievementController extends BaseController {
             List<Type> typeList = (List<Type>) result1.getData();
             model.addAttribute("typeList", typeList);
             model.addAttribute("achievement", achievement1);
-            return new ModelAndView("admin/detailsAchievement");
+            return new ModelAndView("redirect:/admin/adminAchievementList");
+
         } else {
             model.addAttribute("msg", "修改失败！");
         }
-        return new ModelAndView("redirect:/admin/adminAchievementList");
+        return new ModelAndView("admin/detailsAchievement");
     }
 
     //删除成果

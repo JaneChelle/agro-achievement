@@ -62,14 +62,15 @@ public class AdminExampleController extends BaseController {
     public ModelAndView adminEditExample(Example example, Model model) {
         Result result = iCaseService.modifyExample(example);
         if (result.getCode() == 0) {
-            Example example1 = (Example) result.getData();
-            model.addAttribute("msg", "修改失败！");
-            model.addAttribute("example", example1);
-            return new ModelAndView("admin/modifyExample");
-        } else {
             model.addAttribute("msg", "修改成功！");
+            return new ModelAndView("redirect:/admin/adminExampleList");
+        } else {
+            model.addAttribute("msg", "修改失败！");
         }
-        return new ModelAndView("redirect:/admin/adminExampleList");
+        Example example1 = (Example) result.getData();
+        model.addAttribute("example", example1);
+        return new ModelAndView("admin/modifyExample");
+
     }
 
     //删除案例

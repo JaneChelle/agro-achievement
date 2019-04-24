@@ -145,7 +145,7 @@
         <div class="supplyDemand" style="float: right;margin-top: 20px;min-height: 180px">
             <div class="h_block">
                 <a style="float: left">成功案例</a>
-                <a href="" style="float: right">更多</a>
+                <a th:href="@{/example/selectAllExample}" style="float: right">更多</a>
             </div>
             <ul>
                 <li th:each="example : ${exampleList}">

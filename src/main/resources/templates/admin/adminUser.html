@@ -80,7 +80,7 @@
 		            		<td th:text="${adminUser.userLevel}">2</td>
 		            		<td th:text="${adminUser.userAddress}">河南省新乡市红旗区</td>
 		            		<td>
-		            			<button type="button" class="btn modify">修改</button>
+								<a th:href="@{/admin/toAdminModifyUser(userId=${adminUser.userId})}">修改</a>
 		            			<button type="button" class="btn deleteUser">删除</button>
 		            		</td>
 		            	</tr>
@@ -128,76 +128,8 @@
 		</div>
 		</div>
     </section>
-	<!--修改-->
-	<popupModify>
-		<div class="popupModify">
-			<h3>修改用户</h3>
-			<div class="popup_table">
-				<form th:action="@{/admin/adminModifyUser}" onsubmit="return addressUser()">
-					<table class="table table-bordered">
-						<thead>
-							<tr style="display: none;">
-								<th>用户ID</th>
-								<td>
-									<input type="text" name="userId" value="" required="required"/>
-								</td>
-							</tr>
-							<tr>
-			                    <th>用户名</th>
-			                    <td>
-			                    	<input type="text" name="userName" value="" required="required"/>
-			                    </td>
-			                </tr>				                    
-			                <tr>
-			                	<th>密码</th>
-			                	<td>
-			                		<input type="text" name="password" value="" required="required"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                    <th>手机</th>
-			                    <td>
-			                    	<input type="text" name="userPhone" value="" required="required"/>
-			                    </td>
-			                </tr>				                    
-			                <tr>
-			                	<th>邮箱</th>
-			                	<td>
-			                		<input type="text" name="userEmail" value="" required="required"/>
-			                	</td>
-			                </tr>
-			                <tr>
-			                	<th>用户等级</th>
-								<td>
-									<input type="text" name="userLevel" value="" required="required"/>
-								</td>
-			                </tr>
-			                <tr>
-			                    <th>所在地区</th>
-								<td>
-									<span data-toggle="distpicker" class="data-toggle">
-										<select name="" class="province" data-province="选择省"></select>
-										<select name="" class="city" data-city="选择市"></select>
-										<select name="" class="district" data-district="选择区"></select>
-										<input type="hidden" name="userAddress" class="hiddenInput">
-									</span>
-								</td>
-			                </tr>
-						</thead>
-					</table>
-					<div class="popup_bottom">
-						<input type="reset" name="" value="重置" />
-						<input type="submit" value="修改"/>
-						<input type="button" name="" class="cancel_1" value="取消" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</popupModify>
-
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
-<script type="text/javascript" th:src="@{../js/adminIndex.js}" ></script>
 <script type="text/javascript" th:src="@{../js/adminUser.js}" ></script>
 <script type="text/javascript" th:src="@{../js/distpicker.js}" ></script>
 </html>

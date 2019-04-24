@@ -377,7 +377,7 @@ th{
 	line-height: 18px;
 }
 /*弹窗*/
-popup,popupModify{
+popup{
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -386,7 +386,7 @@ popup,popupModify{
 	display: none;
 	background-color: rgba(0,0,0,.7);
 }
-.popup,.popupModify{
+.popup{
 	width: 352px;
 	margin-left: -176px;
     position: fixed;
@@ -397,7 +397,7 @@ popup,popupModify{
     text-align: center;
     background-color: #fff;
 }
-.popup h3,.popupModify h3{
+.popup h3{
 	margin: 0; 
     color: #FFF;
     padding: 10px 0;

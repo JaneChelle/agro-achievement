@@ -18,6 +18,12 @@
             width: 93% !important;
             height: 148px;
         }
+        select{
+            width: 56%;
+        }
+        option{
+            height: 35px;
+        }
     </style>
 </head>
 <body>
@@ -26,89 +32,87 @@
 <section>
     <div class="search-collapse">
         <h3>
-            <img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
             <span>需求ID:<span th:text="${demand.demandId}"></span></span>
         </h3>
     </div>
     <div class="section_table">
-        <div class="section sectionDemand">
-            <form th:action="@{/admin/adminEditDemand}" method="post" onsubmit="javascript:return confirm('你确定要修改此需求吗？');">>
-                <input type="hidden" name="demandId" class="form-control" required="required" th:value="${demand.demandId}" readonly="readonly" unselectable="on" disabled="disabled">
-                <table class="table table-hover table-bordered">
-                    <tr>
-                        <input type="hidden" name="demandId" th:value="${demand.demandId}">
-                        <td>需求名字:	</td>
-                        <td>
-                            <input type="text" name="demandName" class="form-control" required="required" th:value="${demand.demandName}">
-                        </td>
-                        <td>需求者:	</td>
-                        <td>
-                            <input type="text" name="demanders" class="form-control" required="required" th:value="${demand.demanders}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>预期价格:	</td>
-                        <td>
-                            <input type="text" name="expectedPrice" class="form-control" required="required" th:value="${demand.expectedPrice}">
-                        </td>
-                        <td>点击量:	</td>
-                        <td>
-                            <input type="text" name="pageView" class="form-control" required="required" th:value="${demand.pageView}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>审核状态码:</th>
-                        <td>
-                            <select class="modifyDemand" name="statusCode" style="width: 85%; height: 35px; margin-left: -70px;">
+        <div class="section">
+            <div class="popup_table addUserTable">
+                <form th:action="@{/admin/adminEditDemand}" method="post" onsubmit="javascript:return confirm('你确定要修改此需求吗？');">
+                    <input type="hidden" name="demandId" required="required" th:value="${demand.demandId}" readonly="readonly" unselectable="on" disabled="disabled">
+                    <table class="table table-hover table-bordered">
+                        <tr>
+                            <input type="hidden" name="demandId" th:value="${demand.demandId}">
+                            <td>需求名字:	</td>
+                            <td>
+                                <input type="text" name="demandName" required="required" th:value="${demand.demandName}">
+                            </td>
+                            <td>需求者:	</td>
+                            <td>
+                                <input type="text" name="demanders" required="required" th:value="${demand.demanders}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>预期价格:	</td>
+                            <td>
+                                <input type="text" name="expectedPrice" required="required" th:value="${demand.expectedPrice}">
+                            </td>
+                            <td>点击量:	</td>
+                            <td>
+                                <input type="text" name="pageView" required="required" th:value="${demand.pageView}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>审核状态码:</th>
+                            <td>
+                                <select class="modifyDemand" name="statusCode" required="required">
+                                    <option value="">请选择审核状态码</option>
+                                    <option value="0">未审核</option>
+                                    <option value="1">通过</option>
+                                    <option value="2">失败</option>
+                                </select>
+                            </td>
+                            <input type="hidden" class="statusCodeDemand" th:value="${demand.statusCode}">
 
-                                <option value="">请选择审核状态码</option>
-                                <option value="0">未审核</option>
-                                <option value="1">通过</option>
-                                <option value="2">失败</option>
-                            </select>
-                        </td>
-                        <input type="hidden" class="statusCodeDemand" th:value="${demand.statusCode}">
-
-                        <td>邮箱:	</td>
-                        <td>
-                            <input type="text" name="email" class="form-control" required="required" th:value="${demand.email}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>联系人:	</td>
-                        <td>
-                            <input type="text" name="linkman" class="form-control" required="required" th:value="${demand.linkman}">
-                        </td>
-                        <td>电话:	</td>
-                        <td>
-                            <input type="text" name="phone" class="form-control" required="required" th:value="${demand.phone}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>用户id:	</td>
-                        <td>
-                            <input type="text" name="userId" class="form-control" required="required" th:value="${demand.userId}">
-                        </td>
-                        <td>机构id:	</td>
-                        <td>
-                            <input type="text" name="organizationTypeId" class="form-control" required="required" th:value="${demand.organizationTypeId}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>需求说明:	</td>
-                        <td colspan="4">
-                            <textarea name="demandIntroduce" class="demandTextarea form-control" required="required" th:text="${demand.demandIntroduce}"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="pn-fbutton">
-                            <input type="submit" value="修改"  class="btn-info" id="change"/>
-                            <input type="reset" value="重置"  class="btn-info" id="cancel" style="background-color: orangered!important;"/>
-                            <a th:href="@{/admin/adminAdminDemand}" class="returnList" style="padding: 0!important;">返回</a>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+                            <td>邮箱:	</td>
+                            <td>
+                                <input type="text" name="email" required="required" th:value="${demand.email}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>联系人:	</td>
+                            <td>
+                                <input type="text" name="linkman" required="required" th:value="${demand.linkman}">
+                            </td>
+                            <td>电话:	</td>
+                            <td>
+                                <input type="text" name="phone" required="required" th:value="${demand.phone}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户id:	</td>
+                            <td>
+                                <input type="text" name="userId" required="required" th:value="${demand.userId}">
+                            </td>
+                            <td>机构id:	</td>
+                            <td>
+                                <input type="text" name="organizationTypeId" required="required" th:value="${demand.organizationTypeId}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>需求说明:	</td>
+                            <td colspan="4">
+                                <textarea name="demandIntroduce" class="demandTextarea" required="required" th:text="${demand.demandIntroduce}"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="popup_bottom">
+                        <input type="reset" name="" value="重置" />
+                        <input type="submit" value="修改"/>
+                        <a th:href="@{/admin/adminAdminDemand}" class="btn returnList">返回</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

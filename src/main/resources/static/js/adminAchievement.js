@@ -11,6 +11,7 @@ $(".deleteAchievement").on('click', function () {
                 achievementId:achievementId
             },
             success: function (data) {
+                alert("删除成功");
                 location.reload(true);
             },
             error: function (msg) {

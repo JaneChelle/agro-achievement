@@ -25,12 +25,11 @@
 	<section>
 		<div class="search-collapse">
 			<h3>
-				<img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
 				<span>添加成果</span>
 			</h3>
 		</div>
 		<div class="section_table">
-			<form th:action="@{/admin/adminAddAchievement}" method="post" enctype="multipart/form-data" onsubmit="javascript:return confirm('你确定要添加一条成功吗？');">>
+			<form th:action="@{/admin/adminAddAchievement}" method="post" enctype="multipart/form-data" onsubmit="javascript:return confirm('你确定要添加一条成功吗？');">
 				<figure>
 					<div class="section">
 						<table class="table table-bordered">
@@ -49,8 +48,8 @@
 								<th>成果类型</th>
 								<td>
 									<div th:each="type : ${typeList}">
-										<input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" required/><label
-											th:text="${type.typeName}" th:for="${type.typeName}"></label>
+										<input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" required/>
+										<label th:text="${type.typeName}" th:for="${type.typeName}"></label>
 									</div>
 								</td>
 								<th>成果简介</th>

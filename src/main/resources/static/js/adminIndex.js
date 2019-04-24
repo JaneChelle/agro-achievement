@@ -1,13 +1,5 @@
 // setInterval("data.innerHTML=new Date().toLocaleString()",1000);
 //侧边栏 换色
-var list = $('.list');
-list.on('click',function (){
-	for (let i=0;i<list.length;i++) {
-		$(list[i]).removeClass('sliber_active');
-	}
-	$(this).addClass('sliber_active');			
-	
-});
 
 //添加弹框
 $(document).ready(function(){
@@ -34,45 +26,7 @@ $(document).ready(function(){
 	})
 });
 
-//修改弹框
-$(document).ready(function(){
-	$('.modify').click(function(){
-		$('popupModify').fadeIn();
-		var height=$(".popup_table").height()
-		if(height<=326){
-			$('.popupModify').animate({
-				top:"115px"
-			})
-		}
-		else{
-			$('.popupModify').animate({
-				top:"64px"
-			})
-		}
-		
-	});
-	$('.popup_bottom>input[type=button]').click(function(){
-		$('popupModify').fadeOut();
-		$('.popupModify').animate({
-			top:"-32px"
-		})
-	})
-});
 
-// 修改 显示信息
-$(".modify").on('click', function () { 
-	var td = $('.section>table>tbody>tr>td');
-	var inputValue = $('.popupModify>.popup_table>form>table>thead>tr>td>input');
-    var list = [];
-    for (let i=2; i<=td.length+1; i++) {
-    	var parent = $(this).parent().parent();
-    	var tdText = parent.children(`td:nth-child(${i})`).text();
-    	list.push(tdText);
-    } 
-    for(let i=0; i<=inputValue.length+1; i++){
-    	$(inputValue[i]).val(list[i]);
-    }
-});
 
 
 

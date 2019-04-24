@@ -15,67 +15,67 @@
 
 <section>
     <div class="search-collapse">
-        <h3>
-            <span>添加用户</span>
-        </h3>
+        <h3>用户ID：<span th:text="${user.userId}"></span></h3>
     </div>
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form id="form1" action="#" method="post" onsubmit="return false">
+                <form id="form1" th:action="@{/admin/adminModifyUser}" method="post" onsubmit="return addressUser()">
                     <table class="table table-bordered addUser">
                         <thead>
                         <tr>
+                            <input type="hidden" name="userId" th:value="${user.userId}">
                             <th>用户名</th>
                             <td>
-                                <input type="" name="userName" value="" required="required"/>
+                                <input type="" name="userName" th:value="${user.userName}" required="required"/>
                             </td>
                         </tr>
                         <tr>
                             <th>密码</th>
                             <td>
-                                <input type="" name="password" value="" required="required"/>
+                                <input type="" name="password" th:value="${user.password}" required="required"/>
                             </td>
                         </tr>
                         <tr>
                             <th>手机</th>
                             <td>
-                                <input type="" name="userPhone" value="" required="required"/>
+                                <input type="" name="userPhone" th:value="${user.userPhone}" required="required"/>
                             </td>
                         </tr>
                         <tr>
                             <th>邮箱</th>
                             <td>
-                                <input type="" name="userEmail" value="" required="required"/>
+                                <input type="" name="userEmail" th:value="${user.userEmail}" required="required"/>
                             </td>
                         </tr>
                         <tr>
                             <th>用户等级</th>
                             <td>
-                                <select name="userLevel">
+                                <select name="userLevel" class="modifyUser">
                                     <option value="">请选择用户等级</option>
                                     <option value="1">管理员</option>
                                     <option value="2">普通用户</option>
                                     <option value="3">专家</option>
                                 </select>
+                                <input type="hidden" class="userLevel" th:value="${user.userLevel}">
                             </td>
                         </tr>
                         <tr>
                             <th>所在地区</th>
                             <td>
-									<span data-toggle="distpicker" class="data-toggle">
-										<select name="" class="province" data-province="选择省"></select>
-										<select name="" class="city" data-city="选择市"></select>
-										<select name="" class="district" data-district="选择区"></select>
-									</span>
-                                <input type="hidden" name="userAddress" value="" required="required" class="hiddenInput"/>
+                                <span data-toggle="distpicker" class="data-toggle">
+                                    <select name="" class="province result_1" value=""  data-province="谁谁谁选择省"></select>
+                                    <select name="" class="city result_2" value="" data-city="选择市"></select>
+                                    <select name="" class="district result_3" value="" data-district="选择区"></select>
+                                </span>
+                                <input type="hidden" name="userAddress" th:value="${user.userAddress}" required="required" class="hiddenInput"/>
                             </td>
                         </tr>
                         </thead>
                     </table>
                     <div class="popup_bottom">
-                        <input type="reset" name="" value="重置" />
-                        <input onclick="addressUser(),addAdmin()" type="submit" value="添加"/>
+                        <input type="reset" value="重置" />
+                        <input type="submit" value="修改"/>
                         <a th:href="@{/admin/adminUserList}" class="btn returnList">返回</a>
                     </div>
                 </form>
@@ -84,33 +84,10 @@
     </div>
 </section>
 
-
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
-<script type="text/javascript" th:src="@{../js/adminUser.js}" ></script>
 <script type="text/javascript" th:src="@{../js/distpicker.js}" ></script>
-<script>
-    function addAdmin() {
-        $.ajax({
-            //几个参数需要注意一下
-            type: "POST",//方法类型
-            dataType: "json",//预期服务器返回的数据类型
-            url: "/admin/adminAddUser" ,//url
-            data: $('#form1').serialize(),
-            success: function (data) {
-                console.log(data);//打印服务端返回的数据(调试用)
-                if (data.code == 0) {
-                    alert(data.msg);
-                    window.location.href = "/admin/adminUserList";
-                }else{
-                    alert(data.msg);
-                    window.location.href = "/admin/adminUserList";
-                };
-            },
-            error : function() {
-                alert("异常！");
-            }
-        });
-    }
-</script>
+<script type="text/javascript" th:src="@{../js/adminUser.js}" ></script>
+
+
 </html>

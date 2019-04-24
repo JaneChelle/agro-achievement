@@ -4,140 +4,195 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>农业科技成果转化交易服务平台注册</title>
+	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{../css/adminStyle.css}" />
 	<link rel="stylesheet" th:href="@{../css/admindemo.css}" />
 	<link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
-	<link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{../css/jeDate_test.css}">
 	<link rel="stylesheet" th:href="@{../css/jedate.css}">
+	<style>
+		select,textarea{
+			width: 232px;
+		}
+		input[type=radio]{
+			vertical-align: middle;
+		}
+		textarea{
+			height: 242px;
+		}
+	</style>
 </head>
 <body>
-
 <div th:include="common/adminCommon :: nav"></div>
-    <section>
-    	<div class="search-collapse">
-    		<h3>
-				<img src="../images/左箭头.svg" onclick="javascript:window.history.back(-1);" title="返回上一页" alt="返回点击图片"/>
-				<!--<img src="../images/成果 (1).svg" alt="" />-->
-    			<span>专家详情页</span>
-    		</h3>
-    	</div>
-    	<div class="section_table">
-    		<div class="section">
-				<form th:action="@{/admin/adminEditExperts}" method="post" enctype="multipart/form-data">
-					<div class="apply_expert">
-						<div class="applyExpert">
-							<label>姓名</label>
-							<input type="hidden" name="expertsId" th:value="${experts.expertsId}">
-							<input type="text" name="expertsName" value="" th:value="${experts.expertsName}"/>
-							<label>性别</label>
-							<select name="expertsSex" th:value="${experts.expertsSex}">
-								<option value="男">男</option>
-								<option value="女">女</option>
-							</select>
-						</div>
-						<div class="applyExpert">
-							<label>出生日期</label>
-							<div class="jeinpbox" style="width: 456px;">
-								<input style="width: 91%" type="text" name="time" th:value="${#temporals.format(experts.expertsBirth, 'yyyy-MM-dd')}" class="jeinput moredate" placeholder="YYYY-MM-DD" required>
-							</div>
-							<label>国籍</label>
-							<input type="text" name="expertsCountry" th:value="${experts.expertsCountry}"/>
-						</div>
-						<div class="applyExpert">
-							<label>学历</label>
-							<select name="expertsEducation" th:filed="${experts.expertsEducation}" th:value="${experts.expertsEducation}" required>
-								<option value="">请选择学历</option>
-								<option th:selected="${experts.expertsEducation=='研究生'}" value="研究生">研究生</option>
-								<option th:selected="${experts.expertsEducation=='博士研究生'}" value="博士研究生">博士研究生</option>
-								<option th:selected="${experts.expertsEducation=='硕士研究生'}" value="硕士研究生">硕士研究生</option>
-								<option th:selected="${experts.expertsEducation=='大学'}" value="大学">大学</option>
-								<option th:selected="${experts.expertsEducation=='大专'}" value="大专">大专</option>
-								<option th:selected="${experts.expertsEducation=='中专'}" value="中专">中专</option>
-								<option th:selected="${experts.expertsEducation=='其他'}" value="其他">其他</option>
-							</select>
-							<label>学位</label>
-							<select name="degree" th:field="${experts.degree}" th:value="${experts.degree}" required>
-								<option value="">请选择学位</option>
-								<option th:selected="${experts.degree=='名誉博士'}" value="名誉博士">名誉博士</option>
-								<option th:selected="${experts.degree=='博士'}" value="博士">博士</option>
-								<option th:selected="${experts.degree=='硕士'}" value="硕士">硕士</option>
-								<option th:selected="${experts.degree=='学士'}" value="学士">学士</option>
-								<option th:selected="${experts.degree=='其他'}" value="其他">其他</option>
-							</select>
-						</div>
-						<div class="applyExpert">
-							<label>毕业院校</label>
-							<input type="text" name="school" value="" th:value="${experts.school}"/>
-							<label>所学专业</label>
-							<input type="text" name="major" value="" th:value="${experts.major}"/>
-						</div>
-						<div class="applyExpert">
-							<label>所在单位</label>
-							<input type="text" name="unit" value="" th:value="${experts.unit}"/>
-							<label>行政职务</label>
-							<input type="text" name="position" value="" th:value="${experts.position}"/>
-						</div>
-						<div class="applyExpert">
-							<label>专家类型ID</label>
-							<input type="text" name="typeId" value="" th:value="${experts.typeId}"/>
-							<label>用户ID</label>
-							<input type="text" name="userId" value="" th:value="${experts.userId}"/>
-						</div>
-						<div class="applyExpert">
-							<label>研究领域</label>
-							<textarea name="researchField" rows="" cols="" th:text="${experts.researchField}"></textarea>
-							<label>主要研究成果简介</label>
-							<textarea name="researchAchievements" rows="" cols="" th:text="${experts.researchAchievements}"></textarea>
-						</div>
-						<div class="applyExpert">
-							<label>个人获奖状况</label>
-							<input type="text" name="personalPrize" th:value="${experts.personalPrize}">
-							<label>成果获奖状况</label>
-							<input type="text" name="resultsPrize" th:value="${experts.resultsPrize}"/>
-						</div>
-						<div class="applyExpert">
-							<label>联系方式</label>
-							<input type="text" name="expertsPhone" th:value="${experts.expertsPhone}"/>
-							<label>邮箱</label>
-							<input type="text" name="expertsEmail" th:value="${experts.expertsEmail}"/>
-						</div>
-						<div class="applyExpert">
-							<label>点击量</label>
-							<input type="text" name="pageView" th:value="${experts.pageView}"/>
-							<input type="hidden" name="" th:value="${experts.statusCode}"/>
-							<label>审核状态码</label>
-							<select th:field="${experts.statusCode}" th:value="${experts.statusCode}" name="statusCode">
-								<option th:selected="${experts.statusCode=='0'}" value="0">未审核</option>
-								<option th:selected="${experts.statusCode=='1'}" value="1">通过</option>
-								<option th:selected="${experts.statusCode=='2'}" value="2">失败</option>
-							</select>
-						</div>
-						<div class="applyExpert">
-							<label>照片地址</label>
-							<div class="all-photo" onclick="photoup()">
-								<div class="all-photo-right">
-									<img th:src="${experts.pictureAddress}" id="imgshow" style="width: 80px;height: 80px;" />
+<section>
+	<div class="search-collapse">
+		<div class="search-collapse">
+			<h3>专家ID:<span th:text="${experts.expertsId}"></span></h3>
+		</div>
+	</div>
+	<div class="section_table">
+		<div class="section">
+			<div class="popup_table addUserTable">
+				<form th:action="@{/admin/adminEditExperts}" method="post" enctype="multipart/form-data" onsubmit="javascript:return confirm('你确定要修改此专家吗？');">
+
+
+					<table class="table table-hover table-bordered">
+						<tr>
+							<td>姓名:</td>
+							<td>
+								<input type="hidden" name="expertsId" th:value="${experts.expertsId}">
+								<input type="text" name="expertsName" value="" th:value="${experts.expertsName}"/>
+							</td>
+							<td>性别:</td>
+							<td>
+								<input type="radio" value="男" name="typeName" th:field="*{experts.expertsSex}">
+								<label th:for="男">男</label>
+								<input type="radio" value="女" name="typeName" th:field="*{experts.expertsSex}">
+								<label th:for="女">女</label>
+							</td>
+						</tr>
+						<tr>
+							<td>出生日期:</td>
+							<td>
+								<div class="jeinpbox">
+									<input style="width: 91%" type="text" name="time" class="jeinput moredate" placeholder="YYYY-MM-DD" th:value="${#temporals.format(experts.expertsBirth, 'yyyy-MM-dd')}" required autocomplete="off">
 								</div>
-							</div>
-							<input id="fileds" style="display: none;" accept="image/*" value="上传图片" />
-						</div>
-						<div class="applyExpert" style="text-align: center">
-							<input type="reset" name="" value="重置" />
-							<input type="submit" value="修改"/>
-							<a th:href="@{/admin/adminExpertsList}" class="btn returnList">返回</a>
-						</div>
+							</td>
+							<td>国籍：</td>
+							<td>
+								<input type="text" name="expertsCountry" th:value="${experts.expertsCountry}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>学历</td>
+							<td>
+								<select name="expertsEducation" th:filed="${experts.expertsEducation}" th:value="${experts.expertsEducation}" required>
+									<option value="">请选择学历</option>
+									<option th:selected="${experts.expertsEducation=='研究生'}" value="研究生">研究生</option>
+									<option th:selected="${experts.expertsEducation=='博士研究生'}" value="博士研究生">博士研究生</option>
+									<option th:selected="${experts.expertsEducation=='硕士研究生'}" value="硕士研究生">硕士研究生</option>
+									<option th:selected="${experts.expertsEducation=='大学'}" value="大学">大学</option>
+									<option th:selected="${experts.expertsEducation=='大专'}" value="大专">大专</option>
+									<option th:selected="${experts.expertsEducation=='中专'}" value="中专">中专</option>
+									<option th:selected="${experts.expertsEducation=='其他'}" value="其他">其他</option>
+								</select>
+							</td>
+							<td>学位</td>
+							<td>
+								<select name="degree" th:field="${experts.degree}" th:value="${experts.degree}" required>
+									<option value="">请选择学位</option>
+									<option th:selected="${experts.degree=='名誉博士'}" value="名誉博士">名誉博士</option>
+									<option th:selected="${experts.degree=='博士'}" value="博士">博士</option>
+									<option th:selected="${experts.degree=='硕士'}" value="硕士">硕士</option>
+									<option th:selected="${experts.degree=='学士'}" value="学士">学士</option>
+									<option th:selected="${experts.degree=='其他'}" value="其他">其他</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>毕业院校</td>
+							<td>
+								<input type="text" name="school" value="" th:value="${experts.school}"/>
+							</td>
+							<td>所学专业</td>
+							<td>
+								<input type="text" name="major" value="" th:value="${experts.major}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>所在单位</td>
+							<td>
+								<input type="text" name="unit" value="" th:value="${experts.unit}"/>
+							</td>
+							<td>行政职务</td>
+							<td>
+								<input type="text" name="position" value="" th:value="${experts.position}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>专家类型ID</td>
+							<td>
+								<input type="text" name="typeId" value="" th:value="${experts.typeId}"/>
+							</td>
+							<td>用户ID</td>
+							<td>
+								<input type="text" name="userId" value="" th:value="${experts.userId}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>研究领域</td>
+							<td>
+								<textarea name="researchField" rows="" cols="" th:text="${experts.researchField}"></textarea>
+							</td>
+							<td>主要研究成果简介</td>
+							<td>
+								<textarea name="researchAchievements" rows="" cols="" th:text="${experts.researchAchievements}"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>个人获奖状况</td>
+							<td>
+								<input type="text" name="personalPrize" th:value="${experts.personalPrize}">
+							</td>
+							<td>成果获奖状况</td>
+							<td>
+								<input type="text" name="resultsPrize" th:value="${experts.resultsPrize}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>联系方式</td>
+							<td>
+								<input type="text" name="expertsPhone" th:value="${experts.expertsPhone}"/>
+							</td>
+							<td>邮箱</td>
+							<td>
+								<input type="text" name="expertsEmail" th:value="${experts.expertsEmail}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>点击量</td>
+							<td>
+								<input type="text" name="pageView" th:value="${experts.pageView}"/>
+								<input type="hidden" name="" th:value="${experts.statusCode}"/>
+							</td>
+							<td>审核状态码</td>
+							<td>
+								<select th:field="${experts.statusCode}" th:value="${experts.statusCode}" name="statusCode">
+									<option th:selected="${experts.statusCode=='0'}" value="0">未审核</option>
+									<option th:selected="${experts.statusCode=='1'}" value="1">通过</option>
+									<option th:selected="${experts.statusCode=='2'}" value="2">失败</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>照片地址</td>
+							<td>
+								<div class="all-photo" onclick="photoup()">
+									<div class="all-photo-right">
+										<img th:src="${experts.pictureAddress}" id="imgshow" style="width: 80px;height: 80px;" />
+									</div>
+								</div>
+								<input id="fileds" style="display: none;" accept="image/*" value="上传图片" />
+							</td>
+						</tr>
+					</table>
+
+					<div class="popup_bottom">
+						<input type="reset" name="" value="重置" />
+						<input type="submit" value="修改"/>
+						<a th:href="@{/admin/adminExpertsList}" class="btn returnList">返回</a>
 					</div>
 				</form>
 			</div>
-    	</div>
-    	
-    </section>
+		</div>
+	</div>
+</section>
+
 
 </body>
-	<script th:src="@{../js/jquery-3.3.1.min.js}"></script>
-	<script th:src="@{../js/jedate.js}"></script>
-	<script th:src="@{../js/demo.js}"></script>
+<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{../js/jedate.js}"></script>
+<script th:src="@{../js/demo.js}"></script>
 <script>
     function photoup() {
         $('#fileds').click();
@@ -162,3 +217,5 @@
 
 </script>
 </html>
+
+

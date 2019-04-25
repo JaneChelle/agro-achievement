@@ -166,7 +166,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     public IPage<Experts> findName(String findName, int current, int limit) {
         Page page = new Page(current, limit);
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("experts_name", findName).like("research_field", findName);
+        queryWrapper.like("experts_name", findName).or().like("research_field", findName);
         IPage<Experts> iPage = baseMapper.selectPage(page, queryWrapper);
         return iPage;
     }

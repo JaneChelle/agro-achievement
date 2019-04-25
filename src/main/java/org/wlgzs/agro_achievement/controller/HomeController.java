@@ -318,6 +318,7 @@ public class HomeController extends BaseController {
     public ModelAndView globalSearch(Model model, @RequestParam(value = "findName", defaultValue = "") String findName,
                                      @RequestParam(value = "current", defaultValue = "1") int current,
                                      @RequestParam(value = "limit", defaultValue = "20") int limit) {
+        findName = findName.replaceAll("\\s*", "");
         IPage<Experts> Experts = iExpertsService.findName(findName, current, limit);
         IPage<Organization> Organization = iOrganizationService.findName(findName, current, limit);
         //搜索成果
@@ -326,7 +327,7 @@ public class HomeController extends BaseController {
         int size = 20 - iPage.getRecords().size();//当页缺少的成果条数
         if (size == 20) {
             //成果总数
-            model.addAttribute("AchievementNumber", null);
+            model.addAttribute("AchievementNumber", 0);
             model.addAttribute("findAchievement", null);
         } else {
             //成果总数
@@ -356,12 +357,12 @@ public class HomeController extends BaseController {
                 model.addAttribute("OrganizationNumber", iPage2.getTotal());
                 model.addAttribute("findOrganization", iPage2.getRecords());
             } else {
-                model.addAttribute("OrganizationNumber", null);
+                model.addAttribute("OrganizationNumber", 0);
                 model.addAttribute("findOrganization", null);
             }
         } else {
             //专家总数
-            model.addAttribute("ExpertsNumber", null);
+            model.addAttribute("ExpertsNumber", 0);
             model.addAttribute("findExperts", null);
         }
 

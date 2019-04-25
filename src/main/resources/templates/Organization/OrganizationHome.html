@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta http-equiv="Page-Enter" content="progid:DXImageTransform.Microsoft.Slide(Duration=2)" />
+    <meta http-equiv="Page-Exit" content="progid:DXImageTransform.Microsoft.Slide(Duration=2)" />
     <meta charset="UTF-8">
     <title>机构服务-农业科技成果转化交易服务平台</title>
     <link rel="stylesheet" th:href="@{/css/header.css}">
@@ -60,12 +62,12 @@
 <div class="dx">
     <!--科研教学单位-->
     <div class="cg-show">
-        <a href="" class="cg-more">更多</a>
+        <a th:href="@{/HomeController/selectAllOrganization}" class="cg-more">更多</a>
     </div>
     <ul class="dx-fen">
         <li>
             <ul class="colleges" th:each="school : ${schoolList}">
-                <li ><i class="fa fa-caret-right" aria-hidden="true"></i><a href="" th:text="${school.organizationName}">中国农业大学</a></li>
+                <li ><i class="fa fa-caret-right" aria-hidden="true"></i><a th:href="@{/HomeController/organizationDetails(organizationId=${school.organizationId})}" th:text="${school.organizationName}">中国农业大学</a></li>
             </ul>
         </li>
         <li th:each="school : ${schoolList}">
@@ -75,7 +77,7 @@
             <div class="wenzi">
                 <a href="" th:text="${school.organizationName}">中国农业大学</a><br>
                 <span>地区：</span><span th:text="${school.organizationRegion}">中国大陆</span><br>
-                <span>研究领域：</span>
+                <!--<span>研究领域：</span>-->
             </div>
         </li>
     </ul>

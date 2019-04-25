@@ -173,6 +173,10 @@
 .pic{
     float: left;
 }
+.pic>img{
+    width: 90px;
+    height: 90px;
+}
 .wenzi{
     float: right;
 }

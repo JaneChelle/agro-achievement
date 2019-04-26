@@ -76,28 +76,3 @@
     padding: 0;
     line-height: 18px;
 }
-.SplitPage{
-    width: 1200px;
-    margin: 20px auto;
-    text-align: center;
-}
-.SplitUl{
-    font-size: 0;
-}
-.SplitUl>li{
-    display: inline-block;
-}
-.SplitUl>li>a{
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    display: inline-block;
-    color: #41A809;
-    font-size: 16px;
-    text-decoration: none;
-    margin: 10px;
-}
-.active{
-    background: #41A809;
-    color: #fff !important;
-}

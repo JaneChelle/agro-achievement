@@ -63,10 +63,10 @@ public class AdminAchievementController extends BaseController {
 
     //管理员添加成果
     @RequestMapping(value = "/adminAddAchievement")
-    public ModelAndView adminAddAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, Model model,
+    public Result adminAddAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, Model model,
                                             HttpSession session,HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
         Result result = iAchievementService.saveAchievement(session,myFileNames, request, achievement, start_time, end_time);
-        return new ModelAndView("redirect:/admin/adminAchievementList");
+        return result;
     }
 
     //跳转到修改成果
@@ -90,34 +90,16 @@ public class AdminAchievementController extends BaseController {
 
     //修改成果
     @RequestMapping(value = "/adminEditAchievement")
-    public ModelAndView modifyAchievement(Achievement achievement, String start_time, String end_time, Model model) {
+    public Result modifyAchievement(Achievement achievement, String start_time, String end_time, Model model) {
         Result result = iAchievementService.modifyAdminAchievement(achievement, start_time, end_time);
-        if (result.getCode() == 0) {
-            Achievement achievement1 = (Achievement) result.getData();
-            model.addAttribute("msg", "修改成功！");
-            //查询所有类型
-            Result result1 = iTypeService.selectAllType();
-            List<Type> typeList = (List<Type>) result1.getData();
-            model.addAttribute("typeList", typeList);
-            model.addAttribute("achievement", achievement1);
-            return new ModelAndView("redirect:/admin/adminAchievementList");
-
-        } else {
-            model.addAttribute("msg", "修改失败！");
-        }
-        return new ModelAndView("admin/detailsAchievement");
+        return result;
     }
 
     //删除成果
     @RequestMapping(value = "/adminDeleteAchievement")
-    public ModelAndView adminDeleteAchievement(Integer achievementId, Model model) {
+    public Result adminDeleteAchievement(Integer achievementId, Model model) {
         Result result = iAchievementService.deleteAchievement(achievementId);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "删除成功！");
-        } else {
-            model.addAttribute("msg", "不存在！");
-        }
-        return new ModelAndView("redirect:/admin/adminAchievementList");
+        return result;
     }
 
 }

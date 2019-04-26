@@ -42,7 +42,7 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
             demand.setReleaseTime(ldt);
             demand.setPageView(0);
             baseMapper.insert(demand);
-            return new Result(ResultCode.SUCCESS, "发布成功！");
+            return new Result(ResultCode.SUCCESS, "请耐心等待审核！");
         }
         return new Result(ResultCode.FAIL, "请输入正确的信息！");
     }
@@ -112,7 +112,7 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
     @Override
     public Result adminDemandList(String findName, int current, int limit) {
         QueryWrapper<Demand> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("demand_name", findName).or().like("demand_introduce", findName);
+        queryWrapper.like("demand_name", findName).or().like("demand_introduce", findName).orderByDesc("demand_id");
         Page page = new Page(current, limit);
         IPage<Demand> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Demand> achievementList = iPage.getRecords();

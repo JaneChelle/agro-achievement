@@ -1,6 +1,7 @@
 package org.wlgzs.agro_achievement.controller.admin;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Announcement;
 import org.wlgzs.agro_achievement.util.Result;
+import org.wlgzs.agro_achievement.util.ResultCode;
 
 import java.util.List;
 
@@ -27,15 +29,13 @@ public class AdminAnnouncementController extends BaseController {
     //去添加公告
     @RequestMapping(value = "/toAddAnnouncement")
     public ModelAndView toAddAnnouncement() {
-
         return new ModelAndView("admin/addAnnouncement");
     }
 
     //添加公告（管理员）
     @RequestMapping(value = "/addAnnouncement")
-    public ModelAndView addAnnouncement(Announcement announcement) {
-        iAnnouncementService.addAnnouncement(announcement);
-        return new ModelAndView("redirect:/admin/selectAnnouncement");
+    public Result addAnnouncement(Announcement announcement) {
+        return iAnnouncementService.addAnnouncement(announcement);
     }
 
     //查看公告详情（管理员）
@@ -64,22 +64,16 @@ public class AdminAnnouncementController extends BaseController {
 
     //修改公告
     @RequestMapping(value = "/modifyAnnouncement")
-    public ModelAndView modifyAnnouncement(Model model, Announcement announcement) {
+    public Result modifyAnnouncement(Announcement announcement) {
         Result result = iAnnouncementService.modifyAnnouncement(announcement);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "修改成功！");
-        } else {
-            model.addAttribute("msg", "修改失败！");
-        }
-        return new ModelAndView("redirect:/admin/selectAnnouncement");
+        return result;
     }
 
     //删除公告
     @RequestMapping(value = "/deleteAnnouncement")
-    public ModelAndView deleteAnnouncement(Integer announcementId,Model model) {
+    public Result deleteAnnouncement(Integer announcementId,Model model) {
         Result result = iAnnouncementService.deleteAnnouncement(announcementId);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/selectAnnouncement");
+        return result;
     }
 
     //按类别查询公告(默认查询所有的)
@@ -96,6 +90,31 @@ public class AdminAnnouncementController extends BaseController {
         model.addAttribute("findName",findName);
 
         return new ModelAndView("admin/adminAnnouncement");
+    }
+
+    //按公告是否显示查询
+    @RequestMapping("/selectByIsShow")
+    public ModelAndView selectByIsShow(int isShow,Model model,@RequestParam(value = "current", defaultValue = "1") Integer current,
+                                       @RequestParam(value = "limit", defaultValue = "8") Integer limit){
+        QueryWrapper<Announcement> queryWrapper = new QueryWrapper<>();
+        if(isShow == 0 || isShow == 1){
+            queryWrapper.eq("is_show",isShow);
+        }
+        List<Announcement> announcementList = iAnnouncementService.list(queryWrapper);
+        model.addAttribute("announcementList",announcementList);
+        return new ModelAndView("admin/adminAnnouncement");
+    }
+
+    //修改公告是否显示
+    @RequestMapping("/modifiedAccording")
+    public Result modifiedAccording(int announcementId,int isShow){
+        Announcement announcement = iAnnouncementService.getById(announcementId);
+        if(announcement != null){
+            announcement.setIsShow(isShow);
+            iAnnouncementService.updateById(announcement);
+            return new Result(ResultCode.SUCCESS,"修改成功！");
+        }
+        return new Result(ResultCode.FAIL,"不存在！");
     }
 
 }

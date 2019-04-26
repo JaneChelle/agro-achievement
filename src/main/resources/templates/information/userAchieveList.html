@@ -42,7 +42,9 @@
             <td th:text="${achievement.typeName}"></td>
             <td th:text="${achievement.linkman}"></td>
             <td th:text="${#temporals.format(achievement.releaseTime, 'yyyy-MM-dd')}"></td>
-            <td th:text="${achievement.statusCode}"></td>
+            <td th:if="${achievement.statusCode}==0">待审核</td>
+            <td th:if="${achievement.statusCode}==1">通过</td>
+            <td th:if="${achievement.statusCode}==-1">失败</td>
             <td>
                 <a class="a-div adiv1" id="deletesAchievement">删除</a>
                 <a class="a-div adiv2" th:href="@{/achievement/achievementUserDetails(achievementId=${achievement.achievementId})}">修改</a>

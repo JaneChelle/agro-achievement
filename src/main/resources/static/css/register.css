@@ -10,10 +10,12 @@ body{
     margin:20px auto;
 }
 .box>h3{
-    border-bottom: 1px solid #41A809;
-    color: #41A809;
+    border-bottom: 2px solid #41A809;
+    color: #030303;
     font-weight: 400;
+    font-size: 28px;
     margin-bottom: 20px;
+    padding-bottom: 10px;
 }
 .title{
     background: #F8F8F8;

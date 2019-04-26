@@ -50,10 +50,9 @@ public class AdminDemandController extends BaseController {
 
     //管理员添加需求
     @RequestMapping(value = "/adminAddDemand")
-    public ModelAndView adminAddDemand(Model model ,Demand demand,String time){
+    public Result adminAddDemand(Model model ,Demand demand,String time){
         Result result = iDemandService.saveDemand(demand,time);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/adminAdminDemand");
+        return result;
     }
 
     //跳转到修改需求
@@ -67,30 +66,17 @@ public class AdminDemandController extends BaseController {
 
     //修改需求
     @RequestMapping(value = "/adminEditDemand")
-    public ModelAndView modifyDemand(Demand demand, Model model,String time) {
+    public Result modifyDemand(Demand demand, Model model,String time) {
         Result result = iDemandService.modifyDemand(demand,time);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "修改成功！");
-            return new ModelAndView("redirect:/admin/adminAdminDemand");
-        } else {
-            model.addAttribute("msg", "修改失败！");
-        }
-        Demand demand1 = (Demand) result.getData();
-        model.addAttribute("demand", demand1);
-        return new ModelAndView("admin/adminEditDemand");
+        return result;
 
     }
 
     //删除成果
     @RequestMapping(value = "/adminDeleteDemand")
-    public ModelAndView adminDeleteDemand(Integer demandId, Model model) {
+    public Result adminDeleteDemand(Integer demandId, Model model) {
         Result result = iDemandService.deleteDemand(demandId);
-        if (result.getCode() == 0) {
-            model.addAttribute("msg", "删除成功！");
-        } else {
-            model.addAttribute("msg", "不存在！");
-        }
-        return new ModelAndView("redirect:/admin/adminAdminDemand");
+        return result;
     }
 
 }

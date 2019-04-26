@@ -61,9 +61,9 @@ public class HomeController extends BaseController {
         model.addAttribute("organizationList", organizationList);
 
         //公告类型（新闻中心，交易活动，政策中心）
-        List<Announcement> newsList = (List<Announcement>) iAnnouncementService.selectAnnouncement("", 1, 10).getData();
-        List<Announcement> tradingList = (List<Announcement>) iAnnouncementService.selectAnnouncement("", 1, 10).getData();
-        List<Announcement> policyList = (List<Announcement>) iAnnouncementService.selectAnnouncement("", 1, 10).getData();
+        List<Announcement> newsList = (List<Announcement>) iAnnouncementService.selectAnnouncement("新闻中心", 1, 4).getData();
+        List<Announcement> tradingList = (List<Announcement>) iAnnouncementService.selectAnnouncement("交易活动", 1, 4).getData();
+        List<Announcement> policyList = (List<Announcement>) iAnnouncementService.selectAnnouncement("政策中心", 1, 4).getData();
         model.addAttribute("newsList", newsList);
         model.addAttribute("tradingList", tradingList);
         model.addAttribute("policyList", policyList);
@@ -155,6 +155,11 @@ public class HomeController extends BaseController {
         //机构排行
         List<Organization> organizationRankingList = iOrganizationService.rankingOrganization(1, 10);
         model.addAttribute("organizationRankingList", organizationRankingList);
+
+        //查询科研教学单位
+        Result result = iOrganizationService.selectOrganizationByType("科研教学", 1, 4);
+        List<Organization> schoolList = (List<Organization>) result.getData();
+        model.addAttribute("schoolList",schoolList);
 
         return new ModelAndView("/Organization/OrganizationHome");
     }
@@ -266,7 +271,7 @@ public class HomeController extends BaseController {
     //前台按类型查询专家
     @RequestMapping(value = "/selectExpertsByType")
     public ModelAndView selectExpertsByType(Model model, @RequestParam(value = "type", defaultValue = "") String type, @RequestParam(value = "current", defaultValue = "1") int current,
-                                                 @RequestParam(value = "limit", defaultValue = "8") int limit) {
+                                            @RequestParam(value = "limit", defaultValue = "8") int limit) {
         Result result = iExpertsService.selectExpertsByType(type, current, limit);
         List<Experts> expertsList = (List<Experts>) result.getData();
         model.addAttribute("expertsList", expertsList);
@@ -313,17 +318,18 @@ public class HomeController extends BaseController {
     public ModelAndView globalSearch(Model model, @RequestParam(value = "findName", defaultValue = "") String findName,
                                      @RequestParam(value = "current", defaultValue = "1") int current,
                                      @RequestParam(value = "limit", defaultValue = "20") int limit) {
+        findName = findName.replaceAll("\\s*", "");
         IPage<Experts> Experts = iExpertsService.findName(findName, current, limit);
         IPage<Organization> Organization = iOrganizationService.findName(findName, current, limit);
         //搜索成果
         IPage<Achievement> iPage = iAchievementService.findName(findName, current, limit);
         int a = (int) Math.ceil(iPage.getTotal() / 20f);//成果页数
         int size = 20 - iPage.getRecords().size();//当页缺少的成果条数
-        if(size == 20){
+        if (size == 20) {
             //成果总数
-            model.addAttribute("AchievementNumber",null);
-            model.addAttribute("findAchievement",null);
-        }else{
+            model.addAttribute("AchievementNumber", 0);
+            model.addAttribute("findAchievement", null);
+        } else {
             //成果总数
             model.addAttribute("AchievementNumber", iPage.getTotal());
             model.addAttribute("findAchievement", iPage.getRecords());
@@ -350,13 +356,13 @@ public class HomeController extends BaseController {
                 //机构总数
                 model.addAttribute("OrganizationNumber", iPage2.getTotal());
                 model.addAttribute("findOrganization", iPage2.getRecords());
-            }else{
-                model.addAttribute("OrganizationNumber", null);
+            } else {
+                model.addAttribute("OrganizationNumber", 0);
                 model.addAttribute("findOrganization", null);
             }
         } else {
             //专家总数
-            model.addAttribute("ExpertsNumber", null);
+            model.addAttribute("ExpertsNumber", 0);
             model.addAttribute("findExperts", null);
         }
 

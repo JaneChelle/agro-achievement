@@ -57,10 +57,9 @@ public class UserController extends BaseController {
 
     //后台删除用户
     @RequestMapping(value = "/adminDeleteUser")
-    public ModelAndView adminDeleteUser(Model model,Integer userId){
+    public Result adminDeleteUser(Model model,Integer userId){
         Result result = iUserService.adminDeleteUser(userId);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/adminUserList");
+        return result;
     }
 
     //去修改用户
@@ -78,10 +77,9 @@ public class UserController extends BaseController {
 
     //后台修改用户
     @RequestMapping(value = "/adminModifyUser")
-    public ModelAndView adminModifyUser(Model model,User user){
+    public Result adminModifyUser(Model model,User user){
         Result result = iUserService.adminModifyUser(user);
-        model.addAttribute("msg",result.getMsg());
-        return new ModelAndView("redirect:/admin/adminUserList");
+        return result;
     }
 
 }

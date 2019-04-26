@@ -38,7 +38,7 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form th:action="@{/admin/adminEditDemand}" method="post" onsubmit="javascript:return confirm('你确定要修改此需求吗？');">
+                <form id="form2" action="#" method="post" onsubmit="return false">
                     <input type="hidden" name="demandId" required="required" th:value="${demand.demandId}" readonly="readonly" unselectable="on" disabled="disabled">
                     <table class="table table-hover table-bordered">
                         <tr>
@@ -108,7 +108,7 @@
                     </table>
                     <div class="popup_bottom">
                         <input type="reset" name="" value="重置" />
-                        <input type="submit" value="修改"/>
+                        <input onclick="modifyDemand()" type="submit" value="修改"/>
                         <a th:href="@{/admin/adminAdminDemand}" class="btn returnList">返回</a>
                     </div>
                 </form>
@@ -122,16 +122,6 @@
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
 <script th:src="@{../js/jedate.js}"></script>
 <script th:src="@{../js/demo.js}"></script>
-<script>
-    // 状态码
-    var options = $('.modifyDemand option');
-    var statusCode = $('.statusCodeDemand').val();
-    for (var i = 0; i < options.length; i++) {
-        if ($(options[i]).val() == statusCode) {
-            $(options[i]).attr("selected", true);
-        } else {
-            $(options[i]).attr("selected", false);
-        }
-    }
-</script>
+<script th:src="@{../js/adminDemand.js}"></script>
+
 </html>

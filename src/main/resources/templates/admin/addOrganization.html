@@ -33,7 +33,7 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form th:action="@{/admin/adminAddOrganization}" method="post" enctype="multipart/form-data" onsubmit="return adminContent()">
+                <form method="POST" enctype="multipart/form-data" id="form1" onsubmit="return false">
                     <table class="table table-bordered addUser">
                         <thead>
 
@@ -106,19 +106,15 @@
                                     <input type="" name="userId" value="" required="required"/>
                                 </td>
                             </tr>
-                            <tr>
-                                <th>机构类型id</th>
-                                <td>
-                                    <input type="" name="organizationTypeId" value="" required="required"/>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <th>机构类型</th>
                                 <td>
                                     <div th:each="type : ${typeList}" class="typeName">
-                                        <input type="radio" name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" required/><label
-                                            th:text="${type.typeName}" th:for="${type.typeName}"></label>
+                                        <input type="radio" name="typeName" th:id="${type.organizationTypeId}" th:data-id="${type.organizationTypeId}" th:value="${type.typeName}" required/>
+                                        <label th:text="${type.typeName}" th:for="${type.typeName}"></label>
                                     </div>
+                                    <input type="hidden" name="organizationTypeId" class="TypeId">
                                 </td>
                             </tr>
                             <tr>
@@ -150,7 +146,7 @@
                     </table>
                     <div class="popup_bottom">
                         <input type="reset" name="" value="重置" />
-                        <input type="submit" value="添加"/>
+                        <input onclick="adminContent(),addOrganization()" type="submit" value="添加"/>
                         <a th:href="@{/admin/adminOrganizationList}" class="btn returnList">返回</a>
                     </div>
                 </form>

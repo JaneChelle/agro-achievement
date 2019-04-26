@@ -32,7 +32,6 @@ $(".deleteOrganization").on('click', function () {
     }
 });
 
-
 function photoup() {
     $('#fileds').click();
     $('#fileds').change(function() {
@@ -52,4 +51,35 @@ function photoup() {
             $('#imgshow').get(0).src = e.target.result;
         }
     })
+}
+// 添加机构
+function addOrganization() {
+    // 获取机构类型ID
+    var dataId =  $("input[name='typeName']:checked").attr('id');
+    $('.TypeId').val(dataId);
+    var form = $('#form1')[0];
+    var data = new FormData(form);
+    var inform = "您确定添加一条机构信息吗？";
+    if(confirm(inform) == true){
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/admin/adminAddOrganization" ,//url
+            data: $('#form1').serialize(),
+            success: function (data) {
+                console.log(data);//打印服务端返回的数据(调试用)
+                if (data.code == 0) {
+                    alert(data.msg);
+                    window.location.href = "/admin/adminAdminDemand";
+                }else{
+                    alert(data.msg);
+                    window.location.href = "/admin/adminAdminDemand";
+                };
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
 }

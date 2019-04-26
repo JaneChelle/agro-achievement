@@ -17,10 +17,10 @@
     <div class="search-collapse">
         <h3>用户ID：<span th:text="${user.userId}"></span></h3>
     </div>
-    <div class="section_table">
+    <div class="section_table" style="bottom: 0;">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form id="form1" th:action="@{/admin/adminModifyUser}" method="post" onsubmit="return addressUser()">
+                <form id="form2" method="post" onsubmit="return false">
                     <table class="table table-bordered addUser">
                         <thead>
                         <tr>
@@ -75,7 +75,7 @@
                     </table>
                     <div class="popup_bottom">
                         <input type="reset" value="重置" />
-                        <input type="submit" value="修改"/>
+                        <input onclick="addressUser(),modifyAdmin()" type="submit" value="修改"/>
                         <a th:href="@{/admin/adminUserList}" class="btn returnList">返回</a>
                     </div>
                 </form>
@@ -88,6 +88,4 @@
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
 <script type="text/javascript" th:src="@{../js/distpicker.js}" ></script>
 <script type="text/javascript" th:src="@{../js/adminUser.js}" ></script>
-
-
 </html>

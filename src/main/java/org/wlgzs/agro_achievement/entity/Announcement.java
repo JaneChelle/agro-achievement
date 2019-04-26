@@ -49,4 +49,8 @@ public class Announcement implements Serializable {
      */
     private String announcementType;
 
+    /**
+     * 是否显示(1显示，0不显示)
+     */
+    private Integer isShow;
 }

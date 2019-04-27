@@ -66,7 +66,7 @@ function addDemand() {
         $.ajax({
             type: "post",
             url: "/demand/addDemand",
-            data: $('myform').serialize(),
+            data: $('#myform').serialize(),
             success: function (data) {
 
                 if (data.code = 0){
@@ -74,7 +74,6 @@ function addDemand() {
                     alert('成功')
                 }else{
                     window.location.href = '/demand/selectDemand';
-                    alert('发布失败')
                 }
 
             },
@@ -110,13 +109,10 @@ function demendModify() {
                 setTimeout(function () {
                     $('.cure').removeClass('uu');
                 },2000);
-                setTimeout(function () {
-                    location.reload(true);
-                },1000);
                 alert('修改成功！');
                 window.location.href = '/demand/selectDemand';
             }else{
-                alert('修改失败！')
+                alert('修改失败！');
                 window.location.href = '/demand/selectDemand';
             }
 
@@ -126,9 +122,6 @@ function demendModify() {
         error: function (data) {
             $('.cure').addClass('uu');
             $('.cure').html(data.msg);
-            setTimeout(function () {
-                $('.cure').removeClass('uu');
-            },1000);
 
             alert('异常')
         }

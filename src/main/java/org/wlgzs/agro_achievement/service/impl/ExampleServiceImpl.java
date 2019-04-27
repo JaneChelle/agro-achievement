@@ -52,6 +52,7 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
             Example example1 = baseMapper.selectById(example.getExampleId());
             if (example1 != null) {
                 example.setReleaseTime(example1.getReleaseTime());
+                example.setStatusCode(example.getStatusCode());
                 baseMapper.updateById(example);
                 return new Result(ResultCode.SUCCESS, "修改成功！",1,example);
             }

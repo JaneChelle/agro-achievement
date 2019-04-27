@@ -136,32 +136,30 @@ section{
     padding : 5px;
     box-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
+.select-list{
+	overflow: hidden;
+}
 .select-list li{
-	position: relative;
-	top: 5px;
-	margin: 0 12px;
-	vertical-align: top;
 	display: inline-block;
+	vertical-align: top;
 }
 .select-list li a{
-	color: #0BBB;
+	color: #0BB;
 }
 .select-list li:last-child{
-	position: relative;
-	right: 40px;
 	float: right;
+	position: relative;
+	right: 12px;
 }
 .select-list li button{
 	font-weight: 600!important;
 }
 .select-list li input {
-    border: 1px solid #ddd;
+    border: 2px solid #0BB;
     border-radius: 4px;
-    background: transparent;
     outline: none;
-    height: 30px;
+    height: 32px;
     width: 280px;
-    outline: auto!important;
     padding-left: 5px;
 }
 .search-collapse h3{
@@ -180,6 +178,14 @@ section{
 	float: right;
 	right: 18px;
 	margin: 0 12px;
+}
+/*导航判断*/
+.title{
+	background: #F8F8F8;
+	padding: 10px;
+}
+.title a{
+	padding: 0 8px;
 }
 nav{
 	z-index: 999;

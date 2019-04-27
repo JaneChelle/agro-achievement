@@ -94,7 +94,7 @@ public class AdminAnnouncementController extends BaseController {
 
     //按公告是否显示查询
     @RequestMapping("/selectByIsShow")
-    public ModelAndView selectByIsShow(int isShow,Model model,@RequestParam(value = "current", defaultValue = "1") Integer current,
+    public ModelAndView selectByIsShow(@RequestParam(value = "isShow" ,defaultValue = "3") int isShow,Model model,@RequestParam(value = "current", defaultValue = "1") Integer current,
                                        @RequestParam(value = "limit", defaultValue = "8") Integer limit){
         QueryWrapper<Announcement> queryWrapper = new QueryWrapper<>();
         if(isShow == 0 || isShow == 1){

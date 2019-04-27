@@ -8,6 +8,12 @@
     <link rel="stylesheet" th:href="@{../css/admindemo.css}" />
     <link rel="shortcut icon" type="image/x-icon" th:href="@{../images/favicon.ico}"media="screen" />
     <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <style>
+        input[name="announcementTitle"]{
+            width: 350px;
+            height: 38px;
+        }
+    </style>
 </head>
 <body>
 
@@ -19,7 +25,7 @@
     </div>
     <div class="section_table">
         <figure>
-            <form th:action="@{/admin/modifyAnnouncement}" method="post">
+            <form id="form1" action="#" method="post" onsubmit="return false">
                 <input type="hidden" th:value="${announcement.announcementId}" name="announcementId">
                 <div class="announcementTitle">
                     <label>公告标题：</label>
@@ -32,6 +38,13 @@
                         <option value="交易活动">交易活动</option>
                         <option value="政策中心">政策中心</option>
                     </select>
+                    <label>是否在前台显示： </label>
+                    <select name="isShow" id="isShow" required>
+                        <option value="">请选择是否在前台显示</option>
+                        <option value="1">显示</option>
+                        <option value="0">不显示</option>
+                        <input type="hidden" class="is_show" th:value="${announcement.isShow}">
+                    </select>
                         <input type="hidden" class="statusCode" th:value="${announcement.announcementType}">
                 </div>
                 <div class="announcementContent" style="text-align: center">
@@ -39,7 +52,7 @@
                 </div>
                 <div class="applyExpert" style="text-align: center">
                     <input type="reset" name="" value="重置" />
-                    <input type="submit" value="修改"/>
+                    <input onclick="adminModify()" type="submit" value="修改"/>
                     <a th:href="@{/admin/selectAnnouncement}" class="btn returnList">返回</a>
                 </div>
             </form>
@@ -51,5 +64,41 @@
 <script>
     // 公告类型
     $('#modifyExample').val($('.statusCode').val());
+
+    var options = $('#isShow option');
+    var is_show = $('.is_show').val();
+    for (var i = 0; i < options.length; i++) {
+        if ($(options[i]).val() == is_show) {
+            $(options[i]).attr("selected", true);
+        } else {
+            $(options[i]).attr("selected", false);
+        }
+    }
+
+    function adminModify() {
+        var inform = "您确定修改此公告信息吗？";
+        if(confirm(inform) == true){
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/admin/modifyAnnouncement" ,//url
+                data: $('#form1').serialize(),
+                success: function (data) {
+                    console.log(data);//打印服务端返回的数据(调试用)
+                    if (data.code == 0) {
+                        alert(data.msg);
+                        window.location.href = "/admin/selectAnnouncement";
+                    }else{
+                        alert(data.msg);
+                        window.location.href = "/admin/selectAnnouncement";
+                    };
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+    }
 </script>
 </html>

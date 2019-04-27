@@ -48,10 +48,10 @@ function modifyDemand() {
                 console.log(data);//打印服务端返回的数据(调试用)
                 if (data.code == 0) {
                     alert(data.msg);
-                    window.location.href = "/admin/adminUserList";
+                    window.location.href = "/admin/adminAdminDemand";
                 }else{
                     alert(data.msg);
-                    window.location.href = "/admin/adminUserList";
+                    window.location.href = "/admin/adminAdminDemand";
                 };
             },
             error : function() {

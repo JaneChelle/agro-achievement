@@ -64,7 +64,7 @@
 		            		<td th:text="${example.exampleTitle}">“羊肉加工增值关键技术”顺利转化，经济社会效益显著</td>
 		            		<td th:text="${#temporals.format(example.releaseTime, 'yyyy-MM-dd')}">2019-03-25 21:32:34</td>
 		            		<td th:text="${example.userId}">1</td>
-		            		<td th:text="${example.statusCode}">2</td>
+		            		<td class="isCode" th:text="${example.statusCode}">2</td>
 		            		<td>
 								<a th:href="@{/admin/toAdminEditExample(exampleId=${example.exampleId})}">详情</a>
 		            			<button type="button" class="btn deleteExample">删除</button>
@@ -119,4 +119,16 @@
 	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
 	<script type="text/javascript" th:src="@{../js/wangEditor.min.js}"></script>
 	<script type="text/javascript" th:src="@{../js/adminExample.js}"></script>
+<script>
+    var length = $('.isCode').length;
+    for (var i=0; i<length; i++){
+        if($($('.isCode')[i]).text() == "0"){
+            $($('.isCode')[i]).text("未审核");
+        }else if($($('.isCode')[i]).text() == "1"){
+            $($('.isCode')[i]).text("通过");
+        }else if($($('.isCode')[i]).text() == "2"){
+            $($('.isCode')[i]).text("失败");
+        }
+    }
+</script>
 </html>

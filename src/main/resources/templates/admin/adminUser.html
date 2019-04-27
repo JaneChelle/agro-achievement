@@ -77,7 +77,7 @@
 		            		<td th:text="${adminUser.password}">171219BY</td>
 		            		<td th:text="${adminUser.userPhone}">15936571965</td>
 		            		<td th:text="${adminUser.userEmail}">1787583716@qq.com</td>
-		            		<td th:text="${adminUser.userLevel}">2</td>
+		            		<td class="isCode" th:text="${adminUser.userLevel}">2</td>
 		            		<td th:text="${adminUser.userAddress}">河南省新乡市红旗区</td>
 		            		<td>
 								<a th:href="@{/admin/toAdminModifyUser(userId=${adminUser.userId})}">修改</a>
@@ -132,4 +132,17 @@
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
 <script type="text/javascript" th:src="@{../js/adminUser.js}" ></script>
 <script type="text/javascript" th:src="@{../js/distpicker.js}" ></script>
+<script>
+    var length = $('.isCode').length;
+    for (var i=0; i<length; i++){
+        if($($('.isCode')[i]).text() == "1"){
+            $($('.isCode')[i]).text("管理员");
+        }else if($($('.isCode')[i]).text() == "2"){
+            $($('.isCode')[i]).text("普通用户");
+        }else if($($('.isCode')[i]).text() == "3"){
+            $($('.isCode')[i]).text("专家");
+        }
+    }
+
+</script>
 </html>

@@ -99,14 +99,6 @@ function addOrganization() {
             success: function (data) {
 
                 if (data.code == 0){
-                    $('.cure').addClass('uu');
-                    $('.cure').html(data.msg);
-                    setTimeout(function () {
-                        $('.cure').removeClass('uu');
-                    },2000);
-                    setTimeout(function () {
-                        location.reload(true);
-                    },1000);
                     alert('添加成功')
                     window.location.href = '/organization/selectOrganizationByUser?statusCode=0';
                 }else{

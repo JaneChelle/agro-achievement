@@ -192,69 +192,52 @@ function submitAchievement() {
         },2000);
     }
     else{
-        var form = $('#myform')[0];
-        var formData = new FormData(form);
-        // formData.append("achievementName","achievementName");
-        // formData.append("achievementIntroduce","achievementIntroduce");
-        // formData.append("typeName","typeName");
-        // formData.append("achievementKey","achievementKey");
-        // formData.append("start_time","start_time");
-        // formData.append("end_time","end_time");
-        // formData.append("propertyAddress","propertyAddress");
-        // formData.append("awards","awards");
-        // formData.append("expectedPrice","expectedPrice");
-        // formData.append("linkman","linkman");
-        // formData.append("phone","phone");
-        // formData.append("propertyIntroduce","propertyIntroduce");
-        // formData.append("email","email");
-        // formData.append("contactAddress","contactAddress");
-        // formData.append("propertyNumber","propertyNumber");
-        // formData.append("cellNumber","cellNumber");
-        // formData.append("pictureAddress","pictureAddress");
-        $.ajax({
-            type: "post",
-            url: "/achievement/addAchievement",
-            processData: false,
-            data: formData,
-            contentType: false,
-            mimeType: 'multipart/form-data',
-            dataType: "json",
-            success: function (data) {
+            var form = $('#myform')[0];
+            var formData = new FormData(form);
+            $.ajax({
+                type: "post",
+                url: "/achievement/addAchievement",
+                processData: false,
+                data: formData,
+                contentType: false,
+                mimeType: 'multipart/form-data',
+                dataType: "json",
+                success: function (data) {
 
-                if (data.code == 0){
+                    if (data.code == 0){
+                        $('.cure').addClass('uu');
+                        $('.cure').html(data.msg);
+                        setTimeout(function () {
+                            $('.cure').removeClass('uu');
+                        },2000);
+                        setTimeout(function () {
+                            location.reload(true);
+                        },1000);
+                        window.location.href = '/achievement/selectAchievement?statusCode=0';
+                    }else{
+                        $('.cure').addClass('uu');
+                        $('.cure').html(data.msg);
+                        setTimeout(function () {
+                            $('.cure').removeClass('uu');
+                        },2000);
+                        setTimeout(function () {
+                            location.reload(true);
+                        },1000);
+                        window.location.href = '/achievement/toAddAchievement';
+                    }
+
+                },
+                error: function (data) {
                     $('.cure').addClass('uu');
                     $('.cure').html(data.msg);
                     setTimeout(function () {
                         $('.cure').removeClass('uu');
-                    },2000);
-                    setTimeout(function () {
-                        location.reload(true);
                     },1000);
-                    window.location.href = '/achievement/selectAchievement?statusCode=0';
-                }else{
-                    $('.cure').addClass('uu');
-                    $('.cure').html(data.msg);
-                    setTimeout(function () {
-                        $('.cure').removeClass('uu');
-                    },2000);
-                    setTimeout(function () {
-                        location.reload(true);
-                    },1000);
-                    window.location.href = '/achievement/toAddAchievement';
+
+                    alert('异常')
                 }
-
-            },
-            error: function (data) {
-                $('.cure').addClass('uu');
-                $('.cure').html(data.msg);
-                setTimeout(function () {
-                    $('.cure').removeClass('uu');
-                },1000);
-
-                alert('异常')
-            }
-        });
-        return true;
+            });
+            return true;
     }
     return;
 };
@@ -277,11 +260,8 @@ function achievementModify() {
                     setTimeout(function () {
                         $('.cure').removeClass('uu');
                     },2000);
-                    setTimeout(function () {
-                        location.reload(true);
-                    },1000);
                     alert('修改成功！');
-                    window.location.href = '/achievement/selectAchievement';
+                    window.location.href = '/achievement/selectAchievement?statusCode=0';
                 }else{
                     alert('修改失败！')
                     window.location.href = '/achievement/selectAchievement';

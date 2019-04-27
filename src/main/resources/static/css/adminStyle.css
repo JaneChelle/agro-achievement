@@ -70,10 +70,11 @@ html,body { height: 100%;}
 li{ list-style-type: none;}
 button{
 	color: #FFF!important;
-	background-color: #0BB;
-	font-weight: 600;
+	background-color: #fc5656;
+	font-weight: 600!important;
 	border-radius: 5px;
 	padding: 0 12px;
+	font-size: 14px!important;
 	outline: none!important;
 }
 textarea{
@@ -81,7 +82,7 @@ textarea{
 	padding: 8px;
 	text-indent: 2em;
 	line-height: 24px!important;
-	font-size: 17px!important;
+	font-size: 14px!important;
 }
 .sliber_active{
 	color: #FFF;
@@ -124,7 +125,6 @@ section{
     top: 70px;
     bottom: 0;
     right: 0;	
-    background-color: #f3f3f4;
 }
 /*搜索*/
 .search-collapse{
@@ -149,7 +149,7 @@ section{
 .select-list li:last-child{
 	float: right;
 	position: relative;
-	right: 12px;
+	right: 42px;
 }
 .select-list li button{
 	font-weight: 600!important;
@@ -161,6 +161,7 @@ section{
     height: 32px;
     width: 280px;
     padding-left: 5px;
+	font-size: 15px;
 }
 .search-collapse h3{
 	font-weight: 600;
@@ -327,14 +328,15 @@ th{
 }
 .section td:last-child a{
 	display: inline-block;
-	width: 64px;
+	width: 54px;
 	height: 35px;
 	line-height: 35px;
 	vertical-align: top;
 	color: #FFF;
-	background-color: #0BB;	
+	background-color: #28a745;
 	font-weight: 600;
 	border-radius: 5px;
+	font-size: 14px;
 }
 /*隔行换色*/
 .section>table>tbody>tr:nth-child(odd){

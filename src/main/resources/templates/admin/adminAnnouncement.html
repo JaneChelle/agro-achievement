@@ -19,17 +19,16 @@
 				<ul>
 					<li>公告管理----<span class="div1" style="color: red;"></span></li>
 					<li>
+						<form th:action="@{/admin/selectAnnouncement}">
+							<input type="text" name="findName" value="" autocomplete="off"/>
+							<button style="font-size: 14px; background-color: #0BB;" class="btn" type="submit">搜 索</button>
+						</form>
+					</li>
+					<li class="img_add">
 						<a th:href="@{/admin/toAddAnnouncement}">
 							<img src="../images/添加.svg" title="添加公告"/>
-							<span>添加</span>
+							<span>添加公告</span>
 						</a>
-					</li>
-					<li>
-						<form th:action="@{/admin/selectAnnouncement}">
-							<span>搜索：</span>
-							<input type="text" name="findName" value="" placeholder="公共类型搜索" autocomplete="off"/>
-							<button class="btn" type="submit">搜 索</button>
-						</form>
 					</li>
 				</ul>
 			</div>
@@ -43,7 +42,7 @@
 
 				</div>
 				<table class="table table-bordered table-hover">
-					<thead>
+					<thead style="background-color: #f3f3f4;">
 						<tr>
 							<th>选择</th>
 							<th>公告id</th>

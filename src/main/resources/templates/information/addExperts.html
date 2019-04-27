@@ -22,7 +22,7 @@
 <body>
 <div class="box">
     <h3>专家信息录入</h3>
-        <form th:action="@{/experts/addExperts}" method="post" enctype="multipart/form-data" id="myform">
+        <form  method="post" enctype="multipart/form-data" id="myform">
             <table class="table table-hover table-bordered">
                 <tr>
                     <input type="hidden" th:value="${session.user.userId}" th:name="${session.user.userId}">
@@ -141,13 +141,14 @@
                 </tr>
                 <tr>
                     <td colspan="6" class="pn-fbutton">
-                        <input type="submit" value="提交"  class="btn btn-info" id="change"/>
+                        <input type="button" value="提交"  class="btn btn-info" id="change" onclick="addExperts()"/>
                         <input type="button" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered" onclick="fomrReset()"/>
                     </td>
                 </tr>
             </table>
         </form>
 </div>
+<script th:src="@{/js/addExperts.js}"></script>
 <script th:src="@{/js/demo.js}"></script>
 <script>
     function photoup() {

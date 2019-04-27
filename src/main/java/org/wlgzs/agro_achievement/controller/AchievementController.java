@@ -48,6 +48,7 @@ public class AchievementController extends BaseController {
     public Result addAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, HttpSession session, Model model,
                                        HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
         Result result = iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
+        System.out.println(result+"-----");
         return result;
     }
 
@@ -61,6 +62,7 @@ public class AchievementController extends BaseController {
     //修改成果
     @RequestMapping(value = "/modifyAchievement")
     public Result modifyAchievement(Achievement achievement, String start_time, String end_time, Model model) {
+        System.out.println(achievement);
         Result result = iAchievementService.modifyAchievement(achievement, start_time, end_time);
         return result;
     }

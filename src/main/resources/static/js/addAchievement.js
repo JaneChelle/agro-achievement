@@ -38,6 +38,7 @@ $(document).ready(function(){
                 var fr = new FileReader();
                 fr.onload = function(){
                     img.src=this.result;
+                    img.setAttribute("classname",'img');
                     div.appendChild(img);
                     document.getElementById("thimg").appendChild(div);
                 }
@@ -75,7 +76,7 @@ function submitAchievement() {
     var contactAddress=$('.contactAddress').val();
     var propertyNumber=$('.propertyNumber').val();
     var cellNumber=$('.cellNumber').val();
-    var file=$('.pic img').src;
+    var pictureAddress=$('.pic img');
     if(achievementName ==''){
         $('.cure').addClass('uu');
         $('.cure').html('成果名称不能为空');
@@ -182,7 +183,7 @@ function submitAchievement() {
             $('.cure').removeClass('uu');
             $('.cure').html(' ');
         },2000);
-    }else if(file == ''){
+    }else if(pictureAddress == ''){
         $('.cure').addClass('uu');
         $('.cure').html('图片不能为空');
         setTimeout(function () {
@@ -191,26 +192,55 @@ function submitAchievement() {
         },2000);
     }
     else{
+        var form = $('#myform')[0];
+        var formData = new FormData(form);
+        // formData.append("achievementName","achievementName");
+        // formData.append("achievementIntroduce","achievementIntroduce");
+        // formData.append("typeName","typeName");
+        // formData.append("achievementKey","achievementKey");
+        // formData.append("start_time","start_time");
+        // formData.append("end_time","end_time");
+        // formData.append("propertyAddress","propertyAddress");
+        // formData.append("awards","awards");
+        // formData.append("expectedPrice","expectedPrice");
+        // formData.append("linkman","linkman");
+        // formData.append("phone","phone");
+        // formData.append("propertyIntroduce","propertyIntroduce");
+        // formData.append("email","email");
+        // formData.append("contactAddress","contactAddress");
+        // formData.append("propertyNumber","propertyNumber");
+        // formData.append("cellNumber","cellNumber");
+        // formData.append("pictureAddress","pictureAddress");
         $.ajax({
             type: "post",
             url: "/achievement/addAchievement",
-            data: $('#myform').serialize(),
-            async: false,
+            processData: false,
+            data: formData,
+            contentType: false,
+            mimeType: 'multipart/form-data',
+            dataType: "json",
             success: function (data) {
-                // $('.cure').addClass('uu');
-                // $('.cure').html(data.msg);
-                // setTimeout(function () {
-                //     $('.cure').removeClass('uu');
-                // },2000);
-                // setTimeout(function () {
-                //     location.reload(true);
-                // },1000);
-                if (data.code = 0){
+
+                if (data.code == 0){
+                    $('.cure').addClass('uu');
+                    $('.cure').html(data.msg);
+                    setTimeout(function () {
+                        $('.cure').removeClass('uu');
+                    },2000);
+                    setTimeout(function () {
+                        location.reload(true);
+                    },1000);
                     window.location.href = '/achievement/selectAchievement?statusCode=0';
-                    alert('成功')
                 }else{
+                    $('.cure').addClass('uu');
+                    $('.cure').html(data.msg);
+                    setTimeout(function () {
+                        $('.cure').removeClass('uu');
+                    },2000);
+                    setTimeout(function () {
+                        location.reload(true);
+                    },1000);
                     window.location.href = '/achievement/toAddAchievement';
-                    alert('发布失败')
                 }
 
             },
@@ -220,14 +250,60 @@ function submitAchievement() {
                 setTimeout(function () {
                     $('.cure').removeClass('uu');
                 },1000);
-                // setTimeout(function () {
-                //     location.reload(true);
-                // },500);
 
                 alert('异常')
             }
         });
         return true;
     }
-
+    return;
 };
+// 修改成果
+function achievementModify() {
+    var form = $('#myform')[0];
+   var formData = new FormData(form);
+    $.ajax({
+         type: "post",
+        url: "/achievement/modifyAchievement",
+        processData: false,
+        data:  formData,
+        contentType: false,
+        mimeType: 'multipart/form-data',
+        dataType: "json",
+        success: function (data) {
+                if(data.code == 0){
+                    $('.cure').addClass('uu');
+                    $('.cure').html(data.msg);
+                    setTimeout(function () {
+                        $('.cure').removeClass('uu');
+                    },2000);
+                    setTimeout(function () {
+                        location.reload(true);
+                    },1000);
+                    alert('修改成功！');
+                    window.location.href = '/achievement/selectAchievement';
+                }else{
+                    alert('修改失败！')
+                    window.location.href = '/achievement/selectAchievement';
+                }
+
+
+
+        },
+        error: function (data) {
+            $('.cure').addClass('uu');
+            $('.cure').html(data.msg);
+            setTimeout(function () {
+                $('.cure').removeClass('uu');
+            },1000);
+
+            alert('异常')
+        }
+    });
+    return;
+}
+
+
+
+
+

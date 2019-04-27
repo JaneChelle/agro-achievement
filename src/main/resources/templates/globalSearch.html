@@ -32,17 +32,17 @@
         <ul>
             <!--成果-->
             <li th:if="Achievement!=null" th:each="find : ${findAchievement}">
-                <a th:href="" th:text="${find.achievementName}"></a>
+                <a th:href="@{/HomeController/globalSearch/Achievement(findName=${findName})}" th:text="${find.achievementName}"></a>
                 <span th:text="${find.releaseTime}"></span>
             </li>
             <!--专家-->
             <li th:if="Experts!=null" th:each="e : ${findExperts}">
-                <a th:href="" th:text="${e.expertsName}"></a>
+                <a th:href="@{/HomeController/globalSearch/Experts(findName=${findName})}" th:text="${e.expertsName}"></a>
                 <!--<span th:text="${e.}"></span>-->
             </li>
             <!--机构-->
             <li th:if="Organization!=null" th:each="Organization : ${findOrganization}">
-                <a th:href="" th:text="${Organization.organizationName}"></a>
+                <a th:href="@{/HomeController/globalSearch/Organization(findName=${findName})}" th:text="${Organization.organizationName}"></a>
                 <!--<span th:text="${Organization.}"></span>-->
             </li>
         </ul>

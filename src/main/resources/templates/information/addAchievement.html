@@ -17,7 +17,7 @@
 <div class="box">
     <h3>填写基本信息</h3>
     <div class="title">带*的为必填项</div>
-    <form  onsubmit="return false" action="##" method="post" id="myform">
+    <form  enctype="multipart/form-data" method="post" id="myform">
         <table class="table table-hover table-bordered">
             <tr>
                 <th>*成果名称:</th>
@@ -75,7 +75,7 @@
             </tr>
             <tr>
                 <th>联系电话:</th>
-                <td><input type="text" name="phone" class="phone" onkeyup="phone()"></td>
+                <td><input type="text" name="phone" class="phone" ></td>
             </tr>
             <tr>
                 <th>*手机:</th>
@@ -109,7 +109,7 @@
             </tr>
             <tr>
                 <td colspan="6" class="pn-fbutton">
-                    <input type="button" value="提交" class="btn btn-info addAchievement" id="change" onclick="submitAchievement()"/>
+                    <input type="button" value="提交" class="btn btn-info addAchievement addDemand" id="change" onclick="submitAchievement()"/>
                     <input type="button" value="重置" class="btn btn-info" id="cancel" style="background-color: orangered"
                            onclick="fomrReset()"/>
                 </td>
@@ -117,7 +117,7 @@
         </table>
     </form>
 </div>
-<div class="cure">我是提示框</div>
+<div class="cure"></div>
 <script th:src="@{/js/demo.js}"></script>
 </body>
 </html>

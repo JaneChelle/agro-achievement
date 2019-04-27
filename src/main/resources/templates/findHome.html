@@ -22,17 +22,12 @@
     <ul>
         <li><a th:href="@{/HomeController/globalSearch}">全部</a> <span th:text="'('+${TotalNumber}+')'"> </span></li>
         <li>
-            <form th:action="@{/HomeController/globalSearch/Achievement(findName=${findName})}" class="form">
-                <input type="submit" value="成果" class="find">
-                <input type="hidden" th:value="${findName}" class="find">
-                <span th:text="'('+${AchievementNumber}+')'"></span>
-            </form>
-            <form th:action="@{/HomeController/globalSearch/Experts(findName=${findName})}" class="form">
-                <input type="submit" value="专家" class="find"><span th:text="'('+${ExpertsNumber}+')'"></span>
-            </form>
-            <form th:action="@{/HomeController/globalSearch/Organization(findName=${findName})}" class="form">
-                <input type="submit" value="机构" class="find"><span th:text="'('+${OrganizationNumber}+')'"></span>
-            </form>
+            <a th:href="@{/HomeController/globalSearch/Achievement(findName=${findName})}">成果<span th:text="'('+${AchievementNumber}+')'"></span></a></li>
+        <li>
+        <a th:href="@{/HomeController/globalSearch/Experts(findName=${findName})}">专家<span th:text="'('+${ExpertsNumber}+')'"></span></a>
+        </li>
+        <li>
+            <a th:href="@{/HomeController/globalSearch/Organization(findName=${findName})}">机构<span th:text="'('+${OrganizationNumber}+')'"></span></a>
         </li>
     </ul>
     <ul>

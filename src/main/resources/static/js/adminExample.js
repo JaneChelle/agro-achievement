@@ -30,3 +30,57 @@ $(".deleteExample").on('click', function () {
 
     }
 });
+
+// 添加案例
+function exampleAdmin() {
+    var inform = "您确定添加一条案例信息吗？";
+    if(confirm(inform) == true){
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/admin/adminAddExample" ,//url
+            data: $('#form1').serialize(),
+            success: function (data) {
+                console.log(data);//打印服务端返回的数据(调试用)
+                if (data.code == 0) {
+                    alert(data.msg);
+                    window.location.href = "/admin/adminExpertsList";
+                }else{
+                    alert(data.msg);
+                    window.location.href = "/admin/adminExpertsList";
+                };
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+}
+
+// 添加案例
+function exampleModify() {
+    var inform = "您确定修改一条案例信息吗？";
+    if(confirm(inform) == true){
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/admin/adminEditExample" ,//url
+            data: $('#form2').serialize(),
+            success: function (data) {
+                console.log(data);//打印服务端返回的数据(调试用)
+                if (data.code == 0) {
+                    alert(data.msg);
+                    window.location.href = "/admin/adminExpertsList";
+                }else{
+                    alert(data.msg);
+                    window.location.href = "/admin/adminExpertsList";
+                };
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+}

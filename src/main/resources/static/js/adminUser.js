@@ -1,3 +1,67 @@
+function addressUser() {
+    // 获取地区
+    var province = $(".province option:selected").val();
+    var city = $(".city option:selected").val();
+    var district = $(".district option:selected").val();
+    var userAddress = province +"-" + city +"-" + district;
+    $(".hiddenInput").val(userAddress);
+    console.log(userAddress);
+    return;
+}
+
+// 添加用户
+function addAdmin() {
+    var inform = "您确定添加一条用户信息吗？";
+    if(confirm(inform) == true){
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/admin/adminAddUser" ,//url
+            data: $('#form1').serialize(),
+            success: function (data) {
+                console.log(data);//打印服务端返回的数据(调试用)
+                if (data.code == 0) {
+                    alert(data.msg);
+                    window.location.href = "/admin/adminUserList";
+                }else{
+                    alert(data.msg);
+                    window.location.href = "/admin/adminUserList";
+                };
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+}
+// 修改用户
+function modifyAdmin() {
+    var inform = "您确定修改此用户信息吗？";
+    if(confirm(inform) == true){
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/admin/adminModifyUser" ,//url
+            data: $('#form2').serialize(),
+            success: function (data) {
+                console.log(data);//打印服务端返回的数据(调试用)
+                if (data.code == 0) {
+                    alert(data.msg);
+                    window.location.href = "/admin/adminUserList";
+                }else{
+                    alert(data.msg);
+                    window.location.href = "/admin/adminUserList";
+                };
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+
+}
 // 删除
 $(".deleteUser").on('click', function () {
     var parent = $(this).parent().parent();
@@ -24,17 +88,6 @@ $(".deleteUser").on('click', function () {
 
     }
 });
-
-function addressUser() {
-    // 获取地区
-    var province = $(".province option:selected").val();
-    var city = $(".city option:selected").val();
-    var district = $(".district option:selected").val();
-    var userAddress = province +"-" + city +"-" + district;
-    $(".hiddenInput").val(userAddress);
-    console.log(userAddress);
-    return;
-}
 
 // 用户等级回显
 $('.modifyUser').val($('.userLevel').val());

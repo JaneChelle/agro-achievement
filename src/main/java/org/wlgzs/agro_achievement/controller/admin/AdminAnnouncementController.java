@@ -1,6 +1,7 @@
 package org.wlgzs.agro_achievement.controller.admin;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.agro_achievement.base.BaseController;
 import org.wlgzs.agro_achievement.entity.Announcement;
 import org.wlgzs.agro_achievement.util.Result;
+import org.wlgzs.agro_achievement.util.ResultCode;
 
 import java.util.List;
 
@@ -88,6 +90,31 @@ public class AdminAnnouncementController extends BaseController {
         model.addAttribute("findName",findName);
 
         return new ModelAndView("admin/adminAnnouncement");
+    }
+
+    //按公告是否显示查询
+    @RequestMapping("/selectByIsShow")
+    public ModelAndView selectByIsShow(int isShow,Model model,@RequestParam(value = "current", defaultValue = "1") Integer current,
+                                       @RequestParam(value = "limit", defaultValue = "8") Integer limit){
+        QueryWrapper<Announcement> queryWrapper = new QueryWrapper<>();
+        if(isShow == 0 || isShow == 1){
+            queryWrapper.eq("is_show",isShow);
+        }
+        List<Announcement> announcementList = iAnnouncementService.list(queryWrapper);
+        model.addAttribute("announcementList",announcementList);
+        return new ModelAndView("admin/adminAnnouncement");
+    }
+
+    //修改公告是否显示
+    @RequestMapping("/modifiedAccording")
+    public Result modifiedAccording(int announcementId,int isShow){
+        Announcement announcement = iAnnouncementService.getById(announcementId);
+        if(announcement != null){
+            announcement.setIsShow(isShow);
+            iAnnouncementService.updateById(announcement);
+            return new Result(ResultCode.SUCCESS,"修改成功！");
+        }
+        return new Result(ResultCode.FAIL,"不存在！");
     }
 
 }

@@ -22,7 +22,7 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form th:action="@{/admin/adminEditExample}" method="post" onsubmit="return adminContent()">
+                <form id="form2" action="#" method="post" onsubmit="return false">
                     <table class="table table-bordered addUser">
                         <thead>
                         <input type="hidden" name="exampleId" th:value="${example.exampleId}">
@@ -64,7 +64,7 @@
                     </table>
                     <div class="popup_bottom">
                         <input type="reset" name="" value="重置" />
-                        <input type="submit" value="修改"/>
+                        <input onclick="adminContent(),exampleModify()" type="submit" value="修改"/>
                         <a th:href="@{/admin/adminExampleList}" class="btn returnList">返回</a>
                     </div>
                 </form>

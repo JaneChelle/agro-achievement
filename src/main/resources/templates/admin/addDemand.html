@@ -27,10 +27,10 @@
 	<div class="search-collapse">
 		<h3>添加需求</h3>
 	</div>
-	<div class="section_table">
+	<div class="section_table"  style="bottom: 0;">
 		<div class="section">
 			<div class="popup_table addUserTable">
-				<form id="form1" th:action="@{/admin/adminAddDemand}" method="post" onsubmit="javascript:return confirm('你确定要添加一条需求吗？');">
+				<form id="form1" action="#" method="post" onsubmit="return false">
 					<table class="table table-bordered addUser">
 						<thead>
 							<tr>
@@ -116,7 +116,7 @@
 					</table>
 					<div class="popup_bottom">
 						<input type="reset" name="" value="重置" />
-						<input type="submit" value="添加"/>
+						<input onclick="addDemand()" type="submit" value="添加"/>
 						<a th:href="@{/admin/adminAdminDemand}" class="btn returnList">返回</a>
 					</div>
 				</form>
@@ -130,4 +130,5 @@
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
 <script th:src="@{../js/jedate.js}"></script>
 <script th:src="@{../js/demo.js}"></script>
+<script th:src="@{../js/adminDemand.js}"></script>
 </html>

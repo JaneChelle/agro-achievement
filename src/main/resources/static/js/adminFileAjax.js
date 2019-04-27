@@ -25,22 +25,15 @@ for (var i = 0; i < options.length; i++) {
     }
 }
 
-//radio回显
-$(".Name").each(function () {
-    var typeName=$('#typeName').val();
-    var val = $(this).val();
-    if(val ==typeName){
-        $(this).attr("checked",true);
-    }
-});
-
 // 修改机构
 function modifyOrganization() {
     // 获取机构类型ID
     var data_Id =  $("input[name='typeName']:checked").attr('id');
-    $('#typeName').val(data_Id);
-    var inform = "您确定添加一条机构信息吗？";
+    console.log(data_Id);
+    $('#typeID').val(data_Id);
+    var inform = "您确定修改此机构信息吗？";
     if(confirm(inform) == true){
+        console.log($('#typeID').val());
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
@@ -51,10 +44,10 @@ function modifyOrganization() {
                 console.log(data);//打印服务端返回的数据(调试用)
                 if (data.code == 0) {
                     alert(data.msg);
-                    window.location.href = "/admin/adminAdminDemand";
+                    window.location.href = "/admin/adminOrganizationList";
                 }else{
                     alert(data.msg);
-                    window.location.href = "/admin/adminAdminDemand";
+                    window.location.href = "/admin/adminOrganizationList";
                 };
             },
             error : function() {

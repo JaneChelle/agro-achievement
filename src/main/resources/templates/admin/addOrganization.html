@@ -33,10 +33,9 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form method="POST" enctype="multipart/form-data" id="form1" onsubmit="return false">
+                <form id="form2" action="#" method="post" enctype="multipart/form-data" onsubmit="return false">
                     <table class="table table-bordered addUser">
                         <thead>
-
                             <tr>
                                 <th>机构名称</th>
                                 <td>
@@ -146,7 +145,7 @@
                     </table>
                     <div class="popup_bottom">
                         <input type="reset" name="" value="重置" />
-                        <input onclick="adminContent(),addOrganization()" type="submit" value="添加"/>
+                        <input type="submit" value="添加" id="btnSubmit"/>
                         <a th:href="@{/admin/adminOrganizationList}" class="btn returnList">返回</a>
                     </div>
                 </form>

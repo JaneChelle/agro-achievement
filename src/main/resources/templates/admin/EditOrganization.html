@@ -31,7 +31,7 @@
     <div class="section_table">
         <div class="section">
             <div class="popup_table addUserTable">
-                <form id="form1" action="#" method="post" enctype="multipart/form-data" onsubmit="return false">
+                <form id="form2" action="#" method="post" enctype="multipart/form-data" onsubmit="return false">
                     <table class="table table-bordered addUser">
                         <thead>
                         <input type="hidden" name="organizationIntroduce" class="organizationContent" th:value="${organization.organizationIntroduce}">
@@ -93,7 +93,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>发布者id</th>
+                            <th>发布者ID</th>
                             <td>
                                 <input type="" name="userId" th:value="${organization.userId}" value="" required="required"/>
                             </td>
@@ -102,10 +102,17 @@
                             <th>机构类型</th>
                             <td>
                                 <div th:each="type : ${typeList}" class="typeName">
-                                    <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" class="Name" required>
+                                    <input type="radio" th:name="typeName" th:id="${type.organizationTypeId}" th:value="${type.typeName}" class="Name" required>
                                     <label th:text="${type.typeName}" th:for="${type.typeName}"></label>
                                 </div>
-                                <input type="hidden" id="typeName" th:value="${organization.organizationTypeId}" name="organizationTypeId">
+                                <input type="hidden" id="typeName" th:value="${organization.typeName}">
+                                <input type="hidden" id="typeID" th:value="${organization.organizationTypeId}" name="organizationTypeId">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>机构ID</th>
+                            <td>
+                                <span th:text="${organization.organizationTypeId}"></span>
                             </td>
                         </tr>
                         <tr>
@@ -144,4 +151,15 @@
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}" ></script>
 <script type="text/javascript" th:src="@{../js/wangEditor.min.js}"></script>
 <script type="text/javascript" th:src="@{../js/adminFileAjax.js}"></script>
+<script>
+
+    //radio回显
+    $(".Name").each(function () {
+        var typeName=$('#typeName').val();
+        var val = $(this).val();
+        if(val ==typeName){
+            $(this).attr("checked",true);
+        }
+    });
+</script>
 </html>

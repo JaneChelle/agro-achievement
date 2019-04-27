@@ -32,7 +32,7 @@
     </div>
     <div class="section_table">
         <figure>
-            <form th:action="@{/admin/adminEditAchievement}" method="post">
+            <form id="form3" action="#" method="post" onsubmit="return false">
                 <div class="section">
                     <table class="table table-bordered">
                         <thead>
@@ -40,7 +40,7 @@
                                 <th>成果名称</th>
                                 <td>
                                     <input type="hidden" name="achievementId" th:value="${achievement.achievementId}">
-                                    <input type="text" name="achievementName" th:value="${achievement.achievementName}"/>
+                                    <input type="text" name="achievementName" th:value="${achievement.achievementName}" style="width: 445px"/>
                                 </td>
                                 <th>成果关键词</th>
                                 <td>
@@ -50,12 +50,12 @@
                             <tr>
                                 <th>成果简介</th>
                                 <td>
-                                    <textarea cols="50" rows="6" required="required" name="achievementIntroduce" th:text="${achievement.achievementIntroduce}"/></textarea>
+                                    <textarea cols="50" rows="12" required="required" name="achievementIntroduce" th:text="${achievement.achievementIntroduce}"/></textarea>
                                 </td>
                                 <th>成果类型</th>
                                 <td>
                                     <div th:each="type : ${typeList}">
-                                        <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}" class="Name" required>
+                                        <input type="radio" th:name="${type.typeName}" th:id="${type.typeName}" th:value="${type.typeName}" class="Name" required>
                                         <label th:text="${type.typeName}" th:for="${type.typeName}"></label>
                                     </div>
                                     <input type="hidden" th:value="${achievement.typeName}" id="typeName">
@@ -170,7 +170,7 @@
                                 <th>操作</th>
                                 <td>
                                     <input type="reset" name="" value="重置" onclick="formReset()"/>
-                                    <input type="submit" value="修改"/>
+                                    <input onclick="modifyAdmin()" type="submit" value="修改"/>
                                     <a th:href="@{/admin/adminAchievementList}" class="returnList" style="text-align: center; padding: 0px!important">返回</a>
                                 </td>
                             </tr>
@@ -191,7 +191,6 @@
 <script th:src="@{../js/jedate.js}"></script>
 <script th:src="@{../js/demo.js}"></script>
 <script>
-
     $(function () {
         // 产权归属地
         var provice=$('#provice').val();
@@ -222,8 +221,32 @@
         }
     });
 
+    // 修改
+    function modifyAdmin() {
+        var inform = "您确定修改此成果信息吗？";
+        if(confirm(inform) == true){
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/admin/adminEditAchievement" ,//url
+                data: $('#form3').serialize(),
+                success: function (data) {
+                    console.log(data);//打印服务端返回的数据(调试用)
+                    if (data.code == 0) {
+                        alert(data.msg);
+                        window.location.href = "/admin/adminAchievementList";
+                    }else{
+                        alert(data.msg);
+                        window.location.href = "/admin/adminAchievementList";
+                    };
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
 
-
-
+    }
 </script>
 </html>

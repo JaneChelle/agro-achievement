@@ -45,10 +45,10 @@ function exampleAdmin() {
                 console.log(data);//打印服务端返回的数据(调试用)
                 if (data.code == 0) {
                     alert(data.msg);
-                    window.location.href = "/admin/adminExpertsList";
+                    window.location.href = "/admin/adminExampleList";
                 }else{
                     alert(data.msg);
-                    window.location.href = "/admin/adminExpertsList";
+                    window.location.href = "/admin/adminExampleList";
                 };
             },
             error : function() {
@@ -58,7 +58,7 @@ function exampleAdmin() {
     }
 }
 
-// 添加案例
+// 案例案例
 function exampleModify() {
     var inform = "您确定修改一条案例信息吗？";
     if(confirm(inform) == true){
@@ -72,10 +72,10 @@ function exampleModify() {
                 console.log(data);//打印服务端返回的数据(调试用)
                 if (data.code == 0) {
                     alert(data.msg);
-                    window.location.href = "/admin/adminExpertsList";
+                    window.location.href = "/admin/adminExampleList";
                 }else{
                     alert(data.msg);
-                    window.location.href = "/admin/adminExpertsList";
+                    window.location.href = "/admin/adminExampleList";
                 };
             },
             error : function() {

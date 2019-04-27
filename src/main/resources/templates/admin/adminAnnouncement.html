@@ -15,34 +15,33 @@
     
     <section>
     	<div class="col-sm-12 search-collapse">
-    		<form th:action="@{/admin/selectAnnouncement}">
-    			<div class="select-list">
-    				<ul>
-    					<li>
-    						<span>搜索：</span>
-    						<input type="text" name="findName" value="" placeholder="公共类型搜索"/>
-    					</li>
-    					<li>
-    						<button class="btn" type="submit">搜 索</button>
-    					</li>
-    					<li></li>
-    					<li class="exampleList">
-    						<span>未审核【0】</span>
-    						<span>通过【1】</span>
-    						<span>失败【2】</span>
-    					</li>
-    					<li>
-    						<a th:href="@{/admin/toAddAnnouncement}">
-	                			<img src="../images/添加.svg" title="添加公告"/>
-	                			<span>添加</span>
-	                		</a>
-    					</li>
-    				</ul>
-    			</div>
-    		</form>
+			<div class="select-list">
+				<ul>
+					<li>公告管理----<span class="div1" style="color: red;"></span></li>
+					<li>
+						<a th:href="@{/admin/toAddAnnouncement}">
+							<img src="../images/添加.svg" title="添加公告"/>
+							<span>添加</span>
+						</a>
+					</li>
+					<li>
+						<form th:action="@{/admin/selectAnnouncement}">
+							<span>搜索：</span>
+							<input type="text" name="findName" value="" placeholder="公共类型搜索" autocomplete="off"/>
+							<button class="btn" type="submit">搜 索</button>
+						</form>
+					</li>
+				</ul>
+			</div>
     	</div>
 		<div class="section_table">
 			<div class="section">
+				<div class="title">
+					<a th:href="@{/admin/selectByIsShow}" onclick="all_show()"   th:text="'全部'"}></a>
+					<a th:href="@{/admin/selectByIsShow(isShow=1)}" onclick="is_show()"   th:text="'显示'"}></a>
+					<a th:href="@{/admin/selectByIsShow(isShow=0)}" onclick="no_show()"   th:text="'不显示'"}></a>
+
+				</div>
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
@@ -51,6 +50,7 @@
 							<th>公告标题</th>
 							<th>发布时间</th>
 							<th>公告类型</th>
+							<th>前台是否显示</th>
 							<th>操作</th>
 						</tr>
 					</thead>
@@ -66,6 +66,7 @@
 							</td>
 							<td th:text="${#temporals.format(announcement.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">B133</td>
 							<td th:text="${announcement.announcementType}">农产品与食品加工</td>
+							<td class="isListShow" th:text="${announcement.isShow}"></td>
 							<td>
 								<a th:href="@{/admin/announcementAdminModify(announcementId=${announcement.announcementId})}">修改</a>
 								<button type="button" class="btn delete deleteAnnouncement">删除</button>

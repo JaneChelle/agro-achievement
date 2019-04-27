@@ -57,6 +57,7 @@
 		                	<th>联系人</th>
 		                	<th>电话</th>
 		                	<th>邮箱</th>
+							<th>审核状态</th>
 		                    <th>操作</th>
 		                </tr>
 		            </thead>
@@ -70,11 +71,11 @@
 		            		<td th:text="${demand.demandName}">生物质成型燃料高效燃烧技术和装置</td>
 		            		<td th:text="${demand.expectedPrice}">23</td>
 		            		<td th:text="${demand.demanders}">胡亚星</td>
-		            		<!--<td th:text="${#dates.format(demand.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">2019-03-25 21:32:34</td>-->
-		            		<td th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd HH:mm:ss')}">2019-03-25 21:32:34</td>
+		            		<td th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}">2019-03-25 21:32:34</td>
 		            		<td th:text="${demand.linkman}">武凯焱</td>
 		            		<td th:text="${demand.phone}">15993023617</td>
 		            		<td th:text="${demand.email}">911090257@qq.com</td>
+							<td class="isCode" th:text="${demand.statusCode}"></td>
 		            		<td>
 								<a th:href="@{/admin/toAdminEditDemand(demandId=${demand.demandId})}">详情</a>
 		            			<button type="button" class="btn deleteDemand">删除</button>
@@ -127,4 +128,16 @@
 	</body>
 	<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{../js/adminDemand.js}" ></script>
+<script>
+    var length = $('.isCode').length;
+    for (var i=0; i<length; i++){
+        if($($('.isCode')[i]).text() == "0"){
+            $($('.isCode')[i]).text("未审核");
+        }else if($($('.isCode')[i]).text() == "1"){
+            $($('.isCode')[i]).text("通过");
+        }else if($($('.isCode')[i]).text() == "2"){
+            $($('.isCode')[i]).text("失败");
+        }
+    }
+</script>
 </html>

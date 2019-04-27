@@ -51,7 +51,7 @@
 		                    <th>类型名称</th>
 		                    <th>研发开始时间</th>
 		                    <th>研发结束时间</th>
-		                    <th>联系人</th>
+							<th>审核状态</th>
 		                    <th>操作</th>
 		                </tr>
 		            </thead>
@@ -67,7 +67,7 @@
 		            		<td th:text="${achievement.typeName}">除草剂</td>
 							<td th:text="${#temporals.format(achievement.startTime, 'yyyy-MM-dd')}"></td>
 							<td th:text="${#temporals.format(achievement.endTime, 'yyyy-MM-dd')}"></td>
-		            		<td th:text="${achievement.linkman}">徐德锋</td>
+							<td class="isCode" th:text="${achievement.statusCode}"></td>
 		            		<td>
 								<a th:href="@{/admin/toAdminEditAchievement(achievementId=${achievement.achievementId})}">详情</a>
 		            			<button type="button" class="btn deleteAchievement">删除</button>
@@ -121,4 +121,16 @@
 </body>
 	<script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{../js/adminAchievement.js}"></script>
+<script>
+    var length = $('.isCode').length;
+    for (var i=0; i<length; i++){
+        if($($('.isCode')[i]).text() == "0"){
+            $($('.isCode')[i]).text("未审核");
+        }else if($($('.isCode')[i]).text() == "1"){
+            $($('.isCode')[i]).text("通过");
+        }else if($($('.isCode')[i]).text() == "2"){
+            $($('.isCode')[i]).text("失败");
+        }
+    }
+</script>
 </html>

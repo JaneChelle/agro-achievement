@@ -1,4 +1,3 @@
-// 后台Achievement删除
 // 删除
 $(".deleteAchievement").on('click', function () {
     var parent = $(this).parent().parent();
@@ -71,3 +70,59 @@ $(document).ready(function(){
     })
 
 });
+
+
+// 添加
+
+$(document).ready(function () {
+
+    $("#btnSubmit").click(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        fire_ajax_submit();
+
+    });
+});
+
+function fire_ajax_submit() {
+    // Get form
+    var form = $('#form2')[0];
+    var data = new FormData(form);
+    var inform = "你确定要添加一条成功吗？";
+    if(confirm(inform) == true){
+        data.append("CustomField", "This is some extra data, testing");
+        $("#btnSubmit").prop("disabled", true);
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/admin/adminAddAchievement",
+            data: data,
+            processData: false, //prevent jQuery from automatically transforming the data into a query string
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                console.log(data);
+                console.log("SUCCESS : ", data);
+                if (data.code == 0) {
+                    alert(data.msg);
+                    window.location.href = "/admin/adminAchievementList";
+                }else{
+                    alert(data.msg);
+                    window.location.href = "/admin/adminAchievementList";
+                }
+                $("#btnSubmit").prop("disabled", false);
+            },
+            error: function (e) {
+                console.log("ERROR : ", e);
+                alert("异常");
+                $("#btnSubmit").prop("disabled", false);
+
+            }
+        });
+    }
+}
+
+

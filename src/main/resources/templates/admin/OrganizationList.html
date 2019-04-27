@@ -49,10 +49,10 @@
                     <th>机构id</th>
                     <th>机构名称</th>
                     <th>所在国家</th>
-                    <th>法人类别</th>
                     <th>联系人</th>
                     <th>电话</th>
                     <th>邮箱</th>
+                    <th>机构ID</th>
                     <th>机构类型</th>
                     <th>审核状态码</th>
                     <th>操作</th>
@@ -67,11 +67,11 @@
                         <td th:text="${organization.organizationName}"></td>
                         <td th:text="${organization.legalCategory}"></td>
                         <td th:text="${organization.organizationCountry}"></td>
-                        <td th:text="${organization.linkman}"></td>
                         <td th:text="${organization.phone}"></td>
                         <td th:text="${organization.email}"></td>
+                        <td th:text="${organization.organizationTypeId}"></td>
                         <td th:text="${organization.typeName}"></td>
-                        <td th:text="${organization.statusCode}"></td>
+                        <td class="isCode" th:text="${organization.statusCode}"></td>
                         <td>
                             <a th:href="@{/admin/toAdminEditOrganization(organizationId=${organization.organizationId})}">详情</a>
                             <button type="button" class="btn delete deleteOrganization">删除</button>
@@ -124,4 +124,16 @@
 </body>
 <script type="text/javascript" th:src="@{../js/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{../js/adminOrganization.js}"></script>
+<script>
+    var length = $('.isCode').length;
+    for (var i=0; i<length; i++){
+        if($($('.isCode')[i]).text() == "0"){
+            $($('.isCode')[i]).text("未审核");
+        }else if($($('.isCode')[i]).text() == "1"){
+            $($('.isCode')[i]).text("通过");
+        }else if($($('.isCode')[i]).text() == "2"){
+            $($('.isCode')[i]).text("失败");
+        }
+    }
+</script>
 </html>

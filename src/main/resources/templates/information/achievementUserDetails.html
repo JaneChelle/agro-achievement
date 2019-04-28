@@ -11,16 +11,16 @@
     <script th:src="@{/js/jquery.js}"></script>
     <script th:src="@{/js/jedate.js}"></script>
     <script th:src="@{/js/distpicker.js}"></script>
-    <script th:src="@{/js/addAchievement.js}"></script>
 </head>
 <body>
 <div class="box">
     <h3>成果发布详情</h3>
-    <form th:action="@{/achievement/modifyAchievement(achievementId=${achievement.achievementId})}" method="post" id="myform">
+    <form  method="post"  id="myform">
             <table class="table table-hover table-bordered">
                 <tr>
                     <th>成果名称:</th>
                     <td >
+                        <input type="hidden" th:name="achievementId" th:value="${achievement.achievementId}" class="achievementId">
                         <input type="text" th:value="${achievement.achievementName}" name="achievementName">
                     </td>
                 </tr>
@@ -126,18 +126,20 @@
                 <tr>
                     <th>相关图片上传:</th>
                     <td id="thimg" >
-                        <img th:each="Imgs : ${achievementImg}" th:src="${Imgs}"  style="width:50px;height:50px;" alt="">
+                        <img th:each="Imgs : ${achievementImg}" th:src="${Imgs}" class="imgs" style="width:50px;height:50px;" alt="">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6" class="pn-fbutton">
-                        <input type="submit" value="修改" class="btn btn-info">
+                        <input type="button" value="修改" class="btn btn-info achievementModify" onclick="achievementModify()">
                         <a th:href="@{/achievement/selectAchievement(statusCode=0)}" class="a-div adiv3">返回</a>
                     </td>
                 </tr>
             </table>
     </form>
 </div>
+<div class="cure"></div>
+<script th:src="@{/js/addAchievement.js}"></script>
 <script th:src="@{/js/demo.js}"></script>
 <script>
 

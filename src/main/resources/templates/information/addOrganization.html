@@ -10,44 +10,45 @@
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}" media="screen"/>
     <script th:src="@{/js/jquery.js}"></script>
     <script th:src="@{/js/jedate.js}"></script>
+    <script th:src="@{/js/addOrganization.js}"></script>
 </head>
 <body>
 <div class="box">
     <h3>填写基本信息</h3>
     <div class="title">机构信息</div>
-        <form th:action="@{/organization/addOrganization}" method="post" id="myform">
+        <form  method="post" id="myform" enctype="multipart/form-data">
             <table class="table table-hover table-bordered">
                 <tr>
                     <td>机构名称:	</td>
                     <input type="hidden"  th:value="${session.user.userId}" name="userId">
-                    <td><input type="text" name="organizationName" class="form-control" required></td>
+                    <td><input type="text" name="organizationName" class="form-control organizationName" required></td>
                     <input type="hidden"  th:value="${session.user.userId}">
                     <td>所在国家:	</td>
-                    <td><input type="text" name="organizationCountry" class="form-control" required></td>
+                    <td><input type="text" name="organizationCountry" class="form-control organizationCountry" required></td>
                 </tr>
                 <tr>
                     <td>所在地区:	</td>
-                    <td><input type="text" name="organizationRegion" class="form-control" required /></td>
+                    <td><input type="text" name="organizationRegion" class="form-control organizationRegion" required /></td>
                     <td>法人类别:	</td>
-                    <td><input type="text" name="legalCategory" class="form-control" required /></td>
+                    <td><input type="text" name="legalCategory" class="form-control legalCategory" required /></td>
                 </tr>
                 <tr>
                     <td>机构简介:</td>
-                    <td style="border-right: none;"><input type="text" name="organizationIntroduce" class="form-control" required /></td>
+                    <td style="border-right: none;"><input type="text" name="organizationIntroduce" class="form-control organizationIntroduce" required /></td>
                     <td>地址:	</td>
-                    <td><input type="text" name="contactAddress" class="form-control" required /></td>
+                    <td><input type="text" name="contactAddress" class="form-control contactAddress" required /></td>
                 </tr>
                 <tr>
                     <td>联系人:</td>
-                    <td><input type="text" name="linkman" class="form-control" required /></td>
+                    <td><input type="text" name="linkman" class="form-control linkman" required /></td>
                     <td>电话:</td>
-                    <td><input type="text" name="phone" class="form-control" required/></td>
+                    <td><input type="text" name="phone" class="form-control phone" required/></td>
                 </tr>
                 <tr>
                     <td>邮箱:	</td>
-                    <td><input type="text" name="email" class="form-control" required /></td>
+                    <td><input type="text" name="email" class="form-control email" required /></td>
                     <td>网址:	</td>
-                    <td><input type="text" name="organizationUrl" class="form-control" required /></td>
+                    <td><input type="text" name="organizationUrl" class="form-control organizationUrl" required /></td>
                 </tr>
                 <tr>
                     <td>机构类型:	</td>
@@ -80,13 +81,14 @@
                 </tr>
                 <tr>
                     <td colspan="6" class="pn-fbutton">
-                        <input type="submit" value="提交"  class="btn btn-info" id="change"/>
+                        <input type="button" value="提交"  class="btn btn-info" id="change" onclick="addOrganization()"/>
                         <input type="button" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered" onclick="fomrReset()"/>
                     </td>
                 </tr>
             </table>
         </form>
 </div>
+<div class="cure"></div>
 <script th:src="@{/js/demo.js}"></script>
 <script>
     function photoup() {

@@ -50,6 +50,7 @@ public class ExampleController extends BaseController {
     //修改案例
     @RequestMapping(value = "/modifyExample")
     public Result modifyExample(Model model, Example example) {
+        System.out.println(example);
         Result result = iCaseService.modifyExample(example);
         return result;
     }

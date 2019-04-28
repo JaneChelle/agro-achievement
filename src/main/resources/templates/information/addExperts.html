@@ -22,16 +22,16 @@
 <body>
 <div class="box">
     <h3>专家信息录入</h3>
-        <form th:action="@{/experts/addExperts}" method="post" enctype="multipart/form-data" id="myform">
+        <form  enctype="multipart/form-data" method="post" id="myform">
             <table class="table table-hover table-bordered">
                 <tr>
                     <input type="hidden" th:value="${session.user.userId}" th:name="${session.user.userId}">
                     <th>姓名:	</th>
-                    <td><input type="text" name="expertsName"  id="price2" /></td>
+                    <td><input type="text" name="expertsName"  id="price2"  class="expertsName"/></td>
                     <th>性别:	</th>
                     <td>
                         <span>
-                            <input type="radio" name="expertsSex" value="男" id="1"><label for="1">男</label>
+                            <input type="radio" name="expertsSex"  value="男" id="1"><label for="1">男</label>
                         </span>
                         <span>
                             <input type="radio" name="expertsSex" value="女" id="0"><label for="0">女</label>
@@ -41,15 +41,15 @@
                 <tr>
                     <th>出生日期:	</th>
                     <td>
-                        <div class="jeinpbox"><input type="text" name="time" class="jeinput moredate" placeholder="YYYY-MM-DD" required autocomplete="off"></div>
+                        <div class="jeinpbox"><input type="text" name="time" class="jeinput moredate time" placeholder="YYYY-MM-DD" required autocomplete="off"></div>
                     </td>
                     <th>国籍:	</th>
-                    <td><input type="text" name="expertsCountry"  id="price1" /></td>
+                    <td><input type="text" name="expertsCountry"  class="expertsCountry" id="price1" /></td>
                 </tr>
                 <tr>
                     <th>学历:	</th>
                     <td>
-                        <select name="expertsEducation">
+                        <select name="expertsEducation" class="expertsEducation">
                             <option value="研究生">研究生</option>
                             <option value="博士研究生">博士研究生</option>
                             <option value="硕士研究生">硕士研究生</option>
@@ -61,7 +61,7 @@
                     </td>
                     <th>学位:</th>
                     <td>
-                        <select name="degree">
+                        <select name="degree" class="degree">
                             <option value="名誉博士">名誉博士</option>
                             <option value="博士">博士</option>
                             <option value="硕士">硕士</option>
@@ -72,32 +72,32 @@
                 </tr>
                 <tr>
                     <th>毕业院校:</th>
-                    <td><input type="text" name="school"  id="details" /> </td>
+                    <td><input type="text" name="school"  id="details" class="school"/> </td>
                     <th>所学专业:</th>
-                    <td><input type="text" name="major"  id=""></td>
+                    <td><input type="text" name="major" class="major" id=""></td>
                 </tr>
                 <tr>
                     <th>所在单位：</th>
-                    <td><input type="text" name="unit"  id="" ></td>
+                    <td><input type="text" name="unit" class="unit" id="" ></td>
                     <th>行政职务:</th>
-                    <td><input type="text" name="position"   id=""></td>
+                    <td><input type="text" name="position" class="position"  id=""></td>
                 </tr>
                 <tr>
                     <th>联系方式:</th>
-                    <td><input type="text" name="expertsPhone"  id=""></td>
+                    <td><input type="text" name="expertsPhone" class="expertsPhone" id=""></td>
                     <th>邮箱:</th>
-                    <td><input type="text" name="expertsEmail"  id=""></td>
+                    <td><input type="text" name="expertsEmail" class="expertsEmail" id=""></td>
                 </tr>
                 <tr>
                     <th>专家类型:</th>
                     <td style="border-right:none;">
                         <span th:each="type : ${typeList}">
-                            <input type="radio" th:name="typeName" th:id="${type.typeName}" th:value="${type.typeName}"/><label
+                            <input type="radio" th:name="typeName" th:id="${type.typeName}" class="typeName" th:value="${type.typeName}"/><label
                                 th:text="${type.typeName}" th:for="${type.typeName}"></label>
                         </span>
                     </td>
                     <th>研究领域:</th>
-                    <td><input type="text" name="researchField" ></td>
+                    <td><input type="text" name="researchField" class="researchField"/></td>
                 </tr>
                 <tr>
                     <th>照片地址:</th>
@@ -118,7 +118,7 @@
                 <tr>
                     <th>主要研究成果简介:</th>
                     <td style="border-right:none;">
-                        <textarea name="researchAchievements" id="" cols="60"    rows="5"></textarea>
+                        <textarea name="researchAchievements" id="" cols="60"  class="researchAchievements"  rows="5"></textarea>
                     </td>
                     <th style="border-left:none;border-right:none;"></th>
                     <td style="border-left:none;"></td>
@@ -126,7 +126,7 @@
                 <tr>
                     <th>个人获奖状况:	</th>
                     <td style="border-right:none;">
-                        <textarea name="personalPrize" id="" cols="60"    rows="5"></textarea>
+                        <textarea name="personalPrize" id="" cols="60"  class="personalPrize"  rows="5"></textarea>
                     </td>
                     <th style="border-left:none;border-right:none;"></th>
                     <td style="border-left:none;"></td>
@@ -134,42 +134,23 @@
                 <tr>
                     <th>成果获奖状况:</th>
                     <td style="border-right:none;">
-                        <textarea name="resultsPrize" id="" cols="60"    rows="5"></textarea>
+                        <textarea name="resultsPrize" id="" cols="60"  class="resultsPrize"  rows="5"></textarea>
                     </td>
                     <th style="border-left:none;border-right:none;"></th>
                     <td style="border-left:none;"></td>
                 </tr>
                 <tr>
                     <td colspan="6" class="pn-fbutton">
-                        <input type="submit" value="提交"  class="btn btn-info" id="change"/>
+                        <input type="button" value="提交"  class="btn btn-info" id="change" onclick="addExperts()"/>
                         <input type="button" value="重置"  class="btn btn-info" id="cancel" style="background-color: orangered" onclick="fomrReset()"/>
                     </td>
                 </tr>
             </table>
         </form>
 </div>
+<script th:src="@{/js/addExperts.js}"></script>
 <script th:src="@{/js/demo.js}"></script>
 <script>
-    function photoup() {
-        $('#fileds').click();
-        $('#fileds').change(function() {
-            //获取input file的files文件数组;
-            //$('#filed')获取的是jQuery对象，.get(0)转为原生对象;
-            //这边默认只能选一个，但是存放形式仍然是数组，所以取第一个元素使用[0];
-            var file = $('#fileds').get(0).files[0];
-            //创建用来读取此文件的对象
-            var reader = new FileReader();
-            //使用该对象读取file文件
-            reader.readAsDataURL(file);
-            //读取文件成功后执行的方法函数
-            reader.onload = function(e) {
-                //读取成功后返回的一个参数e，整个的一个进度事件
-                //选择所要显示图片的img，要赋值给img的src就是e中target下result里面
-                //的base64编码格式的地址
-                $('#imgshow').get(0).src = e.target.result;
-            }
-        })
-    }
     function fomrReset()
     {
         document.getElementById("myform").reset();

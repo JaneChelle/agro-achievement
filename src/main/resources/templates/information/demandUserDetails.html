@@ -15,10 +15,11 @@
 <div class="box">
     <h3>基本信息</h3>
     <div class="title">需求说明</div>
-    <form th:action="@{/demand/modifyDemand(demandId=${demand.demandId})}" method="post" onsubmit="modifyContent()">
+    <form  method="post"  id="myform">
             <table class="table table-hover table-bordered">
                 <tr>
                     <input type="hidden"  th:value="${session.user.userId}">
+                    <input type="hidden" th:value="${demand.demandId}" th:name="demandId">
                     <td>需求名字:</td>
                     <td><input type="text" name="demandName" th:value="${demand.demandName}" class="form-control"></td>
                     <td>预期价格:</td>
@@ -46,7 +47,7 @@
                 </tr>
                 <tr>
                     <td colspan="6" class="pn-fbutton">
-                        <input type="submit" value="修改" class="btn btn-info">
+                        <input type="button" value="修改" class="btn btn-info demendModify" onclick="demendModify()">
                         <a th:href="@{/demand/selectDemand}" class="a-div adiv3">返回</a>
                     </td>
                 </tr>
@@ -54,6 +55,7 @@
     </form>
 
 </div>
+<script th:src="@{/js/addDemand.js}"></script>
 <script th:src="@{/js/demo.js}"></script>
 </body>
 </html>

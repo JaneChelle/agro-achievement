@@ -28,6 +28,7 @@ public class HomeController extends BaseController {
     //首页数据
     @RequestMapping("/home")
     public ModelAndView home(Model model) {
+        long l = System.currentTimeMillis();
         //首页技术供给
         List<Achievement> achievementList = iAchievementService.selectAchieveByTime("home");
         model.addAttribute("achievementList", achievementList);
@@ -67,7 +68,7 @@ public class HomeController extends BaseController {
         model.addAttribute("newsList", newsList);
         model.addAttribute("tradingList", tradingList);
         model.addAttribute("policyList", policyList);
-
+        System.out.println(l- System.currentTimeMillis()+"--------");
         return new ModelAndView("index");
     }
 

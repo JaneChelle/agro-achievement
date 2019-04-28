@@ -1,5 +1,8 @@
 server:
   port: 10517
+logging:
+  level:
+    com.baomidou.mybatisplus.samples: debug
 spring:
   datasource:
     name: mysql

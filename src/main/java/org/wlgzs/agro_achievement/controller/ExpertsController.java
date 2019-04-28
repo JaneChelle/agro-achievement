@@ -34,7 +34,7 @@ public class ExpertsController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("/information/addExperts");
+        return new ModelAndView("information/addExperts");
     }
 
     //申请成为专家
@@ -65,7 +65,7 @@ public class ExpertsController extends BaseController {
         } else {
             model.addAttribute("msg", "审核失败！");
         }
-        return new ModelAndView("/information/expertsUserDetails");
+        return new ModelAndView("information/expertsUserDetails");
     }
 
 }

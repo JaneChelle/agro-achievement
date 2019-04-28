@@ -26,7 +26,7 @@ public class UserManagementController extends BaseController {
     public ModelAndView toUserManagement(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
-        return new ModelAndView("/information/information");
+        return new ModelAndView("information/information");
     }
 
     //去修改个人信息
@@ -34,13 +34,13 @@ public class UserManagementController extends BaseController {
     public ModelAndView toModifyUser(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
-        return new ModelAndView("/information/register");
+        return new ModelAndView("information/register");
     }
 
     //去修改密码
     @RequestMapping(value = "/toChangePassword")
     public ModelAndView toUserManagement() {
-        return new ModelAndView("/information/changePassword");
+        return new ModelAndView("information/changePassword");
     }
 
     //修改密码
@@ -77,13 +77,13 @@ public class UserManagementController extends BaseController {
     //去找回密码
     @RequestMapping(value = "/toFindPassword")
     public ModelAndView toFindPassword() {
-        return new ModelAndView("/information/findPassword");
+        return new ModelAndView("information/findPassword");
     }
 
     //去找回密码
     @RequestMapping(value = "/toPassword")
     public ModelAndView toPassword() {
-        return new ModelAndView("/information/password");
+        return new ModelAndView("information/password");
     }
 
     //找回密码

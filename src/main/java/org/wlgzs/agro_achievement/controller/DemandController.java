@@ -36,7 +36,7 @@ public class DemandController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("/information/addDemand");
+        return new ModelAndView("information/addDemand");
     }
 
     //发布一个新需求
@@ -72,7 +72,7 @@ public class DemandController extends BaseController {
         model.addAttribute("statusCode",statusCode);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
-        return new ModelAndView("/information/userDemandList");
+        return new ModelAndView("information/userDemandList");
     }
 
     //前台查询所有需求（页面显示的，审核通过的）
@@ -92,7 +92,7 @@ public class DemandController extends BaseController {
         model.addAttribute("demandList",demandList);
         model.addAttribute("TotalPages", iPage.getPages());//总页数
         model.addAttribute("Number", iPage.getCurrent());//当前页数
-        return new ModelAndView("/demand/DemandList");
+        return new ModelAndView("demand/DemandList");
     }
 
     //查看需求详情页面
@@ -105,7 +105,7 @@ public class DemandController extends BaseController {
             iDemandService.updateById(demand);
         }
         model.addAttribute("demand",demand);
-        return new ModelAndView("/demand/demandDetails");
+        return new ModelAndView("demand/demandDetails");
     }
 
     //查看需求详情页面(个人中心)
@@ -119,7 +119,7 @@ public class DemandController extends BaseController {
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
 
-        return new ModelAndView("/information/demandUserDetails");
+        return new ModelAndView("information/demandUserDetails");
     }
 
 }

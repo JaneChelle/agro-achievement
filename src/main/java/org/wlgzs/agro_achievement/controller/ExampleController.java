@@ -30,7 +30,7 @@ public class ExampleController extends BaseController {
     //去添加案例
     @RequestMapping(value = "/toAddExample")
     public ModelAndView toAddExample() {
-        return new ModelAndView("/information/addExample");
+        return new ModelAndView("information/addExample");
     }
 
     //添加案例
@@ -44,7 +44,7 @@ public class ExampleController extends BaseController {
     public ModelAndView toModifyExample(Model model, Integer exampleId) {
         Example example = iCaseService.exampleDetails(exampleId);
         model.addAttribute("example", example);
-        return new ModelAndView("/information/modifyExample");
+        return new ModelAndView("information/modifyExample");
     }
 
     //修改案例
@@ -75,7 +75,7 @@ public class ExampleController extends BaseController {
         model.addAttribute("statusCode", statusCode);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
-        return new ModelAndView("/information/userExampleList");
+        return new ModelAndView("information/userExampleList");
     }
 
     //查看案列详情
@@ -83,7 +83,7 @@ public class ExampleController extends BaseController {
     public ModelAndView exampleDetails(Model model, Integer exampleId) {
         Example example = iCaseService.exampleDetails(exampleId);
         model.addAttribute("example", example);
-        return new ModelAndView("/example/exampleDetails");
+        return new ModelAndView("example/exampleDetails");
     }
 
     //查询所有案例
@@ -94,7 +94,7 @@ public class ExampleController extends BaseController {
         System.out.println("exampleList" + exampleList);
 
         model.addAttribute("exampleList", exampleList);
-        return new ModelAndView("/example/ExampleList");
+        return new ModelAndView("example/ExampleList");
     }
 
 }

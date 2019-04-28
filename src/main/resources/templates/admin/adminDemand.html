@@ -14,39 +14,29 @@
 <div th:include="common/adminCommon :: nav"></div>
     <section>
     	<div class="col-sm-12 search-collapse">
-    		<form action="">
-    			<div class="select-list">
-    				<ul>
+			<div class="select-list">
+				<ul>
+					<li>成果管理</li>
+					<li>
 						<form th:action="@{/admin/adminAdminDemand}">
-							<li>
-								<span>搜索：</span>
-								<input type="text" name="findName" value="" autocomplete="off"/>
-							</li>
-							<li>
-								<button class="btn" type="submit">搜 索</button>
-							</li>
+							<input type="text" name="findName" value="" placeholder="需求名称搜索" autocomplete="off"/>
+							<button style="font-size: 14px; background-color: #0BB;" class="btn" type="submit">搜 索</button>
 						</form>
-    					<li></li>
-    					<li class="exampleList">
-    						<span>未审核【0】</span>
-    						<span>通过【1】</span>
-    						<span>失败【2】</span>
-    					</li>
-    					<li>
-							<a th:href="@{/admin/toAdminAddDemand}">
-	                			<img src="../images/添加.svg" title="添加需求"/>
-	                			<span>添加需求</span>
-	                		</a>
-    					</li>
-    				</ul>
-    			</div>
-    		</form>
+					</li>
+					<li class="img_add">
+						<a th:href="@{/admin/toAdminAddDemand}">
+							<img src="../images/添加.svg" title="添加需求"/>
+							<span>添加需求</span>
+						</a>
+					</li>
+				</ul>
+			</div>
     	</div>
 		<div class="cure"></div>
     	<div class="section_table">
     		<div class="section">
 				<table class="table table-bordered table-hover">
-					<thead>
+					<thead style="background-color: #f3f3f4;">
 		                <tr>
 		                	<th>选择</th>
 		                	<th>需求ID</th>
@@ -57,7 +47,7 @@
 		                	<th>联系人</th>
 		                	<th>电话</th>
 		                	<th>邮箱</th>
-							<th>审核状态</th>
+							<th>点击量</th>
 		                    <th>操作</th>
 		                </tr>
 		            </thead>
@@ -74,7 +64,7 @@
 		            		<td th:text="${#temporals.format(demand.releaseTime, 'yyyy-MM-dd')}">2019-03-25 21:32:34</td>
 		            		<td th:text="${demand.linkman}">武凯焱</td>
 		            		<td th:text="${demand.phone}">15993023617</td>
-		            		<td th:text="${demand.email}">911090257@qq.com</td>
+		            		<td th:text="${demand.pageView}"></td>
 							<td class="isCode" th:text="${demand.statusCode}"></td>
 		            		<td>
 								<a th:href="@{/admin/toAdminEditDemand(demandId=${demand.demandId})}">详情</a>

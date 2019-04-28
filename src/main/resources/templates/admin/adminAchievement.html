@@ -13,36 +13,28 @@
 <div th:include="common/adminCommon :: nav"></div>
     <section>
     	<div class="col-sm-12 search-collapse">
-    		<form th:action="@{/admin/adminAchievementList}">
-    			<div class="select-list">
-    				<ul>
-    					<li>
-    						<span>搜索：</span>
-    						<input type="text" name="findName" id="" value="" />
-    					</li>
-    					<li>
-    						<button class="btn" type="submit">搜 索</button>
-    					</li>
-    					<li></li>
-    					<li class="exampleList">
-    						<span>未审核【0】</span>
-    						<span>通过【1】</span>
-    						<span>失败【2】</span>
-    					</li>
-    					<li>
-							<a th:href="@{/admin/toAdminAddAchievement}">
-	                			<img src="../images/添加.svg" title="添加成果"/>
-	                			<span>添加</span>
-	                		</a>
-    					</li>
-    				</ul>
-    			</div>
-    		</form>
+			<div class="select-list">
+				<ul>
+					<li>成果管理</li>
+					<li>
+						<form th:action="@{/admin/adminAchievementList}">
+							<input type="text" name="findName" value="" placeholder="成果名称搜索" autocomplete="off"/>
+							<button style="font-size: 14px; background-color: #0BB;" class="btn" type="submit">搜 索</button>
+						</form>
+					</li>
+					<li class="img_add">
+						<a th:href="@{/admin/toAdminAddAchievement}">
+							<img src="../images/添加.svg" title="添加成果"/>
+							<span>添加成果</span>
+						</a>
+					</li>
+				</ul>
+			</div>
     	</div>
 		<div class="section_table">
     		<div class="section">
 				<table class="table table-bordered table-hover">
-					<thead>
+					<thead style="background-color: #f3f3f4;">
 		                <tr>
 		                	<th>选择</th>
 		                	<th>成果id</th>

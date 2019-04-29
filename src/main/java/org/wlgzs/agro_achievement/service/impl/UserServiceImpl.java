@@ -138,18 +138,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         IPage<User> iPage = null;
         if (!"".equals(find)) {
             if ("".equals(userLevel)) {//查询普通用户和专家
-                queryWrapper.in("user_level", "2", "3").like("user_name", find).or().like("user_email", find).or().like("user_phone", find);
+                queryWrapper.in("user_level", "2", "3").like("user_name", find).or().like("user_email", find).or().like("user_phone", find).orderByDesc("user_id");
                 iPage = baseMapper.selectPage(page, queryWrapper);
             } else {
-                queryWrapper.eq("user_level", userLevel).or().like("user_name", find).or().like("user_email", find).or().like("user_phone", find);
+                queryWrapper.eq("user_level", userLevel).or().like("user_name", find).or().like("user_email", find).or().like("user_phone", find).orderByDesc("user_id");
                 iPage = baseMapper.selectPage(page, queryWrapper);
             }
         } else {
             if ("".equals(userLevel)) {//查询普通用户和专家
-                queryWrapper.in("user_level", "2", "3");
+                queryWrapper.in("user_level", "2", "3").orderByDesc("user_id");
                 iPage = baseMapper.selectPage(page, queryWrapper);
             } else {
-                queryWrapper.in("user_level", "1","2", "3");
+                queryWrapper.in("user_level", "1","2", "3").orderByDesc("user_id");
                 iPage = baseMapper.selectPage(page, queryWrapper);
             }
         }

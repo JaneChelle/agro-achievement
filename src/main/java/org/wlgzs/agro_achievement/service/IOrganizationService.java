@@ -8,6 +8,7 @@ import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ import java.util.List;
 public interface IOrganizationService extends IService<Organization> {
 
     //添加机构
-    Result addOrganization(HttpServletRequest request,HttpSession session,Organization organization,MultipartFile myFileName);
+    Result addOrganization(HttpServletRequest request,HttpSession session,Organization organization,MultipartFile myFileName) throws FileNotFoundException;
 
     //删除机构
     Result deleteOrganization(Integer organizationId);
@@ -52,6 +53,6 @@ public interface IOrganizationService extends IService<Organization> {
     Result adminOrganizationList(String findName,int current, int limit);
 
     //添加机构
-    Result saveOrganization(HttpSession session,Organization organization,MultipartFile myFileName,HttpServletRequest request);
+    Result saveOrganization(HttpSession session,Organization organization,MultipartFile myFileName,HttpServletRequest request) throws FileNotFoundException;
 
 }

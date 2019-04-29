@@ -42,7 +42,7 @@ spring:
           #发送者的邮箱账号
           username: huystar@126.com
   resources:
-    static-locations: classpath:/
+  static-locations: classpath:static/,file:static/
 
 #mybatis plus配置
 mybatis-plus:

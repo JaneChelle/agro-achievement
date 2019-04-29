@@ -13,6 +13,7 @@ import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -51,7 +52,7 @@ public class AdminExpertsController extends BaseController {
 
     //管理员添加专家
     @RequestMapping(value = "/adminAddExperts")
-    public Result adminAddExperts(HttpSession session, Model model, HttpServletRequest request, String time, Experts experts, @RequestParam(value = "file", required = false)MultipartFile myFileName) {
+    public Result adminAddExperts(HttpSession session, Model model, HttpServletRequest request, String time, Experts experts, @RequestParam(value = "file", required = false)MultipartFile myFileName) throws FileNotFoundException {
         Result result = iExpertsService.addAdminExperts(session,request,time, experts, myFileName);
         return result;
     }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Experts;
 import org.wlgzs.agro_achievement.entity.Type;
@@ -21,6 +22,7 @@ import org.wlgzs.agro_achievement.util.ResultCode;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -46,7 +48,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
     //申请成为专家
     @Override
-    public Result addExperts(HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) {
+    public Result addExperts(HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) throws FileNotFoundException {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         if (user != null) {
@@ -69,13 +71,23 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
         //生成实际储存的文件名（不能重复）
         realName = RandomNumberUtils.getRandomFileName() + suffixName;
+        File path = new File(ResourceUtils.getURL("classpath:").getPath());
+        if(!path.exists()) {
+            System.out.println("不存在！");
+            path = new File("");
+        }
+        File upload = new File(path.getAbsolutePath(),"static/HeadPortrait/");
+        if(!upload.exists()) {
+            upload.mkdirs();
+        }
+
         // "/upload"是你自己定义的上传目录
-        String realPath = session.getServletContext().getRealPath("/HeadPortrait");
-        File uploadFile = new File(realPath, realName);
+//                    String realPath = session.getServletContext().getRealPath("/upload");
+        File uploadFile = new File(upload.getPath(), realName);
 
         //上传文件
         try {
-            myFileName.transferTo(uploadFile);
+            myFileName.transferTo(upload);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -189,7 +201,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     @Override
     public Result findExpertsList(String findName, int current, int limit) {
         QueryWrapper<Experts> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("experts_name", findName);
+        queryWrapper.like("experts_name", findName).orderByDesc("experts_id");
         Page page = new Page(current, limit);
         IPage<Experts> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Experts> expertsList = iPage.getRecords();
@@ -198,7 +210,7 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
     }
 
     @Override
-    public Result addAdminExperts(HttpSession session, HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) {
+    public Result addAdminExperts(HttpSession session, HttpServletRequest request, String time, Experts experts, MultipartFile myFileName) throws FileNotFoundException {
         //文件处理（真实存储名）
         String realName = "";
         String str = "";
@@ -209,13 +221,26 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
 
             //生成实际储存的文件名（不能重复）
             realName = RandomNumberUtils.getRandomFileName() + suffixName;
+
+            File path = new File(ResourceUtils.getURL("classpath:").getPath());
+            if(!path.exists()) {
+                System.out.println("不存在！");
+                path = new File("");
+            }
+            File upload = new File(path.getAbsolutePath(),"static/HeadPortrait/");
+            if(!upload.exists()) {
+                upload.mkdirs();
+            }
+
+
             // "/upload"是你自己定义的上传目录
-            String realPath = session.getServletContext().getRealPath("/HeadPortrait");
-            File uploadFile = new File(realPath, realName);
+//                    String realPath = session.getServletContext().getRealPath("/upload");
+            File uploadFile = new File(upload.getPath(), realName);
+
 
             //上传文件
             try {
-                myFileName.transferTo(uploadFile);
+                myFileName.transferTo(upload);
             } catch (IOException e) {
                 e.printStackTrace();
             }

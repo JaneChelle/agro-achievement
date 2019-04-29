@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Achievement;
 import org.wlgzs.agro_achievement.entity.AchievementType;
@@ -22,6 +23,7 @@ import org.wlgzs.agro_achievement.util.ResultCode;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -48,7 +50,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
 
     //发布成果
     @Override
-    public Result addAchievement(MultipartFile[] myFileNames, HttpSession session, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+    public Result addAchievement(MultipartFile[] myFileNames, HttpSession session, HttpServletRequest request, Achievement achievement, String start_time, String end_time) throws FileNotFoundException {
         User user = (User) session.getAttribute("user");
         if (achievement != null) {
             //文件处理（真实存储名）
@@ -64,13 +66,24 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                     //生成实际储存的文件名（不能重复）
                     realName = RandomNumberUtils.getRandomFileName() + suffixName;
 
+                    File path = new File(ResourceUtils.getURL("classpath:").getPath());
+                    if(!path.exists()) {
+                        System.out.println("不存在！");
+                        path = new File("");
+                    }
+                    File upload = new File(path.getAbsolutePath(),"static/upload/");
+                    if(!upload.exists()) {
+                        upload.mkdirs();
+                    }
+
+
                     // "/upload"是你自己定义的上传目录
-                    String realPath = session.getServletContext().getRealPath("/upload");
-                    File uploadFile = new File(realPath, realName);
+//                    String realPath = session.getServletContext().getRealPath("/upload");
+                    File uploadFile = new File(upload.getPath(), realName);
 
                     //上传文件
                     try {
-                        myFileNames[i].transferTo(uploadFile);
+                        myFileNames[i].transferTo(upload);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -166,7 +179,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                     achievement.setEndTime(timeTwo);
                 }
                 baseMapper.updateById(achievement);
-                return new Result(ResultCode.SUCCESS,"修改成功！",1 ,achievement);
+                return new Result(ResultCode.SUCCESS, "修改成功！", 1, achievement);
             }
             return new Result(ResultCode.FAIL, "该条记录不存在！");
         }
@@ -195,9 +208,9 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
                 baseMapper.updateById(achievement);
                 return new Result(ResultCode.SUCCESS, "修改成功！");
             }
-            return new Result(ResultCode.FAIL, "该条记录不存在！",1,achievement);
+            return new Result(ResultCode.FAIL, "该条记录不存在！", 1, achievement);
         }
-        return new Result(ResultCode.FAIL, "操作失败！",1,null);
+        return new Result(ResultCode.FAIL, "操作失败！", 1, null);
     }
 
     //按照用户查询所有成果（状态码）
@@ -207,13 +220,13 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper();
         IPage<Achievement> iPage = null;
         if (statusCode == null || statusCode.equals("")) {  //查询所有
-            queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", "1"));
+            queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", "1")).orderByDesc("achievement_id");
             Page page = new Page(current, limit);
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();
             return new Result(ResultCode.SUCCESS, "", achievementList, iPage.getPages(), iPage.getCurrent());
         } else {
-            queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", statusCode));
+            queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", statusCode)).orderByDesc("achievement_id");
             Page page = new Page(current, limit);
             iPage = baseMapper.selectPage(page, queryWrapper);
             achievementList = iPage.getRecords();
@@ -265,7 +278,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
             QueryWrapper<AchievementType> queryWrapperAchievement = new QueryWrapper();
             queryWrapperAchievement.eq("type_id", typeOne.getTypeId());
             List<AchievementType> achievementType = achievementTypeMapper.selectList(queryWrapperAchievement);
-            if(achievementType.size() <= 0){
+            if (achievementType.size() <= 0) {
                 return new Result(ResultCode.FAIL, "不存在！");
             }
             //将需求id存入集合
@@ -286,10 +299,10 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("status_code", "1").orderByDesc(true, "release_time");
         Page page;
-        if("home".equals(home)){
-            page = new Page(1,10);
-        }else{
-            page = new Page(1,3);
+        if ("home".equals(home)) {
+            page = new Page(1, 10);
+        } else {
+            page = new Page(1, 3);
         }
 
         IPage<Achievement> iPage = baseMapper.selectPage(page, queryWrapper);
@@ -321,7 +334,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     }
 
     @Override
-    public Result saveAchievement(HttpSession session, MultipartFile[] myFileNames, HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+    public Result saveAchievement(HttpSession session, MultipartFile[] myFileNames, HttpServletRequest request, Achievement achievement, String start_time, String end_time) throws FileNotFoundException {
         if (achievement != null) {
             //文件处理（真实存储名）
             String realName = "";
@@ -335,10 +348,22 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
 
                     //生成实际储存的文件名（不能重复）
                     realName = RandomNumberUtils.getRandomFileName() + suffixName;
+                    System.out.println("realName=" + realName);
+                    System.out.println("suffixName=" + suffixName);
+                    File path = new File(ResourceUtils.getURL("classpath:").getPath());
+                    if(!path.exists()) {
+                        System.out.println("不存在！");
+                        path = new File("");
+                    }
+                    File upload = new File(path.getAbsolutePath(),"static/upload/");
+                    if(!upload.exists()) {
+                        upload.mkdirs();
+                    }
+
 
                     // "/upload"是你自己定义的上传目录
-                    String realPath = session.getServletContext().getRealPath("/upload");
-                    File uploadFile = new File(realPath, realName);
+//                    String realPath = session.getServletContext().getRealPath("/upload");
+                    File uploadFile = new File(upload.getPath(), realName);
 
                     //上传文件
                     try {
@@ -403,7 +428,7 @@ public class AchievementServiceImpl extends ServiceImpl<AchievementMapper, Achie
     @Override
     public Result adminAchievementList(String findName, int current, int limit) {
         QueryWrapper<Achievement> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("achievement_name", findName).or().like("achievement_key", findName);
+        queryWrapper.like("achievement_name", findName).or().like("achievement_key", findName).orderByDesc("achievement_id");
         Page page = new Page(current, limit);
         IPage<Achievement> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Achievement> achievementList = iPage.getRecords();

@@ -17,6 +17,7 @@ import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
@@ -46,9 +47,8 @@ public class AchievementController extends BaseController {
     //发布成果
     @RequestMapping(value = "/addAchievement")
     public Result addAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, HttpSession session, Model model,
-                                       HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+                                       HttpServletRequest request, Achievement achievement, String start_time, String end_time) throws FileNotFoundException {
         Result result = iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
-        System.out.println(result+"-----");
         return result;
     }
 

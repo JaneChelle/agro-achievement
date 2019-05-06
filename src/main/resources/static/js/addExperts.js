@@ -19,171 +19,89 @@ function photoup() {
     })
 }
 function addExperts() {
-    var expertsName=$('.expertsName').val();
-    var time=$('.time').val();
-    var expertsCountry=$('.expertsCountry').val();
-    var expertsEducation=$('.expertsEducation').val();
-    var degree=$('.degree').val();
-    var school=$('.school').val();
-    var major=$('.major').text();
-    var unit=$('.unit').text();
-    var position=$('.position').text();
-    var expertsPhone=$('.expertsPhone').text();
-    var expertsEmail=$('.expertsEmail').text();
-    var typeName=$('.typeName').text();
-    var researchField=$('.researchField').text();
-    var researchAchievements=$('.researchAchievements').text();
-    var personalPrize=$('.personalPrize').text();
-    var resultsPrize=$('.resultsPrize').text();
-    if(expertsName ==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('专家名称不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');
-            $('.cure').html(' ');
-        },2000);
-    }else if(time==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('出生日期不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');
-            $('.cure').html(' ');
-        },2000);
-    }else if(expertsCountry==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('国籍不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(expertsEducation==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('学历不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(degree==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('学位不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(school==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('毕业学校不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(major==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('所学专业不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(expertsPhone==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('联系方式不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(unit==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('所在单位不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(position==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('行政职位不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(expertsEmail==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('邮件不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(typeName==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('类型不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(researchField==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('研究领域不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(researchAchievements==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('研究成果不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }else if(personalPrize==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('个人获奖不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }
-    else if(resultsPrize==''){
-        $('.cure').addClass('uu');
-        $('.cure').html('成果获奖不能为空');
-        setTimeout(function () {
-            $('.cure').removeClass('uu');$('.cure').html(' ');
-        },2000);
-    }
-else{
-        var form = $('#myform')[0];
-        var formData = new FormData(form);
-        $.ajax({
-            type: "post",
-            url: "/experts/addExperts",
-            processData: false,
-            data: formData,
-            contentType: false,
-            mimeType: 'multipart/form-data',
-            dataType: "json",
-            success: function (data) {
+    var radios = document.getElementsByName("expertsSex");
+    for ( var i = 0; i < radios.length; i++) {
+        var expertsName = $('.expertsName').val();
+        var time = $('.time').val();
+        var expertsCountry = $('.expertsCountry').val();
+        var expertsEducation = $('.expertsEducation').val();
+        var degree = $('.degree').val();
+        var school = $('.school').val();
+        var major = $('.major').val();
+        var unit = $('.unit').val();
+        var position = $('.position').val();
+        var expertsPhone = $('.expertsPhone').val();
+        var expertsEmail = $('.expertsEmail').val();
+        var typeName = $('.typeName').val();
+        var researchField = $('.researchField').val();
+        var researchAchievements = $('.researchAchievements').val();
+        var personalPrize = $('.personalPrize').val();
+        var resultsPrize = $('.resultsPrize').val();
+        if (expertsName == '') {
+            alert('专家名称不能为空')
+        } else if (time == '') {
+            alert('出生日期不能为空')
+        } else if (expertsCountry == '') {
+            alert('国籍不能为空')
+        } else if (expertsEducation == '') {
+            alert('学历不能为空')
+        } else if (degree == '') {
+            alert('学位不能为空')
+        } else if (school == '') {
+            alert('毕业学校不能为空');
+        } else if (major == '') {
+            alert('所学专业不能为空');
+        } else if (expertsPhone == '') {
+            alert('联系方式不能为空')
+        } else if (unit == '') {
+            alert('所在单位不能为空')
+        } else if (position == '') {
+            alert('行政职位不能为空')
+        } else if (expertsEmail == '') {
+            alert('邮件不能为空')
+        } else if (typeName == '') {
+            alert('类型不能为空')
+        } else if (researchField == '') {
+            alert('研究领域不能为空')
+        } else if (researchAchievements == '') {
+            alert('研究成果不能为空')
+        } else if (personalPrize == '') {
+            alert('个人获奖不能为空')
+        } else if (resultsPrize == '') {
+            alert('成果获奖不能为空');
+        }  else   if (radios[i].checked!=true) {
+            i++;
+            alert('请填写性别');
 
-                if (data.code == 0){
-                    $('.cure').addClass('uu');
-                    $('.cure').html(data.msg);
-                    setTimeout(function () {
-                        $('.cure').removeClass('uu');
-                    },2000);
-                    setTimeout(function () {
-                        location.reload(true);
-                    },1000);
-                    alert('添加成功')
-                    window.location.href = '/experts/expertsUserDetails';
-                }else{
-                    $('.cure').addClass('uu');
-                    $('.cure').html(data.msg);
-                    setTimeout(function () {
-                        $('.cure').removeClass('uu');
-                    },2000);
-                    setTimeout(function () {
-                        location.reload(true);
-                    },1000);
-                    alert('添加失败');
-                    window.location.href = '/experts/expertsUserDetails';
+        }
+        else {
+            var form = $('#myform')[0];
+            var formData = new FormData(form);
+            $.ajax({
+                type: "post",
+                url: "/experts/addExperts",
+                processData: false,
+                data: formData,
+                contentType: false,
+                mimeType: 'multipart/form-data',
+                dataType: "json",
+                success: function (data) {
+
+                    if (data.code == 0) {
+                        alert('添加成功');
+                        window.location.href = '/experts/expertsUserDetails';
+                    } else {
+                        alert('添加失败');
+                        window.location.href = '/experts/expertsUserDetails';
+                    }
+
+                },
+                error: function (data) {
+                    alert('异常')
                 }
-
-            },
-            error: function (data) {
-                $('.cure').addClass('uu');
-                $('.cure').html(data.msg);
-                setTimeout(function () {
-                    $('.cure').removeClass('uu');
-                },1000);
-
-                alert('异常')
-            }
-        });
-        return true;
+            });
+            return true;
+        }
+        // return;
     }
-    // return;
 };

@@ -8,6 +8,7 @@ import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public interface IAchievementService extends IService<Achievement> {
 
     //发布需求
     Result addAchievement(MultipartFile[] myFileNames, HttpSession session,HttpServletRequest request,
-                          Achievement achievement, String start_time, String end_time);
+                          Achievement achievement, String start_time, String end_time) throws FileNotFoundException;
 
     //删除需求
     Result deleteAchievement(Integer achievementId);
@@ -60,7 +61,7 @@ public interface IAchievementService extends IService<Achievement> {
 
     //添加成果
     Result saveAchievement(HttpSession session,MultipartFile[] myFileNames,HttpServletRequest request,
-                           Achievement achievement, String start_time, String end_time);
+                           Achievement achievement, String start_time, String end_time) throws FileNotFoundException;
 
     //查询所有成果
     Result adminAchievementList(String findName,int current, int limit);

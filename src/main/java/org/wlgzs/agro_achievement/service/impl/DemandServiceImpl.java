@@ -84,13 +84,13 @@ public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> impleme
         QueryWrapper<Demand> queryWrapper = new QueryWrapper();
         IPage<Demand> iPage = null;
         if (statusCode == null || statusCode.equals("")) {  //查询所有
-            queryWrapper.eq("user_id", userId);
+            queryWrapper.eq("user_id", userId).orderByDesc("demand_id");
             Page page = new Page(current, limit);
             iPage = baseMapper.selectPage(page, queryWrapper);
             demandList = iPage.getRecords();
             return new Result(ResultCode.SUCCESS, "", demandList, iPage.getPages(), iPage.getCurrent());
         } else {
-            queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", statusCode));
+            queryWrapper.and(i -> i.eq("user_id", userId).eq("status_code", statusCode)).orderByDesc("demand_id");
             Page page = new Page(current, limit);
             iPage = baseMapper.selectPage(page, queryWrapper);
             demandList = iPage.getRecords();

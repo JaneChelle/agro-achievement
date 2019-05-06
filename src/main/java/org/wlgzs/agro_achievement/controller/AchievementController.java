@@ -17,6 +17,7 @@ import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
@@ -40,15 +41,14 @@ public class AchievementController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("/information/addAchievement");
+        return new ModelAndView("information/addAchievement");
     }
 
     //发布成果
     @RequestMapping(value = "/addAchievement")
     public Result addAchievement(@RequestParam(value = "file", required = false) MultipartFile[] myFileNames, HttpSession session, Model model,
-                                       HttpServletRequest request, Achievement achievement, String start_time, String end_time) {
+                                       HttpServletRequest request, Achievement achievement, String start_time, String end_time) throws FileNotFoundException {
         Result result = iAchievementService.addAchievement(myFileNames, session, request, achievement, start_time, end_time);
-        System.out.println(result+"-----");
         return result;
     }
 
@@ -94,7 +94,7 @@ public class AchievementController extends BaseController {
         model.addAttribute("achievementList", achievementList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
-        return new ModelAndView("/information/userAchieveList");
+        return new ModelAndView("information/userAchieveList");
     }
 
     //前台查询所有成果（页面显示的，审核通过的）
@@ -127,7 +127,7 @@ public class AchievementController extends BaseController {
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
 
-        return new ModelAndView("/achievement/AchievementList");
+        return new ModelAndView("achievement/AchievementList");
     }
 
     //查看成果详情页面
@@ -166,7 +166,7 @@ public class AchievementController extends BaseController {
         model.addAttribute("achievement", achievement);
         model.addAttribute("start_time", start_time);
         model.addAttribute("end_time", end_time);
-        return new ModelAndView("/achievement/achieveDetails");
+        return new ModelAndView("achievement/achieveDetails");
     }
 
     //查看成果详情页面(个人中心)
@@ -190,7 +190,7 @@ public class AchievementController extends BaseController {
         model.addAttribute("achievement", achievement);
         model.addAttribute("start_time", start_time);
         model.addAttribute("end_time", end_time);
-        return new ModelAndView("/information/achievementUserDetails");
+        return new ModelAndView("information/achievementUserDetails");
     }
 
     //按照点击量排序成果(排行榜)
@@ -202,7 +202,7 @@ public class AchievementController extends BaseController {
         model.addAttribute("achievementList", achievementList);
         model.addAttribute("TotalPages", result.getPages());//总页数
         model.addAttribute("Number", result.getCurrent());//当前页数
-        return new ModelAndView("/achievement/rankingAchievement");
+        return new ModelAndView("achievement/rankingAchievement");
     }
 
     //按分类查询成果
@@ -221,7 +221,7 @@ public class AchievementController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("size", typeList.size());
-        return new ModelAndView("/achievement/AchievementList");
+        return new ModelAndView("achievement/AchievementList");
     }
 
 }

@@ -92,9 +92,9 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
         Page page = new Page(current, limit);
         QueryWrapper<Example> queryWrapper = new QueryWrapper<>();
         if (statusCode == null || statusCode.equals("")) {
-        queryWrapper.eq("user_id", userId);
+        queryWrapper.eq("user_id", userId).orderByDesc("example_id");
         } else {
-            queryWrapper.eq("user_id", userId).eq("status_code", statusCode);
+            queryWrapper.eq("user_id", userId).eq("status_code", statusCode).orderByDesc("example_id");
         }
         IPage iPage = baseMapper.selectPage(page, queryWrapper);
         List<Example> exampleList = iPage.getRecords();
@@ -118,7 +118,7 @@ public class ExampleServiceImpl extends ServiceImpl<ExampleMapper, Example> impl
     @Override
     public Result findExampleList(String findName, int current, int limit) {
         QueryWrapper<Example> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("example_title",findName);
+        queryWrapper.like("example_title",findName).orderByDesc("example_id");
         Page page = new Page(current,limit);
         IPage<Example> iPage = baseMapper.selectPage(page,queryWrapper);
         List<Example> exampleList = iPage.getRecords();

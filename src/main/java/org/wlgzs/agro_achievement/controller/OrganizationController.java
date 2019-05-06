@@ -15,6 +15,7 @@ import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -37,19 +38,19 @@ public class OrganizationController extends BaseController {
         Result result1 = iOrganizationTypeService.selectAllOrganizationType();
         List<OrganizationType> typeList = (List<OrganizationType>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("/information/addOrganization");
+        return new ModelAndView("information/addOrganization");
     }
     //去详情页
     @RequestMapping("/organizationUserDetails")
     public ModelAndView organizationUserDetails(Model model, Integer organizationId) {
         Organization organization = iOrganizationService.getById(organizationId);
         model.addAttribute("organization", organization);
-        return new ModelAndView("/information/organizationUserDetails");
+        return new ModelAndView("information/organizationUserDetails");
     }
     //添加机构
     @RequestMapping(value = "/addOrganization")
     public Result addOrganization(HttpServletRequest request,@RequestParam(value = "file",required = false)MultipartFile myFileName,
-            Model model, HttpSession session, Organization organization) {
+            Model model, HttpSession session, Organization organization) throws FileNotFoundException {
         Result result = iOrganizationService.addOrganization(request,session, organization,myFileName);
         return result;
     }
@@ -68,7 +69,7 @@ public class OrganizationController extends BaseController {
         Result result = iOrganizationService.selectOrganizationByUser(request, statusCode);
         List<Organization> organizationList = (List<Organization>) result.getData();
         model.addAttribute("organizationList", organizationList);
-        return new ModelAndView("/information/userOrganizationList");
+        return new ModelAndView("information/userOrganizationList");
     }
 
 }

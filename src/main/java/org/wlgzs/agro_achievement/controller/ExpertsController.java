@@ -12,6 +12,7 @@ import org.wlgzs.agro_achievement.entity.Type;
 import org.wlgzs.agro_achievement.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -34,13 +35,13 @@ public class ExpertsController extends BaseController {
         Result result1 = iTypeService.selectAllType();
         List<Type> typeList = (List<Type>) result1.getData();
         model.addAttribute("typeList", typeList);
-        return new ModelAndView("/information/addExperts");
+        return new ModelAndView("information/addExperts");
     }
 
     //申请成为专家
     @RequestMapping(value = "/addExperts")
     public Result addExperts(Model model,@RequestParam(value = "file", required = false) MultipartFile myFileName,
-                                   HttpServletRequest request, String time, Experts experts) {
+                                   HttpServletRequest request, String time, Experts experts) throws FileNotFoundException {
         Result result = iExpertsService.addExperts(request, time, experts,myFileName);
         return result;
     }
@@ -65,7 +66,7 @@ public class ExpertsController extends BaseController {
         } else {
             model.addAttribute("msg", "审核失败！");
         }
-        return new ModelAndView("/information/expertsUserDetails");
+        return new ModelAndView("information/expertsUserDetails");
     }
 
 }

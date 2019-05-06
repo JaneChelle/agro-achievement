@@ -15,6 +15,7 @@ import org.wlgzs.agro_achievement.util.ResultCode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public class AdminOrganizationController extends BaseController {
     //管理员添加机构
     @RequestMapping(value = "/adminAddOrganization")
     public Result adminAddOrganization(HttpSession session, @RequestParam(value = "file",required = false)MultipartFile myFileName, Model model, HttpServletRequest request,
-                                             Organization organization){
+                                             Organization organization) throws FileNotFoundException {
         Result result = iOrganizationService.saveOrganization(session,organization,myFileName,request);
         return result;
     }

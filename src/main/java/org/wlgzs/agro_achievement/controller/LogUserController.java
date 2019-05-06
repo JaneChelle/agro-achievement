@@ -25,13 +25,13 @@ public class LogUserController extends BaseController {
     //去登录
     @RequestMapping(value = "/toLogin")
     public ModelAndView toLogin() {
-        return new ModelAndView("login");
+        return new ModelAndView("/login");
     }
 
     //去注册
     @RequestMapping(value = "/toRegister")
     public ModelAndView toRegister() {
-        return new ModelAndView("register");
+        return new ModelAndView("/register");
     }
 
     /**

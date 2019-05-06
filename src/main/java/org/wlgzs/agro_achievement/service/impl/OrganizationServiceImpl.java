@@ -3,6 +3,7 @@ package org.wlgzs.agro_achievement.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.agro_achievement.entity.Organization;
 import org.wlgzs.agro_achievement.entity.OrganizationType;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
     OrganizationTypeMapper organizationTypeMapper;
 
     @Override
-    public Result addOrganization(HttpServletRequest request, HttpSession session, Organization organization, MultipartFile myFileName) {
+    public Result addOrganization(HttpServletRequest request, HttpSession session, Organization organization, MultipartFile myFileName) throws FileNotFoundException {
         if (organization != null) {
             User user = (User) session.getAttribute("user");
 
@@ -57,13 +59,23 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
                     //生成实际储存的文件名（不能重复）
                     String realName = RandomNumberUtils.getRandomFileName() + suffixName;
 
+                    File path = new File(ResourceUtils.getURL("classpath:").getPath());
+                    if(!path.exists()) {
+                        System.out.println("不存在！");
+                        path = new File("");
+                    }
+                    File upload = new File(path.getAbsolutePath(),"static/OrganizationLogo/");
+                    if(!upload.exists()) {
+                        upload.mkdirs();
+                    }
+
                     // "/upload"是你自己定义的上传目录
-                    String realPath = session.getServletContext().getRealPath("/OrganizationLogo");
-                    File uploadFile = new File(realPath, realName);
+//                    String realPath = session.getServletContext().getRealPath("/upload");
+                    File uploadFile = new File(upload.getPath(), realName);
 
                     //上传文件
                     try {
-                        myFileName.transferTo(uploadFile);
+                        myFileName.transferTo(upload);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -98,7 +110,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
         User user = (User) session.getAttribute("user");
         if (user != null) {
             QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("user_id", user.getUserId()).eq("status_code", statusCode);
+            queryWrapper.eq("user_id", user.getUserId()).eq("status_code", statusCode).orderByDesc("organization_id");
             List<Organization> organization = baseMapper.selectList(queryWrapper);
             if (organization != null) {
                 System.out.println(organization);
@@ -171,7 +183,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
     @Override
     public Result adminOrganizationList(String findName, int current, int limit) {
         QueryWrapper<Organization> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("organization_name", findName).or().like("type_name", findName);
+        queryWrapper.like("organization_name", findName).or().like("type_name", findName).orderByDesc("organization_id");
         Page page = new Page(current, limit);
         IPage<Organization> iPage = baseMapper.selectPage(page, queryWrapper);
         List<Organization> organizationList = iPage.getRecords();
@@ -180,7 +192,7 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
     }
 
     @Override
-    public Result saveOrganization(HttpSession session,Organization organization, MultipartFile myFileName, HttpServletRequest request) {
+    public Result saveOrganization(HttpSession session,Organization organization, MultipartFile myFileName, HttpServletRequest request) throws FileNotFoundException {
         if (organization != null) {
             if (!myFileName.getOriginalFilename().equals("")) {
                 String fileName = myFileName.getOriginalFilename();
@@ -190,13 +202,25 @@ public class OrganizationServiceImpl extends ServiceImpl<OrganizationMapper, Org
                 //生成实际储存的文件名（不能重复）
                 String realName = RandomNumberUtils.getRandomFileName() + suffixName;
 
+                File path = new File(ResourceUtils.getURL("classpath:").getPath());
+                if(!path.exists()) {
+                    System.out.println("不存在！");
+                    path = new File("");
+                }
+                File upload = new File(path.getAbsolutePath(),"static/OrganizationLogo/");
+                if(!upload.exists()) {
+                    upload.mkdirs();
+                }
+
+
                 // "/upload"是你自己定义的上传目录
-                String realPath = session.getServletContext().getRealPath("/OrganizationLogo");
-                File uploadFile = new File(realPath, realName);
+//                    String realPath = session.getServletContext().getRealPath("/upload");
+                File uploadFile = new File(upload.getPath(), realName);
+
 
                 //上传文件
                 try {
-                    myFileName.transferTo(uploadFile);
+                    myFileName.transferTo(upload);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

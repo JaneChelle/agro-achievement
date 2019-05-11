@@ -21,8 +21,8 @@
         <li th:if="${OrganizationTypeList}==null">
            <h3 style="color:red;">暂无数据</h3>
         </li>
-        <li th:each="Organization : ${OrganizationTypeList }">
-            <span  th:text="${Organization.typeName}">中国农业大学</span><br>
+        <li th:each="Organization : ${organizationList}">
+            <a  th:text="${Organization.organizationName}" th:href="@{/HomeController/organizationDetails(organizationId=${Organization.organizationId})}"></a><br>
         </li>
     </ul>
     <div class="fenye"></div>

@@ -14,10 +14,10 @@
 <body>
 <div class="box">
     <h3>专家信息录入</h3>
-    <div th:if="${experts == null}" style="color: red;font-size: 16px;">请先申请成为专家，若已申请请耐心等待</div>
+    <div th:if="${experts.statusCode} == '0'" style="color: red;font-size: 16px;">请先申请成为专家，若已申请请耐心等待</div>
     <!--<div th:if="${experts.statusCode==0}" style="color: red;font-size: 16px;">请耐心等待</div>-->
     <!--<div th:if="${experts.statusCode==-1}" style="color: red;font-size: 16px;">审核失败！</div>-->
-            <table class="table table-hover table-bordered" th:if="${experts!= null}">
+            <table class="table table-hover table-bordered" th:if="${experts.statusCode} == '1'">
                 <tr>
                     <input type="hidden" th:value="${session.user.userId}" th:name="${session.user.userId}">
                     <th>姓名:	</th>

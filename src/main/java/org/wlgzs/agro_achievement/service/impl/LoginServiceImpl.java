@@ -51,6 +51,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements L
     //注册
     @Override
     public Result register(HttpServletRequest request,User user) {
+        user.setUserLevel("3");
         baseMapper.insert(user);
         return new Result(ResultCode.SUCCESS,"注册成功！");
     }

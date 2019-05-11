@@ -266,6 +266,11 @@ public class ExpertsServiceImpl extends ServiceImpl<ExpertsMapper, Experts> impl
             experts.setExpertsBirth(ldt);
             experts.setPictureAddress(experts1.getPictureAddress());
             baseMapper.updateById(experts);
+            if(experts.getStatusCode().equals("3")){
+                User user = userMapper.selectById(experts.getUserId());
+                user.setUserLevel("3");
+                userMapper.updateById(user);
+            }
             return new Result(ResultCode.SUCCESS,"修改成功！",1, experts);
         }
         return new Result(ResultCode.FAIL,"修改失败！");
